@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "MMDVM")(type "KiCad")(uri "${KIPRJMOD}/../../libraries/mmdvm_hs_dual_hat.kicad_sym")(options "")(descr ""))
+  (lib (name "MMDVM_r30")(type "KiCad")(uri "${KIPRJMOD}/MMDVM_r30.kicad_sym")(options "")(descr ""))
+)

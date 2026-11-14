@@ -1,0 +1,4 @@
+erc.json
+n.net
+*.kicad_prl
+gen/__pycache__/

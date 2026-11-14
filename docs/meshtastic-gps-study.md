@@ -25,7 +25,7 @@
 4. 主機暫定 Bubblegum-96（Ubuntu 24.04，新版 kernel）。
 5. 4 顆 18650 直接裝在板上，可充放電，同時供電給 Bubblegum-96。
 6. 外盒，裝 TJC8048X550_011 5 吋螢幕給 MMDVM 用。
-7. GPS 開關：硬體滑動開關斷電，加上 Meshtastic 按鍵的軟體切換（兩者都做）。
+7. GPS 開關：硬體滑動開關斷電，加上 Meshtastic 的軟體切換（兩者都做；有 OLED 時軟體切換在 GPS 頁選單，見 10.4）。
 8. 外盒用 3D 列印，要能立在桌上直接看螢幕。
 9. 加小型散熱風扇，設計時考慮安裝與風道。
 10. Bubblegum 的 TTL console 直接在板上做好接口，方便接 USB-TTL。
@@ -111,7 +111,7 @@
 
 **為什麼選 A：** S900 沒有硬體 SPI；B 要靠未驗證的軟體 SPI，C 要多佔一個 USB 口（USB 2.0 口不支援 hub）。A 只需要 UART，風險最低。另外，用電池時可以把主機關掉、只留 Meshtastic 跑，續航從幾小時拉長到一週左右。nRF52840 的 USB 拉到板上的內部排針，需要時可以接主機或電腦更新韌體。
 
-下一步要從現有官方 variant（例如 RAK4631、Seeed XIAO nRF52840 Kit）中挑一個，照它的 `variant.h` 接腳，讓官方韌體直接能用。
+**已定案：RAK4630 模組，腳位照官方 `rak4631` 板型**（見第 10 節）。
 
 #### Meshtastic 小螢幕（使用者需求，2026-11-14）
 
@@ -123,7 +123,7 @@
   - 可視區約 29.4×14.7 mm，面板外形約 34.5×23 mm（依實際料號確認）。
   - 也可以用跟 Heltec 一樣的 0.96 吋 SSD1306，外盒開窗改小即可。
 - **接法：** 接在 **nRF52840 的 I2C**（不是主機的 I2C），照所選官方板型定義的 SDA／SCL 腳位，韌體才會自動抓到。
-- **操作：** MESH 按鍵移到 OLED 旁邊。官方韌體按一下切下一頁，連按三下切 GPS（長按等其他功能依所選板型而定，要標在外殼上）。
+- **操作：** MESH 按鍵移到 OLED 旁邊。有螢幕時，官方韌體按一下切下一頁、按住 0.5 秒開選單、按住約 3.9 秒關機；**連按三下切 GPS 只在沒有螢幕時有效**（見 10.4）。
 - **耗電：** OLED 亮著時約 10–25 mA（依亮點多寡），韌體閒置一段時間會自動關螢幕，按鍵喚醒；對主機關機時一週左右的續航影響很小。
 - **不建議改用 Heltec V3 的 ESP32-S3：**
   - 雖然多了 Wi-Fi，但耗電約是 nRF52840 的 5–10 倍，只跑 Meshtastic 時的續航會從一週掉到一兩天。
@@ -153,9 +153,9 @@
   - 主機上的小服務偵測到切換後，用 GPIO-G 重開 Meshtastic MCU，讓韌體重新偵測 GPS。
   - Meshtastic 主要在開機時偵測 GPS，執行中插拔的行為要用實機確認。
   - 主機沒開時，切到 ON 會在 Meshtastic 下次重開後生效。
-- **軟體開關（使用者決定兩者都做）：** 「MESH」按鍵（在正面 OLED 旁邊）接到所選 variant 定義的 user button 腳位。官方韌體連按三下會切換 GPS，不靠主機。
-  - 兩者的關係：硬體開關 OFF 時 GPS 一定沒電；開關 ON 時，連按三下可以在軟體上開關 GPS。
-  - 注意同一顆按鍵在官方韌體裡還有其他功能（例如長按關機），要依所選 variant 的按鍵行為加註在外殼標示上。
+- **軟體開關（使用者決定兩者都做）：** 「MESH」按鍵（在正面 OLED 旁邊）接 RAK4631 的 user button（P0.09）。因為有 OLED，軟體切換是「切到 GPS 頁 → 按住 0.5 秒 → Toggle GPS」；沒有螢幕時才是連按三下。
+  - 兩者的關係：硬體開關 OFF 時 GPS 一定沒電；開關 ON 時，可以用選單在軟體上開關 GPS。
+  - 外殼標示：按一下＝下一頁、按住＝選單、長按約 4 秒＝Meshtastic 關機。
 - **注意：** 主機的 gpsd 也吃同一顆 GPS，所以開關 OFF 時，APRS／閘道器的位置也會停。
 - **想要 GPS 開著、但 Meshtastic 不廣播位置：** 這要用軟體設定，例如 App 裡的 `position.gps_mode`、位置精度、固定位置，不需要硬體開關。
 - MMDVM-Host 本身已經沒有 GPSD；位置功能在 DMRGateway、YSFGateway 等閘道器，要編譯時打開 `USE_GPSD`。WPSD 手冊（2026-11）說它的 gpsd 功能目前不能用。
@@ -474,7 +474,8 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
 
 - ~~Bubblegum-96 的網路~~：使用者確認自行維護的 kernel 有 USB 網卡＋Wi-Fi。日後升級 kernel 時要保留這些修補。
 - ~~外盒做法~~：3D 列印（PETG／ASA），直立桌上型，含風扇。
-- ~~GPS 開關~~：硬體滑動開關斷電＋Meshtastic 按鍵連按三下，兩者都做。
+- ~~GPS 開關~~：硬體滑動開關斷電＋Meshtastic 軟體切換（有 OLED 時在 GPS 頁選單），兩者都做。
+- ~~Meshtastic 方案~~：RAK4630，腳位照官方 `rak4631`；~~GPS~~：u-blox MAX-M10S。
 - ~~螢幕版本~~：TJC8048X550_011R（電阻觸控）。
 - ~~Bubblegum console~~：板上做 1.8↔3.3 V 轉換＋6-pin FTDI 腳序接頭，外盒側面開孔（第 3.5 節）。
 - ~~Meshtastic 小螢幕~~：1.3 吋 SH1106 OLED 接 nRF52840 I2C，放在正面下巴，MESH 按鍵移到旁邊。
@@ -490,6 +491,97 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
 7. 螢幕軟體路線：新版 MMDVM-Host＋MMDVM-Display（MQTT），或舊版 MMDVMHost；畫面檔要自己做。
 8. S900 在 Bubblegum 上的實際位置（散熱片位置），以及風扇型號（噪音、轉速訊號）。
 9. 授權：原專案是 CC BY-NC-SA，衍生設計要沿用同一授權（不可商用）。
+
+## 10. r3.0 研究版線路圖（`hardware/r3.0-study/`）
+
+使用者選定：Meshtastic 用 **RAK4630（腳位照 Meshtastic 官方 `rak4631` 板型）**，GPS 用 **u-blox MAX-M10S**。
+
+### 10.1 結構與驗證
+
+| 頁 | 檔案 | 來源 |
+|---|---|---|
+| 1 | `mmdvm_mesh.kicad_sch` | 根頁 |
+| 2 | `mmdvm_io.kicad_sch` | 產生：r1.3 Power 頁的 LED、重置鍵、SWD、BOOT 跳線（同參考編號），TJC XH 接頭＋1 kΩ |
+| 3 | `host_if.kicad_sch` | 產生：96Boards LS 擴充座、電壓轉換、console、I2C、SC16IS752、風扇、溫度 |
+| 4 | `power.kicad_sch` | 產生：USB-C／CH224K、BQ25895、4×18650、保護、電量計、12 V／5 V／3.5 V、LDO、電源鍵 |
+| 5 | `meshtastic.kicad_sch` | 產生：RAK4630 與周邊 |
+| 6 | `gps.kicad_sch` | 產生：MAX-M10S、GPS 開關、有源天線偏壓 |
+| 7 | `mmdvm_rf.kicad_sch` | 沿用 r1.3 主頁（兩顆 ADF7021），P1／P2 改 U.FL |
+| 8 | `mmdvm_mcu.kicad_sch` | 沿用 r1.3 STM32 頁 |
+
+- **產生方式：** `gen/build_all.py` 依 `gen/r30_parts*.py` 裡每顆零件「每支腳接哪個網路」的定義產生線路圖；同一頁內用網路標籤，跨頁用 global label，電源用電源符號。
+- **驗證：**
+  - 產生後用 kicad-cli 匯出網表，逐腳比對規格，**0 差異**。
+  - **ERC 0 錯誤 0 警告**。
+- 圖面是自動排版的標籤式線路圖，可讀但不美觀；之後要手動整理時，直接在 KiCad 裡移動即可，不影響連線。
+- **自建零件**（`MMDVM_r30` 庫），**下單前必須對照原廠圖再核對一次**：
+  - RAK4630：符號＋封裝，44 焊墊，依 RAK 官方機構圖與 land pattern 推算，各尺寸已交叉驗證。
+  - TPS61178：符號＋封裝，依 TI SLVSDA7E 第 38–39 頁。
+  - MAX17048：符號，腳位已確認；EP 尺寸待查 ADI 90-0065。
+  - P-MOSFET（SON-8）：符號。
+
+### 10.2 RAK4631 腳位對照（Meshtastic `env:rak4631`，develop d062220e）
+
+| RAK4630 焊墊 | nRF52840 | 用途 |
+|---|---|---|
+| 4／5 | P0.13／P0.14 | I2C（Wire）→ 前面板 OLED |
+| 6／7／8 | P0.15／P0.16／P0.17 | GPS RX／TX（TX 串 1 kΩ）／PPS |
+| 9／10 | P0.19／P0.20 | 主機 API（Serial Module，PROTO 模式，經 SC16IS752 通道 A） |
+| 13 | P0.09（NFC1） | MESH 按鍵（低態有效） |
+| 26 | P1.02（3V3_EN） | GPS 電源（串 GPS 滑動開關） |
+| 27／28 | P1.03／P1.04 | 綠燈（板上）／藍燈（前面板，訊息通知） |
+| 40 | P0.05（AIN3） | 電池電壓，1 MΩ／1.5 MΩ 分壓（`ADC_MULTIPLIER 1.73`，不加電容） |
+| 44／20／21 | — | VBAT_NRF ← VSYS；VBAT_SX、VBAT_IO_SX ← +3V3_MESH；VDD_NRF 不接 |
+| 37／15 | — | LoRa／BLE RF → 板上 U.FL → pigtail（用 `-SM-NI` 焊墊版模組） |
+| 17／18／19 | — | 重置、SWD → 1.27 mm 10-pin 除錯座 |
+
+**不能接的腳：** P0.10 開機會被韌體拉高、P0.21 是蜂鳴器 PWM、P1.05／P1.07 是模組內部用。
+
+### 10.3 RAK4630 上線步驟（新模組出廠是 RUI3 韌體）
+
+1. 用 SWD（pyOCD 或 J-Link）讀 UICR：
+   - `REGOUT0`（0x10001304）要是 3.3 V，出廠預設 1.8 V 會讓 I/O 只有 1.8 V。
+   - `NFCPINS`（0x1000120C）要設成 GPIO，不然 P0.09 按鍵沒作用。
+2. 燒 RAK4631 bootloader（`wiscore_rak4631_board_bootloader-0.4.4_s140_6.1.1`）。
+3. 經內部 USB 座（J43）或 BLE OTA 燒 `firmware-rak4631-*.uf2`。
+4. App 設定：
+   - LoRa 區域設 TW。
+   - Serial Module：enabled、mode PROTO、rxd 19、txd 20、115200，主機才能用 `/dev/ttySC0`。
+   - 位置設定：GPS 依需求。
+
+### 10.4 設計變更（RAK4631 研究帶來的）
+
+- **按鍵行為（重要）：** 官方韌體偵測到螢幕時，按鍵改為：
+  - 按一下：下一頁。
+  - 按住 0.5 秒：開該頁選單。GPS 頁的選單有「Toggle GPS」。
+  - 按住約 3.9 秒放開：關機。開機 30 秒內不會觸發。
+  - 連按兩下、三下的功能**在有螢幕時不啟用**。
+
+  所以 GPS 的軟體開關改成「GPS 頁 → 按住 → Toggle GPS」；硬體滑動開關不變。
+- **GPS 電源：** `env:rak4631` 沒有 GPS 致能腳。本板讓 GPS 電源 = 滑動開關 AND P1.02（韌體平常拉高、關機時拉低），所以 Meshtastic 關機時 GPS 也一起斷電；GPS 沒電時，MCU 的 TX 經 1 kΩ 限流。
+- **GPS 有源天線：** 照 u-blox 整合手冊：VCC_RF → 10 Ω → 27 nH → RF_IN（10 nF 濾波）。官方韌體不會設定天線監控，所以 LNA_EN 不接。
+- **OLED：** 用 Heltec 1.3 吋 I2C 模組（SH1106，0x3C，PCB 35.5×32 mm，M2 孔距 25.4×27.7）。少數 SH1106 冷開機會被誤判成 SSD1306，可在 App 設 `display.oled = SH1106` 強制指定。
+- **CH224K：** 用 CFG1／2／3 全接地的「電位模式」固定要 9 V。這是規格書明列的組合，不靠那張沒確認型號的電阻表。
+- **TPS61178：** 元件值參考 TI 2.7–4.4 V → 14 V 範例改成 12 V：
+  - 電感 1.8 µH（Würth 744325180，18 A）。
+  - 回授 732k／80.6k，約 12.08 V。
+  - 限流 75k，典型約 9.9 A。
+  - 頻率 348k，約 500 kHz。
+  - 負載斷開 P-FET CSD25404Q3，閘極 150k＋22 nF。
+
+### 10.5 還沒定案的值（線路圖上以 MPN／Note 標示 TBD）
+
+- STM6601 的型號，要選 EN 高態有效的版本。
+- BQ29700 的版本：保護門檻要配合 CSD17577Q3A 的導通電阻和 4P 電流。
+- 每顆電池的保險絲：7 A 1812，型號待選。
+- TPS61022 的 VREF：目前假設 0.6 V，要確認。
+- CH224K 的 PG 腳：目前不接。
+
+### 10.6 還沒做的
+
+- 前面板小板：OLED 座、MESH 鍵、藍燈，6-pin JST-SH 接回主板 J44。
+- PCB：外形依第 7 節外盒模型；射頻、電源佈局需要人工。
+- BOM 與採購確認。
 
 ## 參考來源（節錄）
 
@@ -513,6 +605,12 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
   - MAX17048：<https://www.analog.com/en/products/max17048.html>
 - **電池座**
   - Keystone 1042P：<https://www.keyelco.com/userAssets/file/K75p29.pdf>
+- **RAK4630／Meshtastic**
+  - RAK4630 規格書：<https://docs.rakwireless.com/product-categories/wisduo/rak4630-module/datasheet/>
+  - Meshtastic rak4631 variant：<https://github.com/meshtastic/firmware/tree/develop/variants/nrf52840/rak4631>
+  - MAX-M10S 整合手冊：<https://content.u-blox.com/sites/default/files/MAX-M10S_IntegrationManual_UBX-20053088.pdf>
+  - TPS61178 規格書：<https://www.ti.com/lit/ds/symlink/tps61178.pdf>
+  - CH224K 規格書：<https://www.wch.cn/downloads/CH224DS1_PDF.html>
 - **螢幕**
   - TJC X5 規格書：<http://wiki2.tjc1688.com/product/new_datasheet/X5/TJC8048X550_011R.html>
   - TJC 串口電壓 FAQ：<http://wiki.tjc1688.com/QA/QA3.html>
