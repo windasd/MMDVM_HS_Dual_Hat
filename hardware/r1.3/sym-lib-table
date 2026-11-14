@@ -1,5 +1,4 @@
 (sym_lib_table
   (version 7)
-  (lib (name "mmdvm_hs_dual_hat-rescue")(type "KiCad")(uri "${KIPRJMOD}/mmdvm_hs_dual_hat-rescue.kicad_sym")(options "")(descr ""))
-  (lib (name "adf7021")(type "Legacy")(uri "${KIPRJMOD}/../../libraries/adf7021.lib")(options "")(descr ""))
+  (lib (name "MMDVM")(type "KiCad")(uri "${KIPRJMOD}/../../libraries/mmdvm_hs_dual_hat.kicad_sym")(options "")(descr "MMDVM_HS_Dual_Hat project symbols"))
 )

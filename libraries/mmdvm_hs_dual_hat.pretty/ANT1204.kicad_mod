@@ -1,0 +1,122 @@
+(footprint "ANT1204"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 1.27 180)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "460025b9-5d15-411b-bbfd-509ce8a8c381")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "ANT1204"
+		(at 0 -1.016 180)
+		(layer "F.Fab")
+		(uuid "e81efb2d-db83-4dd7-aa50-7f490c72aa0a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 180)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "14a4296f-20c5-4024-9756-41dc37ecdcb5")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify mirror)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 180)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "331a1dd7-dc2c-4153-a065-a933738fe728")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify mirror)
+		)
+	)
+	(sheetfile "/Users/mathis/Documents/GitHub/MMDVM_HS_Dual_Hat/hardware/r2.0-mini/mmdvm_hs_dual_hat.kicad_sch")
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -6.15 -2)
+		(end 6.15 -2)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ae8becc4-2e4f-44d1-ba36-bde14c9868b6")
+	)
+	(fp_line
+		(start -6.15 2)
+		(end -6.15 -2)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0ba5273d-ce1e-4ad5-a56a-a6ff30de54af")
+	)
+	(fp_line
+		(start 6.15 -2)
+		(end 6.15 2)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e8968c82-8bac-44e8-b2a7-d7ded0e5a9c4")
+	)
+	(fp_line
+		(start 6.15 2)
+		(end -6.15 2)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ded0f04a-0518-42d0-8c9a-3ccf74c6a765")
+	)
+	(pad "1" smd roundrect
+		(at -5.85 0)
+		(size 1.3 4.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "ce797439-e4ec-41f0-9552-9a494d59d23c")
+	)
+	(pad "2" smd roundrect
+		(at 5.85 0)
+		(size 1.3 4.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "618e95b2-f637-4807-842c-62476df059c9")
+	)
+	(embedded_fonts no)
+	(model "../..//libraries/mmdvm_hs_dual_hat.pretty/User Library-Yageo ANT1204LL08R0870A Ceramic Chip Antenna.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
