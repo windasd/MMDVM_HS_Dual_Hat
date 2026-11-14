@@ -5,3 +5,4 @@ n_main.net
 fp-info-cache
 *-backups/
 gen/__pycache__/
+route/

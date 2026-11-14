@@ -2,7 +2,7 @@
 	(version 20260306)
 	(generator "eeschema")
 	(generator_version "10.0")
-	(uuid "0b953be8-a39a-45c6-a15b-2c1938d0ade0")
+	(uuid "c8d72be4-12ee-4815-83db-803551ca8da5")
 	(paper "A4")
 	(title_block
 		(title "MMDVM_HS_Dual_Hat")
@@ -5782,30 +5782,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -12.7 -5.08 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "71-RCS04021K00JNED"
-			(at -12.7 -5.08 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -12.7 -5.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "71-RCS04021K00JNED"
+			(at 137.16 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 137.16 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C427210"
+			(at 137.16 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5823,7 +5834,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R13")
 					(unit 1)
 				)
@@ -5915,30 +5926,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -15.24 -2.54 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "71-RCS04021K00JNED"
-			(at -15.24 -2.54 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -15.24 -2.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "71-RCS04021K00JNED"
+			(at 137.16 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 137.16 156.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C427210"
+			(at 137.16 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5956,7 +5978,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R14")
 					(unit 1)
 				)
@@ -6030,7 +6052,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR058")
 					(unit 1)
 				)
@@ -6104,7 +6126,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR055")
 					(unit 1)
 				)
@@ -6198,30 +6220,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -22.86 5.08 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at -22.86 5.08 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -22.86 5.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71C104KA5J"
+			(at 137.16 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "GCM155R71C104KA55J"
+			(at 137.16 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 137.16 163.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6239,7 +6272,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C36")
 					(unit 1)
 				)
@@ -6333,30 +6366,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 321.31 3.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at 321.31 3.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 321.31 3.81 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 149.86 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 149.86 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 149.86 167.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6374,7 +6418,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C39")
 					(unit 1)
 				)
@@ -6448,7 +6492,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR060")
 					(unit 1)
 				)
@@ -6522,7 +6566,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR048")
 					(unit 1)
 				)
@@ -6596,7 +6640,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR044")
 					(unit 1)
 				)
@@ -6670,7 +6714,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR038")
 					(unit 1)
 				)
@@ -6764,30 +6808,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -19.05 363.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at -19.05 363.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -19.05 363.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71C104KA5J"
+			(at 68.58 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "GCM155R71C104KA55J"
+			(at 68.58 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 68.58 184.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6805,7 +6860,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C20")
 					(unit 1)
 				)
@@ -6879,7 +6934,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR034")
 					(unit 1)
 				)
@@ -6972,30 +7027,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 146.05 361.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at 146.05 361.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 146.05 361.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "667-ERA-2AEB3831X"
+			(at 63.5 182.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 63.5 182.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2683016"
+			(at 63.5 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7013,7 +7079,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R4")
 					(unit 1)
 				)
@@ -7087,7 +7153,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR032")
 					(unit 1)
 				)
@@ -7181,30 +7247,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -17.78 361.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at -17.78 361.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -17.78 361.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 57.15 182.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 57.15 182.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 57.15 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7222,7 +7299,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C16")
 					(unit 1)
 				)
@@ -7296,7 +7373,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR026")
 					(unit 1)
 				)
@@ -7389,30 +7466,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 119.38 361.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "754-RR0510P-112D"
-			(at 119.38 361.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 119.38 361.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "754-RR0510P-112D"
+			(at 52.07 182.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 52.07 182.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C852602"
+			(at 52.07 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7430,7 +7518,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R2")
 					(unit 1)
 				)
@@ -7504,7 +7592,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR020")
 					(unit 1)
 				)
@@ -7596,30 +7684,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -21.59 326.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "584-ADF7021BCPZ"
-			(at -21.59 326.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 0 330.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "584-ADF7021BCPZ"
+			(at 101.6 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 101.6 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C206881"
+			(at 101.6 165.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7778,7 +7877,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "U1")
 					(unit 1)
 				)
@@ -7872,30 +7971,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -10.16 361.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GJM1555C1H6R8BB1D"
-			(at -10.16 361.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -10.16 361.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GJM1555C1H6R8BB1D"
+			(at 45.72 182.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 45.72 182.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C88896"
+			(at 45.72 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7913,7 +8023,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C12")
 					(unit 1)
 				)
@@ -8005,30 +8115,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 101.6 3.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-LQW15AN27NG80D"
-			(at 101.6 3.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 101.6 3.81 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-LQW15AN27NG80D"
+			(at 45.72 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 45.72 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C882469"
+			(at 45.72 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8046,7 +8167,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L6")
 					(unit 1)
 				)
@@ -8120,7 +8241,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR016")
 					(unit 1)
 				)
@@ -8194,7 +8315,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR036")
 					(unit 1)
 				)
@@ -8288,30 +8409,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -118.11 114.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM1555C1H4R7CA1D"
-			(at -118.11 114.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -118.11 114.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM1555C1H4R7CA1D"
+			(at 41.91 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 41.91 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C85883"
+			(at 41.91 163.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8329,7 +8461,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C10")
 					(unit 1)
 				)
@@ -8423,30 +8555,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -113.03 109.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM1555C1E100GA1D"
-			(at -113.03 109.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -113.03 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM1555C1E100GA1D"
+			(at 41.91 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 41.91 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C76945"
+			(at 41.91 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8464,7 +8607,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C9")
 					(unit 1)
 				)
@@ -8556,30 +8699,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 191.77 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "279-36501E20NJTDG"
-			(at 191.77 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 191.77 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "279-36501E20NJTDG"
+			(at 31.75 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 31.75 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2043868"
+			(at 31.75 163.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8597,7 +8751,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L4")
 					(unit 1)
 				)
@@ -8691,30 +8845,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -2.54 336.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GJM1555C1H6R8BB1D"
-			(at -2.54 336.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -2.54 336.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GJM1555C1H6R8BB1D"
+			(at 27.94 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 27.94 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C88896"
+			(at 27.94 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8732,7 +8897,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C2")
 					(unit 1)
 				)
@@ -8806,7 +8971,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR07")
 					(unit 1)
 				)
@@ -8898,30 +9063,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 184.15 187.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-LQW15CA22NJ00D"
-			(at 184.15 187.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 184.15 187.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-LQW15CA22NJ00D"
+			(at 24.13 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 24.13 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C524641"
+			(at 24.13 163.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8939,7 +9115,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L2")
 					(unit 1)
 				)
@@ -9031,30 +9207,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 104.14 3.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-LQW15AN13NG80D"
-			(at 104.14 3.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 104.14 3.81 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-LQW15AN13NG80D"
+			(at 48.26 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 48.26 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1332872"
+			(at 48.26 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9072,7 +9259,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L8")
 					(unit 1)
 				)
@@ -9166,30 +9353,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -7.62 285.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM1555C1H221JA01"
-			(at -7.62 285.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -7.62 285.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM1555C1H221JA01"
+			(at 41.91 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 41.91 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C71693"
+			(at 41.91 146.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9207,7 +9405,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C8")
 					(unit 1)
 				)
@@ -9301,30 +9499,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -21.59 290.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at -21.59 290.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -21.59 290.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 60.96 148.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 60.96 148.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 60.96 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9342,7 +9551,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C18")
 					(unit 1)
 				)
@@ -9416,7 +9625,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR014")
 					(unit 1)
 				)
@@ -9490,7 +9699,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR030")
 					(unit 1)
 				)
@@ -9564,7 +9773,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR042")
 					(unit 1)
 				)
@@ -9658,30 +9867,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -40.64 29.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GCM155R71E223KA5D"
-			(at -40.64 29.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -40.64 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71E223KA5D"
+			(at 81.28 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 81.28 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C126528"
+			(at 81.28 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9699,7 +9919,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C24")
 					(unit 1)
 				)
@@ -9791,30 +10011,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -55.88 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "71-CRCW0402J-3.9-E3"
-			(at -55.88 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -55.88 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "71-CRCW0402J-3.9-E3"
+			(at 66.04 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 66.04 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C412901"
+			(at 66.04 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9832,7 +10063,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R6")
 					(unit 1)
 				)
@@ -9926,30 +10157,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -66.04 58.42 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at -66.04 58.42 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -66.04 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71C104KA5J"
+			(at 55.88 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "GCM155R71C104KA55J"
+			(at 55.88 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 55.88 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9967,7 +10209,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C14")
 					(unit 1)
 				)
@@ -10061,30 +10303,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -7.62 285.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at -7.62 285.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -7.62 285.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 35.56 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 35.56 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 35.56 146.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10102,7 +10355,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C4")
 					(unit 1)
 				)
@@ -10176,7 +10429,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR010")
 					(unit 1)
 				)
@@ -10250,7 +10503,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR012")
 					(unit 1)
 				)
@@ -10342,30 +10595,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -29.21 212.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "667-ERA-2AEB561X"
-			(at -29.21 212.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -29.21 212.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "667-ERA-2AEB561X"
+			(at 80.01 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 80.01 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2984424"
+			(at 80.01 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10383,7 +10647,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R8")
 					(unit 1)
 				)
@@ -10475,30 +10739,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -29.21 212.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "667-ERA-2AEB271X"
-			(at -29.21 212.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -29.21 212.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "667-ERA-2AEB271X"
+			(at 85.09 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 85.09 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C852677"
+			(at 85.09 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10516,7 +10791,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R10")
 					(unit 1)
 				)
@@ -10610,30 +10885,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -29.21 229.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GCM1555C1H471JA6J"
-			(at -29.21 229.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -29.21 229.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM1555C1H471JA6J"
+			(at 80.01 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 80.01 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C76971"
+			(at 80.01 123.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10651,7 +10937,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C22")
 					(unit 1)
 				)
@@ -10745,30 +11031,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -29.21 229.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM155R71C153KA1J"
-			(at -29.21 229.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -29.21 229.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM155R71C153KA1J"
+			(at 85.09 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 85.09 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C113050"
+			(at 85.09 123.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10786,7 +11083,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C26")
 					(unit 1)
 				)
@@ -10880,30 +11177,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -30.48 212.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM155R60J102KA1D"
-			(at -30.48 212.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -30.48 212.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM155R60J102KA1D"
+			(at 90.17 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 90.17 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C710871"
+			(at 90.17 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10921,7 +11229,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C28")
 					(unit 1)
 				)
@@ -10995,7 +11303,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR040")
 					(unit 1)
 				)
@@ -11089,30 +11397,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -22.86 224.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at -22.86 224.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -22.86 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 116.84 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 116.84 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 116.84 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11130,7 +11449,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C32")
 					(unit 1)
 				)
@@ -11204,7 +11523,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR052")
 					(unit 1)
 				)
@@ -11298,30 +11617,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -21.59 255.27 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at -21.59 255.27 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -21.59 255.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71C104KA5J"
+			(at 107.95 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "GCM155R71C104KA55J"
+			(at 107.95 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 107.95 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11339,7 +11669,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C30")
 					(unit 1)
 				)
@@ -11413,7 +11743,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR046")
 					(unit 1)
 				)
@@ -11506,30 +11836,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 337.82 -83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "520-TXO-3225-14.74T"
-			(at 337.82 -83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 337.82 -83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "520-TXO-3225-14.74T"
+			(at 158.75 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 158.75 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2451095"
+			(at 158.75 30.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11553,7 +11894,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "X1")
 					(unit 1)
 				)
@@ -11627,7 +11968,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR069")
 					(unit 1)
 				)
@@ -11701,7 +12042,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR075")
 					(unit 1)
 				)
@@ -11795,30 +12136,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 21.59 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at 21.59 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 21.59 140.97 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 175.26 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 175.26 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 175.26 25.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11836,7 +12188,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C42")
 					(unit 1)
 				)
@@ -11930,30 +12282,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 242.57 280.67 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at 242.57 280.67 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 242.57 280.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "581-KGM05ACG1H220GH"
+			(at 127 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 127 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C161541"
+			(at 127 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11971,7 +12334,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C34")
 					(unit 1)
 				)
@@ -12042,7 +12405,7 @@
 				)
 			)
 		)
-		(property "MFR" "TE Connectivity"
+		(property "MFR" "Hirose"
 			(at 160.02 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -12053,29 +12416,7 @@
 				)
 			)
 		)
-		(property "MPN" "5-1814832-2"
-			(at 160.02 92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPR" "Mouser"
-			(at 160.02 92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "571-5-1814832-2"
+		(property "MPN" "U.FL-R-SMT-1(10)"
 			(at 160.02 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -12097,6 +12438,39 @@
 				)
 			)
 		)
+		(property "Mouser" "798-U.FL-R-SMT-110"
+			(at 16.51 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 16.51 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C88373"
+			(at 16.51 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "7f06c99f-3216-471b-868f-13ca551efed8")
 		)
@@ -12105,7 +12479,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "P2")
 					(unit 1)
 				)
@@ -12179,7 +12553,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR01")
 					(unit 1)
 				)
@@ -12271,30 +12645,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -11.43 -101.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "71-RCS04021K00JNED"
-			(at -11.43 -101.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -11.43 -101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "71-RCS04021K00JNED"
+			(at 138.43 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 138.43 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C427210"
+			(at 138.43 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12312,7 +12697,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R11")
 					(unit 1)
 				)
@@ -12404,30 +12789,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -13.97 -99.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "71-RCS04021K00JNED"
-			(at -13.97 -99.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -13.97 -99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "71-RCS04021K00JNED"
+			(at 138.43 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 138.43 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C427210"
+			(at 138.43 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12445,7 +12841,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R12")
 					(unit 1)
 				)
@@ -12519,7 +12915,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR057")
 					(unit 1)
 				)
@@ -12593,7 +12989,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR054")
 					(unit 1)
 				)
@@ -12687,30 +13083,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -21.59 -91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at -21.59 -91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -21.59 -91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71C104KA5J"
+			(at 138.43 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "GCM155R71C104KA55J"
+			(at 138.43 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 138.43 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12728,7 +13135,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C35")
 					(unit 1)
 				)
@@ -12822,30 +13229,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 322.58 -92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at 322.58 -92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 322.58 -92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 151.13 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 151.13 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 151.13 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12863,7 +13281,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C38")
 					(unit 1)
 				)
@@ -12937,7 +13355,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR059")
 					(unit 1)
 				)
@@ -13011,7 +13429,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR047")
 					(unit 1)
 				)
@@ -13085,7 +13503,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR043")
 					(unit 1)
 				)
@@ -13159,7 +13577,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR037")
 					(unit 1)
 				)
@@ -13253,30 +13671,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -17.78 266.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at -17.78 266.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -17.78 266.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71C104KA5J"
+			(at 69.85 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "GCM155R71C104KA55J"
+			(at 69.85 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 69.85 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13294,7 +13723,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C19")
 					(unit 1)
 				)
@@ -13368,7 +13797,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR033")
 					(unit 1)
 				)
@@ -13461,30 +13890,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 147.32 265.43 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at 147.32 265.43 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 147.32 265.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "667-ERA-2AEB3831X"
+			(at 64.77 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 64.77 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2683016"
+			(at 64.77 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13502,7 +13942,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R3")
 					(unit 1)
 				)
@@ -13576,7 +14016,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR031")
 					(unit 1)
 				)
@@ -13670,30 +14110,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -16.51 265.43 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at -16.51 265.43 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -16.51 265.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 58.42 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 58.42 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 58.42 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13711,7 +14162,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C15")
 					(unit 1)
 				)
@@ -13785,7 +14236,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR025")
 					(unit 1)
 				)
@@ -13878,30 +14329,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 120.65 265.43 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "754-RR0510P-112D"
-			(at 120.65 265.43 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 120.65 265.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "754-RR0510P-112D"
+			(at 53.34 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 53.34 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C852602"
+			(at 53.34 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13919,7 +14381,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R1")
 					(unit 1)
 				)
@@ -13993,7 +14455,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR019")
 					(unit 1)
 				)
@@ -14085,30 +14547,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -20.32 229.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "584-ADF7021BCPZ"
-			(at -20.32 229.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 0 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "584-ADF7021BCPZ"
+			(at 102.87 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 102.87 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C206881"
+			(at 102.87 68.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14267,7 +14740,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "U2")
 					(unit 1)
 				)
@@ -14361,30 +14834,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -8.89 265.43 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GJM1555C1H6R8BB1D"
-			(at -8.89 265.43 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -8.89 265.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GJM1555C1H6R8BB1D"
+			(at 46.99 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 46.99 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C88896"
+			(at 46.99 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14402,7 +14886,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C11")
 					(unit 1)
 				)
@@ -14494,30 +14978,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 102.87 -92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-LQW15AN27NG80D"
-			(at 102.87 -92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 102.87 -92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-LQW15AN27NG80D"
+			(at 46.99 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 46.99 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C882469"
+			(at 46.99 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14535,7 +15030,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L5")
 					(unit 1)
 				)
@@ -14609,7 +15104,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR015")
 					(unit 1)
 				)
@@ -14683,7 +15178,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR035")
 					(unit 1)
 				)
@@ -14777,30 +15272,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -116.84 17.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM1555C1H4R7CA1D"
-			(at -116.84 17.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -116.84 17.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM1555C1H4R7CA1D"
+			(at 43.18 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 43.18 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C85883"
+			(at 43.18 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14818,7 +15324,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C7")
 					(unit 1)
 				)
@@ -14912,30 +15418,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -111.76 12.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM1555C1E100GA1D"
-			(at -111.76 12.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -111.76 12.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM1555C1E100GA1D"
+			(at 43.18 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 43.18 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C76945"
+			(at 43.18 62.23 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14953,7 +15470,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C6")
 					(unit 1)
 				)
@@ -15047,30 +15564,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -1.27 240.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GJM1555C1H6R8BB1D"
-			(at -1.27 240.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -1.27 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GJM1555C1H6R8BB1D"
+			(at 29.21 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 29.21 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C88896"
+			(at 29.21 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15088,7 +15616,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C1")
 					(unit 1)
 				)
@@ -15162,7 +15690,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR06")
 					(unit 1)
 				)
@@ -15254,30 +15782,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 185.42 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-LQW15CA22NJ00D"
-			(at 185.42 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 185.42 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-LQW15CA22NJ00D"
+			(at 25.4 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 25.4 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C524641"
+			(at 25.4 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15295,7 +15834,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L1")
 					(unit 1)
 				)
@@ -15387,30 +15926,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 105.41 -92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-LQW15AN13NG80D"
-			(at 105.41 -92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 105.41 -92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-LQW15AN13NG80D"
+			(at 49.53 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 49.53 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1332872"
+			(at 49.53 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15428,7 +15978,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L7")
 					(unit 1)
 				)
@@ -15522,30 +16072,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -6.35 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM1555C1H221JA01"
-			(at -6.35 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -6.35 189.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM1555C1H221JA01"
+			(at 43.18 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 43.18 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C71693"
+			(at 43.18 49.53 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15563,7 +16124,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C5")
 					(unit 1)
 				)
@@ -15657,30 +16218,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -20.32 194.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at -20.32 194.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -20.32 194.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 62.23 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 62.23 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 62.23 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15698,7 +16270,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C17")
 					(unit 1)
 				)
@@ -15772,7 +16344,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR013")
 					(unit 1)
 				)
@@ -15846,7 +16418,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR028")
 					(unit 1)
 				)
@@ -15920,7 +16492,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR041")
 					(unit 1)
 				)
@@ -16014,30 +16586,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -39.37 -67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GCM155R71E223KA5D"
-			(at -39.37 -67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -39.37 -67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71E223KA5D"
+			(at 82.55 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 82.55 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C126528"
+			(at 82.55 38.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16055,7 +16638,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C23")
 					(unit 1)
 				)
@@ -16147,30 +16730,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -54.61 -48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "71-CRCW0402J-3.9-E3"
-			(at -54.61 -48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -54.61 -48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "71-CRCW0402J-3.9-E3"
+			(at 67.31 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 67.31 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C412901"
+			(at 67.31 38.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16188,7 +16782,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R5")
 					(unit 1)
 				)
@@ -16282,30 +16876,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -64.77 -38.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at -64.77 -38.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -64.77 -38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71C104KA5J"
+			(at 57.15 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "GCM155R71C104KA55J"
+			(at 57.15 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 57.15 38.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16323,7 +16928,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C13")
 					(unit 1)
 				)
@@ -16417,30 +17022,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -6.35 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at -6.35 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -6.35 189.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 36.83 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 36.83 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 36.83 49.53 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16458,7 +17074,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C3")
 					(unit 1)
 				)
@@ -16532,7 +17148,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR08")
 					(unit 1)
 				)
@@ -16606,7 +17222,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR011")
 					(unit 1)
 				)
@@ -16698,30 +17314,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -27.94 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "667-ERA-2AEB561X"
-			(at -27.94 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -27.94 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "667-ERA-2AEB561X"
+			(at 81.28 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 81.28 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2984424"
+			(at 81.28 19.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16739,7 +17366,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R7")
 					(unit 1)
 				)
@@ -16831,30 +17458,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -27.94 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "667-ERA-2AEB271X"
-			(at -27.94 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -27.94 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "667-ERA-2AEB271X"
+			(at 86.36 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 86.36 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C852677"
+			(at 86.36 19.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16872,7 +17510,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "R9")
 					(unit 1)
 				)
@@ -16966,30 +17604,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -27.94 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GCM1555C1H471JA6J"
-			(at -27.94 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -27.94 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM1555C1H471JA6J"
+			(at 81.28 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 81.28 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C76971"
+			(at 81.28 26.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17007,7 +17656,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C21")
 					(unit 1)
 				)
@@ -17101,30 +17750,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -27.94 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM155R71C153KA1J"
-			(at -27.94 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -27.94 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM155R71C153KA1J"
+			(at 86.36 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 86.36 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C113050"
+			(at 86.36 26.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17142,7 +17802,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C25")
 					(unit 1)
 				)
@@ -17236,30 +17896,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -29.21 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "81-GRM155R60J102KA1D"
-			(at -29.21 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -29.21 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GRM155R60J102KA1D"
+			(at 91.44 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 91.44 19.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C710871"
+			(at 91.44 19.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17277,7 +17948,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C27")
 					(unit 1)
 				)
@@ -17371,30 +18042,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -21.59 128.27 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "77-VJ0402Y103KXJCBC"
-			(at -21.59 128.27 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -21.59 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "77-VJ0402Y103KXJCBC"
+			(at 118.11 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 118.11 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15195"
+			(at 118.11 25.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17412,7 +18094,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C31")
 					(unit 1)
 				)
@@ -17486,7 +18168,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR050")
 					(unit 1)
 				)
@@ -17580,30 +18262,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at -20.32 158.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at -20.32 158.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at -20.32 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "81-GCM155R71C104KA5J"
+			(at 109.22 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "GCM155R71C104KA55J"
+			(at 109.22 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 109.22 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17621,7 +18314,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C29")
 					(unit 1)
 				)
@@ -17695,7 +18388,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR045")
 					(unit 1)
 				)
@@ -17789,30 +18482,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 13.97 -110.49 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" ""
-			(at 13.97 -110.49 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 13.97 -110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "581-KGM05ACG1H220GH"
+			(at 129.54 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 129.54 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C161541"
+			(at 129.54 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17830,7 +18534,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "C33")
 					(unit 1)
 				)
@@ -17922,30 +18626,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 193.04 104.14 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "279-36501E20NJTDG"
-			(at 193.04 104.14 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 193.04 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "279-36501E20NJTDG"
+			(at 33.02 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 33.02 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2043868"
+			(at 33.02 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17963,7 +18678,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L3")
 					(unit 1)
 				)
@@ -18037,7 +18752,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR039")
 					(unit 1)
 				)
@@ -18108,7 +18823,7 @@
 				)
 			)
 		)
-		(property "MFR" "TE Connectivity"
+		(property "MFR" "Hirose"
 			(at 158.75 189.23 0)
 			(hide yes)
 			(show_name no)
@@ -18119,29 +18834,7 @@
 				)
 			)
 		)
-		(property "MPN" "5-1814832-2"
-			(at 158.75 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPR" "Mouser"
-			(at 158.75 189.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "571-5-1814832-2"
+		(property "MPN" "U.FL-R-SMT-1(10)"
 			(at 158.75 189.23 0)
 			(hide yes)
 			(show_name no)
@@ -18163,6 +18856,39 @@
 				)
 			)
 		)
+		(property "Mouser" "798-U.FL-R-SMT-110"
+			(at 15.24 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 15.24 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C88373"
+			(at 15.24 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "315cda60-3ce6-4715-9f7c-9b400d18392f")
 		)
@@ -18171,7 +18897,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "P1")
 					(unit 1)
 				)
@@ -18245,7 +18971,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR02")
 					(unit 1)
 				)
@@ -18319,7 +19045,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR074")
 					(unit 1)
 				)
@@ -18393,7 +19119,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR062")
 					(unit 1)
 				)
@@ -18467,7 +19193,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR063")
 					(unit 1)
 				)
@@ -18541,7 +19267,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR051")
 					(unit 1)
 				)
@@ -18615,7 +19341,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR024")
 					(unit 1)
 				)
@@ -18689,7 +19415,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR029")
 					(unit 1)
 				)
@@ -18763,7 +19489,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR018")
 					(unit 1)
 				)
@@ -18837,7 +19563,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR049")
 					(unit 1)
 				)
@@ -18911,7 +19637,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR027")
 					(unit 1)
 				)
@@ -18985,7 +19711,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR017")
 					(unit 1)
 				)
@@ -19059,7 +19785,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#PWR021")
 					(unit 1)
 				)
@@ -19151,30 +19877,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 220.98 220.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "279-36501E18NJTDG"
-			(at 220.98 220.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 220.98 220.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "279-36501E18NJTDG"
+			(at 97.79 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 97.79 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C344018"
+			(at 97.79 123.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19192,7 +19929,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L12")
 					(unit 1)
 				)
@@ -19284,30 +20021,41 @@
 				)
 			)
 		)
-		(property "SPR" "Mouser"
-			(at 125.73 125.73 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "SPN" "279-36501E18NJTDG"
-			(at 125.73 125.73 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "SPURL" ""
 			(at 125.73 125.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "279-36501E18NJTDG"
+			(at 99.06 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 99.06 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C344018"
+			(at 99.06 26.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19325,7 +20073,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "L11")
 					(unit 1)
 				)
@@ -19457,7 +20205,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "TP2")
 					(unit 1)
 				)
@@ -19589,7 +20337,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "TP1")
 					(unit 1)
 				)
@@ -19667,7 +20415,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/c543d767-52d1-4100-91bf-9fac91ae6a42/0b953be8-a39a-45c6-a15b-2c1938d0ade0"
+				(path "/fd44019b-3a89-4d11-981a-dc7bcd6a8239/c8d72be4-12ee-4815-83db-803551ca8da5"
 					(reference "#FLG002")
 					(unit 1)
 				)

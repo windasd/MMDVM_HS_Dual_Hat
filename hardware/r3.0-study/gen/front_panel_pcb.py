@@ -52,7 +52,7 @@ def netlist():
         val = re.search(r'\(value "([^"]*)"\)', blk).group(1)
         fp = re.search(r'\(footprint "([^"]*)"\)', blk).group(1)
         ts = re.findall(r'\(tstamps "([^"]+)"\)', blk)[-1]
-        fields = dict(re.findall(r'\(field\s*\(name "([^"]+)"\)\s*"([^"]*)"\)', blk))
+        fields = {k: v for k, v in re.findall(r'\(field\s*\(name "([^"]+)"\)\s*(?:"((?:[^"\\]|\\.)*)")?\s*\)', blk)}
         comps[ref] = (ts, val, fp, fields)
     pins = {}
     ns = s[s.index('(nets'):]

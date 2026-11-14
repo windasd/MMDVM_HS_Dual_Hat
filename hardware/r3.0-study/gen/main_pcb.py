@@ -121,6 +121,37 @@ def court(fp):
     return x0, y0, x1, y1
 
 
+def cluster_order(refs, pins):
+    """Order parts so that passives follow the IC they share signal nets with (keeps clusters together)."""
+    members = {}
+    for (r_, p_), n in pins.items():
+        members.setdefault(n, set()).add(r_)
+    sig = {n: m for n, m in members.items() if len(m) <= 6 and not n.startswith('unconnected')}
+    adj = {r_: set() for r_ in refs}
+    for m in sig.values():
+        for a in m:
+            if a in adj:
+                adj[a] |= {b for b in m if b in adj and b != a}
+    key = lambda r_: (re.sub(r'\d', '', r_), int(re.sub(r'\D', '', r_) or 0))
+    big = sorted([r_ for r_ in refs if r_.startswith(('U', 'Q', 'J', 'SW'))], key=key)
+    out, seen = [], set()
+
+    def visit(r_, depth):
+        if r_ in seen:
+            return
+        seen.add(r_)
+        out.append(r_)
+        if depth < 2:
+            for nb in sorted(adj[r_], key=key):
+                if not nb.startswith(('U', 'Q', 'J', 'SW')):
+                    visit(nb, depth + 1)
+    for r_ in big:
+        visit(r_, 0)
+    for r_ in sorted(refs, key=key):
+        visit(r_, 0)
+    return out
+
+
 def write_rules():
     """Design rules live in the project file: set them explicitly (4-layer, 0.1/0.15 mm class)."""
     pro = os.path.join(PRJ, 'mmdvm_mesh.kicad_pro')
@@ -136,7 +167,16 @@ def write_rules():
     classes = ns.setdefault('classes', [{'name': 'Default'}])
     for c in classes:
         if c.get('name') == 'Default':
-            c.update({'clearance': 0.12, 'track_width': 0.2, 'via_diameter': 0.5, 'via_drill': 0.25})
+            c.update({'clearance': 0.1, 'track_width': 0.2, 'via_diameter': 0.5, 'via_drill': 0.25})
+    classes[:] = [c for c in classes if c.get('name') != 'Power']
+    classes.append({'name': 'Power', 'clearance': 0.1, 'track_width': 0.4, 'via_diameter': 0.6, 'via_drill': 0.3,
+                    'bus_width': 12, 'diff_pair_gap': 0.25, 'diff_pair_via_gap': 0.25, 'diff_pair_width': 0.2,
+                    'line_style': 0, 'microvia_diameter': 0.3, 'microvia_drill': 0.1, 'wire_width': 6,
+                    'pcb_color': 'rgba(0, 0, 0, 0.000)', 'schematic_color': 'rgba(0, 0, 0, 0.000)'})
+    ns['netclass_patterns'] = [{'netclass': 'Power', 'pattern': pat} for pat in (
+        'VSYS', 'VBUS', 'CELL+', 'CELL-', '+5V', '+3V5', '+12V_BOOST', '+12V_SENSE', 'SYS_DCIN', '/Power/CELL*',
+        '/Power/B12_SW', '/Power/B12_VOUT', '/Power/BQ_SW', '/Power/BQ_PMID', '/Power/B5_SW', '/Power/BB_L*',
+        '/Power/PROT_MID', 'MESH_VBAT_NRF')]
     d.setdefault('meta', {'filename': 'mmdvm_mesh.kicad_pro', 'version': 3})
     json.dump(d, open(pro, 'w', encoding='utf-8'), indent=2)
 
@@ -292,8 +332,7 @@ def main():
     overflow = []
     for zone, refs in rest.items():
         zx0, zy0, zx1, zy1 = ZONES[zone]
-        refs.sort(key=lambda r_: (0 if r_.startswith(('U', 'J', 'L', 'Q', 'Y')) else 1,
-                                  re.sub(r'\d', '', r_), int(re.sub(r'\D', '', r_) or 0)))
+        refs = cluster_order(refs, pins)
         for ref in refs:
             fp = add(ref, zx0, zy0)
             x0, y0, x1, y1 = court(fp)
@@ -315,31 +354,54 @@ def main():
             if not done:
                 overflow.append(ref)
     print('packed', sum(len(v) for v in rest.values()), 'overflow', overflow)
-    # ---- remove dangling copies (tracks whose free end touches nothing, then orphan non-GND vias)
-    for _ in range(30):
-        pts = {}
-        for fp in board.GetFootprints():
-            for p in fp.Pads():
-                q = p.GetPosition()
-                pts[(q.x // 2000, q.y // 2000)] = 99
-        for t in board.GetTracks():
-            ends = [t.GetPosition()] if t.GetClass() == 'PCB_VIA' else [t.GetStart(), t.GetEnd()]
-            for q in ends:
-                k = (q.x // 2000, q.y // 2000)
-                pts[k] = pts.get(k, 0) + (2 if t.GetClass() == 'PCB_VIA' else 1)
+    # ---- remove dangling copies: a track end is anchored if it hits a pad, a via or another track
+    pads_all = [p for fp in board.GetFootprints() for p in fp.Pads()]
+    for t in list(board.GetTracks()):          # copies that leave the board or touch a pad of another net
+        ends = [t.GetPosition()] if t.GetClass() == 'PCB_VIA' else [t.GetStart(), t.GetEnd()]
+        kill = t.GetNetname() in ('RXD', 'TXD') or any(model(q)[1] < -0.55 for q in ends)
+        if not kill:
+            for p in pads_all:
+                if p.GetNetname() != t.GetNetname() and (t.GetClass() == 'PCB_VIA' or p.IsOnLayer(t.GetLayer()))                         and t.HitTest(p.GetBoundingBox(), False, mm(0.12)):
+                    kill = True
+                    break
+        if kill:
+            board.Remove(t)
+    for _ in range(40):
+        tracks = list(board.GetTracks())
+        segs = [t for t in tracks if t.GetClass() == 'PCB_TRACK']
+        vias = [t for t in tracks if t.GetClass() == 'PCB_VIA']
+
+        def anchored(q, layer, me):
+            for p in pads_all:
+                if p.IsOnLayer(layer) and p.HitTest(q):
+                    return True
+            for v in vias:
+                if v is not me and v.HitTest(q):
+                    return True
+            for t in segs:
+                if t is not me and t.GetLayer() == layer and t.HitTest(q):
+                    return True
+            return False
         gone = 0
-        for t in list(board.GetTracks()):
-            if t.GetClass() == 'PCB_TRACK':
-                if t.GetLength() < mm(0.05) or any(pts.get((q.x // 2000, q.y // 2000), 0) <= 1 for q in (t.GetStart(), t.GetEnd())):
-                    board.Remove(t)
-                    gone += 1
-            elif t.GetClass() == 'PCB_VIA' and t.GetNetname() != 'GND':
-                q = t.GetPosition()
-                if pts.get((q.x // 2000, q.y // 2000), 0) <= 3:
-                    board.Remove(t)
-                    gone += 1
+        for t in segs:
+            if t.GetLength() < mm(0.05) or not (anchored(t.GetStart(), t.GetLayer(), t)
+                                                and anchored(t.GetEnd(), t.GetLayer(), t)):
+                board.Remove(t)
+                gone += 1
+        segs = [t for t in board.GetTracks() if t.GetClass() == 'PCB_TRACK']
+        for v in vias:
+            if v.GetNetname() == 'GND':
+                continue
+            q = v.GetPosition()
+            n = sum(1 for t in segs if t.HitTest(q)) + sum(1 for p in pads_all if p.HitTest(q))
+            if n < 2:
+                board.Remove(v)
+                gone += 1
         if not gone:
             break
+    for t in board.GetTracks():
+        t.SetLocked(True)                      # proven r1.3 routing: keep it out of the autorouter's hands
+    print('r1.3 tracks kept:', len(board.GetTracks()))
     # ---- GND: inner plane In1, pours on F and B
     for layer in (pcbnew.In1_Cu, pcbnew.F_Cu, pcbnew.B_Cu):
         z = pcbnew.ZONE(board)
@@ -349,6 +411,7 @@ def main():
             ol.Append(mm(X0 + x), mm(Y0 - y))
         z.SetLocalClearance(mm(0.25)); z.SetMinThickness(mm(0.2))
         z.SetPadConnection(pcbnew.ZONE_CONNECTION_THT_THERMAL)
+        z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
         board.Add(z)
     placed['U101'].SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)   # exposed pad + thermal vias: solid
     pcbnew.ZONE_FILLER(board).Fill(board.Zones())

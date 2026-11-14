@@ -49,6 +49,13 @@ def main():
     sh = kisch.Sheet('front_panel', 'front_panel.kicad_sch', 'r3.0 front panel (MESH button, LED, OLED)',
                      set(), POWER, PROJECT, root, None, cols_mm=380.0)
     pp = parts()
+    bomf = os.path.join(HERE, 'bom_fields.json')
+    fields = json.load(open(bomf, encoding='utf-8')) if os.path.exists(bomf) else {}
+    for p in pp:
+        f = fields.get('FP:' + p['ref'])
+        if f:
+            for k in ('MFR', 'MPN', 'Mouser', 'Mouser_MPN', 'LCSC'):
+                p['fields'][k] = f.get(k, '')
     for p in pp:
         if p['ref'] == 'D1':
             p['fp'] = 'LED_SMD:LED_0805_2012Metric'

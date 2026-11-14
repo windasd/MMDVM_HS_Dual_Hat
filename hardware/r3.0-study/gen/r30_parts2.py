@@ -91,7 +91,7 @@ def gps():
         R('R71', '10R', 'GPS_VCC_RF', 'GPS_ANT_BIAS', 'Resistor_SMD:R_0603_1608Metric', Note='0.25 W, current limit'),
         C('C84', '10n', 'GPS_ANT_BIAS', 'GND'),
         P('L50', 'Device:L', '27nH', {'1': 'GPS_ANT_BIAS', '2': 'GPS_RF'}, 'Inductor_SMD:L_0402_1005Metric',
-          {'MPN': 'Murata LQW15AN27NG00D', 'Note': '>500 Ohm at L1, >300 mA'}),
+          {'Note': 'LQW15AN27NG80D (680 mA); check impedance at L1 (~270 Ohm for 27 nH)'}),
         P('J50', 'Connector:Conn_Coaxial', 'GPS U.FL', {'1': 'GPS_RF', '2': 'GND'}, FP_UFL,
           {'MPN': 'Hirose U.FL-R-SMT-1(10)', 'Note': 'pigtail to the top-wall SMA, active antenna'}),
         P('TP50', 'Connector:TestPoint', 'SAFEBOOT', {'1': 'GPS_SAFEBOOT_N'}, 'TestPoint:TestPoint_Pad_D1.0mm',
@@ -110,12 +110,13 @@ def power():
             'B7': 'USB_DM', 'A8': None, 'B8': None, 'SH': 'GND'},
           'Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal', {'MPN': 'GCT USB4105-GF-A'}),
         P('D100', 'Device:D_TVS', 'SMAJ15CA', {'1': 'VBUS', '2': 'GND'}, 'Diode_SMD:D_SMA', {'MPN': 'SMAJ15CA'}),
-        P('U100', 'Interface_USB:CH224K', 'CH224K', {'1': 'CH224_VDD', '2': 'GND', '3': 'GND', '4': 'USB_DP',
+        P('U100', 'Interface_USB:CH224K', 'CH224A', {'1': 'CH224_VDD', '2': 'GND', '3': 'GND', '4': 'USB_DP',
                                                      '5': 'USB_DM', '6': 'USB_CC2', '7': 'USB_CC1',
                                                      '8': 'CH224_VBUS', '9': 'GND', '10': None, '11': 'GND'},
-          'Package_SO:SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm', {'MPN': 'CH224K', 'Note': 'CFG1/2/3 = 0/0/0 -> 9 V'}),
-        R('R100', '1k', 'VBUS', 'CH224_VDD', 'Resistor_SMD:R_0805_2012Metric', Note='VDD shunt feed'),
-        C('C100', '1u', 'CH224_VDD', 'GND'), R('R101', '10k', 'VBUS', 'CH224_VBUS'),
+          'Package_SO:SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm',
+          {'Note': 'CH224A (CH224K out of stock): CFG1/2/3 = 0/0/0 -> 9 V; pin 1 VHV and pin 8 VBUS direct to VBUS'}),
+        R('R100', '0R', 'VBUS', 'CH224_VDD', 'Resistor_SMD:R_0805_2012Metric', Note='CH224A: 0R (CH224K: 1k VDD feed)'),
+        C('C100', '1u', 'CH224_VDD', 'GND'), R('R101', '0R', 'VBUS', 'CH224_VBUS', Note='CH224A: 0R (CH224K: 10k)'),
         C('C101', '10u', 'VBUS', 'GND', FP_C0805, Note='25 V'),
         # ---- charger with NVDC power path
         P('U101', 'Battery_Management:BQ25895RTW', 'BQ25895', {
@@ -136,7 +137,7 @@ def power():
         R('R103', '5k23', 'REGN', 'BQ_TS', Note='JEITA network for a 103AT NTC'),
         R('R104', '30k1', 'BQ_TS', 'GND'),
         P('TH100', 'Device:Thermistor_NTC', '10k 103AT', {'1': 'BQ_TS', '2': 'GND'},
-          'Resistor_SMD:R_0603_1608Metric', {'MPN': 'Murata NCP18XH103F03RB (or active equivalent)',
+          'Resistor_SMD:R_0603_1608Metric', {'Note2': 'Murata NCU18XH103F60RB (successor of the NRND NCP18XH103F03RB)',
                                              'Note': 'place between the cells'}),
         R('R105', '2k2', 'VSYS', 'STAT_LED_A'), LED('D101', 'orange', 'BQ_STAT', 'STAT_LED_A', 'APHHS1005SECK'),
         P('D102', 'Device:D_Schottky', 'BAT54', {'1': 'PWR_BTN_N', '2': 'BQ_QON'}, 'Diode_SMD:D_SOD-323',
@@ -149,12 +150,14 @@ def power():
                    'Battery:BatteryHolder_Keystone_1042_1x18650',
                    {'MPN': 'Keystone 1042P (polarized holder); unprotected flat-top cell'}))
         p.append(P('F%d' % (100 + i), 'Device:Fuse', '7A', {'1': 'CELL%d+' % (i + 1), '2': 'CELL+'},
-                   'Fuse:Fuse_1812_4532Metric', {'MPN': '7 A 1812 fast fuse (TBD)',
+                   'Fuse:Fuse_Littelfuse-NANO2-451_453', {'MPN': 'Littelfuse 0451007.MRL',
                                                  'Note': 'opens if a cell is inserted reversed'}))
     p += [
-        P('U102', 'Battery_Management:BQ297xy', 'BQ29700', {'1': None, '2': 'PROT_COUT', '3': 'PROT_DOUT',
+        P('U102', 'Battery_Management:BQ297xy', 'BQ29728', {'1': None, '2': 'PROT_COUT', '3': 'PROT_DOUT',
                                                             '4': 'CELL-', '5': 'PROT_BAT', '6': 'PROT_VM'},
-          'Package_SON:WSON-6_1.5x1.5mm_P0.5mm', {'MPN': 'BQ29700DSER (variant/thresholds TBD for 4P)'}),
+          'Package_SON:WSON-6_1.5x1.5mm_P0.5mm',
+          {'Note': 'BQ29728: OV 4.28 V, UV 2.80 V, OCC -100 mV, OCD +150 mV (9-13 A with 2x CSD17577Q3A); '
+                   'keep BQ25895 charge current <= 4 A'}),
         R('R107', '330R', 'CELL+', 'PROT_BAT'), C('C111', '100n', 'PROT_BAT', 'CELL-'),
         R('R108', '2k2', 'GND', 'PROT_VM'),
         P('Q100', 'Transistor_FET:CSD17577Q3A', 'CSD17577Q3A', {'1': 'CELL-', '2': 'CELL-', '3': 'CELL-',
@@ -236,10 +239,11 @@ def power():
           'Package_TO_SOT_SMD:SOT-23-5', {'MPN': 'TPS7A2033PDBVR', 'Note': 'MMDVM (STM32 + 2x ADF7021), switched'}),
         C('C137', '1u', '+3V5', 'GND'), C('C138', '1u', '+3V3', 'GND'), C('C139', '10u', '+3V3', 'GND', FP_C0603),
         # ---- push-button power controller (host-side rails)
-        P('U111', 'Power_Management:STM6601', 'STM6601', {
+        P('U111', 'Power_Management:STM6601', 'STM6601CA2BDM6F', {
             '1': '+3V3_MESH', '2': '+3V3_MESH', '3': None, '4': 'HOST_HOLD', '5': None, '6': 'PWR_BTN_N',
             '7': None, '8': None, '9': 'HOST_PWR_EN', '10': None, '11': 'BTN_INT_N', '12': 'GND'},
-          'Package_DFN_QFN:TDFN-12_2x3mm_P0.5mm', {'MPN': 'STM6601 (active-high EN variant, TBD)'}),
+          'Package_DFN_QFN:TDFN-12_2x3mm_P0.5mm',
+          {'Note': 'active-high push-pull EN, long press forces off; alt. STM6601CM2DDM6F'}),
         C('C140', '100n', '+3V3_MESH', 'GND'), R('R121', '100k', 'PWR_BTN_N', '+3V3_MESH'),
         R('R122', '100k', 'HOST_PWR_EN', 'GND'), R('R123', '10k', 'BTN_INT_N', '+3V3_MESH'),
         P('SW100', 'Switch:SW_Push', 'POWER', {'1': 'PWR_BTN_N', '2': 'GND'},
