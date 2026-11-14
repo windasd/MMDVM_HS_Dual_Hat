@@ -28,10 +28,11 @@ P = dict(
     soc_heatsink=(25.0, 22.0, 40.0, 37.0, 6.0),   # x0, y0, x1, y1, height; SoC position TBC on the board
     mezz_gap=8.0,               # board-to-mezzanine spacing (CE spec v2.0)
     # main (mezzanine) board, extended towards +Y for the cells
-    pcb_t=1.6, pcb_y1=-1.0, pcb_y2=145.5,
-    mb_holes_ext=[(4.0, 142.5), (81.0, 142.5)],   # main-board holes beyond the last cell holder
+    pcb_t=1.6, pcb_y1=-1.0, pcb_y2=151.0,
+    pcb_wide=(-2.0, 88.5, 54.0),               # L-shaped main board: x -2 .. 88.5 from y = 54 (cell holders)
+    mb_holes_ext=[(4.0, 147.5), (84.0, 147.5)],   # main-board holes beyond the last cell holder
     # 4x Keystone 1042P, mounted on the main-board underside, cells along X (vertical when standing)
-    cell_len=77.1, cell_pitch=21.0, cell_h=20.5, cells_y0=55.5,
+    cell_len=77.1, cell_pitch=21.8, cell_h=20.5, cells_y0=55.0, cell_cx=43.25,   # Keystone 1042 courtyard 88 x 21.75
     # display: TJC8048X550_011R (resistive: 4-pin touch tail HST050008), TJC X5 datasheet p.7; long side along Y
     disp_w=136.9, disp_h=84.0, disp_pcb=1.6, disp_holes=(130.5, 77.6),
     lcd_w=120.7, lcd_h=75.8, lcd_t=4.5,         # front stack: 4.5 (R, this unit); 3.3 (N) / 5.08 (C)
@@ -92,7 +93,8 @@ def build(p=P):
     z_mt = z_mb + p["pcb_t"]
     parts["ls_connector"] = box(10 - 2.5, 50 - 3.25, 0, 48 + 2.5, 50 + 3.25, z_mb)
     # --- main board
-    mb = box(0, p["pcb_y1"], z_mb, p["sbc_w"], p["pcb_y2"], z_mt)
+    wx0, wx1, wy = p["pcb_wide"]
+    mb = box(0, p["pcb_y1"], z_mb, p["sbc_w"], wy, z_mt).union(box(wx0, wy, z_mb, wx1, p["pcb_y2"], z_mt))
     for (hx, hy) in p["sbc_holes"] + p["mb_holes_ext"]:
         mb = mb.cut(cq.Workplane("XY").circle(1.35).extrude(5).translate((hx, hy, z_mb - 1)))
     parts["main_board"] = mb
@@ -111,7 +113,7 @@ def build(p=P):
     parts["power_zone"] = box(46, 60, z_mt, 82, 136, z_mt + 5)       # top of the cell column: heat rises away
     # --- cells under the extension (vertical when standing)
     cells = []
-    x0 = (p["sbc_w"] - p["cell_len"]) / 2
+    x0 = p["cell_cx"] - p["cell_len"] / 2
     for i in range(4):
         y0 = p["cells_y0"] + i * p["cell_pitch"]
         holder = box(x0, y0, z_mb - 14.86, x0 + p["cell_len"], y0 + 20.7, z_mb)
@@ -267,7 +269,7 @@ def build(p=P):
             top_slots.append(box(ix1 - 1, y, z_back_in + 4, ox1 + 1, y + 2, z_front_in - 6))
     tub = tub.cut(union_all(top_slots))
     # plenum divider: keeps the fan pulling through the SoC column, the cell column breathes passively
-    parts["plenum_divider"] = box(p["sbc_w"] + p["clear"], 55.5, z_back_in, ix1, 57.0, z_front_in - disp_t - 0.5)
+    parts["plenum_divider"] = box(p["pcb_wide"][1] + 0.5, 53.5, z_back_in, ix1, 54.5, z_front_in - disp_t - 0.5)
     # --- bottom wall: intake slots for both columns
     bot = []
     for y in list(range(10, 52, 4)) + list(range(60, 136, 4)):

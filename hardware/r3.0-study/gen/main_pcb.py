@@ -1,0 +1,364 @@
+"""Initial placement of the r3.0 main board (run with KiCad's bundled python).
+
+- Outline, mounting holes and every mechanically constrained part follow the enclosure model
+  (case/meshtastic-concept/enclosure_concept.py; board frame x right, y up, y = 0 at the Bubblegum-96
+  USB/HDMI edge). The board is L-shaped: 85 mm wide over the Bubblegum-96, 90.5 mm over the cells.
+- The MMDVM block (two ADF7021, STM32, LEDs) is copied from the proven r1.3 layout including tracks and
+  vias; r1.3 nets are mapped pad by pad onto the new nets and dangling stubs are removed.
+- All other parts are packed by functional block into zones, avoiding holes and placed parts.
+  Nothing outside the MMDVM block is routed: this is a starting point for manual layout.
+
+KiCad coordinates: X = X0 + x, Y = Y0 - y.
+"""
+import json
+import os
+import re
+import subprocess
+import sys
+
+import pcbnew
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+PRJ = os.path.normpath(os.path.join(HERE, '..'))
+R13 = os.path.normpath(os.path.join(HERE, '..', '..', 'r1.3', 'mmdvm_hs_dual_hat.kicad_pcb'))
+FPDIR = os.environ.get('KICAD_FOOTPRINT_DIR', r'C:/Program Files/KiCad/10.0/share/kicad/footprints')
+KCLI = os.environ.get('KICAD_CLI', r'C:/Program Files/KiCad/10.0/bin/kicad-cli.exe')
+LIBS = {'MMDVM': os.path.normpath(os.path.join(HERE, '..', '..', '..', 'libraries', 'mmdvm_hs_dual_hat.pretty')),
+        'MMDVM_r30': os.path.join(PRJ, 'MMDVM_r30.pretty')}
+X0, Y0 = 100.0, 250.0
+# outline (model coordinates), counter-clockwise
+OUTLINE = [(0.0, -1.0), (85.0, -1.0), (85.0, 54.0), (88.5, 54.0), (88.5, 151.0), (-2.0, 151.0), (-2.0, 54.0),
+           (0.0, 54.0)]
+EDGE_Y = 151.0                      # +Y edge = left side face when standing
+CELL_X, CELL_Y0, CELL_PITCH = 43.25, 55.0 + 10.875, 21.8
+HOLES = [(4.0, 18.5), (4.0, 50.0), (81.0, 18.5), (81.0, 50.0), (4.0, 147.5), (84.0, 147.5)]
+_KEEP = []
+
+# ref: (x, y, rotation, side); edge parts are snapped to EDGE_Y afterwards
+FIXED = {
+    'J1': (29.0, 50.0, 270, 'B'),           # 96Boards LS (mirrored-number footprint), centre line y = 50
+    'BT100': (CELL_X, CELL_Y0, 0, 'B'), 'BT101': (CELL_X, CELL_Y0 + CELL_PITCH, 0, 'B'),
+    'BT102': (CELL_X, CELL_Y0 + 2 * CELL_PITCH, 0, 'B'), 'BT103': (CELL_X, CELL_Y0 + 3 * CELL_PITCH, 0, 'B'),
+    'J2': (17.5, 146.0, 0, 'F'), 'J100': (34.5, 146.0, 0, 'F'), 'SW100': (53.0, 146.0, 0, 'F'),
+    'SW50': (66.3, 146.0, 0, 'F'), 'D51': (74.5, 146.0, 0, 'F'),
+    'J44': (0.0, 100.0, 0, 'F'),            # front-panel cable, opening towards the x = -2 edge
+    'J5': (44.0, 6.0, 0, 'F'),              # TJC display
+    'P5': (74.0, 34.5, 90, 'F'), 'P7': (75.0, 41.5, 90, 'F'),   # THT headers away from the Bubblegum USB-A
+    'U40': (30.8, 106.5, 0, 'F'),           # RAK4630 in the gap between the cell-holder locating holes
+    'J40': (46.2, 102.3, 0, 'F'),           # LoRa U.FL right next to RAK pad 37 (42.2, 102.3)
+    'J41': (16.4, 110.7, 0, 'F'),           # BLE U.FL right next to RAK pad 15 (19.4, 110.7)
+    'J3': (79.0, 64.0, 0, 'F'),             # fan cable towards the top plenum
+}
+EDGE_PARTS = {'J100': 0.6, 'SW100': 0.0, 'SW50': -0.2, 'D51': -1.0}   # courtyard overhang beyond EDGE_Y
+ZONES = {   # model x0, y0, x1, y1 (filled bottom-up, left to right)
+    'Host interface': (5.0, 54.0, 87.0, 76.0),
+    'Power': (44.0, 77.0, 87.0, 143.0),
+    'Meshtastic': (5.0, 77.0, 43.5, 120.0),
+    'GPS': (5.0, 120.0, 42.0, 143.0),
+    'MMDVM IO': (56.0, 37.0, 76.0, 46.0),
+}
+PREFER = {'J42': 'Meshtastic',
+          'J43': 'Meshtastic', 'J50': 'GPS', 'U35': 'GPS', 'Y2': 'GPS'}
+R13_ORIGIN = (90.2, 82.5)
+R13_DX, R13_DY = 10.0, -53.0
+
+
+def mm(v):
+    return pcbnew.FromMM(v)
+
+
+def P(x, y):
+    return pcbnew.VECTOR2I(mm(X0 + x), mm(Y0 - y))
+
+
+def model(q):
+    return pcbnew.ToMM(q.x) - X0, Y0 - pcbnew.ToMM(q.y)
+
+
+def netlist():
+    path = os.path.join(PRJ, 'n_main.net')
+    subprocess.run([KCLI, 'sch', 'export', 'netlist', '--format', 'kicadsexpr', '-o', path,
+                    os.path.join(PRJ, 'mmdvm_mesh.kicad_sch')], capture_output=True)
+    s = open(path, encoding='utf-8').read()
+    os.remove(path)
+    comps = {}
+    for blk in re.split(r'\n\t\t\(comp\n', s[s.index('(components'):s.index('(libparts')])[1:]:
+        ref = re.search(r'\(ref "([^"]+)"\)', blk).group(1)
+        comps[ref] = dict(
+            val=re.search(r'\(value "([^"]*)"\)', blk).group(1),
+            fp=re.search(r'\(footprint "([^"]*)"\)', blk).group(1),
+            sheet=re.search(r'\(sheetpath\s*\(names "([^"]*)"\)', blk).group(1).strip('/'),
+            path=re.search(r'\(sheetpath\s*\(names "[^"]*"\)\s*\(tstamps "([^"]*)"\)', blk).group(1)
+            + re.findall(r'\(tstamps "([^"]+)"\)', blk)[-1],
+            fields={k: v for k, v in re.findall(r'\(field\s*\(name "([^"]+)"\)\s*(?:"((?:[^"\\]|\\.)*)")?\s*\)', blk)},
+            dnp='"dnp"' in blk)
+    pins = {}
+    for blk in re.split(r'\n\t\t\(net\n', s[s.index('(nets'):])[1:]:
+        name = re.search(r'\(name "([^"]*)"\)', blk).group(1)
+        for r_, p_ in re.findall(r'\(ref "([^"]+)"\)\s*\(pin "([^"]+)"\)', blk):
+            pins[(r_, p_)] = name
+    return comps, pins
+
+
+def load_fp(fpid):
+    lib, name = fpid.split(':')
+    fp = pcbnew.FootprintLoad(LIBS.get(lib) or os.path.join(FPDIR, lib + '.pretty'), name)
+    _KEEP.append(fp)
+    return fp
+
+
+def court(fp):
+    """Courtyard bbox in model coordinates (x0, y0, x1, y1)."""
+    layer = pcbnew.B_CrtYd if fp.IsFlipped() else pcbnew.F_CrtYd
+    try:
+        r = fp.GetCourtyard(layer).BBox()
+        if r.GetWidth() <= 0:
+            raise ValueError
+    except Exception:  # noqa: BLE001
+        r = fp.GetBoundingBox(False)
+    x0, y1 = model(pcbnew.VECTOR2I(r.GetX(), r.GetY()))
+    x1, y0 = model(pcbnew.VECTOR2I(r.GetX() + r.GetWidth(), r.GetY() + r.GetHeight()))
+    return x0, y0, x1, y1
+
+
+def write_rules():
+    """Design rules live in the project file: set them explicitly (4-layer, 0.1/0.15 mm class)."""
+    pro = os.path.join(PRJ, 'mmdvm_mesh.kicad_pro')
+    d = json.load(open(pro, encoding='utf-8')) if os.path.exists(pro) else {}
+    ds = d.setdefault('board', {}).setdefault('design_settings', {})
+    rules = ds.setdefault('rules', {})
+    rules.update({'min_clearance': 0.1, 'min_track_width': 0.15, 'min_via_diameter': 0.45,
+                  'min_through_hole_diameter': 0.2, 'min_via_annular_width': 0.1, 'min_copper_edge_clearance': 0.3,
+                  'min_hole_clearance': 0.1, 'min_hole_to_hole': 0.25, 'solder_mask_to_copper_clearance': 0.0,
+                  'min_silk_clearance': 0.0})
+    ds['allow_soldermask_bridges_in_footprints'] = True
+    ns = d.setdefault('net_settings', {})
+    classes = ns.setdefault('classes', [{'name': 'Default'}])
+    for c in classes:
+        if c.get('name') == 'Default':
+            c.update({'clearance': 0.12, 'track_width': 0.2, 'via_diameter': 0.5, 'via_drill': 0.25})
+    d.setdefault('meta', {'filename': 'mmdvm_mesh.kicad_pro', 'version': 3})
+    json.dump(d, open(pro, 'w', encoding='utf-8'), indent=2)
+
+
+def main():
+    comps, pins = netlist()
+    board = pcbnew.BOARD()
+    board.SetCopperLayerCount(4)
+    nets = {}
+    for n in sorted(set(pins.values())):
+        ni = pcbnew.NETINFO_ITEM(board, n)
+        board.Add(ni)
+        nets[n] = ni
+    for a, b in zip(OUTLINE, OUTLINE[1:] + OUTLINE[:1]):
+        s = pcbnew.PCB_SHAPE(board, pcbnew.SHAPE_T_SEGMENT)
+        s.SetStart(P(*a)); s.SetEnd(P(*b)); s.SetLayer(pcbnew.Edge_Cuts); s.SetWidth(mm(0.1))
+        board.Add(s)
+    placed = {}
+
+    def add(ref, x=None, y=None, rot=0, side='F', pos=None):
+        c = comps[ref]
+        fp = load_fp(c['fp'])
+        fp.SetParent(board)
+        fp.SetReference(ref)
+        fp.SetValue(c['val'])
+        fp.SetFPIDAsString(c['fp'])
+        fp.SetPath(pcbnew.KIID_PATH(c['path']))
+        fp.SetSheetname(c['sheet'])
+        for k, v in c['fields'].items():
+            f = pcbnew.PCB_FIELD(fp, pcbnew.FIELD_T_USER, k)
+            f.SetText(v); f.SetVisible(False); f.SetLayer(pcbnew.F_Fab)
+            f.SetOrdinal(fp.GetNextFieldOrdinal())
+            fp.Add(f)
+        if c['dnp']:
+            fp.SetDNP(True)
+        p_ = pos if pos is not None else P(x, y)
+        fp.SetPosition(p_)
+        if side == 'B':
+            fp.Flip(p_, pcbnew.FLIP_DIRECTION_TOP_BOTTOM)
+        fp.SetOrientationDegrees(rot)
+        board.Add(fp)
+        for pad in fp.Pads():
+            n = pins.get((ref, pad.GetNumber()))
+            if n in nets:
+                pad.SetNet(nets[n])
+        placed[ref] = fp
+        return fp
+
+    for i, (hx, hy) in enumerate(HOLES):
+        h = load_fp('MountingHole:MountingHole_2.7mm_M2.5_Pad_Via')
+        h.SetParent(board); h.SetReference('H%d' % (i + 1)); h.SetPosition(P(hx, hy)); h.SetBoardOnly(True)
+        h.SetExcludedFromBOM(True); h.SetExcludedFromPosFiles(True)
+        board.Add(h)
+        for pad in h.Pads():
+            pad.SetNet(nets['GND'])
+    # ---- MMDVM block from r1.3
+    b13 = pcbnew.LoadBoard(R13)
+    netmap, conflict = {}, set()
+    for fp13 in b13.GetFootprints():
+        ref = fp13.GetReference()
+        if ref not in comps or not comps[ref]['sheet'].startswith('MMDVM') or ref in FIXED:
+            continue
+        q = fp13.GetPosition()
+        u, v = pcbnew.ToMM(q.x) - R13_ORIGIN[0], pcbnew.ToMM(q.y) - R13_ORIGIN[1]
+        add(ref, pos=pcbnew.VECTOR2I(mm(X0 + R13_DX + u), mm(Y0 + R13_DY + v)), rot=fp13.GetOrientationDegrees(),
+            side='B' if fp13.IsFlipped() else 'F')
+        for pad13 in fp13.Pads():
+            n13, nn = pad13.GetNetname(), pins.get((ref, pad13.GetNumber()))
+            if n13 and nn:
+                if netmap.get(n13, nn) != nn:
+                    conflict.add(n13)
+                netmap[n13] = nn
+    off = pcbnew.VECTOR2I(mm(X0 + R13_DX - R13_ORIGIN[0]), mm(Y0 + R13_DY - R13_ORIGIN[1]))
+    for t in b13.GetTracks():
+        n13 = t.GetNetname()
+        if n13 not in netmap or n13 in conflict or t.GetClass() == 'PCB_ARC':
+            continue
+        if t.GetClass() == 'PCB_VIA':
+            v = pcbnew.PCB_VIA(board)
+            v.SetPosition(t.GetPosition() + off); v.SetWidth(t.GetWidth(pcbnew.F_Cu)); v.SetDrill(t.GetDrill())
+        else:
+            v = pcbnew.PCB_TRACK(board)
+            v.SetStart(t.GetStart() + off); v.SetEnd(t.GetEnd() + off); v.SetWidth(t.GetWidth())
+            v.SetLayer(t.GetLayer())
+        v.SetNet(nets[netmap[n13]])
+        board.Add(v)
+    print('r1.3 block:', len(placed), 'footprints; net conflicts', sorted(conflict))
+    # ---- fixed parts
+    for ref, (x, y, rot, side) in FIXED.items():
+        if ref in comps and ref not in placed:
+            add(ref, x, y, rot, side)
+    j1 = placed['J1']
+    pad = {p.GetNumber(): model(p.GetPosition()) for p in j1.Pads()}
+    print('J1 pads 1/2/39 (model):', [tuple(round(v, 2) for v in pad[n]) for n in ('1', '2', '39')],
+          '-> rows must be y 49 (odd) / 51 (even) offset outwards, x 10 .. 48')
+    for ref, over in EDGE_PARTS.items():            # snap the courtyard to the +Y edge
+        fp = placed[ref]
+        best = None
+        for rot in (0, 90, 180, 270):
+            fp.SetOrientationDegrees(rot)
+            x0, y0, x1, y1 = court(fp)
+            # opening/actuator side = the side of the courtyard furthest from the pads' centroid
+            cy = sum(model(p.GetPosition())[1] for p in fp.Pads()) / max(1, len(fp.Pads()))
+            score = y1 - cy
+            if best is None or score > best[0]:
+                best = (score, rot)
+        fp.SetOrientationDegrees(best[1])
+        x0, y0, x1, y1 = court(fp)
+        fp.Move(P(0, EDGE_Y + over - y1) - P(0, 0))
+    j2 = placed['J2']                               # console header: pin row 3 mm inside, pins out of the edge
+    best = None
+    for rot in (0, 90, 180, 270):
+        j2.SetOrientationDegrees(rot)
+        ys = [model(p.GetPosition())[1] for p in j2.Pads()]
+        x0, y0, x1, y1 = court(j2)
+        if max(ys) - min(ys) < 0.1 and (best is None or y1 - ys[0] > best[0]):
+            best = (y1 - ys[0], rot)
+    j2.SetOrientationDegrees(best[1])
+    mx = sum(model(p.GetPosition())[0] for p in j2.Pads()) / len(j2.Pads())
+    j2.Move(P(17.5 - mx, EDGE_Y - 3.0 - model(j2.Pads()[0].GetPosition())[1]) - P(0, 0))
+    j44 = placed['J44']                             # opening towards x = -2
+    best = None
+    for rot in (0, 90, 180, 270):
+        j44.SetOrientationDegrees(rot)
+        x0, y0, x1, y1 = court(j44)
+        cx = sum(model(p.GetPosition())[0] for p in j44.Pads() if p.GetNumber() != 'MP') / 6
+        if best is None or (cx - x0) > best[0]:
+            best = (cx - x0, rot)
+    j44.SetOrientationDegrees(best[1])
+    x0, y0, x1, y1 = court(j44)
+    j44.Move(P(-2.0 - x0, 0) - P(0, 0))
+    # ---- keep-outs for packing: holes through the board, and every placed part on the top side
+    keep = []
+    for fp in board.GetFootprints():
+        for p in fp.Pads():
+            if p.GetAttribute() in (pcbnew.PAD_ATTRIB_NPTH, pcbnew.PAD_ATTRIB_PTH):
+                x, y = model(p.GetPosition())
+                r = pcbnew.ToMM(max(p.GetDrillSize().x, p.GetSize(pcbnew.F_Cu).x)) / 2 + 0.6
+                keep.append((x - r, y - r, x + r, y + r))
+        if not fp.IsFlipped():
+            keep.append(court(fp))
+
+    def free(b):
+        return all(b[2] <= k[0] or b[0] >= k[2] or b[3] <= k[1] or b[1] >= k[3] for k in keep)
+
+    rest = {}
+    for ref, c in comps.items():
+        if ref in placed or ref.startswith('#') or not c['fp']:
+            continue
+        zone = PREFER.get(ref) or (c['sheet'] if c['sheet'] in ZONES else
+                                   ('MMDVM IO' if c['sheet'].startswith('MMDVM') else 'Host interface'))
+        rest.setdefault(zone, []).append(ref)
+    overflow = []
+    for zone, refs in rest.items():
+        zx0, zy0, zx1, zy1 = ZONES[zone]
+        refs.sort(key=lambda r_: (0 if r_.startswith(('U', 'J', 'L', 'Q', 'Y')) else 1,
+                                  re.sub(r'\d', '', r_), int(re.sub(r'\D', '', r_) or 0)))
+        for ref in refs:
+            fp = add(ref, zx0, zy0)
+            x0, y0, x1, y1 = court(fp)
+            w, h = x1 - x0 + 0.3, y1 - y0 + 0.3
+            ox, oy = model(fp.GetPosition())
+            dx, dy = ox - x0, oy - y0
+            done = False
+            y = zy0
+            while not done and y + h <= zy1:
+                x = zx0
+                while x + w <= zx1:
+                    if free((x, y, x + w, y + h)):
+                        fp.SetPosition(P(x + dx + 0.15, y + dy + 0.15))
+                        keep.append(court(fp))
+                        done = True
+                        break
+                    x += 0.5
+                y += 0.5
+            if not done:
+                overflow.append(ref)
+    print('packed', sum(len(v) for v in rest.values()), 'overflow', overflow)
+    # ---- remove dangling copies (tracks whose free end touches nothing, then orphan non-GND vias)
+    for _ in range(30):
+        pts = {}
+        for fp in board.GetFootprints():
+            for p in fp.Pads():
+                q = p.GetPosition()
+                pts[(q.x // 2000, q.y // 2000)] = 99
+        for t in board.GetTracks():
+            ends = [t.GetPosition()] if t.GetClass() == 'PCB_VIA' else [t.GetStart(), t.GetEnd()]
+            for q in ends:
+                k = (q.x // 2000, q.y // 2000)
+                pts[k] = pts.get(k, 0) + (2 if t.GetClass() == 'PCB_VIA' else 1)
+        gone = 0
+        for t in list(board.GetTracks()):
+            if t.GetClass() == 'PCB_TRACK':
+                if t.GetLength() < mm(0.05) or any(pts.get((q.x // 2000, q.y // 2000), 0) <= 1 for q in (t.GetStart(), t.GetEnd())):
+                    board.Remove(t)
+                    gone += 1
+            elif t.GetClass() == 'PCB_VIA' and t.GetNetname() != 'GND':
+                q = t.GetPosition()
+                if pts.get((q.x // 2000, q.y // 2000), 0) <= 3:
+                    board.Remove(t)
+                    gone += 1
+        if not gone:
+            break
+    # ---- GND: inner plane In1, pours on F and B
+    for layer in (pcbnew.In1_Cu, pcbnew.F_Cu, pcbnew.B_Cu):
+        z = pcbnew.ZONE(board)
+        z.SetLayer(layer); z.SetNet(nets['GND'])
+        ol = z.Outline(); ol.NewOutline()
+        for (x, y) in OUTLINE:
+            ol.Append(mm(X0 + x), mm(Y0 - y))
+        z.SetLocalClearance(mm(0.25)); z.SetMinThickness(mm(0.2))
+        z.SetPadConnection(pcbnew.ZONE_CONNECTION_THT_THERMAL)
+        board.Add(z)
+    placed['U101'].SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)   # exposed pad + thermal vias: solid
+    pcbnew.ZONE_FILLER(board).Fill(board.Zones())
+    out = os.path.join(PRJ, 'mmdvm_mesh.kicad_pcb')
+    board.Save(out)
+    write_rules()
+    print('saved', out, 'footprints', len(board.GetFootprints()))
+
+
+if __name__ == '__main__':
+    main()
+    sys.stdout.flush()
+    os._exit(0)

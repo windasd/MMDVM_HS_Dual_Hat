@@ -105,8 +105,8 @@ def host_if():
           '38': 'SYS_DCIN', '39': 'GND', '40': 'GND'}
     p = [
         P('J1', 'Connector_Generic:Conn_02x20_Odd_Even', '96Boards LS', ls,
-          'Connector_PinHeader_2.00mm:PinHeader_2x20_P2.00mm_Vertical',
-          {'MPN': 'Samtec TMMH-120-01-F-DV / Molex 87831-4029',
+          'MMDVM_r30:LS_2x20_P2.00mm_SMD_MezzanineBottom',
+          {'MPN': 'Samtec TMMH-120-01-F-DV-A (SMT) or equivalent 2 mm SMT male header',
            'Note': 'bottom side, 8 mm stack to the Bubblegum-96 LS socket; all signals 1.8 V'}),
         C('C60', '1u', '+1V8_HOST', 'GND'),
         P('#FLG200', 'power:PWR_FLAG', 'PWR_FLAG', {'1': '+1V8_HOST'}, in_bom=False),
@@ -183,7 +183,7 @@ def host_if():
         P('D21', 'Device:D_Schottky', 'B5819W', {'1': '+5V', '2': 'FAN_N'}, 'Diode_SMD:D_SOD-123',
           {'MPN': 'B5819W'}),
         P('J3', 'Connector_Generic:Conn_01x03', 'FAN 30x30x10 5V', {'1': 'FAN_N', '2': '+5V', '3': 'FAN_TACH_IN'},
-          'Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical', {'Note': '1 GND(switched), 2 +5V, 3 TACH'}),
+          'Connector_JST:JST_PH_S3B-PH-SM4-TB_1x03-1MP_P2.00mm_Horizontal', {'Note': '1 GND(switched), 2 +5V, 3 TACH (SMT: no pins into the cell holder below)'}),
         P('U37', 'Sensor_Temperature:TMP102xxDRL', 'TMP102', {'1': 'SCL_AON', '2': 'GND', '3': None,
                                                               '4': '+3V3_MESH', '5': '+3V3_MESH', '6': 'SDA_AON'},
           'Package_TO_SOT_SMD:SOT-563', {'MPN': 'TMP102AIDRLR', 'Note': 'I2C 0x49; place at the SoC-column outlet'}),

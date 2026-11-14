@@ -1,1 +1,34 @@
-{"meta": {"filename": "mmdvm_mesh.kicad_pro", "version": 3}}
+{
+  "meta": {
+    "filename": "mmdvm_mesh.kicad_pro",
+    "version": 3
+  },
+  "board": {
+    "design_settings": {
+      "rules": {
+        "min_clearance": 0.1,
+        "min_track_width": 0.15,
+        "min_via_diameter": 0.45,
+        "min_through_hole_diameter": 0.2,
+        "min_via_annular_width": 0.1,
+        "min_copper_edge_clearance": 0.3,
+        "min_hole_clearance": 0.1,
+        "min_hole_to_hole": 0.25,
+        "solder_mask_to_copper_clearance": 0.0,
+        "min_silk_clearance": 0.0
+      },
+      "allow_soldermask_bridges_in_footprints": true
+    }
+  },
+  "net_settings": {
+    "classes": [
+      {
+        "name": "Default",
+        "clearance": 0.12,
+        "track_width": 0.2,
+        "via_diameter": 0.5,
+        "via_drill": 0.25
+      }
+    ]
+  }
+}

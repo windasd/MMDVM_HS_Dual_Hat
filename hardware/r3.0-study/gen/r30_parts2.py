@@ -52,7 +52,8 @@ def meshtastic():
         P('J42', 'Connector_Generic:Conn_02x05_Odd_Even', 'MESH SWD', {
             '1': '+3V3_MESH', '2': 'MESH_SWDIO', '3': 'GND', '4': 'MESH_SWDCLK', '5': 'GND', '6': None, '7': None,
             '8': None, '9': 'GND', '10': 'MESH_RST_N'},
-          'Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical', {'Note': 'Cortex-M 10-pin SWD'}),
+          'Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical_SMD',
+          {'Note': 'Cortex-M 10-pin SWD, SMT (sits above a cell holder: no through-hole pins)'}),
         P('J43', 'Connector_Generic:Conn_01x04', 'MESH USB', {'1': 'MESH_VBUS', '2': 'MESH_USB_DM',
                                                               '3': 'MESH_USB_DP', '4': 'GND'},
           'Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal',

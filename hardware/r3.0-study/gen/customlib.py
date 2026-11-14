@@ -94,6 +94,27 @@ def rak4630_footprint():
     return '\n'.join(lines) + '\n'
 
 
+def ls_mezzanine_footprint():
+    """96Boards LS male header for the underside of a mezzanine.
+
+    The stock 2x20 2.00 mm SMT header with odd/even pad numbers swapped, so that footprint pad n lands on
+    baseboard LS pin n when the part is placed on B.Cu (rotation 270, origin = connector centre).
+    """
+    import re
+    src = os.path.join(os.environ.get('KICAD_FOOTPRINT_DIR', r'C:/Program Files/KiCad/10.0/share/kicad/footprints'),
+                       'Connector_PinHeader_2.00mm.pretty', 'PinHeader_2x20_P2.00mm_Vertical_SMD.kicad_mod')
+    t = open(src, encoding='utf-8').read()
+    t = t.replace('(footprint "PinHeader_2x20_P2.00mm_Vertical_SMD"',
+                  '(footprint "LS_2x20_P2.00mm_SMD_MezzanineBottom"', 1)
+    t = re.sub(r'\(descr "[^"]*"\)', '(descr "96Boards LS 2x20 2.00 mm SMT male header for the mezzanine '
+               'underside: odd/even pad numbers swapped so pad n = LS pin n on B.Cu, rotation 270")', t, count=1)
+
+    def swap(m):
+        n = int(m.group(1))
+        return '(pad "%d"' % (n + 1 if n % 2 else n - 1)
+    return re.sub(r'\(pad "(\d+)"', swap, t)
+
+
 def write(libdir):
     os.makedirs(os.path.join(libdir, 'MMDVM_r30.pretty'), exist_ok=True)
     pmos = symgen.symbol('PMOS_SON8', 'Q', [('4', 'G', 'input', 'L'), ('1', 'S', 'passive', 'R'),
@@ -112,6 +133,8 @@ def write(libdir):
     symgen.write_lib(os.path.join(libdir, 'MMDVM_r30.kicad_sym'), syms)
     open(os.path.join(libdir, 'MMDVM_r30.pretty', 'RAK4630.kicad_mod'), 'w', encoding='utf-8',
          newline='\n').write(rak4630_footprint())
+    open(os.path.join(libdir, 'MMDVM_r30.pretty', 'LS_2x20_P2.00mm_SMD_MezzanineBottom.kicad_mod'), 'w',
+         encoding='utf-8', newline='\n').write(ls_mezzanine_footprint())
     return os.path.join(libdir, 'MMDVM_r30.kicad_sym')
 
 
