@@ -32,9 +32,9 @@ P = dict(
     mb_holes_ext=[(4.0, 142.5), (81.0, 142.5)],   # main-board holes beyond the last cell holder
     # 4x Keystone 1042P, mounted on the main-board underside, cells along X (vertical when standing)
     cell_len=77.1, cell_pitch=21.0, cell_h=20.5, cells_y0=55.5,
-    # display: TJC8048X550_011R/C/N (TJC X5 datasheet p.7), long side along Y
+    # display: TJC8048X550_011R (resistive: 4-pin touch tail HST050008), TJC X5 datasheet p.7; long side along Y
     disp_w=136.9, disp_h=84.0, disp_pcb=1.6, disp_holes=(130.5, 77.6),
-    lcd_w=120.7, lcd_h=75.8, lcd_t=4.5,         # front stack: 3.3 (N) / 4.5 (R) / 5.08 (C)
+    lcd_w=120.7, lcd_h=75.8, lcd_t=4.5,         # front stack: 4.5 (R, this unit); 3.3 (N) / 5.08 (C)
     disp_back=6.0,                              # tallest part behind the PCB (XH connector)
     touch_gap=0.5,                              # keep the bezel off the touch film
     va_w=108.0, va_h=64.8, va_off=1.94,         # active area, offset away from the FPC edge
