@@ -51,7 +51,14 @@
 
 > **使用者回報（2026-11-14）：** 自行維護的 kernel 已讓 Wi-Fi 與 USB 正常，目前用 USB 網卡上網，開關機正常。仍要注意：USB 2.0 A 口不支援 hub，USB 網卡最好插在 USB 3.0 口或 USB 2.0 口直插。
 >
-> **待實測：** (1) 關機後 LS +1V8 會不會掉電（決定本板怎麼判斷主機已關機）；(2) 從 SYS_DCIN 上電後會不會自動開機；(3) 12 V 輸入電流（閒置／滿載／Wi-Fi＋USB 網卡）。
+> **實測先跳過（使用者決定，2026-11-14）。** 設計改成兩種情況都能應付，板子做好後再用板子本身量：
+>
+> | 未知數 | 設計怎麼處理 |
+> |---|---|
+> | 12 V 耗電 | 12 V 升壓照 18 W（12 V／1.5 A）設計；輸出端加 INA226 電流／功率監測，主機直接讀實際耗電 |
+> | 關機後 +1V8 會不會掉 | 偵測 +1V8 消失**或**主機用 `gpio-poweroff` 拉 KILL，任一成立就延遲斷 12 V；長按電源鍵強制斷電當最後手段 |
+> | SYS_DCIN 上電會不會自動開機 | 預留電路接 LS pin 4（PWR_BTN_N），12 V 送上後由本板代按一次開機鍵；用不到就不焊 |
+> | S900 位置 | 氣流本來就流過整片 Bubblegum；散熱片用黏貼式；風扇的溫度感測放在 SoC 柱的出風口，不依賴 SoC 確切位置 |
 
 ### 2.3 擴充座（96Boards LS，40-pin，2.0 mm）
 - **所有訊號都是 1.8 V**，跟 3.3 V 的元件之間要加電壓轉換。
@@ -136,10 +143,12 @@
 | LS pin | 功能 | 接到 |
 |---|---|---|
 | 5、7（9、3） | UART0 TX／RX（RTS／CTS） | STM32 USART1，MMDVM 主機連線 |
-| 11、13 | UART1 | 保留給 console |
-| 15、17 | I2C0 | TCA9406 → SC16IS752（0x48）、BQ25895（0x6A）、MAX17048（0x36）、AMC6821 風扇控制（位址依 ADDR 腳） |
+| 11、13 | UART1（console，ttyOWL5，115200） | 1.8↔3.3 V 轉換 → **外盒側面的 console 接頭**（第 3.5 節） |
+| 15、17 | I2C0 | TCA9406 → SC16IS752（0x48）、BQ25895（0x6A）、MAX17048（0x36）、INA226 12 V 監測（0x40）、AMC6821 風扇控制（位址依 ADDR 腳） |
 | 19、21 | I2C1 | 保留 |
 | 8、10、12、14 | SPI0 | 保留（方案 B 用） |
+| 4 | PWR_BTN_N | 本板電源控制代按開機鍵（open-drain，預留、可不焊） |
+| 6 | RST_BTN_N | 預留：板上小按鍵 HOST RESET（open-drain，可不焊） |
 | 23 GPIO-A | 輸出 | STM32 BOOT0 |
 | 24 GPIO-B | 輸出 | STM32 NRST |
 | 25 GPIO-C | 輸入 | SC16IS752 IRQ |
@@ -153,6 +162,31 @@
 | 33–34 GPIO-K..L | — | 預留 |
 | 35 | +1V8 | 電壓轉換晶片 A 側參考 |
 | 36、38 | SYS_DCIN | 本板 12 V 出口（經理想二極體） |
+
+### 3.5 Bubblegum console 接頭（使用者需求，2026-11-14）
+
+使用者目前用 USB-TTL 操作 Bubblegum 的 console，希望直接在這張板上做好接口。
+
+- **訊號來源：** LS pin 11（UART1_TxD）、pin 13（UART1_RxD），即 S900 UART5／`ttyOWL5`，115200 8N1。
+- **一定要轉電位：** 擴充座是 **1.8 V**，一般 USB-TTL 是 3.3 V 或 5 V，直接接會傷到 S900。
+  - 用固定方向的雙電源轉換晶片：兩顆 SN74LVC1T45，或一顆每位元可設方向的 SN74AXC4T774。
+  - A 側接 LS +1V8（pin 35），B 側接本板 3.3 V。
+  - 這類晶片有 Ioff 斷電隔離：任一側沒電時兩邊都是高阻抗。Bubblegum 關機時，插著的 USB-TTL 不會經 RX 倒灌、讓 SoC 處於半上電狀態；本板沒電時也一樣。
+  - B 側輸入可耐 5 V，輸出 3.3 V，所以 3.3 V 和 5 V 的 USB-TTL 都能用（建議設在 3.3 V）。
+- **接頭：** 6-pin 2.54 mm 臥式排針，腳序照 FTDI 線（TTL-232R-3V3）。FTDI 線可以直接插；4-pin 的 CH340／CP2102 小板用杜邦線接 GND、TXD、RXD 三條。
+
+  | Pin | 名稱 | 說明 |
+  |---|---|---|
+  | 1 | GND | |
+  | 2 | CTS | 不接 |
+  | 3 | VCC | **不接**（避免 USB-TTL 的 5 V／3.3 V 灌進板子） |
+  | 4 | TXD（電腦→Bubblegum） | 經轉換到 LS pin 13 |
+  | 5 | RXD（Bubblegum→電腦） | 由 LS pin 11 轉換而來 |
+  | 6 | RTS | 不接（避免終端機程式切 DTR／RTS 時誤觸 reset） |
+
+- **位置：** 主板延伸端的板邊，直立時在左側面最下方。外盒開 17.4×4.0 mm 的孔，杜邦／FTDI 線頭可以從外面直接插進去，不用拆殼。外殼旁邊壓印「CONSOLE 3.3V」和腳位。
+- **選配：** 板上直接放 CH340／CP2102N＋USB 接頭，一條 USB 線就能接電腦（由 USB 供電，不受本板開關影響）。這樣會多一個 USB 口，跟充電用的 USB-C 容易混淆，先列為選配。
+- **另外保留：** STM32 的 SWD 接點（原 r1.3 的 STlink 排針），MMDVM 韌體變磚時可以救回；放在板內，不開外盒孔。
 
 ## 4. 電源：1S4P
 
@@ -176,14 +210,15 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
                                               ├─ 保險絲 ─ 18650 #2
                                               ├─ 保險絲 ─ 18650 #3
                                               └─ 保險絲 ─ 18650 #4    MAX17048 電量計跨在電池上
-  VSYS ──┬─ TPS61178 升壓 12 V／1.5 A（有 load disconnect）─ LM74700 理想二極體 ─ SYS_DCIN → Bubblegum
+  VSYS ──┬─ TPS61178 升壓 12 V／1.5 A（有 load disconnect）─ INA226 監測 ─ LM74700 理想二極體 ─ SYS_DCIN → Bubblegum
          ├─ TPS61022 升壓 5 V／2 A ─┬─ TJC 螢幕（XH 4-pin）
          │                          └─ AMC6821 → N-MOSFET → 30 mm 風扇（溫控、轉速回授）
          └─ TPS63020 升降壓 3.5 V（固定 2.4 MHz，可同步）─ π 濾波 ─┬─ LDO 3.3 V → STM32＋ADF7021
                                                                   ├─ LDO 3.3 V → nRF52840＋SX1262（常開電源域）
                                                                   └─ LDO 3.3 V → 負載開關（GPS 開關 AND GPS_EN）→ GPS
                                                                                  └→ V_BCKP（常開，保留星曆）
-  LTC2954 電源鍵控制器：按鍵 → INT 通知主機 → 主機關機 → LS +1V8 消失（或 gpio-poweroff 拉 KILL）→ 延遲後關 12 V／5 V
+  電源鍵控制（LTC2954 類）：按鍵 → INT 通知主機 → 主機關機 → LS +1V8 消失「或」gpio-poweroff 拉 KILL → 延遲後關 12 V／5 V
+  長按電源鍵：強制斷電；開機時（預留）代按 LS PWR_BTN_N
   Meshtastic + GPS 的電源域獨立，可以不跟主機一起關
 ```
 
@@ -382,7 +417,7 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
 ### 7.5 側面開孔
 
 - **右側面**（Bubblegum 端，直立時在使用者右手邊）：microSD、HDMI、micro-USB、USB-A ×2（USB 網卡插這裡）。Bubblegum 的 DC 插座不開孔，避免同時插變壓器。
-- **左側面**（主板延伸端）：USB-C 充電、MESH 按鍵、電源鍵、GPS 滑動開關＋LED 導光孔。
+- **左側面**（主板延伸端，由上往下）：GPS LED 導光孔、GPS 滑動開關、電源鍵、MESH 按鍵、USB-C 充電、**Bubblegum console 接頭**（6-pin，3.3 V）。
 - **背面**：電池蓋（待設計成獨立零件，附警示標籤）、SoC 後方進風槽。
 
 預覽圖：
@@ -390,6 +425,7 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
 - `preview_desk_front.png`：桌上直立，正面。
 - `preview_desk_back.png`：背面，電池蓋與風扇格柵。
 - `preview_airflow.png`：拿掉前蓋，藍色箭頭是氣流。
+- `preview_side_ports.png`：左側面的按鍵、開關、USB-C 與 console 接頭開孔。
 - `preview_inside.png`：內部配置。
 
 ## 8. 軟體（Ubuntu 24.04 on Bubblegum-96）
@@ -415,10 +451,11 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
 - ~~外盒做法~~：3D 列印（PETG／ASA），直立桌上型，含風扇。
 - ~~GPS 開關~~：硬體滑動開關斷電＋Meshtastic 按鍵連按三下，兩者都做。
 - ~~螢幕版本~~：TJC8048X550_011R（電阻觸控）。
+- ~~Bubblegum console~~：板上做 1.8↔3.3 V 轉換＋6-pin FTDI 腳序接頭，外盒側面開孔（第 3.5 節）。
 
 待決定／待實測：
 
-1. Bubblegum-96 已停產，耗電沒有公開數據，要實測 12 V 電流；也要確認關機後 +1V8 是否掉電、SYS_DCIN 上電是否自動開機。
+1. Bubblegum-96 實測：使用者決定**先跳過**。設計已改成兩種情況都能應付（第 2.2 節表格），板子做好後用 INA226 和實際開關機行為驗證，再決定預留零件要不要焊。
 2. Meshtastic 方案（建議 A），以及要沿用哪個官方 variant 的腳位。
 3. GPS 模組：L76K 或 MAX-M10S；GPS 天線用外接磁吸，或頂部空腔放有源陶瓷天線。
 4. 電芯型號（建議同一款無保護板平頭電芯，例如 Samsung 30Q／35E），以及電池座的實測溫升。

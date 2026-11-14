@@ -95,6 +95,10 @@ def build(p=P):
     parts["power_button"] = box(50, p["pcb_y2"] - 6, z_mt, 56, p["pcb_y2"] + 1.0, z_mt + 4)
     parts["gps_switch"] = box(62, p["pcb_y2"] - 5, z_mt, 70.6, p["pcb_y2"] + 1.5, z_mt + 3.5)
     parts["gps_led"] = box(73.5, p["pcb_y2"] - 2, z_mt, 75.5, p["pcb_y2"], z_mt + 1)
+    # Bubblegum-96 console (LS UART1, 1.8 V -> 3.3 V translated): 6-pin 2.54 mm right-angle header,
+    # FTDI-cable pin order (GND, CTS, VCC, TXD, RXD, RTS), pins pointing out of the side face
+    parts["console_header"] = (box(9.6, p["pcb_y2"] - 6.0, z_mt, 25.4, p["pcb_y2"] - 3.5, z_mt + 2.54)
+                               .union(box(10.5, p["pcb_y2"] - 3.5, z_mt + 0.95, 24.5, p["pcb_y2"] + 2.5, z_mt + 1.6)))
     # layout zones on the main-board top (standing: X is height)
     parts["mmdvm_zone"] = box(5, 2, z_mt, 80, 52, z_mt + 3)          # over the Bubblegum (SoC column)
     parts["mesh_gps_zone"] = box(5, 60, z_mt, 42, 136, z_mt + 3)     # low in the cell column
@@ -172,6 +176,8 @@ def build(p=P):
     # side face (+Y): USB-C, MESH button, power button, GPS switch, GPS LED
     for (a, b, zt) in ((29.5, 39.5, 3.8), (40.5, 47.5, 4.5), (49.5, 56.5, 4.5), (64.0, 68.6, 4.0)):
         tub = tub.cut(box(a, iy1 - 1, z_mt - 0.5, b, oy1 + 1, z_mt + zt))
+    # console opening: fits a 6-pin Dupont / FTDI cable housing (about 15.5 x 2.6 mm)
+    tub = tub.cut(box(8.8, iy1 - 1, z_mt - 0.6, 26.2, oy1 + 1, z_mt + 3.4))
     tub = tub.cut(cq.Workplane("XZ").center(74.5, z_mt + 2.2).circle(1.6).extrude(-10).translate((0, iy1 - 2, 0)))
     # --- top wall: fan exhaust grille, fan screws, bulkhead SMA D-holes, passive slots over the cell column
     z_mid = (z_back_in + z_front_in) / 2
@@ -268,6 +274,7 @@ COLORS = dict(bubblegum96=(0.18, 0.49, 0.20), soc_heatsink=(0.75, 0.75, 0.78), l
               main_board=(0.08, 0.40, 0.75), antennas=(0.15, 0.15, 0.15), sma_bulkheads=(0.83, 0.69, 0.22),
               usb_c=(0.62, 0.62, 0.62), power_button=(0.90, 0.22, 0.21), mesh_button=(0.12, 0.53, 0.90),
               gps_switch=(1.0, 0.76, 0.03), gps_led=(0.2, 1.0, 0.2), fan=(0.2, 0.2, 0.25),
+              console_header=(0.1, 0.1, 0.1),
               plenum_divider=(0.55, 0.6, 0.62), airflow=(0.1, 0.6, 1.0),
               mesh_gps_zone=(0.56, 0.14, 0.67), power_zone=(0.94, 0.42, 0.0), mmdvm_zone=(0.0, 0.54, 0.48),
               cells_1s4p=(0.78, 0.16, 0.16), display=(0.10, 0.10, 0.12),
@@ -342,6 +349,8 @@ if __name__ == "__main__":
            skip=("airflow",), zoom=1.0)
     render(world, os.path.join(out, "preview_airflow.png"), (-300, -360, 120), focal,
            skip=("front_plate", "display", "antennas", "stand"), fit=shell, zoom=1.05)
+    render(world, os.path.join(out, "preview_side_ports.png"), (60, 420, 60), focal, opaque=True,
+           skip=("airflow", "antennas"), zoom=1.3)
     render(world, os.path.join(out, "preview_inside.png"), (-330, -200, 160), focal,
            skip=("front_plate", "display", "antennas", "airflow", "stand"), fit=shell, zoom=1.05)
     tilt_h = round(max(w.val().BoundingBox().zmax for w in world.values()) - desk, 1)
