@@ -41,6 +41,10 @@ P = dict(
     # enclosure
     wall=2.5, back=2.5, front=2.5, clear=1.0,
     bottom_wall=7.0,            # thick bottom rail: carries two front-plate screw bosses outside the board stack
+    # front "chin" under the 5" display: Meshtastic OLED + MESH button on a small front-panel board
+    chin=26.0,
+    oled_panel=(34.5, 23.0, 1.8), oled_va=(29.42, 14.7),   # 1.3" SH1106 128x64 (typical panel), y-size, x-size, t
+    mesh_btn_dy=-34.0,          # MESH button offset from the OLED centre (viewer's right is -Y)
     top_parts=9.0,              # tallest part on the main-board top
     plenum=13.0,                # top air plenum (fan, SMA bodies, pigtails) beyond X = 85
     # fan: 30x30x10 mm 5 V, axis along X, exhausting up through the top wall
@@ -91,7 +95,6 @@ def build(p=P):
     parts["main_board"] = mb
     # side-panel controls on the +Y edge: USB-C, MESH button, power button, GPS switch, GPS LED
     parts["usb_c"] = box(30, p["pcb_y2"] - 7.5, z_mt, 39, p["pcb_y2"] + 1.0, z_mt + 3.3)
-    parts["mesh_button"] = box(41, p["pcb_y2"] - 6, z_mt, 47, p["pcb_y2"] + 1.0, z_mt + 4)
     parts["power_button"] = box(50, p["pcb_y2"] - 6, z_mt, 56, p["pcb_y2"] + 1.0, z_mt + 4)
     parts["gps_switch"] = box(62, p["pcb_y2"] - 5, z_mt, 70.6, p["pcb_y2"] + 1.5, z_mt + 3.5)
     parts["gps_led"] = box(73.5, p["pcb_y2"] - 2, z_mt, 75.5, p["pcb_y2"], z_mt + 1)
@@ -117,14 +120,14 @@ def build(p=P):
     disp_t = p["disp_back"] + p["disp_pcb"] + p["lcd_t"] + p["touch_gap"]
     z_front_in = z_mt + p["top_parts"] + 2.0 + disp_t
     z_back_in = z_mb - p["cell_h"] - p["clear"]
-    ix0 = -p["clear"]
+    ix0 = -p["clear"] - p["chin"]
     ix1 = p["sbc_w"] + p["clear"] + p["plenum"]
     iy0 = -2.0 - p["clear"]
     iy1 = p["pcb_y2"] + 1.0 + p["clear"]
     ox0, ox1, oy0, oy1 = ix0 - p["bottom_wall"], ix1 + p["wall"], iy0 - p["wall"], iy1 + p["wall"]
     z_out_back = z_back_in - p["back"]
     z_out_front = z_front_in + p["front"]
-    cx, cy = (ix0 + ix1) / 2, (iy0 + iy1) / 2       # display centred on the front face
+    cx, cy = (-p["clear"] + ix1) / 2, (iy0 + iy1) / 2   # 5" display centred above the chin
     # display: LCD stack against the front plate (touch gap), PCB behind it, XH connector at the -Y end
     z_lcd = z_front_in - p["touch_gap"]
     z_pcb = z_lcd - p["lcd_t"]
@@ -168,13 +171,25 @@ def build(p=P):
             bosses.append(cq.Workplane("XY").circle(3.5).circle(1.25).extrude(p["lcd_t"] + p["touch_gap"])
                           .translate((cx + sx * hx_, cy + sy * hy_, z_pcb)))
     front = front.union(union_all(bosses))
+    # chin: front-panel board with the Meshtastic OLED and the MESH button
+    xc = ix0 + p["chin"] / 2
+    ow, oh, ot = p["oled_panel"]
+    z_cp = z_front_in - 0.3 - ot                    # chin PCB front face
+    parts["chin_board"] = box(ix0 + 1.0, cy - 45, z_cp - 1.6, -p["clear"] - 1.0, cy + 45, z_cp)
+    parts["oled"] = box(xc - oh / 2, cy - ow / 2, z_cp, xc + oh / 2, cy + ow / 2, z_cp + ot)
+    yb = cy + p["mesh_btn_dy"]
+    parts["mesh_button"] = cq.Workplane("XY").circle(2.4).extrude(z_out_front + 0.8 - z_cp).translate((xc, yb, z_cp))
+    vw, vh = p["oled_va"]
+    front = front.cut(box(xc - vh / 2 - 0.5, cy - vw / 2 - 0.5, z_front_in - 1, xc + vh / 2 + 0.5, cy + vw / 2 + 0.5,
+                          z_out_front + 1))
+    front = front.cut(cq.Workplane("XY").circle(2.75).extrude(10).translate((xc, yb, z_front_in - 2)))
     for (px, py) in screw_pts:
         front = front.cut(cq.Workplane("XY").circle(1.7).extrude(10).translate((px, py, z_front_in - 1)))
     # side face (Y = 0): Bubblegum ports
     for (a, b, zt) in ((2, 14, 2.6), (17.5, 32.5, 7.0), (38, 45, 4.0), (49.5, 63.7, 8.0), (69, 83, 8.0)):
         tub = tub.cut(box(a - 0.5, oy0 - 1, -p["sbc_t"] - 0.5, b + 0.5, iy0 + 1, zt))
     # side face (+Y): USB-C, MESH button, power button, GPS switch, GPS LED
-    for (a, b, zt) in ((29.5, 39.5, 3.8), (40.5, 47.5, 4.5), (49.5, 56.5, 4.5), (64.0, 68.6, 4.0)):
+    for (a, b, zt) in ((29.5, 39.5, 3.8), (49.5, 56.5, 4.5), (64.0, 68.6, 4.0)):
         tub = tub.cut(box(a, iy1 - 1, z_mt - 0.5, b, oy1 + 1, z_mt + zt))
     # console opening: fits a 6-pin Dupont / FTDI cable housing (about 15.5 x 2.6 mm)
     tub = tub.cut(box(8.8, iy1 - 1, z_mt - 0.6, 26.2, oy1 + 1, z_mt + 3.4))
@@ -239,8 +254,9 @@ def build(p=P):
     parts["front_plate"] = front
     # air-flow arrows (visual only): up the SoC chimney into the fan, passive up the cell column
     arrows = []
-    for (y, z, x_from, x_to) in ((20, 4, 2, 70), (45, 4, 2, 70), (30, 16, 2, 70),
-                                 (90, -8, 2, 80), (120, 16, 2, 80)):
+    xa = ix0 + 4
+    for (y, z, x_from, x_to) in ((20, 4, xa, 70), (45, 4, xa, 70), (30, 16, xa, 70),
+                                 (90, -8, xa, 80), (120, 16, xa, 80)):
         shaft = cq.Workplane("YZ").circle(0.8).extrude(x_to - x_from - 6).translate((x_from, y, z))
         head = cq.Workplane("YZ").circle(2.5).workplane(offset=6).circle(0.1).loft().translate((x_to - 6, y, z))
         arrows.append(shaft.union(head))
@@ -274,7 +290,7 @@ COLORS = dict(bubblegum96=(0.18, 0.49, 0.20), soc_heatsink=(0.75, 0.75, 0.78), l
               main_board=(0.08, 0.40, 0.75), antennas=(0.15, 0.15, 0.15), sma_bulkheads=(0.83, 0.69, 0.22),
               usb_c=(0.62, 0.62, 0.62), power_button=(0.90, 0.22, 0.21), mesh_button=(0.12, 0.53, 0.90),
               gps_switch=(1.0, 0.76, 0.03), gps_led=(0.2, 1.0, 0.2), fan=(0.2, 0.2, 0.25),
-              console_header=(0.1, 0.1, 0.1),
+              console_header=(0.1, 0.1, 0.1), chin_board=(0.1, 0.45, 0.2), oled=(0.02, 0.02, 0.05),
               plenum_divider=(0.55, 0.6, 0.62), airflow=(0.1, 0.6, 1.0),
               mesh_gps_zone=(0.56, 0.14, 0.67), power_zone=(0.94, 0.42, 0.0), mmdvm_zone=(0.0, 0.54, 0.48),
               cells_1s4p=(0.78, 0.16, 0.16), display=(0.10, 0.10, 0.12),
