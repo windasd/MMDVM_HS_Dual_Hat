@@ -54,44 +54,24 @@
 	(attr through_hole)
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_line
-		(start -6.15 -2)
-		(end 6.15 -2)
+		(start -4.9 -2)
+		(end 4.9 -2)
 		(stroke
 			(width 0.15)
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "ae8becc4-2e4f-44d1-ba36-bde14c9868b6")
+		(uuid "a92c1f4b-65bb-47a0-9bb6-0778e998c541")
 	)
 	(fp_line
-		(start -6.15 2)
-		(end -6.15 -2)
+		(start -4.9 2)
+		(end 4.9 2)
 		(stroke
 			(width 0.15)
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "0ba5273d-ce1e-4ad5-a56a-a6ff30de54af")
-	)
-	(fp_line
-		(start 6.15 -2)
-		(end 6.15 2)
-		(stroke
-			(width 0.15)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "e8968c82-8bac-44e8-b2a7-d7ded0e5a9c4")
-	)
-	(fp_line
-		(start 6.15 2)
-		(end -6.15 2)
-		(stroke
-			(width 0.15)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "ded0f04a-0518-42d0-8c9a-3ccf74c6a765")
+		(uuid "52c593b0-db58-4252-9472-42128099e7ab")
 	)
 	(pad "1" smd roundrect
 		(at -5.85 0)

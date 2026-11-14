@@ -3339,7 +3339,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -3405,7 +3405,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -3471,7 +3471,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
 			(pts
@@ -4146,7 +4146,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4212,7 +4212,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4278,7 +4278,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4344,7 +4344,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4410,7 +4410,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4476,7 +4476,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4542,7 +4542,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4608,7 +4608,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4674,7 +4674,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4740,7 +4740,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4806,7 +4806,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4872,7 +4872,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -4938,7 +4938,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5004,7 +5004,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5070,7 +5070,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5136,7 +5136,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5202,7 +5202,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5268,7 +5268,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5334,7 +5334,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5400,7 +5400,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5466,7 +5466,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5532,7 +5532,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5598,7 +5598,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5664,7 +5664,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5730,7 +5730,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5796,7 +5796,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5862,7 +5862,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5928,7 +5928,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -5994,7 +5994,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6060,7 +6060,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6126,7 +6126,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6192,7 +6192,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6258,7 +6258,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6324,7 +6324,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6390,7 +6390,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6456,7 +6456,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6522,7 +6522,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6588,7 +6588,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6654,7 +6654,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6720,7 +6720,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6786,7 +6786,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6852,7 +6852,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6918,7 +6918,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -6984,7 +6984,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7050,7 +7050,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7116,7 +7116,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7182,7 +7182,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7248,7 +7248,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7314,7 +7314,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7380,7 +7380,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7446,7 +7446,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7512,7 +7512,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7578,7 +7578,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7644,7 +7644,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7710,7 +7710,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7776,7 +7776,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7842,7 +7842,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7908,7 +7908,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -7974,7 +7974,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -8040,7 +8040,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -8106,7 +8106,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -8172,7 +8172,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -8238,7 +8238,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -8304,7 +8304,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -8370,7 +8370,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -8436,7 +8436,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -8502,7 +8502,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -8569,7 +8569,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
 			(pts
@@ -9343,7 +9343,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -9409,7 +9409,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -9475,7 +9475,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -9541,7 +9541,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -9607,7 +9607,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -9673,7 +9673,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -9739,7 +9739,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -9805,7 +9805,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -9871,7 +9871,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -9937,7 +9937,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -10205,7 +10205,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -10271,7 +10271,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -10337,7 +10337,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -10403,7 +10403,7 @@
 				)
 			)
 		)
-		(attr through_hole board_only exclude_from_bom)
+		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(pad "1" thru_hole circle
 			(at 0 0)
@@ -42652,28 +42652,12 @@
 		(uuid "ca687f66-3636-4a35-be0e-2112ea096ddd")
 	)
 	(segment
-		(start 147.705 102.906)
-		(end 147.7 102.901)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "Net-(D1-A)")
-		(uuid "0e873ebb-d0ee-45bf-9b3a-511c1d43175c")
-	)
-	(segment
 		(start 147.1237 103.4873)
 		(end 147.1237 103.709)
 		(width 0.25)
 		(layer "F.Cu")
 		(net "Net-(D1-A)")
 		(uuid "4391e55f-067e-4810-8988-8503e79fd906")
-	)
-	(segment
-		(start 147.71 102.911)
-		(end 147.705 102.906)
-		(width 0.1)
-		(layer "F.Cu")
-		(net "Net-(D1-A)")
-		(uuid "65eb4c0b-72cd-4ad2-ba13-2b9c10bad603")
 	)
 	(segment
 		(start 147.705 102.906)

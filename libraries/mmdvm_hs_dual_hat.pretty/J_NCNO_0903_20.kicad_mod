@@ -1,0 +1,195 @@
+(footprint "J_NCNO_0903_20"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Jumper Normally Closed SMD 0603, 0.15mm connection, reflow soldering")
+	(tags "jumper 0603")
+	(property "Reference" "REF**"
+		(at 0 -1.1 0)
+		(layer "F.Fab")
+		(uuid "4b43b16c-5ced-4faa-bf84-4a4a750811fe")
+		(effects
+			(font
+				(size 0.635 0.635)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "J_NCNO_0903_20"
+		(at 0 1.2 0)
+		(layer "F.Fab")
+		(uuid "bde028f5-8cd8-411d-ac66-e5d964185eb3")
+		(effects
+			(font
+				(size 0.635 0.635)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 180)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "58070cb7-71c5-4591-b63e-d9ad17e01cf1")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify mirror)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 180)
+		(layer "B.Fab")
+		(hide yes)
+		(uuid "4d8778cd-59e3-419f-a506-2390d538d3b4")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify mirror)
+		)
+	)
+	(sheetname "Power + STM32")
+	(sheetfile "Power.kicad_sch")
+	(attr exclude_from_pos_files exclude_from_bom allow_soldermask_bridges)
+	(net_tie_pad_groups "1, 2")
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -0.675 0)
+		(end -0.475 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Cu")
+		(uuid "c5710c2b-33cf-430d-8ca6-374383ac85af")
+	)
+	(fp_poly
+		(pts
+			(xy -0.625 -0.25) (xy -0.525 -0.25) (xy -0.525 0.25) (xy -0.625 0.25)
+		)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.Mask")
+		(uuid "d5493d5b-563c-4cb2-8f96-59018dc46896")
+	)
+	(fp_poly
+		(pts
+			(xy 0.525 -0.25) (xy 0.625 -0.25) (xy 0.625 0.25) (xy 0.525 0.25)
+		)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.Mask")
+		(uuid "58859154-f480-4536-be20-318b12bdfaaf")
+	)
+	(fp_line
+		(start -1.725 -0.6)
+		(end -1.725 0.6)
+		(stroke
+			(width 0.13)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0bab3e8c-d69f-49df-a26e-9b76fd4f2857")
+	)
+	(fp_line
+		(start -1.725 -0.6)
+		(end 1.725 -0.6)
+		(stroke
+			(width 0.13)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9ae26aba-8680-4587-813c-d4d08abc717a")
+	)
+	(fp_line
+		(start 1.725 -0.6)
+		(end 1.725 0.6)
+		(stroke
+			(width 0.13)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0aad7510-476d-4b98-8392-7529bd790427")
+	)
+	(fp_line
+		(start 1.725 0.6)
+		(end -1.725 0.6)
+		(stroke
+			(width 0.13)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "86ba8469-9d9a-4f04-be5b-4117a1a14a86")
+	)
+	(fp_line
+		(start -1.75 -0.725)
+		(end -1.75 0.725)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "a51c09e3-febb-47c0-9e07-a26fe80bb0aa")
+	)
+	(fp_line
+		(start -1.75 -0.725)
+		(end 1.75 -0.725)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b4066f09-2b6d-46f8-9566-3efbc2fb256f")
+	)
+	(fp_line
+		(start -1.75 0.725)
+		(end 1.75 0.725)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "a946873d-e222-40a4-a92b-5e85fa9420bb")
+	)
+	(fp_line
+		(start 1.75 -0.725)
+		(end 1.75 0.725)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "7febeb07-06db-40cb-baa9-50012847ea14")
+	)
+	(pad "1" smd roundrect
+		(at -1.15 0)
+		(size 0.95 0.9)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "d924debd-d2d2-41c7-9c5e-56f61fb980cf")
+	)
+	(pad "2" smd roundrect
+		(at 0 0)
+		(size 0.95 0.9)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "9ef25113-95d2-404f-b39a-072a61509406")
+	)
+	(pad "3" smd roundrect
+		(at 1.15 0)
+		(size 0.95 0.9)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "148579af-768e-4058-81a8-317cf427606d")
+	)
+	(embedded_fonts no)
+)
