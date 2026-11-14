@@ -40,7 +40,10 @@ Both revisions have been migrated to KiCad 10 (KiCad 10.0 or newer is required t
 * Symbols whose pin geometry differs from the KiCad 10 standard symbols (STM32F103C8Tx, ADF7021, Raspberry Pi header, CONN_*, USB_OTG, LD1117S33TR, GS2, antenna, NC/NO jumper) were moved unchanged into the project symbol library, so no wires had to be redrawn.
 * Footprints were replaced by their KiCad 10 standard equivalents where the pad geometry matches closely and DRC shows no new violation. Parts where the newer, larger pads would violate the existing clearances keep their original geometry from the project library: rev1.3 U1, U2, U3, R15, R16, C4, C17, C18, C33, C39 and rev2.0-mini U1, U2 (thermal vias). rev2.0-mini R15, U4, P3, P4, J2, J4 keep their `pkl` footprints.
 * **rev1.3 schematic fix:** the schematic redraw from 2020 left the STM32 VSS/VSSA pins (8, 23, 35, 47) unconnected, drew the TCXO X1 with VDD and GND swapped, and swapped OSC_IN/OSC_OUT. The PCB itself was always correct. The schematic has been repaired to match the PCB and the original 2018 netlist again; running "Update PCB from Schematic" on the old schematic would have reverse-powered the TCXO.
-* Schematic and PCB are in sync (net names, footprints, fields). Remaining DRC items are pre-existing layout details (e.g. silkscreen, solder jumper copper in rev2.0-mini).
+* Schematic and PCB are in sync (net names, footprints, fields).
+* ERC: PWR_FLAGs added for GND, +5V, +3V3 (rev1.3) and GND, +5V, regulator input (rev2.0-mini); ADF7021 pin 33 (SWD, sync word detect) is now an output. Only rev2.0-mini keeps four isolated-label warnings (SWD_TP1/2, D+/D-: signal names left from rev1.3).
+* DRC rev2.0-mini: J2/J4 solder jumpers are now net-tie footprints (pads 1-2 bridged by design) with solder mask bridges allowed, chip antenna silkscreen no longer overlaps the pads, a dangling track stub was removed. rev1.3: two 10 µm track slivers removed.
+* Remaining, reviewed DRC items: rev1.3 courtyard overlaps (C44/C45 at the MCU, stitching via at U4, mounting hole at J1), two single-spoke thermal reliefs, rev2.0-mini two silkscreen clearance warnings, and silkscreen text below 0.8 mm on both boards.
 * rev2.0-mini needs the `libraries/pkl` submodule: clone with `git clone --recursive` or run `git submodule update --init`.
 
 ## BOM
@@ -53,16 +56,20 @@ Part availability was checked in November 2026. Changes against the original BOM
 |---|---|---|---|
 | 100n caps | Vishay VJ0402V104ZXJCW1BC (Y5V) | Murata GCM155R71C104KA55D (X7R) | obsolete |
 | C52 (rev1.3) | Murata GRM155C80J106ME11J | Murata GRT155C80J106ME13D | discontinued |
-| C52 (rev2.0-mini) | 0402 part on an 0603 footprint | Murata GRM188R60J106ME47D | wrong size |
+| C52 (rev2.0-mini) | 0402 part on an 0603 footprint | Samsung CL10A106KP8NNNC (10 V) | wrong size |
 | C33, C34 | AVX 04025A220GAT2A | Kyocera AVX KGM05ACG1H220GH | new part number, same part |
 | C47, C48 | Murata GRM1555C1H470FA01D | Murata GJM1555C1H470FB01D | NRND |
 | C51 | AVX TPSA106K010T0900 | Kyocera AVX TPSA106K010R0900 | same spec, in stock |
 | R3, R4 | Susumu RR0510P-3831-D | Panasonic ERA-2AEB3831X | not stocked, 0.1 % instead of 0.5 % |
-| P1, P2 | TE 5-1814832-1 | TE 5-1814832-2 | obsolete (check the drawing before ordering) |
+| P1, P2 | TE 5-1814832-1 | TE 5-1814832-2 | superseded; same drawing 1814832 rev C, only the packaging differs (tape & reel) |
 | L9, L10 | value "100MHz" / "10u" | value "70R@100MHz" | Würth 74279277 is a ferrite bead, the MPN was right |
 | rev2.0-mini U3, U4, J1, A1, A2 | no part number | STM32F103C8T6, TLV70233DBVR, Harwin M20-7832046, ANT1204LL20R0433A | missing |
 
-Empty `SPN` fields mean the Mouser part number has not been verified; search Mouser by the MPN. Parts with thin stock at the time of checking: TE 36501E20NJTDG (L3, L4; alternative Murata LQW15AN20NG80D, re-check the RF match), Murata GCM1555C1H471JA16J (C21, C22; alternative GRT1555C1H471JA02D), Panasonic ERA-2AEB271X (R9, R10). For 12.288 MHz boards use ECS-TXO-3225-122.8-TR for X1.
+Empty `SPN` fields mean the Mouser part number could not be verified (Mouser blocks automated lookups); search Mouser by the MPN. Parts with thin stock at the time of checking: TE 36501E20NJTDG (L3, L4; alternative Murata LQW15AN20NG80D, re-check the RF match), Murata GCM1555C1H471JA16J (C21, C22; alternative GRT1555C1H471JA02D), Panasonic ERA-2AEB271X (R9, R10). For 12.288 MHz boards use ECS-TXO-3225-122.8-TR for X1.
+
+## Production files
+
+`kicad-cli` exports Gerber X2/Excellon, drill maps, placement CSV, BOM and schematic PDF to `hardware/<rev>/production/` (not tracked in git, see `FAB_NOTES.md` there for board specs). rev1.3 needs a new stencil because the 0402 pads changed; rev2.0-mini has one SMD part (A1) on the bottom side.
 
 The old Mouser carts below are for rev1.0/rev1.1 and still contain the obsolete parts.
 
