@@ -26,7 +26,45 @@ An accidentially deleted 3v3 wire has been added back to the PCB layout. BOM, Mo
 
 STlink header has been refactored to have the same pinout as the [MMDVM_HS_Hat](https://github.com/mathisschmieder/MMDVM_HS_Hat) boards. OLED and STlink header have been exchanged. JP1 has been slightly moved. C44, C45 and C46 have been relocated nearer to the STM32F1 CPU. A table was added to the bottom silkscreen to show which TCXO is installed. This is important to the firmware. BOM and Mouser cart are still the same. The stencil has slightly changed. If you manually solder C44-C46 you can still use the old one.
 
+### Revision 2.0 mini
+
+Fully reworked 4-layer layout in Raspberry Pi Zero form factor (65 x 30 mm) with on-board ceramic chip antennas instead of SMA connectors. The project files are in `hardware/r2.0-mini`, its BOM in `hardware/r2.0-mini/BOM.csv`.
+
+**Antenna note:** the chip antenna footprint/3D model used in the layout is the Yageo ANT1204LL08R0870A, which is an 870 MHz part. The BOM now lists the 433 MHz variant ANT1204LL20R0433A (same 12 x 4 mm body and land pattern). On-board chip antennas always need a matching network tuned on the real board; expect to retune for the 70 cm band.
+
+## KiCad 10 migration (2026)
+
+Both revisions have been migrated to KiCad 10 (KiCad 10.0 or newer is required to open them).
+
+* All symbols and footprints link to the KiCad 10 standard libraries or to the shared project libraries in `libraries/` (`mmdvm_hs_dual_hat.kicad_sym`, `mmdvm_hs_dual_hat.pretty`). The "rescue" and cache libraries are gone.
+* Symbols whose pin geometry differs from the KiCad 10 standard symbols (STM32F103C8Tx, ADF7021, Raspberry Pi header, CONN_*, USB_OTG, LD1117S33TR, GS2, antenna, NC/NO jumper) were moved unchanged into the project symbol library, so no wires had to be redrawn.
+* Footprints were replaced by their KiCad 10 standard equivalents where the pad geometry matches closely and DRC shows no new violation. Parts where the newer, larger pads would violate the existing clearances keep their original geometry from the project library: rev1.3 U1, U2, U3, R15, R16, C4, C17, C18, C33, C39 and rev2.0-mini U1, U2 (thermal vias). rev2.0-mini R15, U4, P3, P4, J2, J4 keep their `pkl` footprints.
+* **rev1.3 schematic fix:** the schematic redraw from 2020 left the STM32 VSS/VSSA pins (8, 23, 35, 47) unconnected, drew the TCXO X1 with VDD and GND swapped, and swapped OSC_IN/OSC_OUT. The PCB itself was always correct. The schematic has been repaired to match the PCB and the original 2018 netlist again; running "Update PCB from Schematic" on the old schematic would have reverse-powered the TCXO.
+* Schematic and PCB are in sync (net names, footprints, fields). Remaining DRC items are pre-existing layout details (e.g. silkscreen, solder jumper copper in rev2.0-mini).
+* rev2.0-mini needs the `libraries/pkl` submodule: clone with `git clone --recursive` or run `git submodule update --init`.
+
 ## BOM
+
+`BOM.csv` / `BOM.xlsx` in the repository root are for rev1.3, `hardware/r2.0-mini/BOM.csv` / `BOM.xlsx` for rev2.0-mini. Both are exported from the schematics.
+
+Part availability was checked in November 2026. Changes against the original BOM:
+
+| Ref | Old part | New part | Reason |
+|---|---|---|---|
+| 100n caps | Vishay VJ0402V104ZXJCW1BC (Y5V) | Murata GCM155R71C104KA55D (X7R) | obsolete |
+| C52 (rev1.3) | Murata GRM155C80J106ME11J | Murata GRT155C80J106ME13D | discontinued |
+| C52 (rev2.0-mini) | 0402 part on an 0603 footprint | Murata GRM188R60J106ME47D | wrong size |
+| C33, C34 | AVX 04025A220GAT2A | Kyocera AVX KGM05ACG1H220GH | new part number, same part |
+| C47, C48 | Murata GRM1555C1H470FA01D | Murata GJM1555C1H470FB01D | NRND |
+| C51 | AVX TPSA106K010T0900 | Kyocera AVX TPSA106K010R0900 | same spec, in stock |
+| R3, R4 | Susumu RR0510P-3831-D | Panasonic ERA-2AEB3831X | not stocked, 0.1 % instead of 0.5 % |
+| P1, P2 | TE 5-1814832-1 | TE 5-1814832-2 | obsolete (check the drawing before ordering) |
+| L9, L10 | value "100MHz" / "10u" | value "70R@100MHz" | Würth 74279277 is a ferrite bead, the MPN was right |
+| rev2.0-mini U3, U4, J1, A1, A2 | no part number | STM32F103C8T6, TLV70233DBVR, Harwin M20-7832046, ANT1204LL20R0433A | missing |
+
+Empty `SPN` fields mean the Mouser part number has not been verified; search Mouser by the MPN. Parts with thin stock at the time of checking: TE 36501E20NJTDG (L3, L4; alternative Murata LQW15AN20NG80D, re-check the RF match), Murata GCM1555C1H471JA16J (C21, C22; alternative GRT1555C1H471JA02D), Panasonic ERA-2AEB271X (R9, R10). For 12.288 MHz boards use ECS-TXO-3225-122.8-TR for X1.
+
+The old Mouser carts below are for rev1.0/rev1.1 and still contain the obsolete parts.
 
 Mouser cart for rev1.0 is [here](https://www.mouser.com/ProjectManager/ProjectDetail.aspx?AccessID=561bb01347).
 

@@ -4,3 +4,5 @@
 *gerber*
 _autosave-*
 .DS_Store
+*.lck
+*-backups/
