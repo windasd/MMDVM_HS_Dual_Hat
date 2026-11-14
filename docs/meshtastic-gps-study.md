@@ -1,0 +1,458 @@
+# MMDVM + Meshtastic + GPS + 18650 電池：可行性研究
+
+研究日期：2026-11-14（分支 `meshtastic-gps-study`）
+狀態：**研究／提案**，尚未開始畫線路。標「待確認」的項目需要實測或使用者決定。
+
+## 0. 結論摘要
+
+| 問題 | 結論 |
+|---|---|
+| 能不能加 Meshtastic？ | **可以，但 ADF7021 不能做 LoRa**，要另外加一顆 SX1262。台灣用 TW 區 920–925 MHz，跟熱點的 430–440 MHz 分得很開，互擾低。 |
+| 現有板子塞得下嗎？ | **塞不下。** r1.3 上層最大空位約 7×11 mm，r2.0-mini 只有 65×30 mm、穩壓器 300 mA。需要出一張新板。 |
+| 用 Bubblegum-96 當主機？ | **可以。** mainline kernel 沒有 S900 的 USB host、SPI 控制器、Wi-Fi DT、PMIC，但使用者自己的 kernel 已經補上 USB 和 Wi-Fi，目前用 USB 網卡上網，開關機正常。SPI 控制器仍然沒有，所以新板以 UART + I2C + GPIO 跟主機溝通，USB 只當選配（給 Meshtastic MCU 更新韌體）。 |
+| Meshtastic 怎麼接？ | **建議板上放一顆 nRF52840 + SX1262，跑官方 Meshtastic 韌體**，GPS 接在它身上。不依賴 S900 kernel，主機關機時 Meshtastic 也能單獨用電池跑上一週左右。 |
+| GPS 給誰用？ | GPS 由 Meshtastic MCU 控制；NMEA 同時分一路給主機（經 I2C 轉 UART），讓 gpsd、APRS／閘道器也拿得到位置。 |
+| 4 顆 18650 並聯 + 供電給 Bubblegum？ | **可行，建議 1S4P。** 電池升壓到 12 V，經擴充座的 SYS_DCIN 反向餵 Bubblegum（96Boards 規格明確允許）。充電建議 USB-C PD 9 V，只用 5 V 的話，帶主機運作時幾乎充不進去。 |
+| 螢幕 TJC8048X550 | 接 MMDVM 板的 NXT 透傳埠（STM32 USART2），`Port=modem`。**X5 系列的 TX 是 5 V，STM32 的 PA3 不耐 5 V，要串 1 kΩ**；排針腳序也跟 r1.3 相反。目前的 MMDVM-Host 已把螢幕功能拆到 MMDVM-Display（走 MQTT）。沒有現成 800×480 的 TJC 畫面檔，要自己用 TJC 編輯器做。詳見第 6 節。 |
+| 外盒 | **3D 列印、直立式桌上型**：螢幕朝前、後仰 12°，四支天線從頂邊朝上，頂部 30 mm 風扇往上排風，底部進風形成煙囪氣流。外形約 110（高）× 156（寬）× 52（深）mm。詳見第 7 節。 |
+
+## 1. 需求
+
+1. 保留 MMDVM_HS_Dual_Hat 的雙 ADF7021 雙工熱點功能（DMR／D-Star／YSF／P25／NXDN）。
+2. 加 Meshtastic（LoRa，台灣 920–925 MHz）。
+3. 整合 GPS。
+4. 主機暫定 Bubblegum-96（Ubuntu 24.04，新版 kernel）。
+5. 4 顆 18650 直接裝在板上，可充放電，同時供電給 Bubblegum-96。
+6. 外盒，裝 TJC8048X550_011 5 吋螢幕給 MMDVM 用。
+7. GPS 開關：硬體滑動開關斷電，加上 Meshtastic 按鍵的軟體切換（兩者都做）。
+8. 外盒用 3D 列印，要能立在桌上直接看螢幕。
+9. 加小型散熱風扇，設計時考慮安裝與風道。
+
+## 2. 主機：Bubblegum-96 現況
+
+### 2.1 硬體
+- Actions S900，85×54 mm（96Boards CE）。
+- DC 輸入：線路圖標 8–18 V，手冊建議 12 V／2 A。插頭 4.8/1.7 mm。
+- 沒有有線網路。Wi-Fi／BT 是 BCM43438。USB 3.0 A ×1、USB 2.0 A ×1、micro-USB OTG ×1。
+- 已停產，市面上幾乎買不到。
+- **耗電沒有公開數據，要實測**，下文先假設 3–8 W。
+
+### 2.2 mainline kernel 支援（torvalds master 7.4-rc2）
+
+| 功能 | 狀態 | 對本設計的影響 |
+|---|---|---|
+| UART（owl-uart） | 有。uart5 當 console，其餘預設關閉 | 擴充座 UART0 要用 DT overlay 打開 |
+| I2C（owl-i2c） | 有，i2c1／i2c2 已啟用 | 可直接用 |
+| GPIO／pinctrl | 有 | 可直接用（libgpiod） |
+| SPI 控制器 | **沒有驅動** | 不用硬體 SPI；Meshtastic 改用板上 MCU |
+| USB host | mainline **沒有**；**使用者的 kernel 已補上**，USB 網卡可用 | 主要介面不靠 USB；USB 只用在選配功能 |
+| Wi-Fi（SDIO） | 驅動有，mainline DT 沒啟用；**使用者的 kernel 已可用** | 外盒用塑膠（3D 列印），Wi-Fi 不會被擋 |
+| PMIC | mainline 沒有驅動；使用者表示開關機正常 | 本板偵測 LS +1V8（pin 35）消失，就關掉 12 V（待實測）；`gpio-poweroff` 當備案 |
+
+> **使用者回報（2026-11-14）：** 自行維護的 kernel 已讓 Wi-Fi 與 USB 正常，目前用 USB 網卡上網，開關機正常。仍要注意：USB 2.0 A 口不支援 hub，USB 網卡最好插在 USB 3.0 口或 USB 2.0 口直插。
+>
+> **待實測：** (1) 關機後 LS +1V8 會不會掉電（決定本板怎麼判斷主機已關機）；(2) 從 SYS_DCIN 上電後會不會自動開機；(3) 12 V 輸入電流（閒置／滿載／Wi-Fi＋USB 網卡）。
+
+### 2.3 擴充座（96Boards LS，40-pin，2.0 mm）
+- **所有訊號都是 1.8 V**，跟 3.3 V 的元件之間要加電壓轉換。
+- 板間距 8 mm，建議 4 根 M2.5 × 8 mm 銅柱。主機板端是 Molex 87381-4063 母座，擴充板端用 Molex 87831-4029 或同等品。
+- SYS_DCIN（pin 36、38）：擴充板可以反向供電給主機板，規格允許 8–18 V，建議 12 V。**Bubblegum 的 SYS_DCIN 跟 DC 插座直接相連，沒有 OR-ing**，所以我們的 12 V 出口必須加理想二極體。
+- +1V8（pin 35）：最多 0.1 A，只拿來當電壓轉換晶片的 1.8 V 參考。
+
+## 3. 系統架構（建議）
+
+```
+                 ┌──────────────── Bubblegum-96（Ubuntu 24.04）────────────────┐
+                 │ LS UART0（S900 UART2，1.8 V） I2C0（S900 I2C1） GPIO-A..L  SYS_DCIN │
+                 └──────┬─────────────────────┬──────────────┬──────────▲────────┘
+                  電壓轉換 1.8↔3.3 V      TCA9406         電壓轉換        │ 12 V
+                        │                     │              │            │
+   ┌────────────────────▼───┐   ┌─────────────▼─────────┐    │      ┌─────┴──────┐
+   │ MMDVM（沿用 r1.3 線路） │   │ 3.3 V I2C 匯流排        │    │      │ 電源（第 4 節）│
+   │ STM32F103 + 2×ADF7021   │   │ SC16IS752 雙 UART ─A──┼────┼──┐   └────────────┘
+   │ TCXO 14.7456 MHz        │   │ BQ25895 充電 IC        │    │  │
+   │ USART2 → TJC 螢幕（XH）  │   │ MAX17048 電量計         │    │  │
+   │ SMA ×2（433 TX／RX）     │   └───────────────────────┘    │  │ B（只收 NMEA）
+   └─────────────────────────┘                                 │  │
+                                     ┌─────────────────────────▼──▼────┐
+                                     │ Meshtastic：nRF52840 + SX1262    │
+                                     │ 官方韌體，BLE 給手機 App            │
+                                     │ GPS（L76K／MAX-M10S）──NMEA──┬──→ │
+                                     │ SMA（920 MHz），GPS SMA（有源天線） │
+                                     └──────────────────────────────────┘
+```
+
+### 3.1 MMDVM
+- 沿用 r1.3 的 STM32／ADF7021 線路與射頻佈局，這是驗證過的設計。原本 5 V → 3.3 V 的 LDO 改成第 4 節的電源。
+- 主機連線：LS UART0（TX／RX，RTS／CTS 預留）。韌體設定維持 `STM32_USART1_HOST`。
+- 燒錄：`stm32flash -i` 用 GPIO-A 控制 BOOT0、GPIO-B 控制 NRST。S900 的 sysfs GPIO 編號從 512 以上起跳，要查 `/sys/class/gpio/gpiochip*/base`；ttyOWL 的 RTS／DTR 不能用軟體控制。
+- 備註：雙工模式要求收發頻率相差至少 5 MHz，韌體 README 也提到 DMR 有已知問題。
+
+### 3.2 Meshtastic：三個方案
+
+| | **A. 板上 MCU（建議）** | B. 主機跑 meshtasticd（軟體 SPI） | C. 主機跑 meshtasticd（CH341 USB） |
+|---|---|---|---|
+| 硬體 | nRF52840 + SX1262（模組），跑官方韌體 | SX1262 模組接 LS SPI0 | 板上 CH341 USB 轉 SPI + SX1262，接主機 USB |
+| 主機依賴 | 不依賴，主機關機也能用 | 要 spi-gpio DT overlay（未驗證），外加 BUSY／IRQ／RESET GPIO | 要主機 USB（使用者的 kernel 可用），多一條 USB 線 |
+| 手機 App | BLE 直連 | 要經主機網路 | 要經主機網路 |
+| 主機關機時 | 繼續跑（約 0.15 W，第 4.4 節） | 停止 | 停止 |
+| 韌體 | 沿用官方 variant 的腳位配置，就不用維護 fork | meshtasticd，Ubuntu noble arm64 有 PPA | meshtasticd 2.5.18 起支援 `spidev: ch341` |
+| 主機存取 | 透過 SC16IS752 UART-A，可用 Meshtastic CLI／Python API；USB 選配 | 原生 | 原生 |
+
+**為什麼選 A：** S900 沒有硬體 SPI；B 要靠未驗證的軟體 SPI，C 要多佔一個 USB 口（USB 2.0 口不支援 hub）。A 只需要 UART，風險最低。另外，用電池時可以把主機關掉、只留 Meshtastic 跑，續航從幾小時拉長到一週左右。nRF52840 的 USB 拉到板上的內部排針，需要時可以接主機或電腦更新韌體。
+
+下一步要從現有官方 variant（例如 RAK4631、Seeed XIAO nRF52840 Kit）中挑一個，照它的 `variant.h` 接腳，讓官方韌體直接能用。
+
+### 3.3 GPS
+- 候選模組：
+  - Quectel L76K：UART，約 25 mA，Meshtastic 可自動偵測。
+  - u-blox MAX-M10S：UART／I2C，約 10 mA，有 LNA_EN 與 VCC_RF，可直接供電給有源天線。
+- 天線：**建議用 SMA 外接有源天線。** 機殼內有 SoC、DC-DC 和高階時脈諧波（見第 5 節），板載陶瓷天線容易受干擾。
+- GPS 的 TX 分兩路：一路接 Meshtastic MCU（它負責設定 GPS），另一路接 SC16IS752 UART-B，只收 NMEA，主機用 gpsd 讀。注意：Meshtastic 的省電模式可能關掉 GPS，主機那邊就收不到；要設定 GPS 常開。
+- PPS 經電壓轉換接到一根 GPIO，主機可以用 `pps-gpio` + chrony 校時。主機沒有 RTC、沒網路時特別有用。
+
+#### GPS 開關（使用者需求，2026-11-14）
+
+外殼上加一個滑動開關，決定 GPS 模組要不要開。
+
+- **線路：** GPS 電源 = 滑動開關 **AND** Meshtastic MCU 的 GPS_EN，經負載開關（TPS22916 類，或 P-MOSFET）供給 GPS VCC。
+  - 開關 OFF：GPS 完全斷電，不會有位置，最省電。
+  - 開關 ON：交給 Meshtastic 控制，它的省電模式照常運作。
+- **備援電源：** GPS 的 V_BCKP 腳由常開的 3.3 V 經二極體供電。開關關掉時星曆仍保留，再打開可以熱啟動，幾秒內定位。
+- **指示燈：** 開關旁一顆綠色 LED，GPS 有電就亮；也可以改接 PPS，定位後每秒閃一次。
+- **讓韌體知道：** 開關狀態經電壓轉換接到主機 GPIO-I。
+  - 主機上的小服務偵測到切換後，用 GPIO-G 重開 Meshtastic MCU，讓韌體重新偵測 GPS。
+  - Meshtastic 主要在開機時偵測 GPS，執行中插拔的行為要用實機確認。
+  - 主機沒開時，切到 ON 會在 Meshtastic 下次重開後生效。
+- **軟體開關（使用者決定兩者都做）：** 外殼後面加一顆「MESH」按鍵，接到所選 variant 定義的 user button 腳位。官方韌體連按三下會切換 GPS，不靠主機。
+  - 兩者的關係：硬體開關 OFF 時 GPS 一定沒電；開關 ON 時，連按三下可以在軟體上開關 GPS。
+  - 注意同一顆按鍵在官方韌體裡還有其他功能（例如長按關機），要依所選 variant 的按鍵行為加註在外殼標示上。
+- **注意：** 主機的 gpsd 也吃同一顆 GPS，所以開關 OFF 時，APRS／閘道器的位置也會停。
+- **想要 GPS 開著、但 Meshtastic 不廣播位置：** 這要用軟體設定，例如 App 裡的 `position.gps_mode`、位置精度、固定位置，不需要硬體開關。
+- MMDVM-Host 本身已經沒有 GPSD；位置功能在 DMRGateway、YSFGateway 等閘道器，要編譯時打開 `USE_GPSD`。WPSD 手冊（2026-11）說它的 gpsd 功能目前不能用。
+
+### 3.4 主機腳位分配（提案）
+
+| LS pin | 功能 | 接到 |
+|---|---|---|
+| 5、7（9、3） | UART0 TX／RX（RTS／CTS） | STM32 USART1，MMDVM 主機連線 |
+| 11、13 | UART1 | 保留給 console |
+| 15、17 | I2C0 | TCA9406 → SC16IS752（0x48）、BQ25895（0x6A）、MAX17048（0x36）、AMC6821 風扇控制（位址依 ADDR 腳） |
+| 19、21 | I2C1 | 保留 |
+| 8、10、12、14 | SPI0 | 保留（方案 B 用） |
+| 23 GPIO-A | 輸出 | STM32 BOOT0 |
+| 24 GPIO-B | 輸出 | STM32 NRST |
+| 25 GPIO-C | 輸入 | SC16IS752 IRQ |
+| 26 GPIO-D | 輸入 | 充電 IC INT、電量計 ALRT（open-drain 共線） |
+| 27 GPIO-E | 輸入 | 電源鍵 INT（要求關機） |
+| 28 GPIO-F | 輸出 | KILL 備案（`gpio-poweroff`）；主要靠偵測 +1V8 |
+| 29 GPIO-G | 輸出 | Meshtastic MCU RESET |
+| 30 GPIO-H | 輸入 | GPS PPS |
+| 31 GPIO-I | 輸入 | GPS 開關狀態 |
+| 32 GPIO-J | 輸入 | 風扇控制器 ALERT／THERM |
+| 33–34 GPIO-K..L | — | 預留 |
+| 35 | +1V8 | 電壓轉換晶片 A 側參考 |
+| 36、38 | SYS_DCIN | 本板 12 V 出口（經理想二極體） |
+
+## 4. 電源：1S4P
+
+### 4.1 為什麼選 1S4P（4 顆並聯）
+- 並聯不用平衡充電，使用者自己換電池也不會出現串聯電芯不平衡的問題。
+- 4 顆分攤電流：最壞情況電池端約 4.4 A，每顆約 1.1 A，電池座接點壓力小。
+- 1S 的充電 IC、保護 IC、電量計選擇最多、最便宜。
+- 代價：要升壓到 12 V，效率約 88–91%；電池到升壓器之間電流大，走線要粗。
+- 2S2P 或 4S 在本案不划算：要平衡電路，使用者換電池時也容易造成電芯不平衡。
+
+### 4.2 方塊圖
+
+```
+USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
+              │ VBUS 5–9 V
+              ▼
+        BQ25895（1S，NVDC 電源路徑，最大充電 5 A，I2C）── TS ← 10 k NTC（貼在電池之間）
+              │ VSYS 3.5–4.35 V（拔掉電池也能從 USB 繼續供電）
+              │ BAT
+              └─ BQ2980 高側保護（1 mΩ 取樣）─┬─ 保險絲 ─ 18650 #1（Keystone 1042P 有極性電池座）
+                                              ├─ 保險絲 ─ 18650 #2
+                                              ├─ 保險絲 ─ 18650 #3
+                                              └─ 保險絲 ─ 18650 #4    MAX17048 電量計跨在電池上
+  VSYS ──┬─ TPS61178 升壓 12 V／1.5 A（有 load disconnect）─ LM74700 理想二極體 ─ SYS_DCIN → Bubblegum
+         ├─ TPS61022 升壓 5 V／2 A ─┬─ TJC 螢幕（XH 4-pin）
+         │                          └─ AMC6821 → N-MOSFET → 30 mm 風扇（溫控、轉速回授）
+         └─ TPS63020 升降壓 3.5 V（固定 2.4 MHz，可同步）─ π 濾波 ─┬─ LDO 3.3 V → STM32＋ADF7021
+                                                                  ├─ LDO 3.3 V → nRF52840＋SX1262（常開電源域）
+                                                                  └─ LDO 3.3 V → 負載開關（GPS 開關 AND GPS_EN）→ GPS
+                                                                                 └→ V_BCKP（常開，保留星曆）
+  LTC2954 電源鍵控制器：按鍵 → INT 通知主機 → 主機關機 → LS +1V8 消失（或 gpio-poweroff 拉 KILL）→ 延遲後關 12 V／5 V
+  Meshtastic + GPS 的電源域獨立，可以不跟主機一起關
+```
+
+### 4.3 選料理由
+
+| 功能 | 料號 | 理由 |
+|---|---|---|
+| 充電 | **BQ25895** | 1S，3.9–14 V 輸入，5 A 充電，NVDC 電源路徑，LCSC C80200 便宜。I2C watchdog 逾時後會恢復預設值（2 A、4.208 V），不接主機也能安全充電。 |
+| PD 誘騙 | CH224K | 用電阻設定要 9 V，簡單（LCSC C970725）。進階可換 STUSB4500。 |
+| 保護 | BQ2980 | 高側 N-FET，GND 不中斷，用取樣電阻精準設定過流（例：8 A）。比 DW01A＋8205A（約 2.5–4 A 就會跳）適合 4P。 |
+| 每顆保險絲 | SMD 5–7 A（NANO2 類） | 有人把電池裝反時，其他 3 顆對它短路，靠這顆熔斷。 |
+| 電池座 | Keystone 1042P ×4 | SMT、有極性（第一道防反插），77.1×20.7 mm，高 14.86 mm。沒有公布額定電流，每顆 1.1 A 在合理範圍，仍要實測溫升。 |
+| 電量計 | MAX17048 | 1S，不用取樣電阻，ALRT 腳接主機。 |
+| 12 V | TPS61178 | 2.7–20 V 輸入，峰值電流可設到 10 A，有 load disconnect（關機真正斷電），可外部同步。 |
+| 12 V 防逆流 | LM74700-Q1 + N-FET | 防止有人同時把變壓器插在 Bubblegum 上時倒灌。 |
+| 5 V | TPS61022 | 8 A 谷值限流，3.6→5 V 約 95%。 |
+| 3.3 V | TPS63020 → 3.5 V，再接 LDO | 固定 2.4 MHz、可同步，好規劃頻率。射頻每區各一顆 LDO（TPS7A20 類）。 |
+
+### 4.4 電流與續航估算（3000 mAh 電芯 ×4 = 43 Wh，可用約 39 Wh）
+
+| 負載 | 估計 | 電池端 |
+|---|---|---|
+| Bubblegum-96（12 V） | 3–8 W **待實測** | 3.3–9.1 W |
+| TJC 5 吋螢幕（5 V） | 背光 0 約 150 mA，全亮約 280–330 mA → 0.75–1.65 W | 0.8–1.8 W |
+| MMDVM＋Meshtastic＋GPS（3.3 V） | 約 0.7 W | 約 0.9 W |
+| 風扇（5 V，溫控） | 0–0.6 W | 0–0.65 W |
+| **合計** | | **約 5–12.5 W → 續航約 3–7.5 小時** |
+| 主機關機，只跑 Meshtastic＋GPS | 約 0.15 W | **約一週** |
+| 主機關機，Meshtastic 開、GPS 開關 OFF | 約 0.05–0.1 W | **約兩週以上** |
+
+- 最壞情況電池端電流：12.5 W ÷ 3.0 V ≈ 4.2 A，每顆約 1.05 A。
+- **充電：** PD 9 V／3 A（27 W）時，扣掉系統用電，約 3–4.5 A 可以充進電池 → 約 3.5–4.5 小時充滿。
+- **只有 5 V／3 A（約 13.5 W）時，主機開著幾乎沒有餘力充電**，螢幕全亮時甚至還在放電。所以 PD 是必要的。
+
+### 4.5 安全注意
+- **換電池時，4 顆電壓要接近**（相差 0.1 V 以內）再裝。並聯時，電壓高的會對電壓低的大電流灌電，每顆保險絲是最後防線。外殼要貼警示。
+- 18650 有保護板版本長約 69–70 mm，要確認裝得進電池座；**建議用無保護板的平頭電芯**，由板上的保護 IC 負責。
+- NTC 要貼在電池之間，接充電 IC 的 TS 腳（JEITA）。電池要遠離 SoC 和升壓電感的熱。
+- 長期插電當 UPS 用時，建議主機開機後用 I2C 把充電電壓降到 4.1 V，延長電池壽命。
+- 主機要讀電量計，低電量時自動關機；BQ2980 欠壓保護是最後防線。
+
+## 5. 射頻共存
+
+| 來源 | 頻率 | 結果 |
+|---|---|---|
+| ADF7021 熱點 | 430–440 MHz | 2 倍頻 860–880 MHz、3 倍頻 1290–1320 MHz，都不落在 920–925 或 GPS L1 |
+| LoRa TW | 920–925 MHz | 2 倍頻 1840–1850 MHz，不落在 GPS |
+| 互調（\|m\|+\|n\|≤5） | 熱點 × LoRa | 沒有產物落在 GPS L1／BDS B1I／GAL E1 |
+| TCXO 14.7456 MHz | 第 107 次諧波 1577.78 MHz | 距 GPS L1 約 2.4 MHz，很弱 |
+| Y1 8 MHz（STM32） | 第 197 次諧波 1576.00 MHz | 距 L1 約 0.6 MHz，極弱，但 GPS 天線仍要外接 |
+| DC-DC 開關頻率 | 0.75–2.4 MHz | GPS 頻帶內一定會有某次諧波，靠佈局、屏蔽、濾波處理；所有 DC-DC 同步在同一時脈 |
+
+- 天線：433 TX、433 RX、920 LoRa、GPS，共 4 個 SMA。LoRa 天線跟 433 天線盡量拉開距離。
+- Bubblegum 的 Wi-Fi 天線在板上，**外殼不要用全金屬**，或在 Wi-Fi 位置留塑膠窗。
+
+### 法規備註（台灣）
+- Meshtastic 韌體的 TW 區：920–925 MHz、上限 27 dBm、佔空比 100%。
+- NCC LP0002 第 5.8.1 節：920–925 MHz 室內 ≤1 W、室外 ≤0.5 W，但**只適用跳頻，或 6 dB 頻寬 ≥500 kHz 的數位調變**。Meshtastic 預設 LongFast 是 250 kHz 頻寬，有可能落入第 5.8.2 節（3 m 處 50 mV/m）這個嚴格得多的限制。**這是我的解讀，要請 NCC 認可的實驗室確認。**
+- 授權業餘電台可以考慮 Meshtastic 的 licensed 模式，但頻段與調變方式要另外依業餘電台法規確認。
+
+## 6. 螢幕 TJC8048X550_011
+
+來源：TJC X5 規格書（`TJC8048X550_011R/N/C.pdf`，p.7–14）、TJC wiki FAQ（QA3／QA110）、g4klx/MMDVM-Display、juribeparada/MMDVM_HS。
+
+### 6.1 規格
+
+| 項目 | 數值 |
+|---|---|
+| 面板 | 5.0 吋 800×480，TN，300 nit；視角上／下／左／右 50／70／70／70° |
+| 系列 | X5（TJC 最高階）：ARM9 200 MHz、128 MB flash、512 KB RAM、RTC、8 GPIO、音訊 |
+| 後綴 | `_011R` 電阻觸控、`_011C` 電容觸控、`_011N` 無觸控（**請確認你手上是哪一種**） |
+| 電源 | 4.65–6.5 V（建議 5 V／1 A）；全亮 R 330 mA／N 327 mA／C 281 mA，背光 0 約 150 mA |
+| UART | **5 V TTL**（X3／X5 是 5 V，其他系列 3.3 V），預設 9600 8N1，可到 921600；`bauds=` 寫入開機預設值 |
+| 接頭 | XH2.54 4-pin 臥式：**1 GND、2 RX、3 TX、4 5V** |
+| 外形 | 裸板無外框；PCB 136.90×84.00 mm（R3 圓角），Ø3.2 孔 ×4，孔距 130.50×77.60 |
+| 顯示區 | LCD 外框 120.70×75.80；可視區 108.00×64.80，短邊方向偏離中心約 1.9 mm |
+| 厚度 | 前方疊層 N 3.3／R 4.5／C 5.08 mm；PCB 1.6；背面最高 6.0（XH 接頭）→ 總深約 10.9／12.1／12.7 mm |
+| 其他 | 背面有 microSD（更新 TFT 用）；工作溫度 −20～+70 °C |
+
+### 6.2 接線注意（本板要改的地方）
+
+- **5 V 的 TX 不能直接進 STM32 PA3：** PA2／PA3 不耐 5 V。TJC 官方建議串 1 kΩ；新板在螢幕 TX → PA3 之間放 1 kΩ（或單向電壓轉換）。反方向 PA2 → 螢幕 RX 是 3.3 V 訊號，螢幕可以直接收。
+- **腳序：** r1.3／r2.0 的 NXT 排針是 1=5V、2=RXD、3=TXD、4=GND，跟 TJC 的 XH 剛好相反，1:1 線會把 5 V 接到螢幕 GND。**新板改用 XH 4-pin、腳序照 TJC（1 GND、2 螢幕 RX、3 螢幕 TX、4 5V）**，用一般 1:1 XH 線就好。
+- **電源：** 由 5 V 升壓（TPS61022）供電，約 0.33 A。
+
+### 6.3 軟體
+
+- **MMDVM_HS 韌體：** Dual Hat 的設定檔已定義 `SERIAL_REPEATER`（USART2、PA2／PA3、9600）。發送緩衝 256 bytes，滿了會**直接丟資料**，沒有流量控制。800×480 畫面欄位多，建議重編韌體把 `SERIAL_REPEATER_BAUD` 調高（例如 115200），螢幕端用 `bauds=115200` 配合。
+- **MMDVM-Host：** 2023-06 起螢幕程式碼已移到 **MMDVM-Display**，透過 MQTT 取得資料（要 mosquitto）。設定檔 `[Nextion]`：`Port=modem`、`ScreenLayout` 只剩 0／2／3。也可以用 2023-06 以前的 MMDVMHost（`[Nextion] Port=modem`）。
+- **ON7LDS NextionDriver：** 支援 modem 埠，但跟新版 MMDVM-Display 分拆後的設定能不能一起用，**尚未驗證**。
+- **畫面檔：** 找不到現成的 TJC 800×480 MMDVM 畫面。
+  - Nextion 的 `.tft` 不能用在 TJC 上；`.HMI` 匯入 TJC 編輯器的回報不一致。
+  - PD0DIB 有 Nextion 5 吋 800×480 版本可參考，但只適用 Nextion，而且授權禁止商用。
+  - 要用 TJC 的 USART HMI 編輯器（中文介面）照 G4KLX／ON7LDS 的頁面與欄位名稱自己做。
+- **編碼：** TJC 預設 GB2312；MMDVM 送溫度時的「°」是單一位元組 176，可能顯示成亂碼，要調字型編碼或改顯示方式（未實測）。
+- **更新畫面檔：** 透過螢幕背面的 microSD（要拆前蓋），或用 USB-TTL 接 XH。經 MMDVM 透傳埠應該無法更新（推論）。
+- **社群經驗：** 有人在 Pi-Star 用 3.2 吋 TJC 搭 `Port=modem` 成功；沒找到 X5／800×480 TJC 搭 MMDVM 的案例。
+
+## 7. 機構與外盒（概念）
+
+使用者決定：**3D 列印**、**直立在桌上直接看螢幕**、加**小型散熱風扇**。
+
+- 模型：`case/meshtastic-concept/enclosure_concept.py`（CadQuery 2.8，參數化）。輸出 STEP 組合檔、`enclosure_tub.stl`、`front_plate.stl`、`stand_cradle.stl` 與預覽圖。
+- 這是配置研究用的模型，還不能直接列印：電池蓋、卡扣、圓角、列印公差都還沒做。
+- 已用程式檢查零件之間的干涉（實體交集體積），目前為 0。
+- 材料：**PETG 或 ASA，不要用 PLA**。PLA 約 55–60 °C 就會軟化，盒內有 SoC、升壓電路和鋰電池。
+
+### 7.1 方向與疊層
+
+- **直立：** 螢幕朝前，機身後仰 12°。
+  - Bubblegum 的 x=85 長邊（96Boards 規格的 Wi-Fi 天線區）朝上，對 Wi-Fi 有利。
+  - 原本的「底殼」變成背面，電池蓋在背面。
+- **由後往前：** 背板 → Bubblegum-96 → 8 mm → 主板 → 螢幕 → 前蓋。
+  - 主板 85×146.5 mm，比 Bubblegum 長出約 92 mm，延伸區背面放 4 顆 18650（Keystone 1042P，間距 21 mm），**電池直立**。
+- **兩根氣流柱：**
+  - SoC 柱：Bubblegum 那一側，主板上方是 MMDVM 區。
+  - 電池柱：電池那一側，主板上方是 Meshtastic／GPS（下段）和電源區（上段，熱往上直接排出，不經過電池）。
+- **固定方式：**
+  - 背板立柱鎖 Bubblegum 四孔（M2.5），主板延伸端另有兩孔在最後一顆電池座外側。
+  - Bubblegum 與主板之間用 8 mm 銅柱。
+- **外殼結構：** 「桶身＋前蓋」兩件。
+  - 桶身：背板＋四面牆，所有側面開孔、SMA、風扇都在這一件，強度最好。
+  - 前蓋：裝螢幕。用 4 根 M3 螺絲鎖到桶身的熱熔螺母；兩根在頂部空腔，兩根在加厚的底邊（7 mm），都避開電路板，整疊電路板可以從前面直接放進去。
+- **外形：** 約 110（高）× 156（寬）× 52（深）mm；含天線站高約 335 mm。桶身約 100 cm³（PETG 約 125 g），前蓋約 25 cm³。
+
+### 7.2 天線（頂邊，垂直朝上）
+
+- 面板式（bulkhead）SMA 母座鎖在頂牆，主板與 GPS 端用 IPEX（u.FL）座，中間接 IPEX→SMA pigtail（1.13 mm 線，約 10–15 cm）。天線的重量和扭力由外殼承受。
+- 開孔 Ø6.5 mm D 形孔（平邊 5.9 mm）止轉，適用 1/4"-36 牙 bulkhead SMA。**實際尺寸依採購的接頭再確認。**
+- 頂部有約 13 mm 的空腔（plenum）放接頭本體和 pigtail，主板上不需要再留天線禁區。
+
+| 頂邊位置（由 Bubblegum 端算起） | 天線 | 備註 |
+|---|---|---|
+| y≈12 | 433 TX | 跟 RX 分在兩端，相距約 116 mm |
+| y≈23–53 | （風扇） | 在 SoC 柱正上方 |
+| y≈70 | GPS | 接外接有源天線（磁吸，拉到窗邊）；也可在頂部空腔放有源陶瓷天線、朝上收訊 |
+| y≈100 | LoRa 920 | 鞭狀天線約 11 cm |
+| y≈128 | 433 RX | |
+
+- 直立後天線本來就是垂直的，用直的鞭狀天線即可（或可轉向的款式方便微調）。433 MHz 天線約 19–20 cm。
+
+### 7.3 散熱與風道
+
+**熱源估計：**
+- SoC 3–8 W（待實測）。
+- 螢幕 0.75–1.65 W。
+- 電源轉換損耗 0.5–1 W；快充時充電 IC 另外約 1.5–2 W。
+- 射頻與 MCU 約 0.7 W。
+- 合計約 6–12 W。
+
+**為什麼要風扇：**
+- 外殼表面積約 0.06 m²，自然對流加輻射約 8–10 W/m²K，平均溫升約 10–20 °C，熱點更高。
+- 夏天 35 °C 室溫時，盒內會超過 50 °C，超出鋰電池充電的 45 °C 上限（JEITA）。
+
+**風量需求：**
+- 用 CFM ≈ 1.76 × W ÷ ΔT(°C) 估算：10 W、允許溫升 10 °C，約需 1.8 CFM。
+- 30 mm 風扇自由風量約 3–5 CFM（依型號），扣掉格柵損失仍夠用。
+
+**風扇：**
+- 30×30×10 mm、5 V，選低噪音、有轉速訊號的型號。
+- 鎖在頂牆內側（頂部空腔，24 mm 孔距），**往上排風**，格柵直接印在頂牆上。
+
+**風道：**
+
+```
+   頂牆：  [TX]  [風扇↑排風]  [GPS]  ‖  [LoRa] 〃〃被動散熱槽〃〃 [RX]
+            ┌──────── SoC 柱 ────────┐‖┌──────── 電池柱 ────────┐
+            │ ↑ Bubblegum 與主板間 8 mm │‖│ ↑ 電源區（上段）        │
+            │ ↑ 夾層＝煙囪，經過 SoC    │‖│ ↑ Meshtastic／GPS（下段）│
+            │ ↑ 散熱片（≤6 mm，規格允許）│‖│ ↑ 4 顆 18650（背面）    │
+            │ ↑ 前方：MMDVM 區、螢幕背面 │‖│ ↑                       │
+            └──────────────────────────┘‖└──────────────────────────┘
+   底邊：  〃〃 進風槽 〃〃               ‖  〃〃 進風槽 〃〃   （支架留 8 mm 進風間隙）
+                             頂部空腔隔板 ‖
+```
+
+- **SoC 柱：** 底邊進風 → 往上經過 Bubblegum 與主板之間的 8 mm 夾層（S900 上加 ≤6 mm 散熱片，96Boards 規格允許），以及前方的 MMDVM 區和螢幕背面 → 風扇抽出。背板在 SoC 後方也開進風槽。
+- **電池柱：** 底邊進風 → 自然對流往上 → 頂牆被動散熱槽。電源區在這一柱的上段，熱往上走、不經過電池。
+- **頂部空腔隔板**（y≈56）讓風扇主要抽 SoC 柱，SoC 的熱風不會繞到電池那邊。
+- **控制：** 用 **AMC6821**（I2C 風扇控制器，mainline Linux 有 hwmon 驅動）。
+  - 內建溫度曲線，主機當掉也會自己轉；有轉速回授。
+  - 遠端溫度用一顆 MMBT3904，放在主板背面、正對 SoC 散熱片的出風側。
+  - ALERT 接 GPIO-J。
+  - 快充時由主機強制提高轉速。
+  - 簡化版：溫度開關＋主機 GPIO（OR）控制 MOSFET。
+- 底邊進風口可加防塵濾網。
+- **驗證：** 35 °C 環境下用熱電偶量 SoC、電池、充電 IC、升壓電感；電池要維持在 45 °C 以下。
+
+### 7.4 螢幕安裝（前蓋）
+
+- 前蓋開窗 = 可視區 108.0×64.8 mm 每邊再加 0.5 mm，並照規格書偏移 1.9 mm。
+- 前蓋內側 4 根螺柱對準螢幕 Ø3.2 孔（130.5×77.6），高度 = 前方疊層 + 0.5 mm 間隙。電阻觸控不能被框壓到，否則會誤觸。
+- 螢幕的 XH 接頭在一個短邊背面，排線拉到主板 MMDVM 區的 XH 座；microSD 在另一個短邊，要更新畫面檔時拆前蓋（4 顆螺絲）。
+- TN 面板上方視角較窄（50°）。機身後仰、從上往下看時，要實測決定面板要不要轉 180° 安裝；畫面方向可以在 TJC 編輯器旋轉。
+
+### 7.5 側面開孔
+
+- **右側面**（Bubblegum 端，直立時在使用者右手邊）：microSD、HDMI、micro-USB、USB-A ×2（USB 網卡插這裡）。Bubblegum 的 DC 插座不開孔，避免同時插變壓器。
+- **左側面**（主板延伸端）：USB-C 充電、MESH 按鍵、電源鍵、GPS 滑動開關＋LED 導光孔。
+- **背面**：電池蓋（待設計成獨立零件，附警示標籤）、SoC 後方進風槽。
+
+預覽圖：
+
+- `preview_desk_front.png`：桌上直立，正面。
+- `preview_desk_back.png`：背面，電池蓋與風扇格柵。
+- `preview_airflow.png`：拿掉前蓋，藍色箭頭是氣流。
+- `preview_inside.png`：內部配置。
+
+## 8. 軟體（Ubuntu 24.04 on Bubblegum-96）
+
+- **DT overlay：**
+  - 打開 uart2（LS UART0）。
+  - SC16IS752 掛在 i2c1（sc16is7xx 是 mainline 驅動），IRQ 接 GPIO-C。
+  - `gpio-poweroff` 用 GPIO-F（備案）。
+  - `pps-gpio` 用 GPIO-H。
+  - `gpio-line-names`。
+- **MMDVM-Host（g4klx/MMDVM-Host）：** 自行編譯，需要 C++17 與 `libmosquitto-dev`，log 走 MQTT，要裝 broker。閘道器（DMRGateway、YSFGateway…）要用 GPS 的話，編譯時打開 `USE_GPSD`。
+- **MMDVM-Display：** 驅動 TJC 螢幕（`[Nextion] Port=modem`），也走 MQTT。
+- **風扇：** `amc6821` hwmon 驅動，用 `fancontrol` 或自寫服務設溫度曲線。
+- **燒 MMDVM_HS 韌體：** 用發行版的 stm32flash，不要用韌體 repo 裡 i386 的 `utils/linux` 工具。
+- **Meshtastic（方案 A）：** 在 nRF52840 上燒官方韌體；主機用 `meshtastic --port /dev/ttySC0` 管理。
+- **gpsd：** 讀 `/dev/ttySC1`。
+
+## 9. 風險與待決定事項
+
+已決定：
+
+- ~~Bubblegum-96 的網路~~：使用者確認自行維護的 kernel 有 USB 網卡＋Wi-Fi。日後升級 kernel 時要保留這些修補。
+- ~~外盒做法~~：3D 列印（PETG／ASA），直立桌上型，含風扇。
+- ~~GPS 開關~~：硬體滑動開關斷電＋Meshtastic 按鍵連按三下，兩者都做。
+
+待決定／待實測：
+
+1. Bubblegum-96 已停產，耗電沒有公開數據，要實測 12 V 電流；也要確認關機後 +1V8 是否掉電、SYS_DCIN 上電是否自動開機。
+2. Meshtastic 方案（建議 A），以及要沿用哪個官方 variant 的腳位。
+3. GPS 模組：L76K 或 MAX-M10S；GPS 天線用外接磁吸，或頂部空腔放有源陶瓷天線。
+4. 電芯型號（建議同一款無保護板平頭電芯，例如 Samsung 30Q／35E），以及電池座的實測溫升。
+5. TW 區 LoRa 的法規解讀。
+6. TJC 螢幕的後綴（R／C／N），影響厚度與前蓋設計。
+7. 螢幕軟體路線：新版 MMDVM-Host＋MMDVM-Display（MQTT），或舊版 MMDVMHost；畫面檔要自己做。
+8. S900 在 Bubblegum 上的實際位置（散熱片位置），以及風扇型號（噪音、轉速訊號）。
+9. 授權：原專案是 CC BY-NC-SA，衍生設計要沿用同一授權（不可商用）。
+
+## 參考來源（節錄）
+
+- **Meshtastic**
+  - meshtasticd 設定：<https://github.com/meshtastic/firmware/blob/develop/bin/config-dist.yaml>
+  - 硬體支援：<https://meshtastic.org/docs/meshtasticd/hardware/>
+  - TW 區：<https://github.com/meshtastic/firmware/blob/develop/src/mesh/RadioInterface.cpp>
+- **Bubblegum-96 與 96Boards**
+  - 硬體手冊：<https://github.com/96boards/documentation/blob/master/consumer/bubblegum-96/hardware-docs/HardwareManual_Bubblegum96_S900_V1.1.pdf>
+  - 96Boards CE 規格：<https://github.com/96boards/documentation/blob/master/Specifications/96Boards-CE-Specification-v2.0.pdf>
+  - Mezzanine 設計指引：<https://github.com/96boards/documentation/blob/master/mezzanine/files/mezzanine-design-guidelines.pdf>
+  - mainline DT：<https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/actions/s900-bubblegum-96.dts>
+- **MMDVM**
+  - MMDVM_HS 韌體：<https://github.com/juribeparada/MMDVM_HS>
+  - MMDVM-Host：<https://github.com/g4klx/MMDVM-Host>
+- **電源 IC**
+  - BQ25895：<https://www.ti.com/product/BQ25895>
+  - BQ2980：<https://www.ti.com/product/BQ2980>
+  - TPS61178：<https://www.ti.com/product/TPS61178>
+  - LM74700-Q1：<https://www.ti.com/product/LM74700-Q1>
+  - MAX17048：<https://www.analog.com/en/products/max17048.html>
+- **電池座**
+  - Keystone 1042P：<https://www.keyelco.com/userAssets/file/K75p29.pdf>
+- **螢幕**
+  - TJC X5 規格書：<http://wiki2.tjc1688.com/product/new_datasheet/X5/TJC8048X550_011R.html>
+  - TJC 串口電壓 FAQ：<http://wiki.tjc1688.com/QA/QA3.html>
+  - MMDVM-Display：<https://github.com/g4klx/MMDVM-Display>
+  - PD0DIB 畫面（參考）：<https://github.com/PD0DIB/Nextion_HAM-radio-screens>
+- **法規**
+  - NCC LP0002（非官方副本）：<https://forum.flipper.net/uploads/short-url/5qQHHxW40bD5Vs4cEaPzTiDwmmU.pdf>
