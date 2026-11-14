@@ -43,8 +43,11 @@ P = dict(
     bottom_wall=7.0,            # thick bottom rail: carries two front-plate screw bosses outside the board stack
     # front "chin" under the 5" display: Meshtastic OLED + MESH button on a small front-panel board
     chin=26.0,
-    oled_panel=(34.5, 23.0, 1.8), oled_va=(29.42, 14.7),   # 1.3" SH1106 128x64 (typical panel), y-size, x-size, t
-    mesh_btn_dy=-34.0,          # MESH button offset from the OLED centre (viewer's right is -Y)
+    # Heltec 1.3" SH1106 I2C module (HTDS-WI13/BI13): PCB, M2 hole spacing, glass, active area (y, x)
+    oled_module=(35.5, 32.0, 1.6), oled_holes=(25.4, 27.7), oled_glass=(34.5, 23.0, 1.8),
+    oled_va=(29.42, 14.7), oled_va_dx=0.0,      # active-area offset on the module: MEASURE the real part
+    # front-panel board (hardware/r3.0-study/front_panel): 26 x 20 mm, F side 5 mm behind the front plate
+    fp_pcb=(26.0, 20.0), fp_gap=5.0, fp_dy=3.0,  # fp_dy: gap to the OLED module (viewer's right is -Y)
     top_parts=9.0,              # tallest part on the main-board top
     plenum=13.0,                # top air plenum (fan, SMA bodies, pigtails) beyond X = 85
     # fan: 30x30x10 mm 5 V, axis along X, exhausting up through the top wall
@@ -171,18 +174,42 @@ def build(p=P):
             bosses.append(cq.Workplane("XY").circle(3.5).circle(1.25).extrude(p["lcd_t"] + p["touch_gap"])
                           .translate((cx + sx * hx_, cy + sy * hy_, z_pcb)))
     front = front.union(union_all(bosses))
-    # chin: front-panel board with the Meshtastic OLED and the MESH button
-    xc = ix0 + p["chin"] / 2
-    ow, oh, ot = p["oled_panel"]
-    z_cp = z_front_in - 0.3 - ot                    # chin PCB front face
-    parts["chin_board"] = box(ix0 + 1.0, cy - 45, z_cp - 1.6, -p["clear"] - 1.0, cy + 45, z_cp)
-    parts["oled"] = box(xc - oh / 2, cy - ow / 2, z_cp, xc + oh / 2, cy + ow / 2, z_cp + ot)
-    yb = cy + p["mesh_btn_dy"]
-    parts["mesh_button"] = cq.Workplane("XY").circle(2.4).extrude(z_out_front + 0.8 - z_cp).translate((xc, yb, z_cp))
+    # chin: Heltec OLED module screwed to the front plate (glass against the plate) and the front-panel
+    # board (MESH button + LED) to its right, both under the 5" display
+    mw, mh, mt = p["oled_module"]
+    gw, gh, gt = p["oled_glass"]
+    xm = (cx - p["disp_h"] / 2) - 1.0 - mh / 2          # module top 1 mm below the 5" display PCB
+    z_glass = z_front_in - gt
+    parts["oled"] = (box(xm - mh / 2, cy - mw / 2, z_glass - mt, xm + mh / 2, cy + mw / 2, z_glass)
+                     .union(box(xm - gh / 2, cy - gw / 2, z_glass, xm + gh / 2, cy + gw / 2, z_front_in)))
+    hy, hx = p["oled_holes"][0] / 2, p["oled_holes"][1] / 2
+    ob = [cq.Workplane("XY").circle(2.0).circle(0.8).extrude(gt).translate((xm + sx * hx, cy + sy * hy, z_glass))
+          for sx in (-1, 1) for sy in (-1, 1)]
+    front = front.union(union_all(ob))                    # M2 self-tapping bosses
     vw, vh = p["oled_va"]
-    front = front.cut(box(xc - vh / 2 - 0.5, cy - vw / 2 - 0.5, z_front_in - 1, xc + vh / 2 + 0.5, cy + vw / 2 + 0.5,
+    xv = xm + p["oled_va_dx"]
+    front = front.cut(box(xv - vh / 2 - 0.5, cy - vw / 2 - 0.5, z_front_in - 1, xv + vh / 2 + 0.5, cy + vw / 2 + 0.5,
                           z_out_front + 1))
-    front = front.cut(cq.Workplane("XY").circle(2.75).extrude(10).translate((xc, yb, z_front_in - 2)))
+    # front-panel board: local (u, v) = (viewer's right, down) -> model (Y = y_left - u, X = x_top - v)
+    pw_, ph_ = p["fp_pcb"]
+    y_left = cy - mw / 2 - p["fp_dy"]
+    x_top = xm + ph_ / 2
+    z_fpf = z_front_in - p["fp_gap"]
+    def fpl(u, v):
+        return x_top - v, y_left - u
+    parts["chin_board"] = box(x_top - ph_, y_left - pw_, z_fpf - 1.6, x_top, y_left, z_fpf)
+    bx, by = fpl(8.25, 12.0)
+    parts["mesh_button"] = (box(bx - 3, by - 3, z_fpf, bx + 3, by + 3, z_fpf + 3.5)
+                            .union(cq.Workplane("XY").circle(1.75).extrude(8.0 - 3.5).translate((bx, by, z_fpf + 3.5))))
+    lx, ly = fpl(20.0, 9.0)
+    parts["fp_led"] = box(lx - 0.65, ly - 1.0, z_fpf, lx + 0.65, ly + 1.0, z_fpf + 0.8)
+    fb = []
+    for (u, v) in ((3.0, 3.0), (23.0, 3.0)):
+        hx_, hy_ = fpl(u, v)
+        fb.append(cq.Workplane("XY").circle(2.5).circle(1.1).extrude(p["fp_gap"]).translate((hx_, hy_, z_fpf)))
+    front = front.union(union_all(fb))                    # M2.5 self-tapping bosses
+    front = front.cut(cq.Workplane("XY").circle(2.1).extrude(10).translate((bx, by, z_front_in - 2)))   # button
+    front = front.cut(cq.Workplane("XY").circle(1.5).extrude(10).translate((lx, ly, z_front_in - 2)))   # LED
     for (px, py) in screw_pts:
         front = front.cut(cq.Workplane("XY").circle(1.7).extrude(10).translate((px, py, z_front_in - 1)))
     # side face (Y = 0): Bubblegum ports
@@ -291,6 +318,7 @@ COLORS = dict(bubblegum96=(0.18, 0.49, 0.20), soc_heatsink=(0.75, 0.75, 0.78), l
               usb_c=(0.62, 0.62, 0.62), power_button=(0.90, 0.22, 0.21), mesh_button=(0.12, 0.53, 0.90),
               gps_switch=(1.0, 0.76, 0.03), gps_led=(0.2, 1.0, 0.2), fan=(0.2, 0.2, 0.25),
               console_header=(0.1, 0.1, 0.1), chin_board=(0.1, 0.45, 0.2), oled=(0.02, 0.02, 0.05),
+              fp_led=(0.2, 0.4, 1.0),
               plenum_divider=(0.55, 0.6, 0.62), airflow=(0.1, 0.6, 1.0),
               mesh_gps_zone=(0.56, 0.14, 0.67), power_zone=(0.94, 0.42, 0.0), mmdvm_zone=(0.0, 0.54, 0.48),
               cells_1s4p=(0.78, 0.16, 0.16), display=(0.10, 0.10, 0.12),

@@ -1,0 +1,6 @@
+erc.json
+drc.json
+n.net
+*.kicad_prl
+fp-info-cache
+production/
