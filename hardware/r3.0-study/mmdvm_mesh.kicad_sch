@@ -2,7 +2,7 @@
 	(version 20260306)
 	(generator "eeschema")
 	(generator_version "10.0")
-	(uuid "62ab9e09-09c3-4359-b06c-29fffbf82761")
+	(uuid "2bc1f203-d49d-434a-a8fd-ffea2f1c79bd")
 	(paper "A4")
 	(title_block
 		(title "MMDVM + Meshtastic + GPS + 1S4P (r3.0 study)")
@@ -10,321 +10,6 @@
 		(rev "3.0-study")
 	)
 	(lib_symbols)
-	(sheet
-		(at 110 85)
-		(size 70 25)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "057d0431-978c-4e09-8d09-9309b8414a62")
-		(property "Sheetname" "GPS"
-			(at 110 84.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "gps.kicad_sch"
-			(at 110 110.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/62ab9e09-09c3-4359-b06c-29fffbf82761"
-					(page "6")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 110 130)
-		(size 70 25)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "4c5c01ad-4739-4b75-af6b-3b010ddaf388")
-		(property "Sheetname" "MMDVM MCU"
-			(at 110 129.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "mmdvm_mcu.kicad_sch"
-			(at 110 155.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/62ab9e09-09c3-4359-b06c-29fffbf82761"
-					(page "9")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 110 40)
-		(size 70 25)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "627bc54a-6c2e-40e9-9c47-e5bbba22a04e")
-		(property "Sheetname" "Host interface"
-			(at 110 39.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "host_if.kicad_sch"
-			(at 110 65.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/62ab9e09-09c3-4359-b06c-29fffbf82761"
-					(page "3")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 25 40)
-		(size 70 25)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "8fbd9b4c-cae1-470e-8a26-0031c0e384a9")
-		(property "Sheetname" "MMDVM IO"
-			(at 25 39.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "mmdvm_io.kicad_sch"
-			(at 25 65.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/62ab9e09-09c3-4359-b06c-29fffbf82761"
-					(page "2")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 195 40)
-		(size 70 25)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "9657931d-f8e7-4942-b4fd-15b62d5326cd")
-		(property "Sheetname" "Power"
-			(at 195 39.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "power.kicad_sch"
-			(at 195 65.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/62ab9e09-09c3-4359-b06c-29fffbf82761"
-					(page "4")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 25 130)
-		(size 70 25)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "b9898603-743d-422a-bbbe-7bc851c25df9")
-		(property "Sheetname" "MMDVM RF"
-			(at 25 129.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "mmdvm_rf.kicad_sch"
-			(at 25 155.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/62ab9e09-09c3-4359-b06c-29fffbf82761"
-					(page "8")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 195 85)
-		(size 70 25)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "df936af7-32ae-41ed-96c1-ed76d6724f7f")
-		(property "Sheetname" "Ethernet"
-			(at 195 84.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "ethernet.kicad_sch"
-			(at 195 110.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/62ab9e09-09c3-4359-b06c-29fffbf82761"
-					(page "7")
-				)
-			)
-		)
-	)
 	(sheet
 		(at 25 85)
 		(size 70 25)
@@ -339,7 +24,7 @@
 		(fill
 			(color 0 0 0 0)
 		)
-		(uuid "ecb81c98-5885-409d-895e-f2595a57fdb7")
+		(uuid "05f5c907-bf7c-4cdc-9ff6-ffefc7184409")
 		(property "Sheetname" "Meshtastic"
 			(at 25 84.3 0)
 			(show_name no)
@@ -364,8 +49,323 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/62ab9e09-09c3-4359-b06c-29fffbf82761"
+				(path "/2bc1f203-d49d-434a-a8fd-ffea2f1c79bd"
 					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 195 85)
+		(size 70 25)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "070e357c-1e33-44b7-9ee0-4a8e1adaf6e9")
+		(property "Sheetname" "Ethernet"
+			(at 195 84.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ethernet.kicad_sch"
+			(at 195 110.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/2bc1f203-d49d-434a-a8fd-ffea2f1c79bd"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 110 85)
+		(size 70 25)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "3e1b7395-4cfe-4a2f-b472-af8c640b3b3a")
+		(property "Sheetname" "GPS"
+			(at 110 84.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "gps.kicad_sch"
+			(at 110 110.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/2bc1f203-d49d-434a-a8fd-ffea2f1c79bd"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 110 130)
+		(size 70 25)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "55be51a4-0b06-4447-ad9d-03fa2b5baf39")
+		(property "Sheetname" "MMDVM MCU"
+			(at 110 129.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "mmdvm_mcu.kicad_sch"
+			(at 110 155.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/2bc1f203-d49d-434a-a8fd-ffea2f1c79bd"
+					(page "9")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 25 130)
+		(size 70 25)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "5f10fbba-60a7-4ee3-907b-b479d0e1ae06")
+		(property "Sheetname" "MMDVM RF"
+			(at 25 129.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "mmdvm_rf.kicad_sch"
+			(at 25 155.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/2bc1f203-d49d-434a-a8fd-ffea2f1c79bd"
+					(page "8")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 110 40)
+		(size 70 25)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "6d8f2b84-74c6-4f38-b899-965f0b672ad0")
+		(property "Sheetname" "Host interface"
+			(at 110 39.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "host_if.kicad_sch"
+			(at 110 65.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/2bc1f203-d49d-434a-a8fd-ffea2f1c79bd"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 25 40)
+		(size 70 25)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "ad68f3c3-d88d-4c6b-bfb3-499887a6e803")
+		(property "Sheetname" "MMDVM IO"
+			(at 25 39.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "mmdvm_io.kicad_sch"
+			(at 25 65.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/2bc1f203-d49d-434a-a8fd-ffea2f1c79bd"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 195 40)
+		(size 70 25)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "b22305e3-1c98-46e3-b04b-2bd41d2d4bcf")
+		(property "Sheetname" "Power"
+			(at 195 39.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power.kicad_sch"
+			(at 195 65.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/2bc1f203-d49d-434a-a8fd-ffea2f1c79bd"
+					(page "4")
 				)
 			)
 		)

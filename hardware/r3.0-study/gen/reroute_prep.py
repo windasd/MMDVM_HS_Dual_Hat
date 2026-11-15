@@ -79,7 +79,7 @@ print('removed', len(kill), 'edge-hugging tracks; locked', nlock, 'of', len(boar
 # Export with the inner ground plane only: with the F.Cu / B.Cu pours in the DSN the router treats every GND
 # SMD pad as already connected and never drops a via for it (the board file on disk keeps all zones).
 for z in list(board.Zones()):
-    if z.GetLayer() != pcbnew.In1_Cu:
+    if z.GetLayer() != pcbnew.In1_Cu and not z.GetIsRuleArea():      # rule areas stay: they become keepouts
         board.Remove(z)
 print('export', pcbnew.ExportSpecctraDSN(board, DSN))
 s = open(DSN, 'rb').read()

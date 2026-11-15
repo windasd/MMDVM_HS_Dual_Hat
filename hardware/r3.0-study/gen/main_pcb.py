@@ -64,7 +64,7 @@ ZONES = {   # model x0, y0, x1, y1 (filled bottom-up, left to right)
     'Power': (44.0, 77.0, 87.0, 145.0),
     'Meshtastic': (5.0, 77.0, 43.5, 120.0),
     'GPS': (5.0, 120.0, 42.0, 143.5),
-    'Ethernet': (38.0, 144.5, 60.5, 161.0),
+    'Ethernet': (22.0, 144.5, 60.5, 161.0),
     'MMDVM IO': (56.0, 37.0, 76.0, 46.0),
 }
 PREFER = {'J42': 'Meshtastic',
@@ -351,6 +351,13 @@ def main():
                 keep.append((x - r, y - r, x + r, y + r))
         if not fp.IsFlipped():
             keep.append(court(fp))
+
+    # corridor for the four Ethernet pairs between U60 and the RJ45 pins (pair_route.py lays them before the
+    # autorouter runs): no terminations or decoupling capacitors in front of the TR pins or above the jack
+    keep += [(59.1, 143.9, 62.0, 156.6), (59.1, 139.5, 80.5, 144.0)]
+    if 'U60' in placed:               # 1 mm ring around the 56-QFN: room for the pins to fan out with vias
+        c = court(placed['U60'])
+        keep.append((c[0] - 1.0, c[1] - 1.0, c[2] + 1.0, c[3] + 1.0))
 
     def free(b):
         return all(b[2] <= k[0] or b[0] >= k[2] or b[3] <= k[1] or b[1] >= k[3] for k in keep)

@@ -285,19 +285,20 @@ def ethernet():
     hs = {str(n): None for n in range(1, 61)}
     hs.update({str(n): 'GND' for n in gnd_hs})
     hs.update({'51': 'HS_USB_DP', '53': 'HS_USB_DM'})
-    nc = (1, 2, 3, 4, 9, 10, 18, 21, 22, 25, 26, 27, 28, 29, 33, 34, 35, 38, 40)
+    nc = (1, 2, 3, 4, 9, 10, 18, 21, 22, 25, 33, 34, 35, 38, 40)
     u = {str(n): None for n in nc}
     u.update({'5': 'ETH_XI', '6': 'ETH_XO',
               '7': '+3V3_ETH', '19': '+3V3_ETH', '24': '+3V3_ETH', '37': '+3V3_ETH',
               '8': '+1V2_ETH', '11': '+1V2_ETH', '20': '+1V2_ETH', '23': '+1V2_ETH', '30': '+1V2_ETH',
               '36': '+1V2_ETH',
+              '26': 'ETH_EECLK', '27': 'ETH_EEDI', '28': 'ETH_EEDO', '29': 'ETH_EECS',
               '12': 'HS_USB_DM', '13': 'HS_USB_DP', '14': 'ETH_VBUS_DET', '15': 'ETH_VDD33A',
               '16': 'ETH_USBRBIAS', '17': 'ETH_VDD12USBPLL', '31': 'ETH_LED0_N', '32': 'ETH_LED1_N',
               '39': 'GND', '41': 'ETH_ETHRBIAS', '42': 'ETH_RST_N',
               '43': 'ETH_TR0N', '44': 'ETH_TR0P', '46': 'ETH_TR1N', '47': 'ETH_TR1P',
               '51': 'ETH_TR2N', '52': 'ETH_TR2P', '54': 'ETH_TR3N', '55': 'ETH_TR3P',
               '45': 'ETH_VDD12A', '48': 'ETH_VDD12A', '53': 'ETH_VDD12A', '56': 'ETH_VDD12A',
-              '49': 'ETH_VDD12A', '50': 'ETH_VDD12A', '57': 'GND'})
+              '49': '+1V2_ETH', '50': 'ETH_VDD12PLL', '57': 'GND'})
     fb = lambda ref, a, b: P(ref, 'Device:FerriteBead', '120R@100MHz', {'1': a, '2': b},
                              'Inductor_SMD:L_0603_1608Metric', {'MPN': 'BLM18PG121SN1D', 'Note': '0.5 A min'})
 
@@ -327,23 +328,39 @@ def ethernet():
     p += [
         P('U60', 'Interface_Ethernet:LAN7500-ABJZ', 'LAN7500', u,
           'Package_DFN_QFN:QFN-56-1EP_8x8mm_P0.5mm_EP5.9x5.9mm',
-          {'MPN': 'LAN7500-ABZJ', 'Note': 'no EEPROM: set the MAC address in software (smsc75xx)'}),
-        C('C152', '100n', '+3V3_ETH', 'GND'), C('C153', '100n', '+3V3_ETH', 'GND'),
-        C('C154', '100n', '+3V3_ETH', 'GND'), C('C155', '100n', '+3V3_ETH', 'GND'),
-        C('C156', '100n', '+1V2_ETH', 'GND'), C('C157', '100n', '+1V2_ETH', 'GND'),
-        C('C158', '100n', '+1V2_ETH', 'GND'), C('C159', '100n', '+1V2_ETH', 'GND'),
-        C('C161', '100n', '+1V2_ETH', 'GND'), C('C162', '100n', '+1V2_ETH', 'GND'),
-        C('C160', '1u', '+1V2_ETH', 'GND'),
-        fb('L60', '+3V3_ETH', 'ETH_VDD33A'), C('C163', '100n', 'ETH_VDD33A', 'GND'),
-        fb('L61', '+1V2_ETH', 'ETH_VDD12USBPLL'), C('C179', '100n', 'ETH_VDD12USBPLL', 'GND'),
+          {'MPN': 'LAN7500-ABZJ'}),
+        # configuration EEPROM as in the Microchip reference design (93AA66A, 512 x 8 bit, 3-wire): holds the MAC
+        # address and USB descriptors. A blank part is ignored (defaults apply); program it in circuit with
+        # `ethtool -E`. Names follow the LAN7500 pins: EEDO drives the EEPROM DI, EEDI reads its DO.
+        P('U64', 'Memory_EEPROM:93AAxxAT-xOT', '93AA66A', {'1': 'ETH_EEDI', '2': 'GND', '3': 'ETH_EEDO',
+                                                            '4': 'ETH_EECLK', '5': 'ETH_EECS', '6': '+3V3_ETH'},
+          'Package_TO_SOT_SMD:SOT-23-6', {'MPN': '93AA66AT-I/OT', 'Note': '8-bit organisation (A suffix) is required'}),
+        C('C186', '100n', '+3V3_ETH', 'GND'),
+        R('R78', '10k', 'ETH_EECS', 'GND', Note='EECS may float briefly at power-up (data sheet note)'),
+        # decoupling per the Microchip schematic checklist (SC471232): 0.01 uF at every supply pin, a ferrite
+        # bead with bulk capacitance on both sides for VDD33A, VDD12A, VDD12USBPLL and VDD12PLL, VDD12BIAS direct
+        C('C152', '10n', '+3V3_ETH', 'GND'), C('C153', '10n', '+3V3_ETH', 'GND'),
+        C('C154', '10n', '+3V3_ETH', 'GND'), C('C155', '10n', '+3V3_ETH', 'GND'),
+        C('C156', '10n', '+1V2_ETH', 'GND'), C('C157', '10n', '+1V2_ETH', 'GND'),
+        C('C158', '10n', '+1V2_ETH', 'GND'), C('C159', '10n', '+1V2_ETH', 'GND'),
+        C('C161', '10n', '+1V2_ETH', 'GND'), C('C162', '10n', '+1V2_ETH', 'GND'),
+        C('C177', '10n', '+1V2_ETH', 'GND', Note='VDD12BIAS'),
+        C('C160', '4u7', '+1V2_ETH', 'GND', FP_C0603), C('C185', '4u7', '+3V3_ETH', 'GND', FP_C0603),
+        fb('L60', '+3V3_ETH', 'ETH_VDD33A'), C('C163', '10n', 'ETH_VDD33A', 'GND'),
+        C('C181', '4u7', 'ETH_VDD33A', 'GND', FP_C0603),
+        fb('L61', '+1V2_ETH', 'ETH_VDD12USBPLL'), C('C179', '10n', 'ETH_VDD12USBPLL', 'GND'),
+        C('C183', '4u7', 'ETH_VDD12USBPLL', 'GND', FP_C0603),
         fb('L62', '+1V2_ETH', 'ETH_VDD12A'),
-        C('C173', '100n', 'ETH_VDD12A', 'GND'), C('C174', '100n', 'ETH_VDD12A', 'GND'),
-        C('C175', '100n', 'ETH_VDD12A', 'GND'), C('C176', '100n', 'ETH_VDD12A', 'GND'),
-        C('C177', '100n', 'ETH_VDD12A', 'GND', Note='VDD12BIAS'), C('C178', '100n', 'ETH_VDD12A', 'GND', Note='VDD12PLL'),
+        C('C173', '10n', 'ETH_VDD12A', 'GND'), C('C174', '10n', 'ETH_VDD12A', 'GND'),
+        C('C175', '10n', 'ETH_VDD12A', 'GND'), C('C176', '10n', 'ETH_VDD12A', 'GND'),
+        C('C182', '4u7', 'ETH_VDD12A', 'GND', FP_C0603),
+        fb('L66', '+1V2_ETH', 'ETH_VDD12PLL'), C('C178', '10n', 'ETH_VDD12PLL', 'GND'),
+        C('C184', '4u7', 'ETH_VDD12PLL', 'GND', FP_C0603),
         R('R80', '12k', 'ETH_USBRBIAS', 'GND', Note='1 %'), R('R81', '8k06', 'ETH_ETHRBIAS', 'GND', Note='1 %'),
         R('R82', '10k', 'ETH_VBUS_DET', '+3V3_ETH', Note='self powered, permanently attached'),
-        R('R84', '10k', 'ETH_RST_N', '+3V3_ETH'),
-        C('C164', '1u', 'ETH_RST_N', 'GND', Note='nRESET must be asserted after power-on (10 ms RC)'),
+        # external power-on reset, as the checklist strongly recommends (the internal POR is RC based)
+        P('U63', 'Power_Supervisor:LM809', 'LM809 2.93V', {'1': 'GND', '2': 'ETH_RST_N', '3': '+3V3_ETH'},
+          'Package_TO_SOT_SMD:SOT-23', {'MPN': 'LM809M3X-2.93', 'Note': 'push-pull active-low reset, 240 ms'}),
         P('Y3', 'Device:Crystal_GND24', '25MHz', {'1': 'ETH_XI', '2': 'GND', '3': 'ETH_XO', '4': 'GND'},
           'Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm', {'MPN': '25 MHz 3225, 30 ppm, CL 18 pF'}),
         C('C165', '27p', 'ETH_XI', 'GND'), C('C166', '27p', 'ETH_XO', 'GND'),
@@ -363,11 +380,14 @@ def ethernet():
            'Note': 'VERIFY against the Wurth data sheet: pin 1 = common centre tap, pin 10, pair polarity, LED pins'}),
         R('R79', '0R', 'ETH_J_P10', 'GND', dnp=True, Note='DNP until the function of jack pin 10 is confirmed'),
         R('R89', '330R', 'ETH_LED_Y_A', '+3V3_ETH'), R('R90', '330R', 'ETH_LED_G_A', '+3V3_ETH'),
-        R('R91', '1M', 'ETH_SHIELD', 'GND'), C('C168', '1n', 'ETH_SHIELD', 'GND', FP_C0805, Note='2 kV'),
+        R('R91', '1M', 'ETH_SHIELD', 'GND', 'Resistor_SMD:R_1210_3225Metric',
+          Note='chassis to digital ground link: 1210 so that 0R, a capacitor or a bead can be fitted at EMI test'),
+        C('C168', '1n', 'ETH_SHIELD', 'GND', FP_C0805, Note='2 kV'),
         P('#FLG120', 'power:PWR_FLAG', 'PWR_FLAG', {'1': '+3V3_ETH'}, in_bom=False),
         P('#FLG121', 'power:PWR_FLAG', 'PWR_FLAG', {'1': '+1V2_ETH'}, in_bom=False),
         P('#FLG122', 'power:PWR_FLAG', 'PWR_FLAG', {'1': 'ETH_VDD12A'}, in_bom=False),
         P('#FLG123', 'power:PWR_FLAG', 'PWR_FLAG', {'1': 'ETH_VDD12USBPLL'}, in_bom=False),
         P('#FLG124', 'power:PWR_FLAG', 'PWR_FLAG', {'1': 'ETH_VDD33A'}, in_bom=False),
+        P('#FLG125', 'power:PWR_FLAG', 'PWR_FLAG', {'1': 'ETH_VDD12PLL'}, in_bom=False),
     ]
     return p

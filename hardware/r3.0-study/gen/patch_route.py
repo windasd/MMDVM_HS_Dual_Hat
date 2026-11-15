@@ -25,7 +25,7 @@ W, VIA_D, VIA_DR, CL = 0.2, 0.45, 0.2, 0.1
 R_TRK = W / 2 + CL + 0.03     # obstacle inflation for a track centre line
 R_VIA = VIA_D / 2 + CL + 0.01    # exact distance test from the via centre, so a small margin is enough
 LAYERS = [pcbnew.F_Cu, pcbnew.In2_Cu, pcbnew.B_Cu]
-MARGIN = 9.0
+MARGIN = float(os.environ.get('PR_MARGIN', '9.0'))
 VIA_COST = 40.0
 tomm = pcbnew.ToMM
 POLY = [(M.X0 + x, M.Y0 - y) for x, y in M.OUTLINE]
@@ -54,9 +54,16 @@ class Point:
     def __init__(self, spec):
         x, y, layer = spec[1:].split(',')
         self.q = pcbnew.VECTOR2I(pcbnew.FromMM(float(x)), pcbnew.FromMM(float(y)))
-        self.layer = board.GetLayerID(layer)
-        hit = [t for t in board.GetTracks() if t.GetClass() == 'PCB_TRACK' and t.GetLayer() == self.layer
-               and t.HitTest(self.q, pcbnew.FromMM(0.05))]
+        if layer == 'ANY':                       # whatever copper ends there (a track end or a via)
+            hit = [t for t in board.GetTracks() if t.HitTest(self.q, pcbnew.FromMM(0.05))]
+            trk = [t for t in hit if t.GetClass() == 'PCB_TRACK']
+            self.layer = trk[0].GetLayer() if trk else pcbnew.F_Cu
+            self.any = bool([t for t in hit if t.GetClass() == 'PCB_VIA'])
+        else:
+            self.layer = board.GetLayerID(layer)
+            self.any = False
+            hit = [t for t in board.GetTracks() if t.GetClass() == 'PCB_TRACK' and t.GetLayer() == self.layer
+                   and t.HitTest(self.q, pcbnew.FromMM(0.05))]
         if not hit:
             raise SystemExit('no track at ' + spec)
         self.net = hit[0].GetNetname()
@@ -75,7 +82,7 @@ class Point:
         return pcbnew.PAD_ATTRIB_SMD
 
     def IsOnLayer(self, layer):
-        return layer == self.layer
+        return self.any or layer == self.layer
 
 
 def find_pad(spec):
@@ -99,6 +106,9 @@ def route(spec_a, spec_b):
     ax, ay = tomm(pa.GetPosition().x), tomm(pa.GetPosition().y)
     bx, by = tomm(pb.GetPosition().x), tomm(pb.GetPosition().y)
     x0, y0 = min(ax, bx) - MARGIN, min(ay, by) - MARGIN
+    # put the start exactly on a grid node, so no tiny snap segment is needed there
+    x0 = ax - math.ceil((ax - x0) / G) * G
+    y0 = ay - math.ceil((ay - y0) / G) * G
     nx = int((max(ax, bx) + MARGIN - x0) / G) + 1
     ny = int((max(ay, by) + MARGIN - y0) / G) + 1
     occ = [bytearray(nx * ny) for _ in LAYERS]       # blocked for a track centre
@@ -172,6 +182,19 @@ def route(spec_a, spec_b):
                 add_obstacle(ks, shape, 0)
             else:                                   # inner layers are free, but no via may land on the pad
                 mark(vocc, shape[1] - R_VIA, shape[2] - R_VIA, shape[3] + R_VIA, shape[4] + R_VIA, lambda x, y: True)
+    # rule areas that forbid tracks (the reserved reference strip under the USB pair on In2)
+    for z in board.Zones():
+        if z.GetIsRuleArea() and z.GetDoNotAllowTracks() and z.GetLayer() in LAYERS:
+            g = occ[LAYERS.index(z.GetLayer())]
+            ol = z.Outline()
+            bb = z.GetBoundingBox()
+            i0, i1 = max(0, int((tomm(bb.GetX()) - x0) / G)), min(nx - 1, int((tomm(bb.GetRight()) - x0) / G) + 1)
+            j0, j1 = max(0, int((tomm(bb.GetY()) - y0) / G)), min(ny - 1, int((tomm(bb.GetBottom()) - y0) / G) + 1)
+            for j in range(j0, j1 + 1):
+                for i in range(i0, i1 + 1):
+                    if ol.Contains(pcbnew.VECTOR2I(pcbnew.FromMM(x0 + i * G), pcbnew.FromMM(y0 + j * G)), -1,
+                                   pcbnew.FromMM(W / 2 + 0.05)):
+                        g[j * nx + i] = 1
     # board edge
     for j in range(ny):
         for i in range(nx):

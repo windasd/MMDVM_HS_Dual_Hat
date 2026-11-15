@@ -1866,78 +1866,6 @@
   "Mouser": "815-M8147456MHZD1XT",
   "LCSC": "C1986778"
  },
- "C152": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C153": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C154": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C155": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C156": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C157": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C158": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C159": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C161": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C162": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C163": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C164": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05A105KA5NQNC",
-  "Mouser": "187-CL05A105KA5NQNC",
-  "LCSC": "C52923"
- },
  "C167": {
   "MFR": "Samsung Electro-Mechanics",
   "MPN": "CL05B104KO5NNNC",
@@ -1950,20 +1878,7 @@
   "Mouser": "187-CL10A106MA8NRNC",
   "LCSC": "C96446"
  },
- "C160": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05A105KA5NQNC",
-  "Mouser": "187-CL05A105KA5NQNC",
-  "LCSC": "C52923"
- },
  "R82": {
-  "MFR": "UNI-ROYAL (Uniroyal Elec)",
-  "MPN": "0402WGF1002TCE",
-  "Mouser": "603-RC0402FR-0710KL",
-  "LCSC": "C25744",
-  "Mouser_MPN": "RC0402FR-0710KL"
- },
- "R84": {
   "MFR": "UNI-ROYAL (Uniroyal Elec)",
   "MPN": "0402WGF1002TCE",
   "Mouser": "603-RC0402FR-0710KL",
@@ -2017,48 +1932,6 @@
   "MPN": "JS202011AQN",
   "Mouser": "611-JS202011AQN",
   "LCSC": ""
- },
- "C173": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C174": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C175": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C176": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C177": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C178": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
- },
- "C179": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
  },
  "C169": {
   "MFR": "Samsung Electro-Mechanics",
@@ -2122,5 +1995,144 @@
   "MPN": "BLM18PG121SN1D",
   "Mouser": "81-BLM18PG121SN1D",
   "LCSC": ""
+ },
+ "U63": {
+  "MFR": "Texas Instruments",
+  "MPN": "LM809M3X-2.93/NOPB",
+  "Mouser": "926-LM809M3X293NOPB",
+  "LCSC": ""
+ },
+ "L66": {
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D",
+  "LCSC": ""
+ },
+ "C152": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C153": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C154": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C155": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C156": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C157": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C158": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C159": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C161": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C162": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C163": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C173": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C174": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C175": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C176": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C177": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C178": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "C179": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC",
+  "LCSC": "C15195"
+ },
+ "U64": {
+  "MFR": "Microchip",
+  "MPN": "93AA66AT-I/OT",
+  "Mouser": "579-93AA66AT-I/OT",
+  "LCSC": ""
+ },
+ "C186": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "R78": {
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "LCSC": "C25744",
+  "Mouser_MPN": "RC0402FR-0710KL"
  }
 }
