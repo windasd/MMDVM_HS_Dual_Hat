@@ -754,6 +754,14 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
   - 擺位是程式依連線關係排的，沒有照電源流向、散熱或 EMI 最佳化；手動調整擺位後可以重跑 `reroute_prep.py`、Freerouting、`route.py import`。
   - 這是可以打開來繼續修改的初稿，**還不能直接送廠**。
 
+- **貼完元件的預覽圖**（KiCad 3D 算繪，`kicad-cli pcb render --quality high`）：
+  - 正面：`hardware/r3.0-study/mmdvm_mesh_top.png`
+  - 背面（4 個 18650 電池座、LS 接頭）：`hardware/r3.0-study/mmdvm_mesh_bottom.png`
+  - 斜視：`hardware/r3.0-study/mmdvm_mesh_3d.png`
+  - 沒有 3D 模型、圖上只看得到焊墊的零件：RAK4630（U40）、MAX-M10S（U50）、保險絲、部分電感。
+
+![r3.0 main board, top](../hardware/r3.0-study/mmdvm_mesh_3d.png)
+
 ### 10.9 BOM（Mouser＋LCSC）
 
 - `BOM.csv`／`BOM.xlsx`：主板 128 項、293 顆。每項有 MFR、MPN、Mouser 料號、LCSC 料號；Mouser 沒庫存而改用替代料時，另列「Mouser MPN」。
