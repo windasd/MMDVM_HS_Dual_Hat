@@ -510,21 +510,23 @@
         "via_drill": 0.25
       },
       {
-        "name": "Power",
-        "clearance": 0.1,
-        "track_width": 0.4,
-        "via_diameter": 0.6,
-        "via_drill": 0.3,
         "bus_width": 12,
+        "clearance": 0.1,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
         "line_style": 0,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
-        "wire_width": 6,
+        "name": "Power",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "schematic_color": "rgba(0, 0, 0, 0.000)"
+        "priority": -1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.4,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
       }
     ],
     "meta": {
@@ -705,7 +707,7 @@
       "include_excluded_from_bom": true,
       "name": "Default Editing",
       "sort_asc": true,
-      "sort_field": "\u53c3\u8003"
+      "sort_field": "參考"
     },
     "bus_aliases": {},
     "connection_grid_size": 50.0,

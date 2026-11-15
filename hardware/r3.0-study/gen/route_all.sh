@@ -7,16 +7,19 @@ KCLI="${KCLI:-/c/Program Files/KiCad/10.0/bin/kicad-cli.exe}"
 : "${JAVA:?set JAVA to a Java 17+ binary}"; : "${FREEROUTING:?set FREEROUTING to freerouting-1.9.0.jar}"
 cd "$(dirname "$0")"
 PRO=../mmdvm_mesh.kicad_pro; cp "$PRO" ../route_pro.bak 2>/dev/null || true
-REF=../route/placed.kicad_pcb; mkdir -p ../route; cp ../mmdvm_mesh.kicad_pcb "$REF"
+# CONTINUE=1: keep the existing routing, lock only the tracks of ../route/placed.kicad_pcb (the r1.3 block)
+# and let the router rip up and retry the rest.
+REF=../route/placed.kicad_pcb; mkdir -p ../route
+if [ -z "$CONTINUE" ]; then cp ../mmdvm_mesh.kicad_pcb "$REF"; PREP_ARG=""; else PREP_ARG="$REF"; fi
 drc() { cp ../route_pro.bak "$PRO"; "$KCLI" pcb drc --schematic-parity --severity-all --format json -o ../route/drc.json ../mmdvm_mesh.kicad_pcb >/dev/null 2>&1 || true; }
 q() { grep -v -E "image handler|memory leak"; }
-"$KPY" reroute_prep.py 2>&1 | q
+"$KPY" reroute_prep.py $PREP_ARG 2>&1 | q
 (cd ../route && rm -f mmdvm_mesh.ses && "$JAVA" -jar "$FREEROUTING" -de mmdvm_mesh.dsn -do mmdvm_mesh.ses -mp 40 > fr.log 2>&1)
 "$KPY" route.py import 2>&1 | q
 drc; "$KPY" stitch_gnd.py ../route/drc.json 2>&1 | q | tail -3
 drc; "$KPY" bridge_gaps.py ../route/drc.json 2>&1 | q | tail -3
 "$KPY" widen_power.py 2>&1 | q | tail -2
-drc; "$KPY" stitch_gnd.py ../route/drc.json 2>&1 | q | tail -3
+drc; "$KPY" stitch_gnd.py ../route/drc.json --via-in-pad 2>&1 | q | tail -12
 "$KPY" relock.py "$REF" 2>&1 | q
 drc; cp ../route_pro.bak "$PRO"; rm -f ../route_pro.bak
 "$KPY" -c "

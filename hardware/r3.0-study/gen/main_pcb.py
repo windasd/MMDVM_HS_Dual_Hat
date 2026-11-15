@@ -270,6 +270,14 @@ def main():
             v.SetLayer(t.GetLayer())
         v.SetNet(nets[netmap[n13]])
         board.Add(v)
+    # R32 (1 k in the TJC TX line) sits on the old NXT header pin 2, so the proven r1.3 DISP_RXD track from
+    # the STM32 ends on its pad
+    p4 = [f for f in b13.GetFootprints() if f.GetReference() == 'P4']
+    if p4 and 'R32' in comps:
+        q = [p_ for p_ in p4[0].Pads() if p_.GetNumber() == '2'][0].GetPosition() + off
+        r32 = add('R32', pos=q)
+        pad = [p_ for p_ in r32.Pads() if pins.get(('R32', p_.GetNumber())) == 'DISP_RXD'][0]
+        r32.Move(q - pad.GetPosition())
     print('r1.3 block:', len(placed), 'footprints; net conflicts', sorted(conflict))
     # ---- fixed parts
     for ref, (x, y, rot, side) in FIXED.items():

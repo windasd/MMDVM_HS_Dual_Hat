@@ -67,14 +67,20 @@ if REF:      # lock only the tracks that also exist in the reference board (the 
     keep = {key(t) for t in pcbnew.LoadBoard(REF[0]).GetTracks()}
     nlock = 0
     for t in board.GetTracks():
-        t.SetLocked(key(t) in keep)
-        nlock += key(t) in keep
+        fix = key(t) in keep or (t.GetClass() == 'PCB_VIA' and t.GetNetname() == 'GND')   # keep ground stitching
+        t.SetLocked(fix)
+        nlock += fix
 else:
     nlock = len(board.GetTracks())
     for t in board.GetTracks():
         t.SetLocked(True)
 board.Save(PCB)
 print('removed', len(kill), 'edge-hugging tracks; locked', nlock, 'of', len(board.GetTracks()))
+# Export with the inner ground plane only: with the F.Cu / B.Cu pours in the DSN the router treats every GND
+# SMD pad as already connected and never drops a via for it (the board file on disk keeps all zones).
+for z in list(board.Zones()):
+    if z.GetLayer() != pcbnew.In1_Cu:
+        board.Remove(z)
 print('export', pcbnew.ExportSpecctraDSN(board, DSN))
 s = open(DSN, 'rb').read()
 s = re.sub(rb'(\(layer In1\.Cu\s*\(type )signal', rb'\1power', s, count=1)

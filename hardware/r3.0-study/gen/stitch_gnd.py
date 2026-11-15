@@ -123,7 +123,41 @@ for z in board.Zones():
                 x += step
             y += step
         noroom += not ok
-print('islands without room for a via', noroom)
+# last resort: via in the centre of a GND SMD pad of an island that still has no connection
+# (small untented via-in-pad can wick solder: listed so they can be reviewed)
+inpad = 0
+if '--via-in-pad' in sys.argv:
+    CL_MIN = 0.1
+    for z in board.Zones():
+        layer = z.GetLayer()
+        if layer not in (pcbnew.F_Cu, pcbnew.B_Cu):
+            continue
+        ps = z.GetFilledPolysList(layer)
+        cands = [p for p in pads if p.GetNetname() == 'GND' and p.GetAttribute() == pcbnew.PAD_ATTRIB_SMD
+                 and p.IsOnLayer(layer)]
+        connected = set()
+        for i in range(ps.OutlineCount()):
+            if any(ps.Contains(a, i) for a in anchors):
+                connected.add(i)
+        for p in cands:
+            c = p.GetPosition()
+            if any(math.hypot(c.x - a.x, c.y - a.y) < mm(0.6) for a in anchors):
+                continue
+            idx = [i for i in range(ps.OutlineCount()) if ps.Contains(c, i, mm(0.3))]
+            if idx and any(i in connected for i in idx):
+                continue
+            acc = mm(VIA_D / 2 + CL_MIN)
+            bad = any(o.GetNetname() != 'GND' and o.HitTest(c, acc) for o in pads) or                 any(t.GetNetname() != 'GND' and t.HitTest(c, acc) for t in board.GetTracks())
+            if bad or not inside(pcbnew.ToMM(c.x), pcbnew.ToMM(c.y)):
+                continue
+            via = pcbnew.PCB_VIA(board)
+            via.SetPosition(c); via.SetWidth(mm(VIA_D)); via.SetDrill(mm(VIA_DR)); via.SetNet(gnd)
+            board.Add(via)
+            anchors.append(c)
+            connected.update(idx)
+            inpad += 1
+            print('via in pad:', p.GetParentFootprint().GetReference(), p.GetNumber())
+print('islands without room for a via', noroom, '| vias in pad', inpad)
 print('island vias', isl)
 pcbnew.ZONE_FILLER(board).Fill(board.Zones())
 board.Save(PCB)
