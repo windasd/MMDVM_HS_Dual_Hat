@@ -26,7 +26,8 @@ for n in ('VSYS', 'VBUS', 'CELL+', 'CELL-', '+12V_BOOST', '+12V_SENSE', 'SYS_DCI
           '/Power/CELL2+', '/Power/CELL3+', '/Power/CELL4+', '/Power/B12_SW', '/Power/B12_VOUT', '/Power/BQ_SW',
           '/Power/BQ_PMID', '/Power/PROT_MID'):
     NETS[n] = HIGH
-for n in ('+5V', '+3V5', '/Power/B5_SW', '/Power/BB_L1', '/Power/BB_L2', 'MESH_VBAT_NRF'):
+for n in ('+5V', '+3V5', '/Power/B5_SW', '/Power/BB_L1', '/Power/BB_L2', 'MESH_VBAT_NRF', '+3V3_ETH', '+1V2_ETH',
+          '/Ethernet/ETH_SW33', '/Ethernet/ETH_SW12'):
     NETS[n] = MID
 
 obst = []     # (bbox x0, y0, x1, y1, object, net, layers or None for all)

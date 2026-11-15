@@ -44,8 +44,8 @@ FIXED = {
     'SW50': (42.1, 159.0, 0, 'F'), 'SW101': (53.0, 159.0, 0, 'F'), 'D51': (60.8, 159.0, 0, 'F'),
     'J60': (71.3, 150.0, 0, 'F'),           # RJ45, courtyard centred on this x (see below)
     'TP1': (49.5, 11.0, 0, 'B'),            # r1.3 SWD test point: moved off the HS connector pads
-    'U60': (54.5, 150.5, 180, 'F'),         # LAN9500A right behind the RJ45, TX/RX pins (2-6) facing it
-    'Y3': (60.0, 157.0, 0, 'F'),            # 25 MHz crystal near the XI/XO pins (18/19)
+    'U60': (54.5, 150.5, 270, 'F'),         # LAN7500 right behind the RJ45, TR0..TR3 pins (43-56) facing it
+    'Y3': (59.6, 157.6, 0, 'F'),            # 25 MHz crystal near the XI/XO pins (5/6)
     'J10': (32.75, 15.45, 0, 'B'),          # 96Boards HS connector, position from the mezzanine template
     'J44': (0.0, 100.0, 0, 'F'),            # front-panel cable, opening towards the x = -2 edge
     'J5': (44.0, 6.0, 0, 'F'),              # TJC display
@@ -189,7 +189,7 @@ def write_rules():
     ns['netclass_patterns'] = [{'netclass': 'Power', 'pattern': pat} for pat in (
         'VSYS', 'VBUS', 'CELL+', 'CELL-', '+5V', '+3V5', '+12V_BOOST', '+12V_SENSE', 'SYS_DCIN', '/Power/CELL*',
         '/Power/B12_SW', '/Power/B12_VOUT', '/Power/BQ_SW', '/Power/BQ_PMID', '/Power/B5_SW', '/Power/BB_L*',
-        '/Power/PROT_MID', 'MESH_VBAT_NRF', '+3V3_ETH')]
+        '/Power/PROT_MID', 'MESH_VBAT_NRF', '+3V3_ETH', '+1V2_ETH', '/Ethernet/ETH_SW*')]
     d.setdefault('meta', {'filename': 'mmdvm_mesh.kicad_pro', 'version': 3})
     json.dump(d, open(pro, 'w', encoding='utf-8'), indent=2)
 

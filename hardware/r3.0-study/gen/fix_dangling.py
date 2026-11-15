@@ -100,7 +100,10 @@ while again:
     for t in list(segs):
         if t.GetLength() == 0:
             continue
-        if free(t, t.GetStart()) or free(t, t.GetEnd()):
+        # a via or pad of the net sitting on the body (not on an end) still makes the segment a connection
+        on_body = any(v.GetNetname() == t.GetNetname() and t.HitTest(v.GetPosition()) for v in vias) or             any(p.GetNetname() == t.GetNetname() and p.IsOnLayer(t.GetLayer()) and t.HitTest(p.GetPosition())
+                for p in pads)
+        if not on_body and (free(t, t.GetStart()) or free(t, t.GetEnd())):
             print('stub removed: %-22s %.3f mm at (%.3f, %.3f)%s' % (
                 t.GetNetname()[-22:], pcbnew.ToMM(t.GetLength()), pcbnew.ToMM(t.GetStart().x),
                 pcbnew.ToMM(t.GetStart().y), ' [locked]' if t.IsLocked() else ''))

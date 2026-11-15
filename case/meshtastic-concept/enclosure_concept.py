@@ -112,8 +112,8 @@ def build(p=P):
     y2 = p["pcb_y2"]
     # +Y edge parts as placed by hardware/r3.0-study/gen/main_pcb.py (x centres 9 / 23.7 / 33.7 / 42.1 / 53 / 60.8 / 71.3)
     parts["usb_c"] = box(19.2, y2 - 7.3, z_mt, 28.2, y2 + 0.6, z_mt + 3.3)
-    # RJ45 with magnetics (HanRun HR911105A): 16 x 21.3 x 13.4 mm, front 1 mm beyond the board edge
-    parts["rj45"] = box(71.3 - 8.0, y2 + 1.0 - 21.3, z_mt, 71.3 + 8.0, y2 + 1.0, z_mt + 13.4)
+    # gigabit RJ45 with magnetics (Wurth 7499111446): 16 x 21.9 x 13.5 mm, front 1 mm beyond the board edge
+    parts["rj45"] = box(71.3 - 8.0, y2 + 1.0 - 21.9, z_mt, 71.3 + 8.0, y2 + 1.0, z_mt + 13.5)
     # Alps SKRTLAE010 (manufacturer STEP): body 4.5 x 2.96 x 3.3 mm, round 2 mm stem at mid height,
     # guide bosses 1.85 mm inside the board edge, stem tip 0.2 mm beyond the edge
     parts["power_button"] = (box(31.45, y2 - 3.35, z_mt, 35.95, y2 - 0.39, z_mt + 3.3)

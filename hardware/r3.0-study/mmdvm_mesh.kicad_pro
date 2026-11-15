@@ -608,6 +608,14 @@
       {
         "netclass": "Power",
         "pattern": "+3V3_ETH"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+1V2_ETH"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/Ethernet/ETH_SW*"
       }
     ]
   },

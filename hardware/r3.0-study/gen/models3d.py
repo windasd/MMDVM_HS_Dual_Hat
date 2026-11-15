@@ -62,8 +62,8 @@ save('ublox_MAX', (box(-4.85, -5.05, 4.85, 5.05, 0.0, 0.6), BOARD), (box(-4.4, -
 save('RAK4630', (box(-11.5, -7.5, 11.5, 7.5, 0.0, 0.8), BOARD), (box(-10.3, -6.6, 8.5, 6.6, 0.8, 3.0), SILVER))
 # 96Boards high-speed plug (Amphenol 61083 series, 60 way, 0.8 mm): plain envelope, 4 mm tall
 save('AMPHENOL_61083-063402LF', (box(-13.0, -2.6, 13.0, 2.6, 0.0, 4.0), BLACK))
-# HanRun HR911105A RJ45 with magnetics: 16 x 21.3 x 13.4 mm, origin = pin 1, mouth towards +y
-save('RJ45_Hanrun_HR911105A_Horizontal',
-     (box(-3.56, -3.6, 12.44, 17.7, 0.0, 13.4).cut(box(-1.4, 9.0, 10.3, 17.8, 2.0, 10.5)), SILVER))
-# LAN9500A 56-QFN 8 x 8 x 0.9 mm
-ic('QFN-56-1EP_8x8mm_P0.5mm_EP5.6x5.6mm', -4.0, -4.0, 4.0, 4.0, 0.9)
+# Wurth 7499111446 gigabit RJ45 with magnetics: 16 x 21.9 x 13.5 mm, origin = pin 1, mouth towards +y
+save('RJ45_Wuerth_7499111446_Horizontal',
+     (box(-2.27, -2.11, 13.71, 19.83, 0.0, 13.5).cut(box(-0.1, 11.0, 11.6, 19.9, 2.0, 10.5)), SILVER))
+# LAN7500 56-QFN 8 x 8 x 0.9 mm
+ic('QFN-56-1EP_8x8mm_P0.5mm_EP5.9x5.9mm', -4.0, -4.0, 4.0, 4.0, 0.9)

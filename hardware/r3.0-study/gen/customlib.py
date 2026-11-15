@@ -73,6 +73,20 @@ def lan9500a_symbol():
                          description='USB 2.0 Hi-Speed to 10/100 Ethernet controller with PHY, 56-QFN')
 
 
+def rj45_we_7499111446_symbol():
+    """Wurth 7499111446 gigabit RJ45 with magnetics. Pin functions read from the schematic in the Wurth
+    specification (pairs on 2/3, 4/5, 6/7, 8/9); pins 1 and 10 and the LED polarity are to be verified."""
+    pins = [('1', 'CT', 'passive', 'L'), ('2', 'TRD1+', 'passive', 'L'), ('3', 'TRD1-', 'passive', 'L'),
+            ('4', 'TRD2+', 'passive', 'L'), ('5', 'TRD2-', 'passive', 'L'), ('6', 'TRD3+', 'passive', 'L'),
+            ('7', 'TRD3-', 'passive', 'L'), ('8', 'TRD4+', 'passive', 'L'), ('9', 'TRD4-', 'passive', 'L'),
+            ('10', 'P10', 'passive', 'L'), ('11', 'LEDY_A', 'passive', 'R'), ('12', 'LEDY_K', 'passive', 'R'),
+            ('13', 'LEDG_A', 'passive', 'R'), ('14', 'LEDG_K', 'passive', 'R'), ('SH', 'SHIELD', 'passive', 'R')]
+    return symgen.symbol('RJ45_WE_7499111446', 'J', pins,
+                         footprint='MMDVM_r30:RJ45_Wuerth_7499111446_EdgeMount',
+                         datasheet='https://www.we-online.com/components/products/datasheet/7499111446.pdf',
+                         description='RJ45 with magnetics, 10/100/1000BASE-T, two LEDs, shielded')
+
+
 # ------------------------------------------------------------------------------ footprints
 def hs_connector_footprint():
     """96Boards high-speed connector (60 pin, 0.8 mm) for the mezzanine underside.
@@ -197,6 +211,10 @@ def edge_variants():
             'Connector_PinHeader_2.54mm', 'PinHeader_1x06_P2.54mm_Horizontal',
             'PinHeader_1x06_P2.54mm_Horizontal_EdgeMount',
             lambda x1, y1, x2, y2: max(x1, x2) > 4.2, 'pin outlines removed from silk for mounting at the board edge'),
+        # gigabit RJ45: the outline around the mouth (y = 20) lies on / beyond the board edge
+        'RJ45_Wuerth_7499111446_EdgeMount': silk_trimmed(
+            'Connector_RJ', 'RJ45_Wuerth_7499111446_Horizontal', 'RJ45_Wuerth_7499111446_EdgeMount',
+            lambda x1, y1, x2, y2: max(y1, y2) > 19.9, 'mouth outline removed from silk for mounting at the board edge'),
     }
 
 
@@ -212,7 +230,7 @@ def write(libdir):
                                              ('5', 'D', 'passive', 'R')],
                          footprint='Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET',
                          description='P-channel MOSFET, SON-8 3.3x3.3 (S=1,2,3 G=4 D=5), e.g. CSD25404Q3')
-    syms = [rak4630_symbol(), max17048_symbol(), pmos, lan9500a_symbol()]
+    syms = [rak4630_symbol(), max17048_symbol(), pmos, lan9500a_symbol(), rj45_we_7499111446_symbol()]
     open(os.path.join(libdir, 'MMDVM_r30.pretty', 'AMPHENOL_61083-063402LF.kicad_mod'), 'w', encoding='utf-8',
          newline='\n').write(hs_connector_footprint())
     import shutil

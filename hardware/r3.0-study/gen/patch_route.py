@@ -6,6 +6,7 @@ Everything of other nets is an obstacle with the board clearance; the new copper
 connections, then review them.
 
 Usage: python patch_route.py U60.12 J10.51 [REF.PAD REF.PAD ...]
+`REF.PAD VIA` (ground pads): run to the nearest spot where a via fits and drop a via to the ground plane.
 An end can also be a point on an existing track of the net: @x,y,LAYER (board mm, e.g. @148.76,94.33,F.Cu).
 """
 import heapq
@@ -22,7 +23,7 @@ board = pcbnew.LoadBoard(PCB)
 G = 0.1                       # grid, mm
 W, VIA_D, VIA_DR, CL = 0.2, 0.45, 0.2, 0.1
 R_TRK = W / 2 + CL + 0.03     # obstacle inflation for a track centre line
-R_VIA = VIA_D / 2 + CL + 0.03
+R_VIA = VIA_D / 2 + CL + 0.01    # exact distance test from the via centre, so a small margin is enough
 LAYERS = [pcbnew.F_Cu, pcbnew.In2_Cu, pcbnew.B_Cu]
 MARGIN = 9.0
 VIA_COST = 40.0
@@ -90,7 +91,9 @@ def find_pad(spec):
 
 
 def route(spec_a, spec_b):
-    pa, pb = find_pad(spec_a), find_pad(spec_b)
+    pa = find_pad(spec_a)
+    to_via = spec_b == 'VIA'          # GND only: run to the nearest spot where a via fits and drop one there
+    pb = pa if to_via else find_pad(spec_b)
     net = pa.GetNetname()
     assert net == pb.GetNetname(), (net, pb.GetNetname())
     ax, ay = tomm(pa.GetPosition().x), tomm(pa.GetPosition().y)
@@ -145,6 +148,10 @@ def route(spec_a, spec_b):
     allk = [0, 1, 2]
     for t in board.GetTracks():
         if t.GetNetname() == net:
+            if t.GetClass() == 'PCB_VIA':            # no second via within hole-to-hole distance
+                q = t.GetPosition()
+                mark(vocc, tomm(q.x) - 0.5, tomm(q.y) - 0.5, tomm(q.x) + 0.5, tomm(q.y) + 0.5,
+                     lambda x, y, cx=tomm(q.x), cy=tomm(q.y): 0.01 < math.hypot(x - cx, y - cy) < 0.5)
             continue
         if t.GetClass() == 'PCB_VIA':
             q = t.GetPosition()
@@ -193,6 +200,8 @@ def route(spec_a, spec_b):
             for i in range(int((tomm(tb.GetX()) - x0) / G) + 1, int((tomm(tb.GetRight()) - x0) / G) + 1):
                 goal.add((k, i, j))
     goal.add((pad_layers(pb)[0], ti, tj))
+    if to_via:
+        goal = set()
     # the pads' own cells are always usable (clearance to neighbours is handled by leaving along the pad axis)
     sb = pa.GetBoundingBox()
     free_cells = set(goal)
@@ -216,7 +225,7 @@ def route(spec_a, spec_b):
     found = None
     while heap:
         f, g, cur = heapq.heappop(heap)
-        if cur in goal:
+        if cur in goal or (to_via and not vocc[cur[2] * nx + cur[1]]):     # may end up as a via in the pad
             found = cur
             break
         if g > best.get(cur, 1e18):
@@ -275,9 +284,14 @@ def route(spec_a, spec_b):
         board.Add(t)
         segs += 1
         i = j
+    if to_via:
+        v = pcbnew.PCB_VIA(board)
+        v.SetPosition(pts[-1][1]); v.SetWidth(pcbnew.FromMM(VIA_D)); v.SetDrill(pcbnew.FromMM(VIA_DR)); v.SetNet(ni)
+        board.Add(v)
+        vias += 1
     # last cell to the target pad centre if the path stopped at the pad rim
     last = pts[-1][1]
-    if last != pb.GetPosition() and LAYERS[path[-1][0]] in [ly for ly in LAYERS if pb.IsOnLayer(ly)]:
+    if not to_via and last != pb.GetPosition() and LAYERS[path[-1][0]] in [ly for ly in LAYERS if pb.IsOnLayer(ly)]:
         t = pcbnew.PCB_TRACK(board)
         t.SetStart(last); t.SetEnd(pb.GetPosition()); t.SetWidth(pcbnew.FromMM(W)); t.SetLayer(LAYERS[path[-1][0]])
         t.SetNet(ni)

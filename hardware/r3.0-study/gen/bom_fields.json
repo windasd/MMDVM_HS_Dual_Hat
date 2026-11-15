@@ -1934,9 +1934,9 @@
  },
  "C164": {
   "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05B104KO5NNNC",
-  "Mouser": "187-CL05B104KO5NNNC",
-  "LCSC": "C1525"
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC",
+  "LCSC": "C52923"
  },
  "C167": {
   "MFR": "Samsung Electro-Mechanics",
@@ -1944,17 +1944,11 @@
   "Mouser": "187-CL05B104KO5NNNC",
   "LCSC": "C1525"
  },
- "C150": {
-  "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05A105KA5NQNC",
-  "Mouser": "187-CL05A105KA5NQNC",
-  "LCSC": "C52923"
- },
  "C151": {
   "MFR": "Samsung Electro-Mechanics",
-  "MPN": "CL05A105KA5NQNC",
-  "Mouser": "187-CL05A105KA5NQNC",
-  "LCSC": "C52923"
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC",
+  "LCSC": "C96446"
  },
  "C160": {
   "MFR": "Samsung Electro-Mechanics",
@@ -1969,13 +1963,6 @@
   "LCSC": "C25744",
   "Mouser_MPN": "RC0402FR-0710KL"
  },
- "R83": {
-  "MFR": "UNI-ROYAL (Uniroyal Elec)",
-  "MPN": "0402WGF1002TCE",
-  "Mouser": "603-RC0402FR-0710KL",
-  "LCSC": "C25744",
-  "Mouser_MPN": "RC0402FR-0710KL"
- },
  "R84": {
   "MFR": "UNI-ROYAL (Uniroyal Elec)",
   "MPN": "0402WGF1002TCE",
@@ -1984,22 +1971,22 @@
   "Mouser_MPN": "RC0402FR-0710KL"
  },
  "U61": {
-  "MFR": "Diodes Incorporated",
-  "MPN": "AP2112K-3.3TRG1",
-  "Mouser": "621-AP2112K-3.3TRG1",
-  "LCSC": "C51118"
+  "MFR": "Texas Instruments",
+  "MPN": "TLV62569DBVR",
+  "Mouser": "595-TLV62569DBVR",
+  "LCSC": ""
  },
  "U60": {
   "MFR": "Microchip",
-  "MPN": "LAN9500A-ABZJ",
-  "Mouser": "579-LAN9500A-ABZJ",
+  "MPN": "LAN7500-ABZJ",
+  "Mouser": "579-LAN7500-ABZJ",
   "LCSC": ""
  },
  "J60": {
-  "MFR": "HanRun (HR)",
-  "MPN": "HR911105A",
-  "Mouser": "",
-  "LCSC": "C12074"
+  "MFR": "Wurth Elektronik",
+  "MPN": "7499111446",
+  "Mouser": "710-7499111446",
+  "LCSC": ""
  },
  "J10": {
   "MFR": "Amphenol ICC (FCI)",
@@ -2029,6 +2016,111 @@
   "MFR": "C&K",
   "MPN": "JS202011AQN",
   "Mouser": "611-JS202011AQN",
+  "LCSC": ""
+ },
+ "C173": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C174": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C175": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C176": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C177": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C178": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C179": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C169": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC",
+  "LCSC": "C96446"
+ },
+ "C171": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC",
+  "LCSC": "C96446"
+ },
+ "C172": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC",
+  "LCSC": "C96446"
+ },
+ "R93": {
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "LCSC": "C25741",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R94": {
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "LCSC": "C25741",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R95": {
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "LCSC": "C25741",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "U62": {
+  "MFR": "Texas Instruments",
+  "MPN": "TLV62569DBVR",
+  "Mouser": "595-TLV62569DBVR",
+  "LCSC": ""
+ },
+ "L64": {
+  "MFR": "Murata Electronics",
+  "MPN": "DFE252012F-2R2M=P2",
+  "Mouser": "81-DFE252012F-2R2MP2",
+  "LCSC": ""
+ },
+ "L65": {
+  "MFR": "Murata Electronics",
+  "MPN": "DFE252012F-2R2M=P2",
+  "Mouser": "81-DFE252012F-2R2MP2",
+  "LCSC": ""
+ },
+ "L63": {
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D",
   "LCSC": ""
  }
 }

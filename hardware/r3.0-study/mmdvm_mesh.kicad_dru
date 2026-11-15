@@ -8,3 +8,16 @@
 	(condition "(A.Reference == 'U3' && (B.Reference == 'C44' || B.Reference == 'C45')) || (B.Reference == 'U3' && (A.Reference == 'C44' || A.Reference == 'C45'))")
 	(constraint courtyard_clearance)
 	(severity ignore))
+
+# The 25 MHz crystal Y3 sits between the battery switch SW101 and the RJ45 J60. Its courtyard overlaps the
+# switch courtyard by 0.33 x 0.53 mm; the bodies themselves are 0.45 mm apart (switch body ends at x = 57.55,
+# crystal body starts at 58.0, board frame). Reviewed and accepted for this placement.
+(rule "Y3 crystal next to SW101 (reviewed)"
+	(condition "(A.Reference == 'Y3' && B.Reference == 'SW101') || (A.Reference == 'SW101' && B.Reference == 'Y3')")
+	(constraint courtyard_clearance)
+	(severity ignore))
+
+(rule "Y3 crystal silk next to SW101 silk (reviewed, see the courtyard rule above)"
+	(condition "(A.memberOfFootprint('Y3') && B.memberOfFootprint('SW101')) || (A.memberOfFootprint('SW101') && B.memberOfFootprint('Y3'))")
+	(constraint silk_clearance)
+	(severity ignore))
