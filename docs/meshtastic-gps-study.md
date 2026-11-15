@@ -803,6 +803,45 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
 - 佈線已全部接通；送廠前仍要人工檢查：電源迴路的窄段與過孔、RF 走線阻抗、盤中孔，之後再整理絲印。
 - 依實際零件確認自建封裝（RAK4630、TPS61178、MAX17048 EP、LS 排針）。
 
+## 11. 板上 RJ45 有線網路（可行性，2026-11-15，尚未實作）
+
+目標：板上直接有 RJ45，不用外接 USB 網卡。
+
+### 11.1 結論
+
+- **方案 A 電氣上可行**：Bubblegum-96 的 60-pin 高速擴充接頭有接出一路 USB 2.0，可以在主板上放 USB 乙太網路晶片加 RJ45。
+- **機構上有三個代價**，都要動到現有設計（見 11.3），所以還沒動手。
+- 電氣上仍然是 USB 轉乙太網路，只是整合在板上；驅動用 kernel 內建的 `r8152` 或 `smsc95xx`。
+
+### 11.2 查證到的事實（Bubblegum-96 硬體手冊 V1.1、線路圖）
+
+- 高速接頭 J3 的 pin 51／53 是 USB_D+／USB_D−，來自板上 USB hub GL852G 的下行埠 1；hub 的上行接 S900 的 U2_Port2。
+- 板上的 USB 2.0 Type-A 是同一顆 hub 的下行埠 2。**所以只要 USB 2.0 A 口在使用者的 kernel 下能用，高速接頭這一路就能用**；如果目前只驗證過 USB 3.0 口，要先在 USB 2.0 口插網卡確認。
+- 手冊註明這一路不能再接 hub（S900 host 不支援兩層以上 hub）。直接接一顆 USB 乙太網路晶片沒問題，但不能用「hub＋乙太網路」的複合晶片（例如 LAN9514）。
+- 高速接頭上沒有 5 V 或 3.3 V 電源腳，乙太網路晶片由主板自己的 3.3 V 供電。
+- S900 的其他乙太網路介面（RMII）沒有拉到任何擴充接頭。
+
+### 11.3 要付出的代價
+
+1. **高速接頭的位置跟 r1.3 射頻區的銅衝突。**
+   - 接頭位置由 96Boards 規格固定（依 KiCad 10 mezzanine 範本換算：背面，中心在主板座標 (132.75, 234.55)，60 pin、0.8 mm 間距）。
+   - USB 用的 pin 51、53 沒有衝突；但有 15 支腳的焊墊壓到 r1.3 沿用的鎖定走線：
+     - pin 29、32、34：ADF7021（U1）的 `VCOIN` 過孔 2 個和背面走線（VCO 迴路濾波器節點，對雜訊敏感）。
+     - pin 42–60 的偶數腳和 57、59：背面一條 +3V3 走線和 3 個過孔。
+   - 要裝這顆接頭，就得改 r1.3 射頻區這兩條網路的佈線。+3V3 好處理；VCOIN 改線有影響射頻性能的風險，改完要實測。
+   - 測試點 TP1 也在這個範圍，要移走。
+2. **RJ45 沒有現成的位置。**
+   - 含變壓器的 RJ45 約 16 × 21 × 13.5 mm。
+   - 放在接頭側（console／USB-C／電源鍵／GPS 開關那一邊）最合理，但那條邊最大的空隙只有 10 mm，要重排，主板可能要再加長。
+   - 高度：主板到螢幕背面零件只有 11.0 mm 淨空，螢幕蓋到離板邊 8.6 mm 處，RJ45 會頂到螢幕約 2.5 mm。解法三選一：用 11 mm 以下的低背型 RJ45、主板和外盒再加長約 13 mm 讓 RJ45 整顆在螢幕範圍外、或外盒加厚約 3 mm。
+   - 背面是電池座，RJ45 的插件腳要避開，或改用貼片型。
+3. **整板要重新擺位和佈線。** 線路圖重新產生後元件 UUID 會變，目前「未連線 0、DRC 0」的佈線要整個重跑（先前花了五輪才歸零），絲印和 3D 模型的腳本也要重跑。
+
+### 11.4 其他方案（比較用）
+
+- **B. 機內 USB 線接到 Bubblegum 的 USB-A 口**：不用高速接頭，但 USB-A 口朝外盒外側，線要繞出外盒再進來，實際上不算機內；仍然有上面第 2、3 項代價。
+- **C. SPI 乙太網路（W5500）接低速接頭**：S900 沒有硬體 SPI 驅動，只能軟體模擬，約 1 Mbit/s 以下，未驗證。不建議。
+
 ## 參考來源（節錄）
 
 - **Meshtastic**
@@ -836,5 +875,8 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
   - TJC 串口電壓 FAQ：<http://wiki.tjc1688.com/QA/QA3.html>
   - MMDVM-Display：<https://github.com/g4klx/MMDVM-Display>
   - PD0DIB 畫面（參考）：<https://github.com/PD0DIB/Nextion_HAM-radio-screens>
+- **Bubblegum-96 硬體資料**
+  - 硬體手冊 V1.1、線路圖：<https://github.com/96boards/documentation/tree/master/consumer/bubblegum-96/hardware-docs>
+  - 96Boards KiCad 10 mezzanine 範本（高速接頭位置與封裝）：<https://github.com/LordRafa/96boards-kicad10-mezzanine-template>
 - **法規**
   - NCC LP0002（非官方副本）：<https://forum.flipper.net/uploads/short-url/5qQHHxW40bD5Vs4cEaPzTiDwmmU.pdf>
