@@ -28,11 +28,12 @@ P = dict(
     soc_heatsink=(25.0, 22.0, 40.0, 37.0, 6.0),   # x0, y0, x1, y1, height; SoC position TBC on the board
     mezz_gap=8.0,               # board-to-mezzanine spacing (CE spec v2.0)
     # main (mezzanine) board, extended towards +Y for the cells
-    pcb_t=1.6, pcb_y1=-1.0, pcb_y2=153.0,
+    pcb_t=1.6, pcb_y1=-1.0, pcb_y2=166.0,
+    disp_ref_y2=153.0,          # the display keeps its place: the 13 mm added for the RJ45 lie beyond its +Y end
     edge_gap=1.8,               # +Y board edge to the inner wall: the switch lever (1.25) and console pins (1.6)
                                 # stay inside it, so the board stack drops straight in from the front
     pcb_wide=(-2.0, 88.5, 54.0),               # L-shaped main board: x -2 .. 88.5 from y = 54 (cell holders)
-    mb_holes_ext=[(4.0, 149.0), (84.0, 149.0)],   # main-board holes beyond the last cell holder
+    mb_holes_ext=[(4.0, 162.0), (84.0, 162.0)],   # main-board holes beyond the last cell holder
     # 4x Keystone 1042P, mounted on the main-board underside, cells along X (vertical when standing)
     cell_len=77.1, cell_pitch=21.8, cell_h=20.5, cells_y0=55.0, cell_cx=43.25,   # Keystone 1042 courtyard 88 x 21.75
     # display: TJC8048X550_011R (resistive: 4-pin touch tail HST050008), TJC X5 datasheet p.7; long side along Y
@@ -109,19 +110,21 @@ def build(p=P):
     parts["main_board"] = mb
     # side-panel controls on the +Y edge: USB-C, MESH button, power button, GPS switch, GPS LED
     y2 = p["pcb_y2"]
-    # +Y edge parts as placed by hardware/r3.0-study/gen/main_pcb.py (x centres 17.5 / 34.5 / 53.0 / 66.3 / 74.5)
-    parts["usb_c"] = box(30, y2 - 7.3, z_mt, 39, y2 + 0.6, z_mt + 3.3)
+    # +Y edge parts as placed by hardware/r3.0-study/gen/main_pcb.py (x centres 16 / 32 / 42.3 / 52.3 / 60.3 / 71.3)
+    parts["usb_c"] = box(27.5, y2 - 7.3, z_mt, 36.5, y2 + 0.6, z_mt + 3.3)
+    # RJ45 with magnetics (HanRun HR911105A): 16 x 21.3 x 13.4 mm, front 1 mm beyond the board edge
+    parts["rj45"] = box(71.3 - 8.0, y2 + 1.0 - 21.3, z_mt, 71.3 + 8.0, y2 + 1.0, z_mt + 13.4)
     # Alps SKRTLAE010 (manufacturer STEP): body 4.5 x 2.96 x 3.3 mm, round 2 mm stem at mid height,
     # guide bosses 1.85 mm inside the board edge, stem tip 0.2 mm beyond the edge
-    parts["power_button"] = (box(50.75, y2 - 3.35, z_mt, 55.25, y2 - 0.39, z_mt + 3.3)
-                             .union(cq.Workplane("XZ").center(53.0, z_mt + 1.65).circle(1.0).extrude(-0.59)
+    parts["power_button"] = (box(40.05, y2 - 3.35, z_mt, 44.55, y2 - 0.39, z_mt + 3.3)
+                             .union(cq.Workplane("XZ").center(42.3, z_mt + 1.65).circle(1.0).extrude(-0.59)
                                     .translate((0, y2 - 0.39, 0))))
-    parts["gps_switch"] = (box(62.95, y2 - 2.9, z_mt, 69.65, y2 - 0.2, z_mt + 1.4)             # C&K PCM12
-                           .union(box(65.65, y2 - 0.2, z_mt + 0.2, 66.95, y2 + 1.25, z_mt + 1.2)))  # lever (centre)
-    parts["gps_led"] = box(73.5, y2 - 3.0, z_mt, 75.5, y2 - 1.0, z_mt + 1)
+    parts["gps_switch"] = (box(48.95, y2 - 2.9, z_mt, 55.65, y2 - 0.2, z_mt + 1.4)             # C&K PCM12
+                           .union(box(51.65, y2 - 0.2, z_mt + 0.2, 52.95, y2 + 1.25, z_mt + 1.2)))  # lever (centre)
+    parts["gps_led"] = box(59.3, y2 - 3.0, z_mt, 61.3, y2 - 1.0, z_mt + 1)
     # Bubblegum-96 console: 6-pin 2.54 mm right-angle header, FTDI order, pin tips 1.6 mm beyond the edge
-    parts["console_header"] = (box(9.6, y2 - 7.0, z_mt, 25.4, y2 - 4.4, z_mt + 2.54)
-                               .union(box(10.5, y2 - 4.4, z_mt + 0.95, 24.5, y2 + 1.6, z_mt + 1.6)))
+    parts["console_header"] = (box(8.1, y2 - 7.0, z_mt, 23.9, y2 - 4.4, z_mt + 2.54)
+                               .union(box(9.0, y2 - 4.4, z_mt + 0.95, 23.0, y2 + 1.6, z_mt + 1.6)))
     # layout zones on the main-board top (standing: X is height)
     parts["mmdvm_zone"] = box(5, 2, z_mt, 80, 52, z_mt + 3)          # over the Bubblegum (SoC column)
     parts["mesh_gps_zone"] = box(5, 60, z_mt, 42, 136, z_mt + 3)     # low in the cell column
@@ -147,7 +150,8 @@ def build(p=P):
     ox0, ox1, oy0, oy1 = ix0 - p["bottom_wall"], ix1 + p["wall"], iy0 - p["wall"], iy1 + p["wall"]
     z_out_back = z_back_in - p["back"]
     z_out_front = z_front_in + p["front"]
-    cx, cy = (-p["clear"] + ix1) / 2, (iy0 + iy1) / 2   # 5" display centred above the chin
+    cx, cy = (-p["clear"] + ix1) / 2, (iy0 + p["disp_ref_y2"] + p["edge_gap"]) / 2   # 5" display above the chin,
+    # centred on the board without the RJ45 strip so the 13.5 mm tall jack stays clear of its back
     # display: LCD stack against the front plate (touch gap), PCB behind it, XH connector at the -Y end
     z_lcd = z_front_in - p["touch_gap"]
     z_pcb = z_lcd - p["lcd_t"]
@@ -246,20 +250,21 @@ def build(p=P):
     for (a, b, zt) in ((2, 14, 2.6), (17.5, 32.5, 7.0), (38, 45, 4.0), (49.5, 63.7, 8.0), (69, 83, 8.0)):
         tub = tub.cut(box(a - 0.5, oy0 - 1, -p["sbc_t"] - 0.5, b + 0.5, iy0 + 1, zt))
     # side face (+Y): console, USB-C (opening passes the plug overmold), power-button cap, GPS slider, LED
-    tub = tub.cut(box(9.0, iy1 - 1, z_mt - 0.4, 26.0, oy1 + 1, z_mt + 3.2))          # 6-pin Dupont / FTDI housing
-    tub = tub.cut(box(28.0, iy1 - 1, z_mt - 2.0, 41.0, oy1 + 1, z_mt + 5.3))         # 13 x 7.3 mm for the USB-C plug
-    tub = tub.cut(cq.Workplane("XZ").center(74.5, z_mt + 2.2).circle(1.6).extrude(-10).translate((0, iy1 - 2, 0)))
+    tub = tub.cut(box(7.5, iy1 - 1, z_mt - 0.4, 24.5, oy1 + 1, z_mt + 3.2))          # 6-pin Dupont / FTDI housing
+    tub = tub.cut(box(25.8, iy1 - 1, z_mt - 2.0, 38.2, oy1 + 1, z_mt + 5.3))         # 12.4 x 7.3 mm for the USB-C plug
+    tub = tub.cut(box(71.3 - 8.5, iy1 - 1, z_mt - 0.3, 71.3 + 8.5, oy1 + 1, z_mt + 14.0))   # RJ45 mouth
+    tub = tub.cut(cq.Workplane("XZ").center(60.3, z_mt + 2.2).circle(1.6).extrude(-10).translate((0, iy1 - 2, 0)))
     t2 = p["tol"]
     # power button cap: nub on the plunger, flange in a pocket of the inner wall face, stem through the wall
     bz = z_mt + 1.65                      # stem axis of the SKRTLAE010
-    tub = tub.cut(cq.Workplane("XZ").center(53.0, bz).circle(1.8 + t2).extrude(-10).translate((0, iy1 - 1, 0)))
-    tub = tub.cut(box(53.0 - 3.3, iy1 - 0.1, bz - 2.5, 53.0 + 3.3, iy1 + 1.0, bz + 2.5))
-    parts["button_cap"] = (cq.Workplane("XZ").center(53.0, bz).circle(1.0).extrude(-(iy1 - y2 - 0.3)).translate((0, y2 + 0.3, 0))
-                           .union(box(53.0 - 3.0, iy1, bz - 2.2, 53.0 + 3.0, iy1 + 0.8, bz + 2.2))
-                           .union(cq.Workplane("XZ").center(53.0, bz).circle(1.8).extrude(-(oy1 + 0.8 - iy1 - 0.8))
+    tub = tub.cut(cq.Workplane("XZ").center(42.3, bz).circle(1.8 + t2).extrude(-10).translate((0, iy1 - 1, 0)))
+    tub = tub.cut(box(42.3 - 3.3, iy1 - 0.1, bz - 2.5, 42.3 + 3.3, iy1 + 1.0, bz + 2.5))
+    parts["button_cap"] = (cq.Workplane("XZ").center(42.3, bz).circle(1.0).extrude(-(iy1 - y2 - 0.3)).translate((0, y2 + 0.3, 0))
+                           .union(box(42.3 - 3.0, iy1, bz - 2.2, 42.3 + 3.0, iy1 + 0.8, bz + 2.2))
+                           .union(cq.Workplane("XZ").center(42.3, bz).circle(1.8).extrude(-(oy1 + 0.8 - iy1 - 0.8))
                                   .translate((0, iy1 + 0.8, 0))))
     # GPS slider cap: grips the PCM12 lever (pocket open towards the front so the board drops in), 2 mm travel
-    sx = 66.3
+    sx = 52.3
     tub = tub.cut(box(sx - 3.0, iy1 - 1, z_mt - 0.4, sx + 3.0, oy1 + 1, z_mt + 2.6))
     tub = tub.cut(box(sx - 6.0, iy1 - 0.1, z_mt - 1.6, sx + 6.0, iy1 + 1.0, z_mt + 3.8))
     parts["slider_cap"] = (box(sx - 1.8, y2 + 0.3, z_mt - 0.2, sx + 1.8, iy1, z_mt + 2.2)
@@ -354,9 +359,9 @@ def build(p=P):
         return t.translate(pos)
     try:
         # +Y side face (left side when standing): reads along +Z with +X up, beside each opening
-        side = [("UART 3V3", 17.5), ("USB-C 9V", 34.5), ("POWER", 53.0), ("GPS", 66.3)]
+        side = [("UART", 16.0), ("USB-C", 32.0), ("PWR", 42.3), ("GPS", 52.3), ("LAN", 71.3)]
         for (txt, x) in side:
-            tub = tub.cut(label(txt, 2.6, (x, oy1 - ld, z_mt + 13.5), [((1, 1, 1), -120)], None))
+            tub = tub.cut(label(txt, 2.6, (x, oy1 - ld, z_mt + (18.5 if txt == "LAN" else 13.5)), [((1, 1, 1), -120)], None))
         # top wall: antenna names in front of the SMA holes, read from the front (along -Y)
         for (name, y, _l) in p["antennas"]:
             tub = tub.cut(label(name, 2.6, (ox1 - ld, y, zc + 8.5), [((0, 1, 0), 90), ((1, 0, 0), -90)], None))

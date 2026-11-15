@@ -48,7 +48,42 @@ def max17048_symbol():
                          description='1-cell ModelGauge fuel gauge, I2C 0x36')
 
 
+LAN9500A_PINS = {  # LAN950x data sheet DS00001875E, table 3-9 (56-QFN); pad 57 = exposed pad (VSS)
+    1: 'nPHY_INT', 2: 'TXN', 3: 'TXP', 4: 'VDD33A', 5: 'RXN', 6: 'RXP', 7: 'NC', 8: 'EXRES', 9: 'VDD33A',
+    10: 'VDDPLL', 11: 'USBDM', 12: 'USBDP', 13: 'TEST2', 14: 'NC', 15: 'VDD33A', 16: 'USBRBIAS', 17: 'VDDUSBPLL',
+    18: 'XI', 19: 'XO', 20: 'VBUS_DET', 21: 'VDDCORE', 22: 'MDC/GPIO2', 23: 'MDIO/GPIO1', 24: 'nRESET',
+    25: 'VDD33IO', 26: 'nFDX_LED/GPIO8', 27: 'nLNKA_LED/GPIO9', 28: 'nSPD_LED/GPIO10', 29: 'EECLK/PWR_SEL',
+    30: 'EECS', 31: 'EEDO/AUTOMDIX_EN', 32: 'EEDI', 33: 'TEST3', 34: 'PHY_SEL', 35: 'VDD33IO', 36: 'nTRST/RXD0',
+    37: 'TDO/nPHY_RST', 38: 'TCK/RXD1', 39: 'TMS/RXD2', 40: 'TDI/RXD3', 41: 'RXCLK', 42: 'RXDV', 43: 'TXEN',
+    44: 'RXER', 45: 'CRS/GPIO3', 46: 'COL/GPIO0', 47: 'TXCLK', 48: 'VDD33IO', 49: 'TEST1', 50: 'VDDCORE',
+    51: 'VDD33IO', 52: 'VDD33IO', 53: 'TXD3/GPIO7/EEP_SIZE', 54: 'TXD2/GPIO6/PORT_SWAP',
+    55: 'TXD1/GPIO5/RMT_WKP', 56: 'TXD0/GPIO4/EEP_DISABLE', 57: 'VSS',
+}
+
+
+def lan9500a_symbol():
+    left = [11, 12, 16, 20, 24, 18, 19, 29, 34, 13, 33, 49, 25, 35, 48, 51, 52, 21, 50, 17, 10, 57]
+    pins = [(str(n), LAN9500A_PINS[n], 'passive', 'L') for n in left]
+    pins += [(str(n), LAN9500A_PINS[n], 'passive', 'R') for n in (3, 2, 6, 5, 4, 9, 15, 8, 27, 28, 26)]
+    pins += [(str(n), LAN9500A_PINS[n], 'passive', 'R') for n in sorted(LAN9500A_PINS)
+             if n not in left and n not in (3, 2, 6, 5, 4, 9, 15, 8, 27, 28, 26)]
+    return symgen.symbol('LAN9500A', 'U', pins, footprint='Package_DFN_QFN:QFN-56-1EP_8x8mm_P0.5mm_EP5.6x5.6mm',
+                         datasheet='https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/'
+                                   'DataSheets/LAN950x-Data-Sheet-DS00001875.pdf',
+                         description='USB 2.0 Hi-Speed to 10/100 Ethernet controller with PHY, 56-QFN')
+
+
 # ------------------------------------------------------------------------------ footprints
+def hs_connector_footprint():
+    """96Boards high-speed connector (60 pin, 0.8 mm) for the mezzanine underside.
+
+    Taken from https://github.com/LordRafa/96boards-kicad10-mezzanine-template (BSD 2-clause, see
+    MMDVM_r30.pretty/HS_60P_LICENSE.txt), kept in vendor_fp/. Only the 3D model reference is dropped.
+    """
+    import re
+    t = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'vendor_fp',
+                          'AMPHENOL_61083-063402LF.kicad_mod'), encoding='utf-8').read()
+    return re.sub(r'\n\t\(model .*?\n\t\)', '', t, flags=re.S)
 def rak4630_footprint():
     """Land pattern from the RAK4630 datasheet (pcb_footprint / mechanical drawing), origin = module centre.
 
@@ -177,7 +212,12 @@ def write(libdir):
                                              ('5', 'D', 'passive', 'R')],
                          footprint='Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET',
                          description='P-channel MOSFET, SON-8 3.3x3.3 (S=1,2,3 G=4 D=5), e.g. CSD25404Q3')
-    syms = [rak4630_symbol(), max17048_symbol(), pmos]
+    syms = [rak4630_symbol(), max17048_symbol(), pmos, lan9500a_symbol()]
+    open(os.path.join(libdir, 'MMDVM_r30.pretty', 'AMPHENOL_61083-063402LF.kicad_mod'), 'w', encoding='utf-8',
+         newline='\n').write(hs_connector_footprint())
+    import shutil
+    shutil.copy(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'vendor_fp', 'HS_60P_LICENSE.txt'),
+                os.path.join(libdir, 'MMDVM_r30.pretty', 'HS_60P_LICENSE.txt'))
     try:
         import tps61178
         syms.append(tps61178.symbol())

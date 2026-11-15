@@ -28,11 +28,11 @@ LIBS = {'MMDVM': os.path.normpath(os.path.join(HERE, '..', '..', '..', 'librarie
         'MMDVM_r30': os.path.join(PRJ, 'MMDVM_r30.pretty')}
 X0, Y0 = 100.0, 250.0
 # outline (model coordinates), counter-clockwise
-OUTLINE = [(0.0, -1.0), (85.0, -1.0), (85.0, 54.0), (88.5, 54.0), (88.5, 153.0), (-2.0, 153.0), (-2.0, 54.0),
+OUTLINE = [(0.0, -1.0), (85.0, -1.0), (85.0, 54.0), (88.5, 54.0), (88.5, 166.0), (-2.0, 166.0), (-2.0, 54.0),
            (0.0, 54.0)]
-EDGE_Y = 153.0                      # +Y edge = left side face when standing
+EDGE_Y = 166.0                      # +Y edge = left side face when standing (13 mm added for the RJ45)
 CELL_X, CELL_Y0, CELL_PITCH = 43.25, 55.0 + 10.875, 21.8
-HOLES = [(4.0, 18.5), (4.0, 50.0), (81.0, 18.5), (81.0, 50.0), (4.0, 149.0), (84.0, 149.0)]
+HOLES = [(4.0, 18.5), (4.0, 50.0), (81.0, 18.5), (81.0, 50.0), (4.0, 162.0), (84.0, 162.0)]
 _KEEP = []
 
 # ref: (x, y, rotation, side); edge parts are snapped to EDGE_Y afterwards
@@ -40,8 +40,13 @@ FIXED = {
     'J1': (29.0, 50.0, 270, 'B'),           # 96Boards LS (mirrored-number footprint), centre line y = 50
     'BT100': (CELL_X, CELL_Y0, 0, 'B'), 'BT101': (CELL_X, CELL_Y0 + CELL_PITCH, 0, 'B'),
     'BT102': (CELL_X, CELL_Y0 + 2 * CELL_PITCH, 0, 'B'), 'BT103': (CELL_X, CELL_Y0 + 3 * CELL_PITCH, 0, 'B'),
-    'J2': (17.5, 146.0, 0, 'F'), 'J100': (34.5, 146.0, 0, 'F'), 'SW100': (53.0, 146.0, 0, 'F'),
-    'SW50': (66.3, 146.0, 0, 'F'), 'D51': (74.5, 146.0, 0, 'F'),
+    'J2': (16.0, 159.0, 0, 'F'), 'J100': (32.0, 159.0, 0, 'F'), 'SW100': (42.3, 159.0, 0, 'F'),
+    'SW50': (52.3, 159.0, 0, 'F'), 'D51': (60.3, 159.0, 0, 'F'),
+    'J60': (71.3, 150.0, 0, 'F'),           # RJ45, courtyard centred on this x (see below)
+    'TP1': (49.5, 11.0, 0, 'B'),            # r1.3 SWD test point: moved off the HS connector pads
+    'U60': (54.5, 150.5, 180, 'F'),         # LAN9500A right behind the RJ45, TX/RX pins (2-6) facing it
+    'Y3': (57.6, 158.2, 0, 'F'),            # 25 MHz crystal at the XI/XO pins (18/19)
+    'J10': (32.75, 15.45, 0, 'B'),          # 96Boards HS connector, position from the mezzanine template
     'J44': (0.0, 100.0, 0, 'F'),            # front-panel cable, opening towards the x = -2 edge
     'J5': (44.0, 6.0, 0, 'F'),              # TJC display
     'P5': (74.0, 34.5, 90, 'F'), 'P7': (75.0, 41.5, 90, 'F'),   # THT headers away from the Bubblegum USB-A
@@ -52,13 +57,14 @@ FIXED = {
 }
 # +Y edge parts: (rotation, 'pad' = edge-side SMD pads end `val` from the edge | 'court' = courtyard, val)
 EDGE_PARTS = {'J100': (180, 'court', 0.6), 'SW100': (180, 'pad', -0.35), 'SW50': (180, 'pad', -0.35),
-              'D51': (90, 'court', -1.0)}
+              'D51': (90, 'court', -1.0), 'J60': (180, 'court', 1.0)}
 CONSOLE_TIP = 1.6                   # console pin tips beyond the board edge (stay inside the enclosure wall)
 ZONES = {   # model x0, y0, x1, y1 (filled bottom-up, left to right)
     'Host interface': (5.0, 54.0, 87.0, 76.0),
     'Power': (44.0, 77.0, 87.0, 145.0),
     'Meshtastic': (5.0, 77.0, 43.5, 120.0),
     'GPS': (5.0, 120.0, 42.0, 143.5),
+    'Ethernet': (38.0, 144.5, 60.5, 161.0),
     'MMDVM IO': (56.0, 37.0, 76.0, 46.0),
 }
 PREFER = {'J42': 'Meshtastic',
@@ -183,7 +189,7 @@ def write_rules():
     ns['netclass_patterns'] = [{'netclass': 'Power', 'pattern': pat} for pat in (
         'VSYS', 'VBUS', 'CELL+', 'CELL-', '+5V', '+3V5', '+12V_BOOST', '+12V_SENSE', 'SYS_DCIN', '/Power/CELL*',
         '/Power/B12_SW', '/Power/B12_VOUT', '/Power/BQ_SW', '/Power/BQ_PMID', '/Power/B5_SW', '/Power/BB_L*',
-        '/Power/PROT_MID', 'MESH_VBAT_NRF')]
+        '/Power/PROT_MID', 'MESH_VBAT_NRF', '+3V3_ETH')]
     d.setdefault('meta', {'filename': 'mmdvm_mesh.kicad_pro', 'version': 3})
     json.dump(d, open(pro, 'w', encoding='utf-8'), indent=2)
 
@@ -302,6 +308,13 @@ def main():
         fp.Move(P(0, EDGE_Y + val - top) - P(0, 0))
         fab = fp.GetBoundingBox(False)
         edge_info[ref] = round(Y0 - pcbnew.ToMM(fab.GetY()) - EDGE_Y, 2)
+    if 'J60' in placed:                             # RJ45: centre the body (footprint origin is pin 1)
+        c = court(placed['J60'])
+        placed['J60'].Move(P(FIXED['J60'][0] - (c[0] + c[2]) / 2, 0) - P(0, 0))
+    if 'J10' in placed:
+        pad = {p.GetNumber(): model(p.GetPosition()) for p in placed['J10'].Pads()}
+        print('J10 pads 1/2/51 (model):', [tuple(round(v, 2) for v in pad[n]) for n in ('1', '2', '51')],
+              '-> template: (21.15, 13.25) (21.15, 17.65) (41.15, 13.25)')
     j2 = placed['J2']                               # console header, pins towards the edge
     best = None
     for rot in (0, 90, 180, 270):
@@ -313,7 +326,7 @@ def main():
     j2.SetOrientationDegrees(best[1])
     mx = sum(model(p.GetPosition())[0] for p in j2.Pads()) / len(j2.Pads())
     tip = Y0 - pcbnew.ToMM(j2.GetBoundingBox(False).GetY())          # pin tips
-    j2.Move(P(17.5 - mx, EDGE_Y + CONSOLE_TIP - tip) - P(0, 0))
+    j2.Move(P(FIXED['J2'][0] - mx, EDGE_Y + CONSOLE_TIP - tip) - P(0, 0))
     edge_info['J2'] = CONSOLE_TIP
     print('edge parts, outermost point beyond the board edge (mm):', edge_info)
     j44 = placed['J44']                             # opening towards x = -2
@@ -435,7 +448,7 @@ def main():
         zx0, zy0, zx1, zy1 = ZONES[zone]
         if zone == 'MMDVM IO':
             return zx0, zy0, zx1, zy1
-        return max(-1.4, zx0 - 8), max(54.4, zy0 - 8), min(87.9, zx1 + 8), min(152.4, zy1 + 8)
+        return max(-1.4, zx0 - 8), max(54.4, zy0 - 8), min(87.9, zx1 + 8), min(EDGE_Y - 0.6, zy1 + 8)
 
     use = {}
     todo = [r_ for refs in rest.values() for r_ in refs if not is_anchor(r_)]

@@ -262,3 +262,69 @@ def power():
         P('#FLG112', 'power:PWR_FLAG', 'PWR_FLAG', {'1': 'GPS_VBCKP'}, in_bom=False),
     ]
     return p
+
+
+# ============================================================================== Ethernet
+# USB 2.0 from the Bubblegum-96 high-speed connector (pins 51/53 = downstream port 1 of its GL852G hub)
+# into a LAN9500A (USB to 10/100 Ethernet, Linux driver smsc95xx) and an RJ45 with magnetics.
+# Connections follow the LAN950x data sheet (DS00001875E): table 3-9, section 4.0 and the pin descriptions.
+def ethernet():
+    gnd_hs = (6, 12, 13, 18, 19, 24, 25, 30, 31, 37, 40, 43, 46, 49, 52, 55, 58)
+    hs = {str(n): None for n in range(1, 61)}
+    hs.update({str(n): 'GND' for n in gnd_hs})
+    hs.update({'51': 'HS_USB_DP', '53': 'HS_USB_DM'})
+    nc = (1, 7, 14, 22, 23, 30, 31, 32, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 53, 54, 55, 56)
+    u = {str(n): None for n in nc}
+    u.update({'2': 'ETH_TXN', '3': 'ETH_TXP', '5': 'ETH_RXN', '6': 'ETH_RXP',
+              '4': 'ETH_VDD33A', '9': 'ETH_VDD33A', '15': 'ETH_VDD33A',
+              '8': 'ETH_EXRES', '10': 'ETH_VDDPLL', '11': 'HS_USB_DM', '12': 'HS_USB_DP', '13': 'GND',
+              '16': 'ETH_USBRBIAS', '17': 'ETH_VDDUSBPLL', '18': 'ETH_XI', '19': 'ETH_XO', '20': 'ETH_VBUS_DET',
+              '21': 'ETH_VDDCORE', '50': 'ETH_VDDCORE', '24': 'ETH_RST_N',
+              '25': '+3V3_ETH', '35': '+3V3_ETH', '48': '+3V3_ETH', '51': '+3V3_ETH', '52': '+3V3_ETH',
+              '26': None, '27': 'ETH_LED_LNK_N', '28': 'ETH_LED_SPD_N', '29': 'ETH_PWR_SEL',
+              '33': 'GND', '34': 'GND', '49': '+3V3_ETH', '57': 'GND'})
+    fb = lambda ref, a, b: P(ref, 'Device:FerriteBead', '120R@100MHz', {'1': a, '2': b},
+                             'Inductor_SMD:L_0603_1608Metric', {'MPN': 'BLM18PG121SN1D', 'Note': '0.5 A min'})
+    p = [
+        P('J10', 'Connector_Generic:Conn_02x30_Odd_Even', '96Boards HS', hs,
+          'MMDVM_r30:AMPHENOL_61083-063402LF',
+          {'MPN': 'Amphenol 61083-063402LF',
+           'Note': 'bottom side; only USB (51/53) and GND are used. VERIFY mating height against the LS header'}),
+        # 3.3 V for the Ethernet controller: on only while the host is up (EN = +1V8_HOST)
+        P('U61', 'Regulator_Linear:AP2112K-3.3', 'AP2112K-3.3', {'1': '+5V', '2': 'GND', '3': '+1V8_HOST',
+                                                                  '4': None, '5': '+3V3_ETH'},
+          'Package_TO_SOT_SMD:SOT-23-5', {'MPN': 'AP2112K-3.3TRG1', 'Note': '600 mA LDO, EN from +1V8_HOST'}),
+        C('C150', '1u', '+5V', 'GND'), C('C151', '1u', '+3V3_ETH', 'GND'),
+        P('U60', 'MMDVM_r30:LAN9500A', 'LAN9500A', u, 'Package_DFN_QFN:QFN-56-1EP_8x8mm_P0.5mm_EP5.6x5.6mm',
+          {'MPN': 'LAN9500A-ABZJ', 'Note': 'no EEPROM: set the MAC address in software (smsc95xx)'}),
+        C('C152', '100n', '+3V3_ETH', 'GND'), C('C153', '100n', '+3V3_ETH', 'GND'),
+        C('C154', '100n', '+3V3_ETH', 'GND'), C('C155', '100n', '+3V3_ETH', 'GND'),
+        C('C156', '100n', '+3V3_ETH', 'GND'),
+        fb('L60', '+3V3_ETH', 'ETH_VDD33A'),
+        C('C157', '100n', 'ETH_VDD33A', 'GND'), C('C158', '100n', 'ETH_VDD33A', 'GND'),
+        C('C159', '100n', 'ETH_VDD33A', 'GND'),
+        C('C160', '1u', 'ETH_VDDCORE', 'GND', Note='low ESR (0.1 ohm), close to pin 21'),
+        C('C161', '100n', 'ETH_VDDCORE', 'GND'),
+        fb('L61', 'ETH_VDDCORE', 'ETH_VDDUSBPLL'), C('C162', '100n', 'ETH_VDDUSBPLL', 'GND'),
+        fb('L62', 'ETH_VDDCORE', 'ETH_VDDPLL'), C('C163', '100n', 'ETH_VDDPLL', 'GND'),
+        R('R80', '12k', 'ETH_USBRBIAS', 'GND', Note='1 %'), R('R81', '12k', 'ETH_EXRES', 'GND', Note='1 % (12.0 k for LAN9500A)'),
+        R('R82', '10k', 'ETH_VBUS_DET', '+3V3_ETH', Note='self powered, permanently attached'),
+        R('R83', '10k', 'ETH_PWR_SEL', '+3V3_ETH', Note='strap: self powered'),
+        R('R84', '10k', 'ETH_RST_N', '+3V3_ETH'), C('C164', '100n', 'ETH_RST_N', 'GND'),
+        P('Y3', 'Device:Crystal_GND24', '25MHz', {'1': 'ETH_XI', '2': 'GND', '3': 'ETH_XO', '4': 'GND'},
+          'Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm', {'MPN': '25 MHz 3225, 30 ppm, CL 18 pF'}),
+        C('C165', '27p', 'ETH_XI', 'GND'), C('C166', '27p', 'ETH_XO', 'GND'),
+        # 100BASE-TX: 49.9 ohm to the analog supply on each line, centre taps to the analog supply
+        R('R85', '49R9', 'ETH_TXP', 'ETH_VDD33A', Note='1 %'), R('R86', '49R9', 'ETH_TXN', 'ETH_VDD33A', Note='1 %'),
+        R('R87', '49R9', 'ETH_RXP', 'ETH_VDD33A', Note='1 %'), R('R88', '49R9', 'ETH_RXN', 'ETH_VDD33A', Note='1 %'),
+        P('J60', 'Connector:RJ45_Hanrun_HR911105A_Horizontal', 'RJ45 10/100',
+          {'1': 'ETH_TXP', '2': 'ETH_TXN', '3': 'ETH_RXP', '4': 'ETH_VDD33A', '5': 'ETH_VDD33A', '6': 'ETH_RXN',
+           '7': None, '8': 'GND', '9': 'ETH_LED_G_A', '10': 'ETH_LED_LNK_N', '11': 'ETH_LED_SPD_N',
+           '12': 'ETH_LED_Y_A', 'SH': 'ETH_SHIELD'},
+          'Connector_RJ:RJ45_Hanrun_HR911105A_Horizontal',
+          {'MPN': 'HR911105A', 'Note': 'VERIFY LED polarity (9/12 anodes assumed) against the HanRun data sheet'}),
+        C('C167', '100n', 'ETH_VDD33A', 'GND', Note='centre taps'),
+        R('R89', '330R', 'ETH_LED_G_A', '+3V3_ETH'), R('R90', '330R', 'ETH_LED_Y_A', '+3V3_ETH'),
+        R('R91', '1M', 'ETH_SHIELD', 'GND'), C('C168', '1n', 'ETH_SHIELD', 'GND', FP_C0805, Note='2 kV'),
+    ]
+    return p

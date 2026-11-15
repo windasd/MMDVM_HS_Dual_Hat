@@ -147,7 +147,9 @@ x_off, _ = pad('SW50', '3')
 _, _, _, ys = bb('SW50')
 label('ON', x_on + (1.2 if x_on > x_off else -1.2), ys + 1.0, 0.8)
 label('OFF', x_off + (1.4 if x_off > x_on else -1.4), ys + 1.0, 0.8)
-beside('SW50', 'GPS', 'S', 1.0, gap=2.4, bold=True)
+beside('SW50', 'GPS', 'S', 1.0, gap=2.4, radius=10, bold=True)
+if 'J60' in fps:
+    beside('J60', 'LAN', 'S', 1.0, radius=12, bold=True)
 
 # ---- Meshtastic block
 beside('J44', 'FRONT PANEL', 'E', 0.8, ang=0)
@@ -186,6 +188,8 @@ label('r3.0 study  2026-11', 114.5, 180.9, 1.0, radius=12)
 label('for Bubblegum-96 (96Boards CE)', 114.5, 183.0, 0.8, radius=25)
 label('based on r1.3 by DB9MAT DF2ET DO7EN', 124.0, 185.0, 0.8, radius=14)
 label('96Boards LS 1.8 V', 129.0, 207.5, 1.0, back=True, radius=8, bold=True)
+if 'J10' in fps:
+    label('96Boards HS (USB)', 132.75, 240.5, 1.0, back=True, radius=8, bold=True)
 label('4 x 18650 in PARALLEL (1S4P)', 143.0, 105.0, 1.2, back=True, radius=10, bold=True)
 label('OBSERVE POLARITY (+ MARKS)', 143.0, 199.5, 1.0, back=True, radius=14)
 

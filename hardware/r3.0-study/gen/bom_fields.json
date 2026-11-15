@@ -1865,5 +1865,164 @@
   "MPN": "ABM8-14.7456MHZ-D1X-T",
   "Mouser": "815-M8147456MHZD1XT",
   "LCSC": "C1986778"
+ },
+ "C152": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C153": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C154": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C155": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C156": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C157": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C158": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C159": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C161": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C162": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C163": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C164": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C167": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC",
+  "LCSC": "C1525"
+ },
+ "C150": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC",
+  "LCSC": "C52923"
+ },
+ "C151": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC",
+  "LCSC": "C52923"
+ },
+ "C160": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC",
+  "LCSC": "C52923"
+ },
+ "R82": {
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "LCSC": "C25744",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R83": {
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "LCSC": "C25744",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R84": {
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "LCSC": "C25744",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "U61": {
+  "MFR": "Diodes Incorporated",
+  "MPN": "AP2112K-3.3TRG1",
+  "Mouser": "621-AP2112K-3.3TRG1",
+  "LCSC": "C51118"
+ },
+ "U60": {
+  "MFR": "Microchip",
+  "MPN": "LAN9500A-ABZJ",
+  "Mouser": "579-LAN9500A-ABZJ",
+  "LCSC": ""
+ },
+ "J60": {
+  "MFR": "HanRun (HR)",
+  "MPN": "HR911105A",
+  "Mouser": "",
+  "LCSC": "C12074"
+ },
+ "J10": {
+  "MFR": "Amphenol ICC (FCI)",
+  "MPN": "61083-063402LF",
+  "Mouser": "649-61083-063402LF",
+  "LCSC": ""
+ },
+ "L60": {
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D",
+  "LCSC": ""
+ },
+ "L61": {
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D",
+  "LCSC": ""
+ },
+ "L62": {
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D",
+  "LCSC": ""
  }
 }

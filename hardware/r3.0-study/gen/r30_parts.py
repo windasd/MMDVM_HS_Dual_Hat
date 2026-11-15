@@ -14,7 +14,7 @@ FP_LVC1T45 = 'Package_TO_SOT_SMD:SOT-23-6'
 FP_SOT353 = 'Package_TO_SOT_SMD:SOT-353_SC-70-5'
 
 POWER_NETS = {'GND', '+3V3', '+5V', 'VSYS', '+3V5', '+3V3_MESH', '+3V3_GPS', '+1V8_HOST', 'VBUS', 'CELL+',
-              'CELL-', '+12V_BOOST', '+12V_SENSE', 'SYS_DCIN', 'REGN'}
+              'CELL-', '+12V_BOOST', '+12V_SENSE', 'SYS_DCIN', 'REGN', '+3V3_ETH'}
 
 
 def P(ref, lib, value, nets, fp='', fields=None, dnp=False, in_bom=True):

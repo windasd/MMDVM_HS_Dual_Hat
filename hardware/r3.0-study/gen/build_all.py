@@ -26,7 +26,8 @@ gen = [('MMDVM IO', 'mmdvm_io.kicad_sch', rp.mmdvm_io()),
        ('Host interface', 'host_if.kicad_sch', rp.host_if()),
        ('Power', 'power.kicad_sch', rp2.power()),
        ('Meshtastic', 'meshtastic.kicad_sch', rp2.meshtastic()),
-       ('GPS', 'gps.kicad_sch', rp2.gps())]
+       ('GPS', 'gps.kicad_sch', rp2.gps()),
+       ('Ethernet', 'ethernet.kicad_sch', rp2.ethernet())]
 for _name, _fn, parts in gen:
     for p in parts:
         f = FIELDS.get(p['ref'])

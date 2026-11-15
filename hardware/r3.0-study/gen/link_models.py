@@ -35,6 +35,9 @@ VENDOR = {
     # Alps: guide bosses at y = 1.0, body bottom at z = -1.65, stem along -y
     'SW_Push_Alps_SKRTLAE010_NarrowPad1': ('SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010', 'SKRTLA.STEP',
                                            (0.0, -1.0, 1.65), (0.0, 0.0, 0.0)),
+    # from the 96Boards KiCad 10 mezzanine template (same transform as in its footprint)
+    'AMPHENOL_61083-063402LF': ('AMPHENOL_61083-063402LF', 'AMPHENOL_61083-063402LF.step',
+                                (0.0, 0.0, 0.0), (-90.0, 0.0, 0.0)),
 }
 simple = '--simple' in sys.argv
 vend = 0

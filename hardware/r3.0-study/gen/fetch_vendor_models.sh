@@ -13,4 +13,6 @@ curl -fsSL -A "$UA" -o "$tmp/skrt.zip" "https://tech.alpsalpine.com/cms.media/pr
 unzip -q -o "$tmp/skrt.zip" -d "$tmp"
 cp "$tmp/SKRTLAE010/SKRTLA.STEP" vendor/SKRTLA.STEP
 rm -rf "$tmp"
+# 96Boards high-speed connector, from the KiCad 10 mezzanine template
+curl -fsSL -o vendor/AMPHENOL_61083-063402LF.step "https://raw.githubusercontent.com/LordRafa/96boards-kicad10-mezzanine-template/HEAD/3dmodels/AMPHENOL_61083-063402LF.3dshapes/AMPHENOL_61083-063402LF.step"
 ls -l vendor
