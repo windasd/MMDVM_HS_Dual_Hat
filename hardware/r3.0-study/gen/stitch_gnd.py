@@ -17,7 +17,7 @@ drc = json.load(open(sys.argv[1], encoding='utf-8'))
 mm = pcbnew.FromMM
 gnd = board.FindNet('GND')
 pads = [p for fp in board.GetFootprints() for p in fp.Pads()]
-VIA_D, VIA_DR, W, CL = 0.5, 0.25, 0.25, 0.2
+VIA_D, VIA_DR, W, CL = 0.45, 0.2, 0.2, 0.15
 
 
 def _pip(px, py):
@@ -65,7 +65,7 @@ for p in todo:
     c = p.GetPosition()
     layer = pcbnew.F_Cu if p.IsOnLayer(pcbnew.F_Cu) else pcbnew.B_Cu
     ok = False
-    for r in (0.7, 0.9, 1.1, 1.4, 1.8, 2.3):
+    for r in (0.6, 0.75, 0.9, 1.1, 1.4, 1.8, 2.3, 2.9, 3.6):
         for k in range(16):
             a = 2 * math.pi * k / 16
             x, y = c.x + mm(r * math.cos(a)), c.y + mm(r * math.sin(a))
