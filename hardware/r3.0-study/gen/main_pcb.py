@@ -11,6 +11,7 @@
 KiCad coordinates: X = X0 + x, Y = Y0 - y.
 """
 import json
+import math
 import os
 import re
 import subprocess
@@ -59,6 +60,9 @@ ZONES = {   # model x0, y0, x1, y1 (filled bottom-up, left to right)
 }
 PREFER = {'J42': 'Meshtastic',
           'J43': 'Meshtastic', 'J50': 'GPS', 'U35': 'GPS', 'Y2': 'GPS'}
+# power-zone grid order (3 per row): each converter next to its inductor, FETs next to what they switch
+POWER_ORDER = ['U104', 'L101', 'Q102', 'U101', 'L100', 'U100', 'U107', 'L102', 'U108', 'L103', 'U109', 'U110',
+               'Q100', 'Q101', 'U102', 'U103', 'U105', 'U106', 'Q103', 'U111']
 R13_ORIGIN = (90.2, 82.5)
 R13_DX, R13_DY = 10.0, -53.0
 
@@ -322,38 +326,162 @@ def main():
     def free(b):
         return all(b[2] <= k[0] or b[0] >= k[2] or b[3] <= k[1] or b[1] >= k[3] for k in keep)
 
-    rest = {}
+    rest, zone_of = {}, {}
     for ref, c in comps.items():
         if ref in placed or ref.startswith('#') or not c['fp']:
             continue
         zone = PREFER.get(ref) or (c['sheet'] if c['sheet'] in ZONES else
                                    ('MMDVM IO' if c['sheet'].startswith('MMDVM') else 'Host interface'))
         rest.setdefault(zone, []).append(ref)
+        zone_of[ref] = zone
+    members, pins_of = {}, {}
+    for (r_, p_), n in pins.items():
+        members.setdefault(n, []).append((r_, p_))
+        pins_of.setdefault(r_, []).append((p_, n))
     overflow = []
-    for zone, refs in rest.items():
+
+    def is_anchor(ref):
+        return ref in POWER_ORDER or ref.startswith(('U', 'Q', 'J', 'SW', 'Y'))
+
+    def shelf(ref, zone, margin):
+        """First free slot scanning the zone bottom-up; `margin` reserves room around the part."""
         zx0, zy0, zx1, zy1 = ZONES[zone]
-        refs = cluster_order(refs, pins)
-        for ref in refs:
-            fp = add(ref, zx0, zy0)
+        fp = placed.get(ref) or add(ref, zx0, zy0)
+        fp.SetOrientationDegrees(0)
+        fp.SetPosition(P(zx0, zy0))
+        x0, y0, x1, y1 = court(fp)
+        w, h = x1 - x0 + 2 * margin, y1 - y0 + 2 * margin
+        ox, oy = model(fp.GetPosition())
+        dx, dy = ox - x0, oy - y0
+        y = zy0
+        while y + h <= zy1:
+            x = zx0
+            while x + w <= zx1:
+                if free((x, y, x + w, y + h)):
+                    fp.SetPosition(P(x + dx + margin, y + dy + margin))
+                    keep.append(court(fp))
+                    return True
+                x += 0.5
+            y += 0.5
+        return False
+
+    # 1) anchors (ICs, FETs, connectors, switches, crystals) with room around them for their passives
+    def grid_place(refs, zone, cols):
+        """Spread anchors over the zone, one per grid cell, so their passives fit around them."""
+        zx0, zy0, zx1, zy1 = ZONES[zone]
+        rows = -(-len(refs) // cols)
+        cw, ch = (zx1 - zx0) / cols, (zy1 - zy0) / rows
+        left = []
+        cells = {ref: (zx0 + (i % cols + 0.5) * cw, zy0 + (i // cols + 0.5) * ch) for i, ref in enumerate(refs)}
+        fps = {ref: add(ref, *cells[ref]) for ref in refs}
+
+        def area(ref):
+            c = court(fps[ref])
+            return (c[2] - c[0]) * (c[3] - c[1])
+        for ref in sorted(refs, key=area, reverse=True):          # big parts first
+            ccx, ccy = cells[ref]
+            fp = fps[ref]
             x0, y0, x1, y1 = court(fp)
-            w, h = x1 - x0 + 0.3, y1 - y0 + 0.3
-            ox, oy = model(fp.GetPosition())
-            dx, dy = ox - x0, oy - y0
-            done = False
-            y = zy0
-            while not done and y + h <= zy1:
-                x = zx0
-                while x + w <= zx1:
-                    if free((x, y, x + w, y + h)):
-                        fp.SetPosition(P(x + dx + 0.15, y + dy + 0.15))
+            ok = False
+            for r in [k * 0.5 for k in range(0, 14)]:
+                for k in range(1 if r == 0 else 12):
+                    a = 6.2832 * k / 12
+                    dx, dy = r * math.cos(a), r * math.sin(a)
+                    b = (x0 + dx - 0.6, y0 + dy - 0.6, x1 + dx + 0.6, y1 + dy + 0.6)
+                    if b[0] >= zx0 and b[1] >= zy0 and b[2] <= zx1 and b[3] <= zy1 and free(b):
+                        fp.SetPosition(P(ccx + dx, ccy + dy))
                         keep.append(court(fp))
-                        done = True
+                        ok = True
                         break
-                    x += 0.5
-                y += 0.5
-            if not done:
+                if ok:
+                    break
+            if not ok:
+                left.append(ref)
+        return left
+
+    for zone, refs in rest.items():
+        anchors = [r_ for r_ in cluster_order(refs, pins) if is_anchor(r_)]
+        if zone == 'Power':
+            anchors = grid_place([r_ for r_ in POWER_ORDER if r_ in anchors]
+                                 + [r_ for r_ in anchors if r_ not in POWER_ORDER], zone, 3)
+        for ref in anchors:
+            m = 1.4
+            if not (shelf(ref, zone, m) or shelf(ref, zone, 0.8) or shelf(ref, zone, 0.2)):
                 overflow.append(ref)
-    print('packed', sum(len(v) for v in rest.values()), 'overflow', overflow)
+
+    # 2) satellites: put each part next to the pad it connects to (most specific net first)
+    def pad_xy(ref, num):
+        for pad in placed[ref].Pads():
+            if pad.GetNumber() == num:
+                return model(pad.GetPosition())
+        return None
+
+    def bounds(zone):
+        zx0, zy0, zx1, zy1 = ZONES[zone]
+        if zone == 'MMDVM IO':
+            return zx0, zy0, zx1, zy1
+        return max(-1.4, zx0 - 8), max(54.4, zy0 - 8), min(87.9, zx1 + 8), min(150.4, zy1 + 8)
+
+    use = {}
+    todo = [r_ for refs in rest.values() for r_ in refs if not is_anchor(r_)]
+    far = []
+    while todo:
+        plan = []
+        for ref in todo:
+            opts = []
+            for pin, net in pins_of.get(ref, []):
+                if net == 'GND' or net.startswith('unconnected'):
+                    continue
+                tg = [t for t in members[net] if t[0] in placed and t[0] != ref and not placed[t[0]].IsFlipped()]
+                if tg:
+                    opts.append((len(members[net]), pin, net, tg))
+            if opts:
+                opts.sort(key=lambda o: o[0])
+                plan.append((opts[0][0], ref, opts[0]))
+        if not plan:
+            break
+        plan.sort(key=lambda q: (q[0], re.sub(r'\d', '', q[1]), int(re.sub(r'\D', '', q[1]) or 0)))
+        for _n, ref, (cnt, pin, net, tg) in plan:
+            tg.sort(key=lambda t: (0 if is_anchor(t[0]) else 1, use.get(t, 0), t))
+            target = tg[0]
+            txy = pad_xy(*target)
+            fp = add(ref, 0, 0)
+            bx0, by0, bx1, by1 = bounds(zone_of[ref])
+            best = None
+            for rot in (0, 90, 180, 270):
+                fp.SetOrientationDegrees(rot)
+                fp.SetPosition(P(0, 0))
+                c0 = court(fp)
+                pxy = pad_xy(ref, pin)
+                r = 0.0
+                found = None
+                while r < 30.0 and found is None and (best is None or r < best[0]):
+                    for k in range(1 if r == 0 else max(8, int(r * 6))):
+                        a = 6.2832 * k / max(8, int(r * 6))
+                        fx = txy[0] + r * math.cos(a) - pxy[0]
+                        fy = txy[1] + r * math.sin(a) - pxy[1]
+                        b = (c0[0] + fx - 0.12, c0[1] + fy - 0.12, c0[2] + fx + 0.12, c0[3] + fy + 0.12)
+                        if b[0] >= bx0 and b[1] >= by0 and b[2] <= bx1 and b[3] <= by1 and free(b):
+                            found = (r, rot, fx, fy)
+                            break
+                    r += 0.3
+                if found and (best is None or found[0] < best[0]):
+                    best = found
+            if best is None:
+                if not shelf(ref, zone_of[ref], 0.15):
+                    overflow.append(ref)
+            else:
+                fp.SetOrientationDegrees(best[1])
+                fp.SetPosition(P(best[2], best[3]))
+                keep.append(court(fp))
+                use[target] = use.get(target, 0) + 1
+                if best[0] > 6.0:
+                    far.append((ref, round(best[0], 1)))
+            todo.remove(ref)
+    for ref in todo:                      # no connection to anything placed: just pack
+        if not shelf(ref, zone_of[ref], 0.15):
+            overflow.append(ref)
+    print('placed', sum(len(v) for v in rest.values()), 'overflow', overflow, '| far from target (>6 mm):', far)
     # ---- remove dangling copies: a track end is anchored if it hits a pad, a via or another track
     pads_all = [p for fp in board.GetFootprints() for p in fp.Pads()]
     for t in list(board.GetTracks()):          # copies that leave the board or touch a pad of another net
