@@ -5502,7 +5502,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_SPDT_PCM12"
+		(property "Footprint" "MMDVM_r30:SW_SPDT_PCM12_EdgeMount"
 			(at 124.46 162.56 0)
 			(hide yes)
 			(show_name no)

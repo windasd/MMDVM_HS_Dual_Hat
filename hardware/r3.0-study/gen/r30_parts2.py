@@ -82,7 +82,7 @@ def gps():
         C('C82', '100n', '+3V3_GPS', 'GND'),
         # GPS power = slide switch AND RAK P1.02 (3V3_EN): SW50 common -> GPS_ON
         P('SW50', 'Switch:SW_SPDT', 'GPS ON/OFF', {'1': 'MESH_3V3_EN', '2': 'GPS_ON', '3': 'GND'},
-          'Button_Switch_SMD:SW_SPDT_PCM12', {'MPN': 'C&K PCM12SMTR', 'Note': 'side-actuated slide switch'}),
+          'MMDVM_r30:SW_SPDT_PCM12_EdgeMount', {'MPN': 'C&K PCM12SMTR', 'Note': 'side-actuated slide switch'}),
         R('R70', '100k', 'GPS_ON', 'GND'),
         P('D50', 'Device:D_Schottky', 'BAT54', {'1': 'GPS_VBCKP', '2': '+3V3_MESH'}, 'Diode_SMD:D_SOD-323',
           {'MPN': 'BAT54HT1G', 'Note': 'backup supply keeps ephemeris while the GPS is switched off'}),
@@ -247,7 +247,7 @@ def power():
         C('C140', '100n', '+3V3_MESH', 'GND'), R('R121', '100k', 'PWR_BTN_N', '+3V3_MESH'),
         R('R122', '100k', 'HOST_PWR_EN', 'GND'), R('R123', '10k', 'BTN_INT_N', '+3V3_MESH'),
         P('SW100', 'Switch:SW_Push', 'POWER', {'1': 'PWR_BTN_N', '2': 'GND'},
-          'Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010', {'MPN': 'Alps SKRTLAE010 (side push)'}),
+          'MMDVM_r30:SW_Push_Alps_SKRTLAE010_NarrowPad1', {'MPN': 'Alps SKRTLAE010 (side push)'}),
         # ---- power flags (nets driven from connectors / cells)
         P('#FLG100', 'power:PWR_FLAG', 'PWR_FLAG', {'1': 'VBUS'}, in_bom=False),
         P('#FLG101', 'power:PWR_FLAG', 'PWR_FLAG', {'1': 'CELL+'}, in_bom=False),

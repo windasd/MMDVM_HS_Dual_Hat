@@ -115,8 +115,63 @@ def ls_mezzanine_footprint():
     return re.sub(r'\(pad "(\d+)"', swap, t)
 
 
+def skrtlae010_footprint():
+    """Alps SKRTLAE010 side push button with the two "1" pads narrowed.
+
+    In the stock footprint those pads sit 0.0993 mm from the part's own locating holes, just under the 0.1 mm
+    hole-clearance rule. Each pad is 0.05 mm narrower here (0.70 mm, outer edge pulled in), which gives 0.12 mm.
+    """
+    import re
+    src = os.path.join(os.environ.get('KICAD_FOOTPRINT_DIR', r'C:/Program Files/KiCad/10.0/share/kicad/footprints'),
+                       'Button_Switch_SMD.pretty', 'SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010.kicad_mod')
+    t = open(src, encoding='utf-8').read()
+    t = t.replace('(footprint "SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010"',
+                  '(footprint "SW_Push_Alps_SKRTLAE010_NarrowPad1"', 1)
+    t, n = re.subn(r'(\(pad "1" smd roundrect\s+\(at -?)1\.225( -0\.9\)\s+\(size )0\.75( 1\.8\))', r'\g<1>1.2\g<2>0.7\g<3>', t)
+    assert n == 2, n
+    return t
+
+
+def silk_trimmed(lib, name, new_name, drop, note):
+    """Stock footprint `lib:name` without the silkscreen shapes for which drop(x1, y1, x2, y2) is true."""
+    import re
+    src = os.path.join(os.environ.get('KICAD_FOOTPRINT_DIR', r'C:/Program Files/KiCad/10.0/share/kicad/footprints'),
+                       lib + '.pretty', name + '.kicad_mod')
+    t = open(src, encoding='utf-8').read()
+    t = t.replace('(footprint "%s"' % name, '(footprint "%s"' % new_name, 1)
+    t = re.sub(r'\(descr "([^"]*)"\)', lambda m: '(descr "%s; %s")' % (m.group(1), note), t, count=1)
+
+    def shape(m):
+        blk = m.group(0)
+        if '(layer "F.SilkS")' not in blk:
+            return blk
+        x1, y1, x2, y2 = [float(v) for v in re.search(r'\(start (\S+) (\S+)\)\s+\(end (\S+) (\S+)\)', blk).groups()]
+        return '' if drop(x1, y1, x2, y2) else blk
+    return re.sub(r'\n\t\(fp_(?:line|rect)\n.*?\n\t\)', shape, t, flags=re.S)
+
+
+def edge_variants():
+    """Parts that hang over the board edge: silk beyond the edge is left out (DRC: silk clipped by board edge)."""
+    return {
+        # C&K PCM12 slide switch: lever outline (y > 1.8) lies outside the board
+        'SW_SPDT_PCM12_EdgeMount': silk_trimmed(
+            'Button_Switch_SMD', 'SW_SPDT_PCM12', 'SW_SPDT_PCM12_EdgeMount',
+            lambda x1, y1, x2, y2: max(y1, y2) > 1.8, 'lever outline removed from silk for mounting at the board edge'),
+        # right-angle console header: pin outlines (x > 4.2) cross the board edge
+        'PinHeader_1x06_P2.54mm_Horizontal_EdgeMount': silk_trimmed(
+            'Connector_PinHeader_2.54mm', 'PinHeader_1x06_P2.54mm_Horizontal',
+            'PinHeader_1x06_P2.54mm_Horizontal_EdgeMount',
+            lambda x1, y1, x2, y2: max(x1, x2) > 4.2, 'pin outlines removed from silk for mounting at the board edge'),
+    }
+
+
 def write(libdir):
     os.makedirs(os.path.join(libdir, 'MMDVM_r30.pretty'), exist_ok=True)
+    for name, text in edge_variants().items():
+        open(os.path.join(libdir, 'MMDVM_r30.pretty', name + '.kicad_mod'), 'w', encoding='utf-8',
+             newline='\n').write(text)
+    open(os.path.join(libdir, 'MMDVM_r30.pretty', 'SW_Push_Alps_SKRTLAE010_NarrowPad1.kicad_mod'), 'w',
+         encoding='utf-8', newline='\n').write(skrtlae010_footprint())
     pmos = symgen.symbol('PMOS_SON8', 'Q', [('4', 'G', 'input', 'L'), ('1', 'S', 'passive', 'R'),
                                              ('2', 'S', 'passive', 'R'), ('3', 'S', 'passive', 'R'),
                                              ('5', 'D', 'passive', 'R')],

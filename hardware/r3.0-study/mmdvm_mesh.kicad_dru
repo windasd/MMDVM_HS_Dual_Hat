@@ -1,0 +1,10 @@
+(version 1)
+
+# The STM32 (U3) and its decoupling capacitors C44 / C45 are copied unchanged from the r1.3 layout, where the
+# capacitors sit inside the generous courtyard of the LQFP-48 footprint (C45 overlaps it by 0.11 mm, C44 lies
+# inside its corner). The copper does not come close: the nearest U3 pad is 1.17 mm from C44 and 1.76 mm from C45.
+# Reviewed and accepted; only these two pairs are waived, every other courtyard check stays active.
+(rule "r1.3 STM32 decoupling caps inside U3 courtyard (reviewed)"
+	(condition "(A.Reference == 'U3' && (B.Reference == 'C44' || B.Reference == 'C45')) || (B.Reference == 'U3' && (A.Reference == 'C44' || A.Reference == 'C45'))")
+	(constraint courtyard_clearance)
+	(severity ignore))

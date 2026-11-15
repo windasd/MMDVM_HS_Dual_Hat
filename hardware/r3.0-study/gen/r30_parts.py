@@ -122,7 +122,7 @@ def host_if():
         R('R42', '100k', 'CON_TXD', '+3V3', Note='idle high when no cable is plugged'),
         P('J2', 'Connector_Generic:Conn_01x06', 'CONSOLE 3V3', {'1': 'GND', '2': None, '3': None, '4': 'CON_TXD',
                                                                 '5': 'CON_RXD', '6': None},
-          'Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Horizontal',
+          'MMDVM_r30:PinHeader_1x06_P2.54mm_Horizontal_EdgeMount',
           {'Note': 'FTDI TTL-232R-3V3 order: 1 GND, 2 CTS nc, 3 VCC nc, 4 TXD in, 5 RXD out, 6 RTS nc'}),
         # Meshtastic MCU reset, GPS PPS and GPS switch state
         OD_BUF('U26', '+1V8_HOST', 'LS_GPIO_G', 'MESH_RST_N', 'GPIO-G low -> RAK4630 reset'),

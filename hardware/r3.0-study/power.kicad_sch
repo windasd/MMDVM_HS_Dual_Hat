@@ -33351,7 +33351,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010"
+		(property "Footprint" "MMDVM_r30:SW_Push_Alps_SKRTLAE010_NarrowPad1"
 			(at 360.68 596.9 0)
 			(hide yes)
 			(show_name no)
