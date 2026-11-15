@@ -76,6 +76,17 @@ for k in range(0, len(JOBS), 2):
         print(ln)
 os.remove(BAK)
 board = pcbnew.LoadBoard(PCB)
+fps = {f.GetReference(): f for f in board.GetFootprints()}
+# terminations sit on the bottom side at the RJ45 pins (main_pcb.py): a straight B.Cu link pin -> resistor
+for ref, pin in (('R85', '2'), ('R86', '3'), ('R87', '4'), ('R88', '5'), ('R96', '6'), ('R97', '7'), ('R98', '8'),
+                 ('R99', '9')):
+    if ref in fps and fps[ref].IsFlipped():
+        jp = pad('J60', pin)
+        rp = [p for p in fps[ref].Pads() if p.GetNetname() == jp.GetNetname()][0]
+        t = pcbnew.PCB_TRACK(board)
+        t.SetStart(jp.GetPosition()); t.SetEnd(rp.GetPosition()); t.SetWidth(pcbnew.FromMM(0.2))
+        t.SetLayer(pcbnew.B_Cu); t.SetNet(jp.GetNet())
+        board.Add(t)
 n = 0
 for t in board.GetTracks():
     if 'ETH_TR' in t.GetNetname() or 'HS_USB' in t.GetNetname():

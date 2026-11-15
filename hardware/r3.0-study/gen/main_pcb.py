@@ -316,6 +316,23 @@ def main():
         pad = {p.GetNumber(): model(p.GetPosition()) for p in placed['J10'].Pads()}
         print('J10 pads 1/2/51 (model):', [tuple(round(v, 2) for v in pad[n]) for n in ('1', '2', '51')],
               '-> template: (21.15, 13.25) (21.15, 17.65) (41.15, 13.25)')
+    # 49.9 ohm terminations of the Ethernet pairs: on the bottom side right at the RJ45 signal pins (through
+    # hole), so the branch from the line to the resistor is about 1 mm. Rear-row pins: resistor towards the
+    # board centre, front-row pins: towards the jack body.
+    if 'J60' in placed:
+        jp = {p_.GetNumber(): model(p_.GetPosition()) for p_ in placed['J60'].Pads()}
+        ymid = (jp['2'][1] + jp['3'][1]) / 2
+        for ref, pin in (('R85', '2'), ('R86', '3'), ('R87', '4'), ('R88', '5'), ('R96', '6'), ('R97', '7'),
+                         ('R98', '8'), ('R99', '9')):
+            if ref not in comps:
+                continue
+            px, py = jp[pin]
+            sgn = 1.0 if py > ymid else -1.0
+            r_ = add(ref, px, py + sgn * 1.75, 90, 'B')
+            net = pins[('J60', pin)]
+            near = min(r_.Pads(), key=lambda q_: abs(model(q_.GetPosition())[1] - py))
+            if pins.get((ref, near.GetNumber())) != net:
+                r_.SetOrientationDegrees(270)
     j2 = placed['J2']                               # console header, pins towards the edge
     best = None
     for rot in (0, 90, 180, 270):
@@ -355,9 +372,9 @@ def main():
     # corridor for the four Ethernet pairs between U60 and the RJ45 pins (pair_route.py lays them before the
     # autorouter runs): no terminations or decoupling capacitors in front of the TR pins or above the jack
     keep += [(59.1, 143.9, 62.0, 156.6), (59.1, 139.5, 80.5, 144.0)]
-    if 'U60' in placed:               # 1 mm ring around the 56-QFN: room for the pins to fan out with vias
+    if 'U60' in placed:               # ring around the 56-QFN: room for the pins to fan out with vias
         c = court(placed['U60'])
-        keep.append((c[0] - 1.0, c[1] - 1.0, c[2] + 1.0, c[3] + 1.0))
+        keep.append((c[0] - 2.6, c[1] - 2.6, c[2] + 1.0, c[3] + 2.6))    # 2.6 mm: 1 mm left the bottom row boxed in
 
     def free(b):
         return all(b[2] <= k[0] or b[0] >= k[2] or b[3] <= k[1] or b[1] >= k[3] for k in keep)

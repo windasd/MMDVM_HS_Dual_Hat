@@ -64,8 +64,19 @@ class Point:
             self.any = False
             hit = [t for t in board.GetTracks() if t.GetClass() == 'PCB_TRACK' and t.GetLayer() == self.layer
                    and t.HitTest(self.q, pcbnew.FromMM(0.05))]
-        if not hit:
+        self.pad = None
+        if not hit:                              # a pad centre works too
+            for fp in board.GetFootprints():
+                for p in fp.Pads():
+                    if p.GetNetname() and p.HitTest(self.q):
+                        self.pad = p
+        if not hit and self.pad is None:
             raise SystemExit('no track at ' + spec)
+        if self.pad is not None:
+            self.net = self.pad.GetNetname()
+            self.any = self.pad.GetAttribute() == pcbnew.PAD_ATTRIB_PTH
+            self.layer = pcbnew.F_Cu if self.pad.IsOnLayer(pcbnew.F_Cu) else pcbnew.B_Cu
+            return
         self.net = hit[0].GetNetname()
 
     def GetNetname(self):
@@ -240,6 +251,22 @@ def route(spec_a, spec_b):
         return 0 <= i < nx and 0 <= j < ny and ((k, i, j) in free_cells or not occ[k][j * nx + i])
 
     best, prev, heap = {}, {}, []
+    # PR_EXIT=<mm>: leave the start pad straight outwards (away from its footprint centre) for that length, so
+    # the escape does not cut across the neighbouring pins of a fine-pitch package
+    ex = float(os.environ.get('PR_EXIT', '0'))
+    if ex > 0 and hasattr(pa, 'GetParentFootprint'):
+        c = pa.GetParentFootprint().GetPosition()
+        vx, vy = pa.GetPosition().x - c.x, pa.GetPosition().y - c.y
+        d = (1 if vx > 0 else -1, 0) if abs(vx) >= abs(vy) else (0, 1 if vy > 0 else -1)
+        k0 = pad_layers(pa)[0]
+        n = int(round(ex / G))
+        if all(0 <= si + d[0] * m < nx and 0 <= sj + d[1] * m < ny and
+               ((k0, si + d[0] * m, sj + d[1] * m) in free_cells or not occ[k0][(sj + d[1] * m) * nx + si + d[0] * m])
+               for m in range(1, n + 1)):
+            e = (k0, si + d[0] * n, sj + d[1] * n)
+            prev[e] = (k0, si, sj)
+            best[(k0, si, sj)] = -1.0          # never re-entered: keeps the back-pointer chain acyclic
+            start = [e]
     for s in start:
         best[s] = 0.0
         heapq.heappush(heap, (math.hypot(s[1] - ti, s[2] - tj), 0.0, s))
@@ -277,6 +304,10 @@ def route(spec_a, spec_b):
                         heapq.heappush(heap, (ng + math.hypot(i - ti, j - tj), ng, n))
     if found is None:
         print('NO PATH', spec_a, spec_b, net)
+        ks = list(best)
+        print('   reached %d cells: x %.2f..%.2f  y %.2f..%.2f  layers %s' % (
+            len(ks), x0 + min(k[1] for k in ks) * G, x0 + max(k[1] for k in ks) * G, y0 + min(k[2] for k in ks) * G,
+            y0 + max(k[2] for k in ks) * G, sorted({board.GetLayerName(LAYERS[k[0]]) for k in ks})))
         return False
     path = [found]
     while path[-1] in prev:
