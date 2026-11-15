@@ -560,6 +560,9 @@ def main():
     pcbnew.ZONE_FILLER(board).Fill(board.Zones())
     out = os.path.join(PRJ, 'mmdvm_mesh.kicad_pcb')
     board.Save(out)
+    # the board reaches y = 251 mm, below an A4 landscape sheet (210 mm): use A3 so it sits inside the frame
+    raw = open(out, 'rb').read()
+    open(out, 'wb').write(raw.replace(b'(paper "A4")', b'(paper "A3")', 1))
     write_rules()
     print('saved', out, 'footprints', len(board.GetFootprints()))
 
