@@ -1,0 +1,29 @@
+#!/bin/bash
+# Full routing pipeline for the r3.0 main board. Run from hardware/r3.0-study/gen after main_pcb.py.
+#   JAVA=<java 17+>  FREEROUTING=<freerouting-1.9.0.jar>  KPY=<KiCad python>  bash route_all.sh
+set -e
+KPY="${KPY:-/c/Program Files/KiCad/10.0/bin/python.exe}"
+KCLI="${KCLI:-/c/Program Files/KiCad/10.0/bin/kicad-cli.exe}"
+: "${JAVA:?set JAVA to a Java 17+ binary}"; : "${FREEROUTING:?set FREEROUTING to freerouting-1.9.0.jar}"
+cd "$(dirname "$0")"
+PRO=../mmdvm_mesh.kicad_pro; cp "$PRO" ../route_pro.bak 2>/dev/null || true
+REF=../route/placed.kicad_pcb; mkdir -p ../route; cp ../mmdvm_mesh.kicad_pcb "$REF"
+drc() { cp ../route_pro.bak "$PRO"; "$KCLI" pcb drc --schematic-parity --severity-all --format json -o ../route/drc.json ../mmdvm_mesh.kicad_pcb >/dev/null 2>&1 || true; }
+q() { grep -v -E "image handler|memory leak"; }
+"$KPY" reroute_prep.py 2>&1 | q
+(cd ../route && rm -f mmdvm_mesh.ses && "$JAVA" -jar "$FREEROUTING" -de mmdvm_mesh.dsn -do mmdvm_mesh.ses -mp 40 > fr.log 2>&1)
+"$KPY" route.py import 2>&1 | q
+drc; "$KPY" stitch_gnd.py ../route/drc.json 2>&1 | q | tail -3
+drc; "$KPY" bridge_gaps.py ../route/drc.json 2>&1 | q | tail -3
+"$KPY" widen_power.py 2>&1 | q | tail -2
+drc; "$KPY" stitch_gnd.py ../route/drc.json 2>&1 | q | tail -3
+"$KPY" relock.py "$REF" 2>&1 | q
+drc; cp ../route_pro.bak "$PRO"; rm -f ../route_pro.bak
+"$KPY" -c "
+import json; from collections import Counter
+d=json.load(open('../route/drc.json',encoding='utf-8'))
+print('unconnected',len(d['unconnected_items']),'parity',len(d['schematic_parity']))
+print([k for k in Counter((x['severity'],x['type']) for x in d['violations']).most_common() if 'silk' not in k[0][1]])
+for x in d['unconnected_items']:
+    ds=[i['description'][:48] for i in x['items']]
+    if not all('GND' in s for s in ds): print('  open:',ds)"

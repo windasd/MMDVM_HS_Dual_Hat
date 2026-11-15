@@ -6,3 +6,5 @@ fp-info-cache
 *-backups/
 gen/__pycache__/
 route/
+.history/
+route_pro.bak

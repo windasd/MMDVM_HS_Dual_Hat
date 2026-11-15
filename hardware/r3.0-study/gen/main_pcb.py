@@ -28,11 +28,11 @@ LIBS = {'MMDVM': os.path.normpath(os.path.join(HERE, '..', '..', '..', 'librarie
         'MMDVM_r30': os.path.join(PRJ, 'MMDVM_r30.pretty')}
 X0, Y0 = 100.0, 250.0
 # outline (model coordinates), counter-clockwise
-OUTLINE = [(0.0, -1.0), (85.0, -1.0), (85.0, 54.0), (88.5, 54.0), (88.5, 151.0), (-2.0, 151.0), (-2.0, 54.0),
+OUTLINE = [(0.0, -1.0), (85.0, -1.0), (85.0, 54.0), (88.5, 54.0), (88.5, 153.0), (-2.0, 153.0), (-2.0, 54.0),
            (0.0, 54.0)]
-EDGE_Y = 151.0                      # +Y edge = left side face when standing
+EDGE_Y = 153.0                      # +Y edge = left side face when standing
 CELL_X, CELL_Y0, CELL_PITCH = 43.25, 55.0 + 10.875, 21.8
-HOLES = [(4.0, 18.5), (4.0, 50.0), (81.0, 18.5), (81.0, 50.0), (4.0, 147.5), (84.0, 147.5)]
+HOLES = [(4.0, 18.5), (4.0, 50.0), (81.0, 18.5), (81.0, 50.0), (4.0, 149.0), (84.0, 149.0)]
 _KEEP = []
 
 # ref: (x, y, rotation, side); edge parts are snapped to EDGE_Y afterwards
@@ -50,12 +50,15 @@ FIXED = {
     'J41': (16.4, 110.7, 0, 'F'),           # BLE U.FL right next to RAK pad 15 (19.4, 110.7)
     'J3': (79.0, 64.0, 0, 'F'),             # fan cable towards the top plenum
 }
-EDGE_PARTS = {'J100': 0.6, 'SW100': 0.0, 'SW50': -0.2, 'D51': -1.0}   # courtyard overhang beyond EDGE_Y
+# +Y edge parts: (rotation, 'pad' = edge-side SMD pads end `val` from the edge | 'court' = courtyard, val)
+EDGE_PARTS = {'J100': (180, 'court', 0.6), 'SW100': (180, 'pad', -0.35), 'SW50': (180, 'pad', -0.35),
+              'D51': (90, 'court', -1.0)}
+CONSOLE_TIP = 1.6                   # console pin tips beyond the board edge (stay inside the enclosure wall)
 ZONES = {   # model x0, y0, x1, y1 (filled bottom-up, left to right)
     'Host interface': (5.0, 54.0, 87.0, 76.0),
-    'Power': (44.0, 77.0, 87.0, 143.0),
+    'Power': (44.0, 77.0, 87.0, 145.0),
     'Meshtastic': (5.0, 77.0, 43.5, 120.0),
-    'GPS': (5.0, 120.0, 42.0, 143.0),
+    'GPS': (5.0, 120.0, 42.0, 143.5),
     'MMDVM IO': (56.0, 37.0, 76.0, 46.0),
 }
 PREFER = {'J42': 'Meshtastic',
@@ -276,21 +279,22 @@ def main():
     pad = {p.GetNumber(): model(p.GetPosition()) for p in j1.Pads()}
     print('J1 pads 1/2/39 (model):', [tuple(round(v, 2) for v in pad[n]) for n in ('1', '2', '39')],
           '-> rows must be y 49 (odd) / 51 (even) offset outwards, x 10 .. 48')
-    for ref, over in EDGE_PARTS.items():            # snap the courtyard to the +Y edge
+    # +Y edge parts. Rotation 180 turns a footprint's +y (actuator / mouth side in the KiCad libraries) towards
+    # the board edge. Switches: the pads nearest the edge stop 0.35 mm inside it (copper-to-edge rule), which
+    # leaves the PCM12 lever about 1 mm and the SKRT plunger about 0.2 mm beyond the edge.
+    edge_info = {}
+    for ref, (rot, mode, val) in EDGE_PARTS.items():
         fp = placed[ref]
-        best = None
-        for rot in (0, 90, 180, 270):
-            fp.SetOrientationDegrees(rot)
-            x0, y0, x1, y1 = court(fp)
-            # opening/actuator side = the side of the courtyard furthest from the pads' centroid
-            cy = sum(model(p.GetPosition())[1] for p in fp.Pads()) / max(1, len(fp.Pads()))
-            score = y1 - cy
-            if best is None or score > best[0]:
-                best = (score, rot)
-        fp.SetOrientationDegrees(best[1])
-        x0, y0, x1, y1 = court(fp)
-        fp.Move(P(0, EDGE_Y + over - y1) - P(0, 0))
-    j2 = placed['J2']                               # console header: pin row 3 mm inside, pins out of the edge
+        fp.SetOrientationDegrees(rot)
+        if mode == 'pad':
+            top = max(Y0 - pcbnew.ToMM(p.GetBoundingBox().GetY()) for p in fp.Pads()
+                      if p.GetAttribute() == pcbnew.PAD_ATTRIB_SMD)
+        else:
+            top = court(fp)[3]
+        fp.Move(P(0, EDGE_Y + val - top) - P(0, 0))
+        fab = fp.GetBoundingBox(False)
+        edge_info[ref] = round(Y0 - pcbnew.ToMM(fab.GetY()) - EDGE_Y, 2)
+    j2 = placed['J2']                               # console header, pins towards the edge
     best = None
     for rot in (0, 90, 180, 270):
         j2.SetOrientationDegrees(rot)
@@ -300,7 +304,10 @@ def main():
             best = (y1 - ys[0], rot)
     j2.SetOrientationDegrees(best[1])
     mx = sum(model(p.GetPosition())[0] for p in j2.Pads()) / len(j2.Pads())
-    j2.Move(P(17.5 - mx, EDGE_Y - 3.0 - model(j2.Pads()[0].GetPosition())[1]) - P(0, 0))
+    tip = Y0 - pcbnew.ToMM(j2.GetBoundingBox(False).GetY())          # pin tips
+    j2.Move(P(17.5 - mx, EDGE_Y + CONSOLE_TIP - tip) - P(0, 0))
+    edge_info['J2'] = CONSOLE_TIP
+    print('edge parts, outermost point beyond the board edge (mm):', edge_info)
     j44 = placed['J44']                             # opening towards x = -2
     best = None
     for rot in (0, 90, 180, 270):
@@ -420,7 +427,7 @@ def main():
         zx0, zy0, zx1, zy1 = ZONES[zone]
         if zone == 'MMDVM IO':
             return zx0, zy0, zx1, zy1
-        return max(-1.4, zx0 - 8), max(54.4, zy0 - 8), min(87.9, zx1 + 8), min(150.4, zy1 + 8)
+        return max(-1.4, zx0 - 8), max(54.4, zy0 - 8), min(87.9, zx1 + 8), min(152.4, zy1 + 8)
 
     use = {}
     todo = [r_ for refs in rest.values() for r_ in refs if not is_anchor(r_)]
