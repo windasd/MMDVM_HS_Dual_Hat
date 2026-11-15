@@ -57,6 +57,13 @@ P = dict(
     # 433 TX and 433 RX at the two ends for the best duplex isolation.
     antennas=[("433 TX", 12.0, 195.0), ("GPS", 70.0, 0.0), ("LoRa 920", 100.0, 110.0), ("433 RX", 128.0, 195.0)],
     sma_hole=6.5, sma_flat=5.9,  # D-hole for 1/4"-36 bulkhead SMA (check the actual part)
+    # print / assembly details
+    tol=0.25,                   # general clearance between printed parts
+    corner_r=3.0,               # outer vertical corner radius
+    lip_t=1.2, lip_h=2.0,       # locating rim on the front plate, fits inside the tub walls
+    ins_m3=4.0, ins_m25=3.6,    # pilot holes for M3 / M2.5 heat-set inserts (check your inserts)
+    door_t=1.5, door_margin=2.5,  # battery door plate thickness and overlap around the opening
+    label_depth=0.4,
     # desk stand
     tilt=12.0, foot_gap=8.0, stand_depth=55.0, cradle_w=12.0, cradle_y=(14.0, 118.0),
 )
@@ -147,7 +154,8 @@ def build(p=P):
     xh = box(xh_x0, cy - p["disp_w"] / 2, z_pcb - p["disp_pcb"] - p["disp_back"],
              xh_x0 + 15.12, cy - p["disp_w"] / 2 + 7.8, z_pcb - p["disp_pcb"])
     parts["display"] = lcd.union(dpcb).union(xh)
-    tub = box(ox0, oy0, z_out_back, ox1, oy1, z_front_in).cut(box(ix0, iy0, z_back_in, ix1, iy1, z_front_in + 1))
+    tub = (box(ox0, oy0, z_out_back, ox1, oy1, z_front_in).edges("|Z").fillet(p["corner_r"])
+           .cut(box(ix0, iy0, z_back_in, ix1, iy1, z_front_in + 1)))
     # corner posts for M3 heat-set inserts (front plate screws)
     posts, post_holes = [], []
     screw_pts = ((ix0 - p["bottom_wall"] / 2, iy0 + 6), (ix0 - p["bottom_wall"] / 2, iy1 - 6),
@@ -155,17 +163,28 @@ def build(p=P):
     for (px, py) in screw_pts[2:]:
         posts.append(cq.Workplane("XY").circle(4.0).extrude(z_front_in - z_back_in).translate((px, py, z_back_in)))
     for (px, py) in screw_pts:
-        post_holes.append(cq.Workplane("XY").circle(2.0).extrude(10).translate((px, py, z_front_in - 9.5)))
+        post_holes.append(cq.Workplane("XY").circle(p["ins_m3"] / 2).extrude(10).translate((px, py, z_front_in - 8.0)))
     tub = tub.union(union_all(posts)).cut(union_all(post_holes))
     # stand-offs from the back: Bubblegum-96 holes (to its underside) and main-board extension holes
-    so = [cq.Workplane("XY").circle(3.0).circle(1.25).extrude(-p["sbc_t"] - z_back_in).translate((hx, hy, z_back_in))
+    ri = p["ins_m25"] / 2
+    so = [cq.Workplane("XY").circle(3.5).extrude(-p["sbc_t"] - z_back_in).translate((hx, hy, z_back_in))
+          .cut(cq.Workplane("XY").circle(ri).extrude(6.0).translate((hx, hy, -p["sbc_t"] - 6.0)))
           for (hx, hy) in p["sbc_holes"]]
-    so += [cq.Workplane("XY").circle(3.0).circle(1.25).extrude(z_mb - z_back_in).translate((hx, hy, z_back_in))
+    so += [cq.Workplane("XY").circle(3.5).extrude(z_mb - z_back_in).translate((hx, hy, z_back_in))
+           .cut(cq.Workplane("XY").circle(ri).extrude(6.0).translate((hx, hy, z_mb - 6.0)))
            for (hx, hy) in p["mb_holes_ext"]]
-    so += [cq.Workplane("XY").circle(2.5).circle(1.25).extrude(p["mezz_gap"]).translate((hx, hy, 0.0))
-           for (hx, hy) in p["sbc_holes"]]
-    parts["standoffs"] = union_all(so)
-    front = box(ox0, oy0, z_front_in, ox1, oy1, z_out_front)
+    tub = tub.union(union_all(so))                 # printed bosses, M2.5 heat-set inserts
+    parts["spacers_m25x8"] = union_all([cq.Workplane("XY").polygon(6, 5.0 / 0.866).circle(1.25).extrude(p["mezz_gap"])
+                                        .translate((hx, hy, 0.0)) for (hx, hy) in p["sbc_holes"]])
+    front = box(ox0, oy0, z_front_in, ox1, oy1, z_out_front).edges("|Z").fillet(p["corner_r"])
+    front = front.faces(">Z").edges().chamfer(0.6)
+    t_ = p["tol"]
+    rim = (box(ix0 + t_, iy0 + t_, z_front_in - p["lip_h"], ix1 - t_, iy1 - t_, z_front_in)
+           .cut(box(ix0 + t_ + p["lip_t"], iy0 + t_ + p["lip_t"], z_front_in - p["lip_h"] - 1,
+                    ix1 - t_ - p["lip_t"], iy1 - t_ - p["lip_t"], z_front_in + 1)))
+    for (px, py) in screw_pts[2:]:                  # clear the two plenum posts
+        rim = rim.cut(cq.Workplane("XY").circle(4.0 + t_).extrude(p["lip_h"] + 2).translate((px, py, z_front_in - p["lip_h"] - 1)))
+    front = front.union(rim)
     vx = cx + p["va_off"]                          # active area is off-centre on the short axis
     front = front.cut(box(vx - p["va_h"] / 2 - 0.5, cy - p["va_w"] / 2 - 0.5, z_front_in - 1,
                           vx + p["va_h"] / 2 + 0.5, cy + p["va_w"] / 2 + 0.5, z_out_front + 1))
@@ -213,7 +232,8 @@ def build(p=P):
     front = front.cut(cq.Workplane("XY").circle(2.1).extrude(10).translate((bx, by, z_front_in - 2)))   # button
     front = front.cut(cq.Workplane("XY").circle(1.5).extrude(10).translate((lx, ly, z_front_in - 2)))   # LED
     for (px, py) in screw_pts:
-        front = front.cut(cq.Workplane("XY").circle(1.7).extrude(10).translate((px, py, z_front_in - 1)))
+        front = front.cut(cq.Workplane("XY").circle(1.7).extrude(10).translate((px, py, z_front_in - 3)))
+        front = front.cut(cq.Workplane("XY").circle(3.1).extrude(2).translate((px, py, z_out_front - 1.3)))   # head
     # side face (Y = 0): Bubblegum ports
     for (a, b, zt) in ((2, 14, 2.6), (17.5, 32.5, 7.0), (38, 45, 4.0), (49.5, 63.7, 8.0), (69, 83, 8.0)):
         tub = tub.cut(box(a - 0.5, oy0 - 1, -p["sbc_t"] - 0.5, b + 0.5, iy0 + 1, zt))
@@ -269,16 +289,60 @@ def build(p=P):
             top_slots.append(box(ix1 - 1, y, z_back_in + 4, ox1 + 1, y + 2, z_front_in - 6))
     tub = tub.cut(union_all(top_slots))
     # plenum divider: keeps the fan pulling through the SoC column, the cell column breathes passively
-    parts["plenum_divider"] = box(p["pcb_wide"][1] + 0.5, 53.5, z_back_in, ix1, 54.5, z_front_in - disp_t - 0.5)
+    tub = tub.union(box(p["pcb_wide"][1] + 0.5, 53.5, z_back_in, ix1, 54.5, z_front_in - disp_t - 0.5))
     # --- bottom wall: intake slots for both columns
     bot = []
     for y in list(range(10, 52, 4)) + list(range(60, 136, 4)):
         bot.append(box(ox0 - 1, y, z_back_in + 3, ix0 + 1, y + 2, z_front_in - 6))
     tub = tub.cut(union_all(bot))
     # --- back: battery door opening + vent slots behind the SoC column
-    tub = tub.cut(box(x0 + 2, p["cells_y0"] + 2, z_out_back - 1, x0 + p["cell_len"] - 2,
-                      p["cells_y0"] + 4 * p["cell_pitch"] - 2, z_back_in + 1))
+    dx0, dx1 = x0 + 2, x0 + p["cell_len"] - 2
+    dy0, dy1 = p["cells_y0"] + 2, p["cells_y0"] + 4 * p["cell_pitch"] - 2
+    tub = tub.cut(box(dx0, dy0, z_out_back - 1, dx1, dy1, z_back_in + 1))
+    m_, dt = p["door_margin"], p["door_t"]
+    ear_x = dx1 + 7.0                                # screw ears beyond the cell holders (x ~ 86.8)
+    ear_ys = (dy0 + 14.0, dy1 - 14.0)
+    recess = box(dx0 - m_, dy0 - m_, z_out_back - 1, dx1 + m_, dy1 + m_, z_out_back + dt)
+    door = box(dx0 - m_ + t_, dy0 - m_ + t_, z_out_back, dx1 + m_ - t_, dy1 + m_ - t_, z_out_back + dt)
+    for ey in ear_ys:
+        recess = recess.union(box(dx1, ey - 5.0, z_out_back - 1, ear_x + 4.5, ey + 5.0, z_out_back + dt))
+        door = door.union(box(dx1, ey - 5.0 + t_, z_out_back, ear_x + 4.5 - t_, ey + 5.0 - t_, z_out_back + dt))
+        tub = tub.union(cq.Workplane("XY").circle(3.8).extrude(7.0).translate((ear_x, ey, z_back_in)))
+    tub = tub.cut(recess)
+    for ey in ear_ys:
+        tub = tub.cut(cq.Workplane("XY").circle(p["ins_m3"] / 2).extrude(12).translate((ear_x, ey, z_out_back)))
+        door = door.cut(cq.Workplane("XY").circle(1.7).extrude(5).translate((ear_x, ey, z_out_back - 1)))
+        door = door.cut(cq.Workplane("XY").circle(3.1).extrude(1.0).translate((ear_x, ey, z_out_back - 0.2)))
+    for ty in (dy0 + 12.0, (dy0 + dy1) / 2 - 5.0, dy1 - 22.0):   # tongues hook under the back wall at the -X edge
+        door = door.union(box(dx0 + t_, ty, z_out_back + dt, dx0 + t_ + 1.6, ty + 10.0, z_back_in + 1.4))
+        door = door.union(box(dx0 - 3.0, ty, z_back_in + t_, dx0 + t_ + 1.6, ty + 10.0, z_back_in + 1.4))
+    for i in range(4):                              # vent slots along each cell
+        yc = p["cells_y0"] + i * p["cell_pitch"] + 10.35
+        door = door.cut(box(dx0 + 10, yc - 1.0, z_out_back - 1, dx1 - 10, yc + 1.0, z_out_back + dt + 1))
+    parts["battery_door"] = door
     tub = tub.cut(union_all([box(8 + i * 6, 6, z_out_back - 1, 11 + i * 6, 48, z_back_in + 1) for i in range(12)]))
+    ld = p["label_depth"]
+
+    def label(txt, size, pos, rot, depth_dir):
+        """Text solid, ld deep, lying in the XY plane then rotated/translated into place."""
+        t = cq.Workplane("XY").text(txt, size, ld + 0.2, halign="center", valign="center")
+        for (axis, ang) in rot:
+            t = t.rotate((0, 0, 0), axis, ang)
+        return t.translate(pos)
+    try:
+        # +Y side face (left side when standing): reads along +Z with +X up, beside each opening
+        side = [("UART 3V3", 17.5), ("USB-C 9V", 34.5), ("POWER", 53.0), ("GPS", 66.3)]
+        for (txt, x) in side:
+            tub = tub.cut(label(txt, 2.6, (x, oy1 - ld, z_mt + 13.5), [((1, 1, 1), -120)], None))
+        # top wall: antenna names in front of the SMA holes, read from the front (along -Y)
+        for (name, y, _l) in p["antennas"]:
+            tub = tub.cut(label(name, 2.6, (ox1 - ld, y, zc + 8.5), [((0, 1, 0), 90), ((1, 0, 0), -90)], None))
+        # front plate: reads along -Y with +X up
+        front = front.cut(label("MESH", 3.0, (bx - 6.5, by, z_out_front - ld), [((0, 0, 1), -90)], None))
+        parts["_labels_ok"] = None
+    except Exception as e:  # noqa: BLE001  (no font available: skip the labels)
+        print("labels skipped:", e)
+    parts.pop("_labels_ok", None)
     parts["enclosure_tub"] = tub
     parts["front_plate"] = front
     # air-flow arrows (visual only): up the SoC chimney into the fan, passive up the cell column
@@ -311,7 +375,10 @@ def build_stand(p, geo, world_parts):
     for y in p["cradle_y"]:
         blk = box(bb.xmin - 4, y, desk, bb.xmax + p["stand_depth"], y + p["cradle_w"], bb.zmin + 22)
         cradles.append(blk.cut(env).cut(env.translate((0, 0, 30))))
-    stand = union_all(cradles)
+    y0_, y1_ = min(p["cradle_y"]), max(p["cradle_y"]) + p["cradle_w"]
+    tie = box(bb.xmax + p["stand_depth"] - 10.0, y0_, desk, bb.xmax + p["stand_depth"], y1_, desk + 6.0)
+    tie2 = box(bb.xmin - 4, y0_, desk, bb.xmin + 4, y1_, desk + 4.0)
+    stand = union_all(cradles + [tie, tie2])
     return stand, desk
 
 
@@ -320,11 +387,11 @@ COLORS = dict(bubblegum96=(0.18, 0.49, 0.20), soc_heatsink=(0.75, 0.75, 0.78), l
               usb_c=(0.62, 0.62, 0.62), power_button=(0.90, 0.22, 0.21), mesh_button=(0.12, 0.53, 0.90),
               gps_switch=(1.0, 0.76, 0.03), gps_led=(0.2, 1.0, 0.2), fan=(0.2, 0.2, 0.25),
               console_header=(0.1, 0.1, 0.1), chin_board=(0.1, 0.45, 0.2), oled=(0.02, 0.02, 0.05),
-              fp_led=(0.2, 0.4, 1.0),
-              plenum_divider=(0.55, 0.6, 0.62), airflow=(0.1, 0.6, 1.0),
+              fp_led=(0.2, 0.4, 1.0), battery_door=(0.55, 0.62, 0.66), spacers_m25x8=(0.85, 0.75, 0.35),
+              airflow=(0.1, 0.6, 1.0),
               mesh_gps_zone=(0.56, 0.14, 0.67), power_zone=(0.94, 0.42, 0.0), mmdvm_zone=(0.0, 0.54, 0.48),
               cells_1s4p=(0.78, 0.16, 0.16), display=(0.10, 0.10, 0.12),
-              standoffs=(0.85, 0.75, 0.35), enclosure_tub=(0.69, 0.75, 0.77), front_plate=(0.81, 0.85, 0.86), stand=(0.45, 0.47, 0.50))
+              enclosure_tub=(0.69, 0.75, 0.77), front_plate=(0.81, 0.85, 0.86), stand=(0.45, 0.47, 0.50))
 OPACITY = dict(enclosure_tub=0.22, front_plate=0.18)
 
 
@@ -383,9 +450,16 @@ if __name__ == "__main__":
         asm.add(wp, name=n)
     asm.save(os.path.join(out, "concept_assembly.step"))
     # print orientation: tub on its back, front plate flat, cradles as modelled
-    cq.exporters.export(parts["enclosure_tub"], os.path.join(out, "enclosure_tub.stl"))
-    cq.exporters.export(parts["front_plate"], os.path.join(out, "front_plate.stl"))
-    cq.exporters.export(stand, os.path.join(out, "stand_cradle.stl"))
+    # print orientation: tub on its back, front plate face down, door outside face down, stand as modelled
+    prints = {"enclosure_tub": parts["enclosure_tub"],
+              "front_plate": parts["front_plate"].rotate((0, 0, 0), (0, 1, 0), 180),
+              "battery_door": parts["battery_door"],
+              "stand": stand}
+    for n, wp in prints.items():
+        cq.exporters.export(wp, os.path.join(out, n + ".stl"), tolerance=0.05, angularTolerance=0.2)
+        cq.exporters.export(wp, os.path.join(out, n + ".step"))
+        b_ = wp.val().BoundingBox()
+        print("  %-14s %6.1f x %6.1f x %5.1f mm  %6.1f cm3" % (n, b_.xlen, b_.ylen, b_.zlen, wp.val().Volume() / 1000))
     shell = world["enclosure_tub"]
     b = shell.val().BoundingBox()
     focal = ((b.xmin + b.xmax) / 2, (b.ymin + b.ymax) / 2, (b.zmin + b.zmax) / 2 + 20)
@@ -396,6 +470,8 @@ if __name__ == "__main__":
     render(world, os.path.join(out, "preview_airflow.png"), (-300, -360, 120), focal,
            skip=("front_plate", "display", "antennas", "stand"), fit=shell, zoom=1.05)
     render(world, os.path.join(out, "preview_side_ports.png"), (60, 420, 60), focal, opaque=True,
+           skip=("airflow", "antennas"), zoom=1.3)
+    render(world, os.path.join(out, "preview_top_labels.png"), (-260, 60, 420), focal, opaque=True,
            skip=("airflow", "antennas"), zoom=1.3)
     render(world, os.path.join(out, "preview_inside.png"), (-330, -200, 160), focal,
            skip=("front_plate", "display", "antennas", "airflow", "stand"), fit=shell, zoom=1.05)
