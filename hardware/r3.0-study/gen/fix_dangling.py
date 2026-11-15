@@ -82,13 +82,15 @@ zones = list(board.Zones())
 
 def free(t, q):
     net, lay = t.GetNetname(), t.GetLayer()
-    if any(p.GetNetname() == net and p.IsOnLayer(lay) and p.HitTest(q) for p in pads):
+    half = t.GetWidth() // 2          # the copper of the track end reaches this far: overlap counts as contact
+    if any(p.GetNetname() == net and p.IsOnLayer(lay) and p.HitTest(q, half) for p in pads):
         return False
-    if any(v.GetNetname() == net and v.HitTest(q) for v in vias):
+    if any(v.GetNetname() == net and v.HitTest(q, half) for v in vias):
         return False
     if any(z.GetNetname() == net and z.IsOnLayer(lay) and z.HitTestFilledArea(lay, q) for z in zones):
         return False
-    return not any(o.GetNetname() == net and o.GetLayer() == lay and uid(o) != uid(t) and o.HitTest(q) for o in segs)
+    return not any(o.GetNetname() == net and o.GetLayer() == lay and uid(o) != uid(t) and o.HitTest(q, half)
+                   for o in segs)
 
 
 stubs = 0

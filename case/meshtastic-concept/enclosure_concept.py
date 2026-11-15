@@ -30,10 +30,10 @@ P = dict(
     # main (mezzanine) board, extended towards +Y for the cells
     pcb_t=1.6, pcb_y1=-1.0, pcb_y2=166.0,
     disp_ref_y2=153.0,          # the display keeps its place: the 13 mm added for the RJ45 lie beyond its +Y end
-    edge_gap=1.8,               # +Y board edge to the inner wall: the switch lever (1.25) and console pins (1.6)
+    edge_gap=2.4,               # +Y board edge to the inner wall: the switch levers (1.25 / 1.9) and console pins (1.6)
                                 # stay inside it, so the board stack drops straight in from the front
     pcb_wide=(-2.0, 88.5, 54.0),               # L-shaped main board: x -2 .. 88.5 from y = 54 (cell holders)
-    mb_holes_ext=[(4.0, 162.0), (84.0, 162.0)],   # main-board holes beyond the last cell holder
+    mb_holes_ext=[(4.0, 150.0), (84.0, 162.0)],   # main-board holes beyond the last cell holder
     # 4x Keystone 1042P, mounted on the main-board underside, cells along X (vertical when standing)
     cell_len=77.1, cell_pitch=21.8, cell_h=20.5, cells_y0=55.0, cell_cx=43.25,   # Keystone 1042 courtyard 88 x 21.75
     # display: TJC8048X550_011R (resistive: 4-pin touch tail HST050008), TJC X5 datasheet p.7; long side along Y
@@ -110,21 +110,25 @@ def build(p=P):
     parts["main_board"] = mb
     # side-panel controls on the +Y edge: USB-C, MESH button, power button, GPS switch, GPS LED
     y2 = p["pcb_y2"]
-    # +Y edge parts as placed by hardware/r3.0-study/gen/main_pcb.py (x centres 16 / 32 / 42.3 / 52.3 / 60.3 / 71.3)
-    parts["usb_c"] = box(27.5, y2 - 7.3, z_mt, 36.5, y2 + 0.6, z_mt + 3.3)
+    # +Y edge parts as placed by hardware/r3.0-study/gen/main_pcb.py (x centres 9 / 23.7 / 33.7 / 42.1 / 53 / 60.8 / 71.3)
+    parts["usb_c"] = box(19.2, y2 - 7.3, z_mt, 28.2, y2 + 0.6, z_mt + 3.3)
     # RJ45 with magnetics (HanRun HR911105A): 16 x 21.3 x 13.4 mm, front 1 mm beyond the board edge
     parts["rj45"] = box(71.3 - 8.0, y2 + 1.0 - 21.3, z_mt, 71.3 + 8.0, y2 + 1.0, z_mt + 13.4)
     # Alps SKRTLAE010 (manufacturer STEP): body 4.5 x 2.96 x 3.3 mm, round 2 mm stem at mid height,
     # guide bosses 1.85 mm inside the board edge, stem tip 0.2 mm beyond the edge
-    parts["power_button"] = (box(40.05, y2 - 3.35, z_mt, 44.55, y2 - 0.39, z_mt + 3.3)
-                             .union(cq.Workplane("XZ").center(42.3, z_mt + 1.65).circle(1.0).extrude(-0.59)
+    parts["power_button"] = (box(31.45, y2 - 3.35, z_mt, 35.95, y2 - 0.39, z_mt + 3.3)
+                             .union(cq.Workplane("XZ").center(33.7, z_mt + 1.65).circle(1.0).extrude(-0.59)
                                     .translate((0, y2 - 0.39, 0))))
-    parts["gps_switch"] = (box(48.95, y2 - 2.9, z_mt, 55.65, y2 - 0.2, z_mt + 1.4)             # C&K PCM12
-                           .union(box(51.65, y2 - 0.2, z_mt + 0.2, 52.95, y2 + 1.25, z_mt + 1.2)))  # lever (centre)
-    parts["gps_led"] = box(59.3, y2 - 3.0, z_mt, 61.3, y2 - 1.0, z_mt + 1)
+    parts["gps_switch"] = (box(38.75, y2 - 2.9, z_mt, 45.45, y2 - 0.2, z_mt + 1.4)             # C&K PCM12
+                           .union(box(41.45, y2 - 0.2, z_mt + 0.2, 42.75, y2 + 1.25, z_mt + 1.2)))  # lever (centre)
+    # battery master switch, C&K JS202011AQN (DPDT, right angle): body 9.1 x 6.1 x 3.5 mm ending 0.12 mm inside
+    # the edge; lever 2 x 2 mm, 2 mm long, 2 mm travel -- lever dimensions assumed, CHECK against the part
+    parts["battery_switch"] = (box(48.45, y2 - 6.22, z_mt, 57.55, y2 - 0.12, z_mt + 3.5)
+                               .union(box(52.0, y2 - 0.12, z_mt + 0.75, 54.0, y2 + 1.9, z_mt + 2.75)))
+    parts["gps_led"] = box(59.8, y2 - 3.0, z_mt, 61.8, y2 - 1.0, z_mt + 1)
     # Bubblegum-96 console: 6-pin 2.54 mm right-angle header, FTDI order, pin tips 1.6 mm beyond the edge
-    parts["console_header"] = (box(8.1, y2 - 7.0, z_mt, 23.9, y2 - 4.4, z_mt + 2.54)
-                               .union(box(9.0, y2 - 4.4, z_mt + 0.95, 23.0, y2 + 1.6, z_mt + 1.6)))
+    parts["console_header"] = (box(1.1, y2 - 7.0, z_mt, 16.9, y2 - 4.4, z_mt + 2.54)
+                               .union(box(2.0, y2 - 4.4, z_mt + 0.95, 16.0, y2 + 1.6, z_mt + 1.6)))
     # layout zones on the main-board top (standing: X is height)
     parts["mmdvm_zone"] = box(5, 2, z_mt, 80, 52, z_mt + 3)          # over the Bubblegum (SoC column)
     parts["mesh_gps_zone"] = box(5, 60, z_mt, 42, 136, z_mt + 3)     # low in the cell column
@@ -250,27 +254,35 @@ def build(p=P):
     for (a, b, zt) in ((2, 14, 2.6), (17.5, 32.5, 7.0), (38, 45, 4.0), (49.5, 63.7, 8.0), (69, 83, 8.0)):
         tub = tub.cut(box(a - 0.5, oy0 - 1, -p["sbc_t"] - 0.5, b + 0.5, iy0 + 1, zt))
     # side face (+Y): console, USB-C (opening passes the plug overmold), power-button cap, GPS slider, LED
-    tub = tub.cut(box(7.5, iy1 - 1, z_mt - 0.4, 24.5, oy1 + 1, z_mt + 3.2))          # 6-pin Dupont / FTDI housing
-    tub = tub.cut(box(25.8, iy1 - 1, z_mt - 2.0, 38.2, oy1 + 1, z_mt + 5.3))         # 12.4 x 7.3 mm for the USB-C plug
+    tub = tub.cut(box(1.0, iy1 - 1, z_mt - 0.4, 17.0, oy1 + 1, z_mt + 3.2))          # 6-pin Dupont / FTDI housing
+    tub = tub.cut(box(17.5, iy1 - 1, z_mt - 2.0, 29.9, oy1 + 1, z_mt + 5.3))         # 12.4 x 7.3 mm for the USB-C plug
     tub = tub.cut(box(71.3 - 8.5, iy1 - 1, z_mt - 0.3, 71.3 + 8.5, oy1 + 1, z_mt + 14.0))   # RJ45 mouth
-    tub = tub.cut(cq.Workplane("XZ").center(60.3, z_mt + 2.2).circle(1.6).extrude(-10).translate((0, iy1 - 2, 0)))
+    tub = tub.cut(cq.Workplane("XZ").center(60.8, z_mt + 2.2).circle(1.6).extrude(-10).translate((0, iy1 - 2, 0)))
     t2 = p["tol"]
     # power button cap: nub on the plunger, flange in a pocket of the inner wall face, stem through the wall
     bz = z_mt + 1.65                      # stem axis of the SKRTLAE010
-    tub = tub.cut(cq.Workplane("XZ").center(42.3, bz).circle(1.8 + t2).extrude(-10).translate((0, iy1 - 1, 0)))
-    tub = tub.cut(box(42.3 - 3.3, iy1 - 0.1, bz - 2.5, 42.3 + 3.3, iy1 + 1.0, bz + 2.5))
-    parts["button_cap"] = (cq.Workplane("XZ").center(42.3, bz).circle(1.0).extrude(-(iy1 - y2 - 0.3)).translate((0, y2 + 0.3, 0))
-                           .union(box(42.3 - 3.0, iy1, bz - 2.2, 42.3 + 3.0, iy1 + 0.8, bz + 2.2))
-                           .union(cq.Workplane("XZ").center(42.3, bz).circle(1.8).extrude(-(oy1 + 0.8 - iy1 - 0.8))
+    tub = tub.cut(cq.Workplane("XZ").center(33.7, bz).circle(1.8 + t2).extrude(-10).translate((0, iy1 - 1, 0)))
+    tub = tub.cut(box(33.7 - 3.3, iy1 - 0.1, bz - 2.5, 33.7 + 3.3, iy1 + 1.0, bz + 2.5))
+    parts["button_cap"] = (cq.Workplane("XZ").center(33.7, bz).circle(1.0).extrude(-(iy1 - y2 - 0.3)).translate((0, y2 + 0.3, 0))
+                           .union(box(33.7 - 3.0, iy1, bz - 2.2, 33.7 + 3.0, iy1 + 0.8, bz + 2.2))
+                           .union(cq.Workplane("XZ").center(33.7, bz).circle(1.8).extrude(-(oy1 + 0.8 - iy1 - 0.8))
                                   .translate((0, iy1 + 0.8, 0))))
     # GPS slider cap: grips the PCM12 lever (pocket open towards the front so the board drops in), 2 mm travel
-    sx = 52.3
+    sx = 42.1
     tub = tub.cut(box(sx - 3.0, iy1 - 1, z_mt - 0.4, sx + 3.0, oy1 + 1, z_mt + 2.6))
-    tub = tub.cut(box(sx - 6.0, iy1 - 0.1, z_mt - 1.6, sx + 6.0, iy1 + 1.0, z_mt + 3.8))
+    tub = tub.cut(box(sx - 4.6, iy1 - 0.1, z_mt - 1.6, sx + 4.6, iy1 + 1.0, z_mt + 3.8))
     parts["slider_cap"] = (box(sx - 1.8, y2 + 0.3, z_mt - 0.2, sx + 1.8, iy1, z_mt + 2.2)
                            .cut(box(sx - 0.8, y2 + 0.2, z_mt + 0.1, sx + 0.8, y2 + 1.45, z_mt + 2.3))
-                           .union(box(sx - 4.8, iy1, z_mt - 1.4, sx + 4.8, iy1 + 0.8, z_mt + 3.6))
+                           .union(box(sx - 3.6, iy1, z_mt - 1.4, sx + 3.6, iy1 + 0.8, z_mt + 3.6))
                            .union(box(sx - 1.8, iy1 + 0.8, z_mt - 0.2, sx + 1.8, oy1 + 0.8, z_mt + 2.4)))
+    # battery switch cap: same idea for the JS202011 lever (2 x 2 mm, 2 mm travel)
+    bx = 53.0
+    tub = tub.cut(box(bx - 3.3, iy1 - 1, z_mt - 0.1, bx + 3.3, oy1 + 1, z_mt + 3.7))
+    tub = tub.cut(box(bx - 5.2, iy1 - 0.1, z_mt - 1.3, bx + 5.2, iy1 + 1.0, z_mt + 4.9))
+    parts["battery_cap"] = (box(bx - 2.1, y2 + 0.3, z_mt + 0.1, bx + 2.1, iy1, z_mt + 3.5)
+                            .cut(box(bx - 1.1, y2 + 0.2, z_mt + 0.6, bx + 1.1, y2 + 2.1, z_mt + 3.6))
+                            .union(box(bx - 4.2, iy1, z_mt - 1.1, bx + 4.2, iy1 + 0.8, z_mt + 4.7))
+                            .union(box(bx - 2.1, iy1 + 0.8, z_mt + 0.1, bx + 2.1, oy1 + 0.8, z_mt + 3.5)))
     # --- top wall: fan exhaust grille, fan screws, bulkhead SMA D-holes, passive slots over the cell column
     z_mid = (z_back_in + z_front_in) / 2
     fan_c = (p["fan_y"], z_mid)
@@ -359,7 +371,7 @@ def build(p=P):
         return t.translate(pos)
     try:
         # +Y side face (left side when standing): reads along +Z with +X up, beside each opening
-        side = [("UART", 16.0), ("USB-C", 32.0), ("PWR", 42.3), ("GPS", 52.3), ("LAN", 71.3)]
+        side = [("UART", 9.0), ("USB-C", 23.7), ("PWR", 33.7), ("GPS", 42.1), ("BAT", 53.0), ("LAN", 71.3)]
         for (txt, x) in side:
             tub = tub.cut(label(txt, 2.6, (x, oy1 - ld, z_mt + (18.5 if txt == "LAN" else 13.5)), [((1, 1, 1), -120)], None))
         # top wall: antenna names in front of the SMA holes, read from the front (along -Y)
@@ -415,7 +427,7 @@ COLORS = dict(bubblegum96=(0.18, 0.49, 0.20), soc_heatsink=(0.75, 0.75, 0.78), l
               usb_c=(0.62, 0.62, 0.62), power_button=(0.90, 0.22, 0.21), mesh_button=(0.12, 0.53, 0.90),
               gps_switch=(1.0, 0.76, 0.03), gps_led=(0.2, 1.0, 0.2), fan=(0.2, 0.2, 0.25),
               console_header=(0.1, 0.1, 0.1), chin_board=(0.1, 0.45, 0.2), oled=(0.02, 0.02, 0.05),
-              fp_led=(0.2, 0.4, 1.0), button_cap=(0.9, 0.3, 0.25), slider_cap=(1.0, 0.76, 0.03), battery_door=(0.55, 0.62, 0.66), spacers_m25x8=(0.85, 0.75, 0.35),
+              fp_led=(0.2, 0.4, 1.0), button_cap=(0.9, 0.3, 0.25), slider_cap=(1.0, 0.76, 0.03), battery_cap=(0.2, 0.7, 0.3), battery_switch=(0.3, 0.3, 0.3), rj45=(0.7, 0.7, 0.7), battery_door=(0.55, 0.62, 0.66), spacers_m25x8=(0.85, 0.75, 0.35),
               airflow=(0.1, 0.6, 1.0),
               mesh_gps_zone=(0.56, 0.14, 0.67), power_zone=(0.94, 0.42, 0.0), mmdvm_zone=(0.0, 0.54, 0.48),
               cells_1s4p=(0.78, 0.16, 0.16), display=(0.10, 0.10, 0.12),
@@ -484,6 +496,7 @@ if __name__ == "__main__":
               "battery_door": parts["battery_door"],
               "button_cap": parts["button_cap"].rotate((0, 0, 0), (1, 0, 0), -90),
               "slider_cap": parts["slider_cap"].rotate((0, 0, 0), (1, 0, 0), -90),
+              "battery_cap": parts["battery_cap"].rotate((0, 0, 0), (1, 0, 0), -90),
               "stand": stand}
     for n, wp in prints.items():
         cq.exporters.export(wp, os.path.join(out, n + ".stl"), tolerance=0.05, angularTolerance=0.2)

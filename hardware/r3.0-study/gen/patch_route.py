@@ -6,6 +6,7 @@ Everything of other nets is an obstacle with the board clearance; the new copper
 connections, then review them.
 
 Usage: python patch_route.py U60.12 J10.51 [REF.PAD REF.PAD ...]
+An end can also be a point on an existing track of the net: @x,y,LAYER (board mm, e.g. @148.76,94.33,F.Cu).
 """
 import heapq
 import math
@@ -46,7 +47,39 @@ def edge_dist(x, y):
     return d
 
 
+class Point:
+    """A spot on existing copper, given as @x,y,LAYER (board mm): stands in for a pad at either end."""
+
+    def __init__(self, spec):
+        x, y, layer = spec[1:].split(',')
+        self.q = pcbnew.VECTOR2I(pcbnew.FromMM(float(x)), pcbnew.FromMM(float(y)))
+        self.layer = board.GetLayerID(layer)
+        hit = [t for t in board.GetTracks() if t.GetClass() == 'PCB_TRACK' and t.GetLayer() == self.layer
+               and t.HitTest(self.q, pcbnew.FromMM(0.05))]
+        if not hit:
+            raise SystemExit('no track at ' + spec)
+        self.net = hit[0].GetNetname()
+
+    def GetNetname(self):
+        return self.net
+
+    def GetPosition(self):
+        return self.q
+
+    def GetBoundingBox(self):
+        return pcbnew.BOX2I(self.q - pcbnew.VECTOR2I(pcbnew.FromMM(0.05), pcbnew.FromMM(0.05)),
+                            pcbnew.VECTOR2I(pcbnew.FromMM(0.1), pcbnew.FromMM(0.1)))
+
+    def GetAttribute(self):
+        return pcbnew.PAD_ATTRIB_SMD
+
+    def IsOnLayer(self, layer):
+        return layer == self.layer
+
+
 def find_pad(spec):
+    if spec.startswith('@'):
+        return Point(spec)
     ref, num = spec.split('.')
     for fp in board.GetFootprints():
         if fp.GetReference() == ref:

@@ -14,15 +14,26 @@ import pcbnew
 import main_pcb as M
 
 PCB = os.path.join(M.PRJ, 'mmdvm_mesh.kicad_pcb')
+SILK = (pcbnew.F_SilkS, pcbnew.B_SilkS)
+if '--clear' in sys.argv:
+    # Separate process: after removing board items the KiCad binding hands out broken proxies, so the labels of
+    # an earlier run are removed here and nothing else is done.
+    board = pcbnew.LoadBoard(PCB)
+    old = [d for d in board.GetDrawings() if d.GetClass() == 'PCB_TEXT' and d.GetLayer() in SILK]
+    for d in old:
+        board.Remove(d)
+    board.Save(PCB)
+    print('old labels removed', len(old))
+    sys.stdout.flush()
+    os._exit(0)
+import subprocess  # noqa: E402
+subprocess.run([sys.executable, os.path.abspath(__file__), '--clear'], capture_output=True)
 board = pcbnew.LoadBoard(PCB)
 mm = pcbnew.FromMM
 PAD_CL, SILK_CL, EDGE_CL = mm(0.15), mm(0.15), mm(0.5)
 POLY = [(mm(M.X0 + x), mm(M.Y0 - y)) for x, y in M.OUTLINE]
 SILK = (pcbnew.F_SilkS, pcbnew.B_SilkS)
 
-for d in list(board.GetDrawings()):
-    if d.GetClass() == 'PCB_TEXT' and d.GetLayer() in SILK:
-        board.Remove(d)
 
 
 def in_board(x, y):
@@ -148,6 +159,14 @@ _, _, _, ys = bb('SW50')
 label('ON', x_on + (1.2 if x_on > x_off else -1.2), ys + 1.0, 0.8)
 label('OFF', x_off + (1.4 if x_off > x_on else -1.4), ys + 1.0, 0.8)
 beside('SW50', 'GPS', 'S', 1.0, gap=2.4, radius=10, bold=True)
+if 'SW101' in fps:                 # battery master switch: terminals 1/6 are the ON throws
+    bx_on, _ = pad('SW101', '1')
+    bx_off, _ = pad('SW101', '3')
+    _, _, _, bys = bb('SW101')
+    # short search radius: a label that lands next to the neighbouring GPS switch would mislead
+    label('ON', bx_on + (1.0 if bx_on > bx_off else -1.0), bys + 0.9, 0.8, radius=3.5)
+    label('OFF', bx_off + (1.2 if bx_off > bx_on else -1.2), bys + 0.9, 0.8, radius=3.5)
+    label('BAT', (bx_on + bx_off) / 2, bys + 2.2, 0.8, radius=4.5, bold=True)
 if 'J60' in fps:
     beside('J60', 'LAN', 'S', 1.0, radius=12, bold=True)
 

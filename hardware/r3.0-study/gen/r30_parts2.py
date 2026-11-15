@@ -161,11 +161,22 @@ def power():
         R('R107', '330R', 'CELL+', 'PROT_BAT'), C('C111', '100n', 'PROT_BAT', 'CELL-'),
         R('R108', '2k2', 'GND', 'PROT_VM'),
         P('Q100', 'Transistor_FET:CSD17577Q3A', 'CSD17577Q3A', {'1': 'CELL-', '2': 'CELL-', '3': 'CELL-',
-                                                                '4': 'PROT_DOUT', '5': 'PROT_MID'}, FP_NFET,
+                                                                '4': 'PROT_DGATE', '5': 'PROT_MID'}, FP_NFET,
           {'Note': 'discharge FET'}),
         P('Q101', 'Transistor_FET:CSD17577Q3A', 'CSD17577Q3A', {'1': 'GND', '2': 'GND', '3': 'GND',
-                                                                '4': 'PROT_COUT', '5': 'PROT_MID'}, FP_NFET,
+                                                                '4': 'PROT_CGATE', '5': 'PROT_MID'}, FP_NFET,
           {'Note': 'charge FET'}),
+        # ---- battery master switch: a DPDT slide switch in the two gate lines of the protection FETs.
+        # ON: gates follow the BQ29728. OFF: each gate is tied to its own source, both FETs are off and the
+        # pack is isolated in both directions (no discharge, no charging) with no extra standby current.
+        # Wired by terminal position, not by pole numbering: the two terminals at one end (1, 6) are the ON
+        # throws, the two at the other end (3, 4) the OFF throws, 2 and 5 are the commons.
+        P('SW101', 'Switch:SW_DPDT_x2', 'BATTERY ON/OFF',
+          {'1': 'PROT_DOUT', '2': 'PROT_DGATE', '3': 'CELL-', '4': 'GND', '5': 'PROT_CGATE', '6': 'PROT_COUT'},
+          'Button_Switch_THT:SW_CK_JS202011AQN_DPDT_Angled',
+          {'MPN': 'C&K JS202011AQN', 'Note': 'VERIFY which lever position closes 2-1 / 5-6 (marked ON)'}),
+        R('R130', '1M', 'PROT_DGATE', 'CELL-', Note='gate defined while the switch travels'),
+        R('R131', '1M', 'PROT_CGATE', 'GND', Note='gate defined while the switch travels'),
         # ---- fuel gauge
         P('U103', 'MMDVM_r30:MAX17048', 'MAX17048', {'1': 'GND', '2': 'CELL+', '3': 'CELL+', '4': 'GND',
                                                      '5': 'PWR_INT_N', '6': 'GND', '7': 'SCL_AON', '8': 'SDA_AON',
