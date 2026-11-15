@@ -18,6 +18,12 @@ for fp in board.GetFootprints():
     c = comps.get(ref)
     if not c:
         continue
+    # pads first: after removing fields the binding sometimes hands out a broken pad list
+    for pad in fp.Pads():
+        n = pins.get((ref, pad.GetNumber()))
+        if n and pad.GetNetname() != n:
+            bad += 1
+            print('net differs', ref, pad.GetNumber(), pad.GetNetname(), '!=', n)
     fp.SetPath(pcbnew.KIID_PATH(c['path']))
     fp.SetValue(c['val'])
     if fp.GetFPIDAsString() != c['fp']:
@@ -31,11 +37,6 @@ for fp in board.GetFootprints():
         f.SetText(v); f.SetVisible(False); f.SetLayer(pcbnew.F_Fab)
         f.SetOrdinal(fp.GetNextFieldOrdinal())
         fp.Add(f)
-    for pad in fp.Pads():
-        n = pins.get((ref, pad.GetNumber()))
-        if n and pad.GetNetname() != n:
-            bad += 1
-            print('net differs', ref, pad.GetNumber(), pad.GetNetname(), '!=', n)
 board.Save(PCB)
 print('synced', len(comps), 'symbols; differences', bad)
 sys.stdout.flush()

@@ -2579,7 +2579,7 @@
 			(pin passive line
 				(at -17.78 -10.16 0)
 				(length 5.08)
-				(name "P10"
+				(name "CHS"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2597,7 +2597,7 @@
 			(pin passive line
 				(at 17.78 12.7 180)
 				(length 5.08)
-				(name "LEDY_A"
+				(name "LED1_G+"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2615,7 +2615,7 @@
 			(pin passive line
 				(at 17.78 10.16 180)
 				(length 5.08)
-				(name "LEDY_K"
+				(name "LED1_Y+"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2633,7 +2633,7 @@
 			(pin passive line
 				(at 17.78 7.62 180)
 				(length 5.08)
-				(name "LEDG_A"
+				(name "LED2_G+"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2651,7 +2651,7 @@
 			(pin passive line
 				(at 17.78 5.08 180)
 				(length 5.08)
-				(name "LEDG_K"
+				(name "LED2_Y+"
 					(effects
 						(font
 							(size 1.27 1.27)

@@ -373,12 +373,13 @@ def ethernet():
     p += [
         P('J60', 'MMDVM_r30:RJ45_WE_7499111446', 'RJ45 10/100/1000',
           {'1': 'ETH_VMAG', '2': 'ETH_TR0P', '3': 'ETH_TR0N', '4': 'ETH_TR1P', '5': 'ETH_TR1N', '6': 'ETH_TR2P',
-           '7': 'ETH_TR2N', '8': 'ETH_TR3P', '9': 'ETH_TR3N', '10': 'ETH_J_P10', '11': 'ETH_LED_Y_A',
+           '7': 'ETH_TR2N', '8': 'ETH_TR3P', '9': 'ETH_TR3N', '10': 'ETH_SHIELD', '11': 'ETH_LED_Y_A',
            '12': 'ETH_LED0_N', '13': 'ETH_LED_G_A', '14': 'ETH_LED1_N', 'SH': 'ETH_SHIELD'},
           'MMDVM_r30:RJ45_Wuerth_7499111446_EdgeMount',
           {'MPN': 'Wurth 7499111446',
-           'Note': 'VERIFY against the Wurth data sheet: pin 1 = common centre tap, pin 10, pair polarity, LED pins'}),
-        R('R79', '0R', 'ETH_J_P10', 'GND', dnp=True, Note='DNP until the function of jack pin 10 is confirmed'),
+           'Note': 'per Wurth spec rev 04 (2018-12-07): pin 1 = common centre tap, 2/3 4/5 6/7 8/9 = pairs (RJ45 1/2, 3/6, '
+                   '4/5, 7/8), pin 10 = return of the internal 75 ohm / 1000 pF 2 kV termination (to chassis), '
+                   'LEDs bicolour: green lights with 11 / 13 positive'}),
         R('R89', '330R', 'ETH_LED_Y_A', '+3V3_ETH'), R('R90', '330R', 'ETH_LED_G_A', '+3V3_ETH'),
         R('R91', '1M', 'ETH_SHIELD', 'GND', 'Resistor_SMD:R_1210_3225Metric',
           Note='chassis to digital ground link: 1210 so that 0R, a capacitor or a bead can be fitted at EMI test'),

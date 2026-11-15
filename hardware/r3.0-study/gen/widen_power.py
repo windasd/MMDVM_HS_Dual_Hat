@@ -30,6 +30,11 @@ for n in ('+5V', '+3V5', '/Power/B5_SW', '/Power/BB_L1', '/Power/BB_L2', 'MESH_V
           '/Ethernet/ETH_SW33', '/Ethernet/ETH_SW12'):
     NETS[n] = MID
 
+# Ethernet controller rails: finer steps, the escapes between 0.5 mm pitch pins cannot take 0.5 mm
+ETHW = (0.8, 0.6, 0.5, 0.4, 0.3, 0.25)
+for n in ('+3V3_ETH', '+1V2_ETH', '/Ethernet/ETH_VDD12A', '/Ethernet/ETH_VDD12PLL', '/Ethernet/ETH_VDD12USBPLL',
+          '/Ethernet/ETH_VDD33A', '/Ethernet/ETH_VMAG'):
+    NETS[n] = ETHW
 obst = []     # (bbox x0, y0, x1, y1, object, net, layers or None for all)
 for fp in board.GetFootprints():
     for p in fp.Pads():

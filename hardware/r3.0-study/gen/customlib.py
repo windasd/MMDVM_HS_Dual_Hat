@@ -75,12 +75,13 @@ def lan9500a_symbol():
 
 def rj45_we_7499111446_symbol():
     """Wurth 7499111446 gigabit RJ45 with magnetics. Pin functions read from the schematic in the Wurth
-    specification (pairs on 2/3, 4/5, 6/7, 8/9); pins 1 and 10 and the LED polarity are to be verified."""
+    specification rev 04, checked against its drawing: pairs on 2/3, 4/5, 6/7, 8/9, pin 1 = common centre tap,
+    pin 10 = chassis return of the internal termination, two bicolour (antiparallel) LEDs."""
     pins = [('1', 'CT', 'passive', 'L'), ('2', 'TRD1+', 'passive', 'L'), ('3', 'TRD1-', 'passive', 'L'),
             ('4', 'TRD2+', 'passive', 'L'), ('5', 'TRD2-', 'passive', 'L'), ('6', 'TRD3+', 'passive', 'L'),
             ('7', 'TRD3-', 'passive', 'L'), ('8', 'TRD4+', 'passive', 'L'), ('9', 'TRD4-', 'passive', 'L'),
-            ('10', 'P10', 'passive', 'L'), ('11', 'LEDY_A', 'passive', 'R'), ('12', 'LEDY_K', 'passive', 'R'),
-            ('13', 'LEDG_A', 'passive', 'R'), ('14', 'LEDG_K', 'passive', 'R'), ('SH', 'SHIELD', 'passive', 'R')]
+            ('10', 'CHS', 'passive', 'L'), ('11', 'LED1_G+', 'passive', 'R'), ('12', 'LED1_Y+', 'passive', 'R'),
+            ('13', 'LED2_G+', 'passive', 'R'), ('14', 'LED2_Y+', 'passive', 'R'), ('SH', 'SHIELD', 'passive', 'R')]
     return symgen.symbol('RJ45_WE_7499111446', 'J', pins,
                          footprint='MMDVM_r30:RJ45_Wuerth_7499111446_EdgeMount',
                          datasheet='https://www.we-online.com/components/products/datasheet/7499111446.pdf',
