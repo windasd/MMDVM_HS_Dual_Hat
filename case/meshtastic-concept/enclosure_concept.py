@@ -111,8 +111,11 @@ def build(p=P):
     y2 = p["pcb_y2"]
     # +Y edge parts as placed by hardware/r3.0-study/gen/main_pcb.py (x centres 17.5 / 34.5 / 53.0 / 66.3 / 74.5)
     parts["usb_c"] = box(30, y2 - 7.3, z_mt, 39, y2 + 0.6, z_mt + 3.3)
-    parts["power_button"] = (box(50.75, y2 - 3.4, z_mt, 55.25, y2 + 0.2, z_mt + 1.7)          # Alps SKRTLAE010
-                             .union(box(52.0, y2, z_mt + 0.3, 54.0, y2 + 0.47, z_mt + 1.3)))   # plunger
+    # Alps SKRTLAE010 (manufacturer STEP): body 4.5 x 2.96 x 3.3 mm, round 2 mm stem at mid height,
+    # guide bosses 1.85 mm inside the board edge, stem tip 0.2 mm beyond the edge
+    parts["power_button"] = (box(50.75, y2 - 3.35, z_mt, 55.25, y2 - 0.39, z_mt + 3.3)
+                             .union(cq.Workplane("XZ").center(53.0, z_mt + 1.65).circle(1.0).extrude(-0.59)
+                                    .translate((0, y2 - 0.39, 0))))
     parts["gps_switch"] = (box(62.95, y2 - 2.9, z_mt, 69.65, y2 - 0.2, z_mt + 1.4)             # C&K PCM12
                            .union(box(65.65, y2 - 0.2, z_mt + 0.2, 66.95, y2 + 1.25, z_mt + 1.2)))  # lever (centre)
     parts["gps_led"] = box(73.5, y2 - 3.0, z_mt, 75.5, y2 - 1.0, z_mt + 1)
@@ -248,10 +251,10 @@ def build(p=P):
     tub = tub.cut(cq.Workplane("XZ").center(74.5, z_mt + 2.2).circle(1.6).extrude(-10).translate((0, iy1 - 2, 0)))
     t2 = p["tol"]
     # power button cap: nub on the plunger, flange in a pocket of the inner wall face, stem through the wall
-    bz = z_mt + 0.8
+    bz = z_mt + 1.65                      # stem axis of the SKRTLAE010
     tub = tub.cut(cq.Workplane("XZ").center(53.0, bz).circle(1.8 + t2).extrude(-10).translate((0, iy1 - 1, 0)))
     tub = tub.cut(box(53.0 - 3.3, iy1 - 0.1, bz - 2.5, 53.0 + 3.3, iy1 + 1.0, bz + 2.5))
-    parts["button_cap"] = (cq.Workplane("XZ").center(53.0, bz).circle(1.0).extrude(-(iy1 - y2 - 0.6)).translate((0, y2 + 0.6, 0))
+    parts["button_cap"] = (cq.Workplane("XZ").center(53.0, bz).circle(1.0).extrude(-(iy1 - y2 - 0.3)).translate((0, y2 + 0.3, 0))
                            .union(box(53.0 - 3.0, iy1, bz - 2.2, 53.0 + 3.0, iy1 + 0.8, bz + 2.2))
                            .union(cq.Workplane("XZ").center(53.0, bz).circle(1.8).extrude(-(oy1 + 0.8 - iy1 - 0.8))
                                   .translate((0, iy1 + 0.8, 0))))

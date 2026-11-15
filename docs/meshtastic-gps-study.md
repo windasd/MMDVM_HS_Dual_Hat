@@ -444,6 +444,7 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
 - **左側面**（主板延伸端，由上往下）：GPS LED 導光孔、GPS 滑動開關、電源鍵、USB-C 充電、**Bubblegum console 接頭**（6-pin，3.3 V）。
   - 主板邊緣離內牆 1.8 mm；滑桿和排針針尖都不超過這個距離，整疊電路板才能從前面直接放進去。
   - **電源鍵帽**（`button_cap`）：Ø3.6 mm 圓柱穿過側牆、凸出 0.8 mm，內側小凸點頂住開關按壓面，凸緣卡在內牆的凹槽裡不會掉出來。
+    - 開關的實際尺寸依 Alps 原廠資料修正：SKRTLAE010 是 4.5 × 3.4 × **3.3 mm 高**，按壓桿是 Ø2 mm 圓桿、中心離板面 1.65 mm、桿尖凸出板邊 0.2 mm（先前誤當成 1.65 mm 高的扁平按鍵）。鍵帽和側牆開孔的中心已改到離板面 1.65 mm，干涉檢查 0 處。
   - **GPS 滑桿帽**（`slider_cap`）：內側的槽套住開關撥桿（槽朝前開口，主板放下時撥桿自然落入），外側凸出 0.8 mm，行程 2 mm。
   - **USB-C 開孔** 13 × 7.3 mm，插頭的塑膠外模可以穿過側牆插到底。
   - **console 開孔** 17 × 3.6 mm，杜邦／FTDI 線頭從外面插入；針腳不凸出外殼。
@@ -729,7 +730,11 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
     - **49 個找不到空位的編號在絲印層隱藏**（清單在腳本輸出；多在電源區和 r1.3 射頻區的小電阻電容）。Fab 層仍有編號，組裝圖和貼片座標不受影響；手焊時要對照 Fab 層或線路圖。
     - 壓到別的零件焊墊或超出板邊的絲印線段移除 21 段，都在兩顆板邊零件上：GPS 滑動開關 SW50 的撥桿外框、console 排針 J2 的針腳外框（這些本來就在板外）。
     - 為了不讓這兩顆變成「與元件庫不一致」，改用專案內的封裝 `MMDVM_r30:SW_SPDT_PCM12_EdgeMount` 和 `MMDVM_r30:PinHeader_1x06_P2.54mm_Horizontal_EdgeMount`（由 `gen/customlib.py` 從原廠封裝去掉板外絲印產生，焊墊不變）。BOM 的封裝欄位已跟著更新。
-  - 重新自動佈線或重新擺位後，要再跑一次這兩支腳本。
+  - **說明絲印**：`gen/silk_labels.py`（要在 `tidy_silk.py` 之後跑）。
+    - 加上的內容：MMDVM 狀態燈名稱（PWR、COS、PTT、D*、DMR、YSF、P25、NXD，取代 D1–D8 的編號，跟 r1.3 一樣）、SVC／MESH／GPS／CHG 燈、天線接頭（433 TX、433 RX、LoRa 920、BLE、GPS ANT）、板邊的 CONSOLE 3V3／USB-C CHARGE／POWER／GPS OFF–ON、FRONT PANEL、MESH SWD／USB、各個 RESET 鍵、FAN 5V、TJC DISPLAY 和 SWD／BOOT 的腳位、板名與版本、原作者署名；背面標 96Boards LS 1.8 V 和電池並聯／極性提醒。
+    - 每個標籤自動放到離目標最近、不壓焊墊和其他絲印的位置；共 56 個。
+    - 放不下而略過的：TJC 接頭 pin 1 的 GND 標示（TX、RX、5V 有標）。PWR 因為緊鄰 SWD 排針，字比其他燈名小一號。
+  - 重新自動佈線或重新擺位後，要依序再跑 `fix_dangling.py`、`tidy_silk.py`、`silk_labels.py`。
 - **焊墊上的過孔**：上面六處加上 `--via-in-pad` 打的 3 處（清單在執行輸出裡）是 0.45／0.2 mm 的盤中孔，沒有塞孔時回焊可能吸錫，送廠前要逐一檢查或改位置。
 - **Freerouting 版本比較（同一份擺位，2026-11-15）：**
 
@@ -758,7 +763,14 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
   - 正面：`hardware/r3.0-study/mmdvm_mesh_top.png`
   - 背面（4 個 18650 電池座、LS 接頭）：`hardware/r3.0-study/mmdvm_mesh_bottom.png`
   - 斜視：`hardware/r3.0-study/mmdvm_mesh_3d.png`
-  - 沒有 3D 模型、圖上只看得到焊墊的零件：RAK4630（U40）、MAX-M10S（U50）、保險絲、部分電感。
+  - KiCad 官方 3D 模型庫已經是完整安裝，下列零件是官方庫本來就沒有模型，裝擴充庫也不會出現：RAK4630（U40）、MAX-M10S（U50）、NANO2 保險絲（F100–F103）、側按電源鍵（SW100）、風扇接頭（J3）、8 MHz 石英（Y1）、TPS61178（U104）和三顆小型無引腳 IC（U103、U107、U111）。
+  - 這些改用專案內的**簡化外形模型**：`gen/models3d.py`（CadQuery）依封裝的 Fab 外框和規格書高度產生方塊外形，放在 `hardware/r3.0-study/3dmodels/`；`gen/link_models.py` 把板上封裝的模型路徑指到 `${KIPRJMOD}/3dmodels/`。
+  - 簡化模型只有外形尺寸，適合預覽和檢查外盒干涉，沒有接腳等細節。
+  - **原廠模型**（2026-11-15 嘗試下載的結果）：
+    - 有拿到、已使用：RAK4630（RAKwireless 下載中心 `3D_RAK4630.stp`）、SKRTLAE010（Alps Alpine 產品頁的 3D CAD）。位置和方向已對過：RAK4630 上的兩個 IPEX 座分別落在 LoRa、BLE 的 U.FL 旁；電源鍵的按壓桿朝板外。
+    - 拿不到：Littelfuse、Abracon 官網拒絕自動下載（HTTP 403）；u-blox 官網沒有公開的 STEP；JST 和 TI 的封裝模型要註冊帳號（SnapMagic／Ultra Librarian）才能下載。這些維持簡化模型，之後可手動下載後覆蓋 `3dmodels/` 內同名檔案。
+    - 原廠檔案沒有附再散布授權，所以放在 `3dmodels/vendor/`（已加入 `.gitignore`，不進版本庫）。新環境執行 `gen/fetch_vendor_models.sh` 下載，再跑 `gen/link_models.py`；沒有原廠檔時用 `link_models.py --simple` 切回簡化模型。
+  - 仍然沒有模型的只有焊錫跳線、測試點和固定孔，這些本來就沒有實體零件。
 
 ![r3.0 main board, top](../hardware/r3.0-study/mmdvm_mesh_3d.png)
 
