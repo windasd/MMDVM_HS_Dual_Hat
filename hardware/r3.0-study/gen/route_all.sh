@@ -1,6 +1,20 @@
 #!/bin/bash
 # Full routing pipeline for the r3.0 main board. Run from hardware/r3.0-study/gen after main_pcb.py.
 #   JAVA=<java 17+>  FREEROUTING=<freerouting-1.9.0.jar>  KPY=<KiCad python>  bash route_all.sh
+#
+# This script only covers the first autorouter pass. The board in the repository went through more steps
+# afterwards, each made on the routed board (the routed board is the master, main_pcb.py refuses to
+# overwrite it without --force):
+#   pair_route.py / pair_tails.py / usb_ref_plane.py   differential pairs and their reference strip
+#   eth_pour.py, rf_lines.py                           +1V2_ETH pour, 50 ohm antenna feeds
+#   power_layout.py place | rip | copper | lock        power section re-placed, wide copper
+#   vbus_path.py place | rip | copper                  wide VBUS, C102 at the charger
+#   via_out_of_pad.py --locked                         vias off SMD pads
+#   hand_edit.py hand_edits.txt                        the edits no tool could make (a record, not replayable
+#                                                      on a different routing)
+#   tidy_silk.py, snapshot_placement.py                silk, then placement.json for main_pcb.py
+# with reroute_prep.py + Freerouting (fill the gaps), patch_route.py and the DRC in between.
+# After any change: power_paths.py, via_out_of_pad.py --dry --locked, kicad-cli pcb drc, make_production.sh.
 set -e
 KPY="${KPY:-/c/Program Files/KiCad/10.0/bin/python.exe}"
 KCLI="${KCLI:-/c/Program Files/KiCad/10.0/bin/kicad-cli.exe}"

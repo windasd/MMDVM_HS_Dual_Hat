@@ -32,6 +32,12 @@ PATHS = [  # net, from, to, A
     ('SYS_DCIN', 'Q103.5', 'J1.36', 2.5), ('VBUS', 'J100.A4', 'U101.1', 3.0),
     ('/Power/BQ_SW', 'U101.19', 'L100.1', 3.0), ('+5V', 'U107.3', 'J5.4', 0.5), ('+5V', 'U107.3', 'U62.4', 0.4),
     ('/Power/B5_SW', 'L102.2', 'U107.2', 2.0), ('+3V5', 'U108.1', 'U110.1', 0.3),
+    # LAN7500: 1.2 V core about 0.4 A in all, 3.3 V about 0.3 A in all; per pin taken as half the rail
+    ('+1V2_ETH', 'L65.2', 'U60.8', 0.2), ('+1V2_ETH', 'L65.2', 'U60.11', 0.2), ('+1V2_ETH', 'L65.2', 'U60.20', 0.2),
+    ('+1V2_ETH', 'L65.2', 'U60.23', 0.2), ('+1V2_ETH', 'L65.2', 'U60.30', 0.2), ('+1V2_ETH', 'L65.2', 'U60.36', 0.2),
+    ('+1V2_ETH', 'L65.2', 'U60.49', 0.2),
+    ('+3V3_ETH', 'L64.2', 'U60.7', 0.15), ('+3V3_ETH', 'L64.2', 'U60.19', 0.15), ('+3V3_ETH', 'L64.2', 'U60.24', 0.15),
+    ('+3V3_ETH', 'L64.2', 'U60.37', 0.15),
 ]
 RSQ = {pcbnew.F_Cu: 0.49e-3, pcbnew.B_Cu: 0.49e-3}
 R_INNER, R_VIA = 0.98e-3, 2.4e-3
@@ -82,7 +88,8 @@ def graph(net):
             if pk not in g:         # pad in the middle of a wide segment (a bar running over a contact)
                 c = p.GetPosition()
                 for t in trk:
-                    if t.GetClass() != 'PCB_VIA' and p.IsOnLayer(t.GetLayer()) and t.HitTest(c):
+                    if t.GetClass() != 'PCB_VIA' and p.IsOnLayer(t.GetLayer()) and (
+                            t.HitTest(c) or t.HitTest(p.GetBoundingBox(), False)):     # bar over part of the pad
                         for e in (t.GetStart(), t.GetEnd()):
                             k = key(e, t.GetLayer())
                             ln = math.hypot(mm(c.x) - k[0], mm(c.y) - k[1]); w = mm(t.GetWidth())

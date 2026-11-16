@@ -198,6 +198,14 @@ def write_rules():
 
 
 def main():
+    out = os.path.join(PRJ, 'mmdvm_mesh.kicad_pcb')
+    if os.path.exists(out) and '--force' not in sys.argv:
+        old = pcbnew.LoadBoard(out)
+        loose = sum(1 for t in old.GetTracks() if not t.IsLocked())
+        if loose > 200:
+            raise SystemExit('%s is routed (%d tracks beyond the r1.3 block). Regenerating throws that away: '
+                             'the wide power copper, VBUS, differential pairs and hand edits were made on the '
+                             'routed board. Run with --force to do it anyway.' % (out, loose))
     comps, pins = netlist()
     board = pcbnew.BOARD()
     board.SetCopperLayerCount(4)
@@ -598,8 +606,21 @@ def main():
         z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
         board.Add(z)
     placed['U101'].SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)   # exposed pad + thermal vias: solid
+    # ---- placement of the routed board (snapshot_placement.py): parts moved there keep their place
+    snap = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'placement.json')
+    if os.path.exists(snap):
+        moved = 0
+        for ref, (x, y, rot, side) in json.load(open(snap, encoding='utf-8')).items():
+            fp = placed.get(ref)
+            if fp is None or ('B' if fp.IsFlipped() else 'F') != side:
+                continue
+            q = pcbnew.VECTOR2I(mm(x), mm(y))
+            if fp.GetPosition() != q or abs(fp.GetOrientationDegrees() - rot) > 0.01:
+                fp.SetOrientationDegrees(rot)
+                fp.SetPosition(q)
+                moved += 1
+        print('placement.json applied:', moved, 'footprints moved')
     pcbnew.ZONE_FILLER(board).Fill(board.Zones())
-    out = os.path.join(PRJ, 'mmdvm_mesh.kicad_pcb')
     board.Save(out)
     # the board reaches y = 251 mm, below an A4 landscape sheet (210 mm): use A3 so it sits inside the frame
     raw = open(out, 'rb').read()

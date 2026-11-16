@@ -387,7 +387,7 @@ def ethernet():
         R('R89', '330R', 'ETH_LED_Y_A', '+3V3_ETH'), R('R90', '330R', 'ETH_LED_G_A', '+3V3_ETH'),
         R('R91', '1M', 'ETH_SHIELD', 'GND', 'Resistor_SMD:R_1210_3225Metric',
           Note='chassis to digital ground link: 1210 so that 0R, a capacitor or a bead can be fitted at EMI test'),
-        C('C168', '1n', 'ETH_SHIELD', 'GND', FP_C0805, Note='2 kV'),
+        C('C168', '1n', 'ETH_SHIELD', 'GND', FP_C1206, Note='2 kV (1206: 2 kV parts are not stocked in 0805)'),
         P('#FLG120', 'power:PWR_FLAG', 'PWR_FLAG', {'1': '+3V3_ETH'}, in_bom=False),
         P('#FLG121', 'power:PWR_FLAG', 'PWR_FLAG', {'1': '+1V2_ETH'}, in_bom=False),
         P('#FLG122', 'power:PWR_FLAG', 'PWR_FLAG', {'1': 'ETH_VDD12A'}, in_bom=False),
