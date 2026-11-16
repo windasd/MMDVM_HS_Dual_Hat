@@ -68,11 +68,11 @@ def mmdvm_io():
         P('P5', 'Connector_Generic:Conn_01x04', 'SWD', {'1': 'GND', '2': 'SWCLK', '3': 'SWDIO', '4': '+3V3'},
           'Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical', {'Note': 'ST-Link (STM32 recovery)'}),
         LED('D0', 'red', 'SERVICE', 'D0_A', 'APHHS1005SURCK'), R('R24', '1k', '+3V3', 'D0_A'),
-        LED('D1', 'green', 'GND', 'D1_A', 'APHHS1005CGCK'), R('R16', '1k', 'D1_A', '+3V3'),
+        LED('D1', 'green', 'GND', 'D1_A', 'APHHS1005LCGCK'), R('R16', '1k', 'D1_A', '+3V3'),
     ]
     for i, (d, col, sig, mpn) in enumerate((('D2', 'yellow', 'COS_LED', 'APHHS1005SYCK'),
                                             ('D3', 'red', 'PTT_LED', 'APHHS1005SURCK'),
-                                            ('D4', 'green', 'DSTAR_LED', 'APHHS1005CGCK'),
+                                            ('D4', 'green', 'DSTAR_LED', 'APHHS1005LCGCK'),
                                             ('D5', 'yellow', 'DMR_LED', 'APHHS1005SYCK'),
                                             ('D6', 'amber', 'YSF_LED', 'APHHS1005SECK'),
                                             ('D7', 'red', 'P25_LED', 'APHHS1005SURCK'),
@@ -167,7 +167,7 @@ def host_if():
         R('R50', '10k', 'SC16_RST_N', '+3V3_MESH'), C('C64', '100n', 'SC16_RST_N', 'GND'),
         R('R51', '10k', 'SC16_IRQ_N', '+3V3_MESH'),
         P('Y2', 'Device:Crystal_GND24', '14.7456MHz', {'1': 'SC16_X1', '2': 'GND', '3': 'SC16_X2', '4': 'GND'},
-          'Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm', {'MPN': '14.7456 MHz 3225, CL 18 pF'}),
+          'Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm', {'MPN': '14.7456 MHz 3225, CL 18-20 pF'}),
         C('C65', '22p', 'SC16_X1', 'GND'), C('C66', '22p', 'SC16_X2', 'GND'),
         # fan controller + temperature sensor at the SoC-column outlet
         P('U36', 'Driver_Motor:EMC2301-x-ACZL', 'EMC2301', {'1': 'SDA_AON', '2': 'SCL_AON', '3': '+3V3_MESH',

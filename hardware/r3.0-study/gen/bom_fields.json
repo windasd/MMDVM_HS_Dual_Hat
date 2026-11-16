@@ -896,10 +896,11 @@
   "Mouser": "604-APHHS1005SURCK"
  },
  "D1": {
-  "LCSC": "C2853065",
+  "LCSC": "C5354975",
   "MFR": "Kingbright",
-  "MPN": "APHHS1005CGCK",
-  "Mouser": "604-APHHS1005CGCK"
+  "MPN": "APHHS1005LCGCK",
+  "Mouser": "604-APHHS1005CGCK",
+  "Mouser_MPN": "APHHS1005CGCK"
  },
  "D100": {
   "LCSC": "C223985",
@@ -938,16 +939,18 @@
   "Mouser": "604-APHHS1005SURCK"
  },
  "D4": {
-  "LCSC": "C2853065",
+  "LCSC": "C5354975",
   "MFR": "Kingbright",
-  "MPN": "APHHS1005CGCK",
-  "Mouser": "604-APHHS1005CGCK"
+  "MPN": "APHHS1005LCGCK",
+  "Mouser": "604-APHHS1005CGCK",
+  "Mouser_MPN": "APHHS1005CGCK"
  },
  "D40": {
-  "LCSC": "C2853065",
+  "LCSC": "C5354975",
   "MFR": "Kingbright",
-  "MPN": "APHHS1005CGCK",
-  "Mouser": "604-APHHS1005CGCK"
+  "MPN": "APHHS1005LCGCK",
+  "Mouser": "604-APHHS1005CGCK",
+  "Mouser_MPN": "APHHS1005CGCK"
  },
  "D5": {
   "LCSC": "C5875733",
@@ -962,10 +965,11 @@
   "Mouser": "863-BAT54HT1G"
  },
  "D51": {
-  "LCSC": "C2853065",
+  "LCSC": "C5354975",
   "MFR": "Kingbright",
-  "MPN": "APHHS1005CGCK",
-  "Mouser": "604-APHHS1005CGCK"
+  "MPN": "APHHS1005LCGCK",
+  "Mouser": "604-APHHS1005CGCK",
+  "Mouser_MPN": "APHHS1005CGCK"
  },
  "D6": {
   "LCSC": "C5875753",
@@ -1949,16 +1953,18 @@
   "Mouser_MPN": "RC0402FR-07330RL"
  },
  "R91": {
-  "LCSC": "C470029",
-  "MFR": "Yageo",
-  "MPN": "RC1210FR-071ML",
-  "Mouser": "603-RC1210FR-071ML"
+  "LCSC": "C620664",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "1210W2F1004T5E",
+  "Mouser": "603-RC1210FR-071ML",
+  "Mouser_MPN": "RC1210FR-071ML"
  },
  "R92": {
-  "LCSC": "C137978",
-  "MFR": "Yageo",
-  "MPN": "RC0402FR-07453KL",
-  "Mouser": "603-RC0402FR-07453KL"
+  "LCSC": "C27009",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF4533TCE",
+  "Mouser": "603-RC0402FR-07453KL",
+  "Mouser_MPN": "RC0402FR-07453KL"
  },
  "R93": {
   "LCSC": "C25741",
@@ -2264,10 +2270,11 @@
   "Mouser": "595-TPS22919DCKR"
  },
  "U60": {
-  "LCSC": "C219760",
+  "LCSC": "C633487",
   "MFR": "Microchip",
-  "MPN": "LAN7500-ABZJ",
-  "Mouser": "579-LAN7500-ABZJ"
+  "MPN": "LAN7500I-ABZJ",
+  "Mouser": "579-LAN7500-ABZJ",
+  "Mouser_MPN": "LAN7500-ABZJ"
  },
  "U61": {
   "LCSC": "C141836",
@@ -2288,10 +2295,11 @@
   "Mouser": "926-LM809M3X293NOPB"
  },
  "U64": {
-  "LCSC": "C145723",
+  "LCSC": "C511344",
   "MFR": "Microchip",
-  "MPN": "93AA66AT-I/OT",
-  "Mouser": "579-93AA66AT-I/OT"
+  "MPN": "93LC66AT-I/OT",
+  "Mouser": "579-93AA66AT-I/OT",
+  "Mouser_MPN": "93AA66AT-I/OT"
  },
  "X1": {
   "LCSC": "C2451095",
@@ -2306,15 +2314,17 @@
   "Mouser": "815-ABM3-8-D2Y-T"
  },
  "Y2": {
-  "LCSC": "C1986778",
-  "MFR": "Abracon",
-  "MPN": "ABM8-14.7456MHZ-D1X-T",
-  "Mouser": "815-M8147456MHZD1XT"
+  "LCSC": "C557186",
+  "MFR": "SJK (Shenzhen Crystal Technology)",
+  "MPN": "7U14745AE20UCG",
+  "Mouser": "815-M8147456MHZD1XT",
+  "Mouser_MPN": "ABM8-14.7456MHZ-D1X-T"
  },
  "Y3": {
-  "LCSC": "C5918268",
-  "MFR": "TXC",
-  "MPN": "7M-25.000MAAJ-T",
-  "Mouser": "717-7M-25.000MAAJ-T"
+  "LCSC": "C70593",
+  "MFR": "YXC Crystal Oscillators",
+  "MPN": "X322525MRB4SI",
+  "Mouser": "717-7M-25.000MAAJ-T",
+  "Mouser_MPN": "7M-25.000MAAJ-T"
  }
 }

@@ -44,7 +44,7 @@ def meshtastic():
         R('R64', '1M', 'CELL+', 'VBAT_ADC', Note='RAK19007 divider; ADC_MULTIPLIER 1.73; no capacitor'),
         R('R65', '1.5M', 'VBAT_ADC', 'GND'),
         R('R66', '4k7', 'SDA_MESH', '+3V3_MESH'), R('R67', '4k7', 'SCL_MESH', '+3V3_MESH'),
-        LED('D40', 'green', 'GND', 'D40_A', 'APHHS1005CGCK'), R('R68', '1k', 'MESH_LED_G', 'D40_A'),
+        LED('D40', 'green', 'GND', 'D40_A', 'APHHS1005LCGCK'), R('R68', '1k', 'MESH_LED_G', 'D40_A'),
         P('J40', 'Connector:Conn_Coaxial', 'LoRa 920 U.FL', {'1': 'MESH_RF_LORA', '2': 'GND'}, FP_UFL,
           {'MPN': 'Hirose U.FL-R-SMT-1(10)', 'Note': 'pigtail to the top-wall SMA; 50 Ohm CPWG to pad 37'}),
         P('J41', 'Connector:Conn_Coaxial', 'BLE U.FL', {'1': 'MESH_RF_BT', '2': 'GND'}, FP_UFL,
@@ -96,7 +96,7 @@ def gps():
           {'MPN': 'Hirose U.FL-R-SMT-1(10)', 'Note': 'pigtail to the top-wall SMA, active antenna'}),
         P('TP50', 'Connector:TestPoint', 'SAFEBOOT', {'1': 'GPS_SAFEBOOT_N'}, 'TestPoint:TestPoint_Pad_D1.0mm',
           in_bom=False),
-        LED('D51', 'green', 'GND', 'D51_A', 'APHHS1005CGCK'), R('R72', '2k2', '+3V3_GPS', 'D51_A'),
+        LED('D51', 'green', 'GND', 'D51_A', 'APHHS1005LCGCK'), R('R72', '2k2', '+3V3_GPS', 'D51_A'),
     ]
 
 
@@ -348,9 +348,9 @@ def ethernet():
         # configuration EEPROM as in the Microchip reference design (93AA66A, 512 x 8 bit, 3-wire): holds the MAC
         # address and USB descriptors. A blank part is ignored (defaults apply); program it in circuit with
         # `ethtool -E`. Names follow the LAN7500 pins: EEDO drives the EEPROM DI, EEDI reads its DO.
-        P('U64', 'Memory_EEPROM:93AAxxAT-xOT', '93AA66A', {'1': 'ETH_EEDI', '2': 'GND', '3': 'ETH_EEDO',
+        P('U64', 'Memory_EEPROM:93AAxxAT-xOT', '93LC66A', {'1': 'ETH_EEDI', '2': 'GND', '3': 'ETH_EEDO',
                                                             '4': 'ETH_EECLK', '5': 'ETH_EECS', '6': '+3V3_ETH'},
-          'Package_TO_SOT_SMD:SOT-23-6', {'MPN': '93AA66AT-I/OT', 'Note': '8-bit organisation (A suffix) is required'}),
+          'Package_TO_SOT_SMD:SOT-23-6', {'MPN': '93LC66AT-I/OT', 'Note': '8-bit organisation (A suffix) is required'}),
         C('C186', '100n', '+3V3_ETH', 'GND'),
         R('R78', '10k', 'ETH_EECS', 'GND', Note='EECS may float briefly at power-up (data sheet note)'),
         # decoupling per the Microchip schematic checklist (SC471232): 0.01 uF at every supply pin, a ferrite
@@ -378,7 +378,7 @@ def ethernet():
         P('U63', 'Power_Supervisor:LM809', 'LM809 2.93V', {'1': 'GND', '2': 'ETH_RST_N', '3': '+3V3_ETH'},
           'Package_TO_SOT_SMD:SOT-23', {'MPN': 'LM809M3X-2.93', 'Note': 'push-pull active-low reset, 240 ms'}),
         P('Y3', 'Device:Crystal_GND24', '25MHz', {'1': 'ETH_XI', '2': 'GND', '3': 'ETH_XO', '4': 'GND'},
-          'Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm', {'MPN': '25 MHz 3225, 30 ppm, CL 18 pF'}),
+          'Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm', {'MPN': '25 MHz 3225, 30 ppm or better, CL 18 pF'}),
         C('C165', '27p', 'ETH_XI', 'GND'), C('C166', '27p', 'ETH_XO', 'GND'),
         # 1000BASE-T: 49.9 ohm from each line and the transformer centre tap to the magnetics supply
         fb('L63', '+3V3_ETH', 'ETH_VMAG'), C('C167', '100n', 'ETH_VMAG', 'GND', Note='centre tap'),

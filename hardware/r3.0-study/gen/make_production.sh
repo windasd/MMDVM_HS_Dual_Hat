@@ -1,6 +1,6 @@
 #!/bin/bash
 # Export the fabrication set of the main board to ../production (git-ignored): Gerbers, drill files,
-# placement file, JLCPCB BOM, schematic PDF and a zip of the Gerber/drill folder.
+# placement file, JLCPCB BOM and CPL (jlc_files.py), schematic PDF and a zip of the Gerber/drill folder.
 # Run bom_export.py first so that BOM_JLCPCB.csv is current.
 KC="/c/Program Files/KiCad/10.0/bin/kicad-cli.exe"
 KPY="/c/Program Files/KiCad/10.0/bin/python.exe"
@@ -14,7 +14,7 @@ rm -rf "$OUT/gerber_drill" && mkdir -p "$OUT/gerber_drill"
   --generate-map --map-format gerberx2 mmdvm_mesh.kicad_pcb | tail -1
 "$KC" pcb export pos -o "$OUT/mmdvm_mesh-pos.csv" --format csv --units mm --side both --exclude-dnp mmdvm_mesh.kicad_pcb | tail -1
 "$KC" sch export pdf -o "$OUT/mmdvm_mesh-schematic.pdf" mmdvm_mesh.kicad_sch | tail -1
-cp BOM_JLCPCB.csv "$OUT/"
+"$KPY" gen/jlc_files.py
 "$KPY" -c "
 import os, zipfile
 z = zipfile.ZipFile('$OUT/mmdvm_mesh-gerber.zip', 'w', zipfile.ZIP_DEFLATED)
