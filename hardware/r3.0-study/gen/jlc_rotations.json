@@ -1,0 +1,1158 @@
+{
+ "C110293": {
+  "all": {
+   "0": 0.03,
+   "180": 0.03,
+   "270": 1.2,
+   "90": 1.2
+  },
+  "corr": null,
+  "fit": 0.028,
+  "footprint": "SW_Push_Alps_SKRTLAE010_NarrowPad1",
+  "note": "symmetric: [0, 180] fit equally",
+  "pads": 2,
+  "ref": "SW100"
+ },
+ "C113050": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C25"
+ },
+ "C11702": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R16"
+ },
+ "C12462": {
+  "all": {
+   "0": 0.05,
+   "180": 2.43,
+   "270": 1.72,
+   "90": 1.72
+  },
+  "corr": 0,
+  "fit": 0.051,
+  "footprint": "WSON-10-1EP_2.5x2.5mm_P0.5mm_EP1.2x2mm",
+  "note": "",
+  "pads": 11,
+  "ref": "U108"
+ },
+ "C126528": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C23"
+ },
+ "C127918": {
+  "all": {
+   "0": 2.03,
+   "180": 2.03,
+   "270": 0.0,
+   "90": 2.87
+  },
+  "corr": 270,
+  "fit": 0.001,
+  "footprint": "TPS61178_RNW",
+  "note": "",
+  "pads": 13,
+  "ref": "U104"
+ },
+ "C12891": {
+  "corr": null,
+  "footprint": "C_1206_3216Metric",
+  "note": "two-pad part",
+  "ref": "C122"
+ },
+ "C1332872": {
+  "corr": null,
+  "footprint": "L_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "L7"
+ },
+ "C13585": {
+  "corr": null,
+  "footprint": "C_1206_3216Metric",
+  "note": "two-pad part",
+  "ref": "C119"
+ },
+ "C141836": {
+  "all": {
+   "0": 2.94,
+   "180": 0.16,
+   "270": 1.92,
+   "90": 1.92
+  },
+  "corr": 180,
+  "fit": 0.163,
+  "footprint": "SOT-23-5",
+  "note": "",
+  "pads": 5,
+  "ref": "U61"
+ },
+ "C144380": {
+  "corr": null,
+  "footprint": "Crystal_SMD_Abracon_ABM3-2Pin_5.0x3.2mm",
+  "note": "two-pad part",
+  "ref": "Y1"
+ },
+ "C144395": {
+  "all": {
+   "0": 4.08,
+   "180": 0.0,
+   "270": 2.89,
+   "90": 3.82
+  },
+  "corr": 180,
+  "fit": 0.001,
+  "footprint": "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+  "note": "",
+  "pads": 4,
+  "ref": "J5"
+ },
+ "C14709": {
+  "corr": null,
+  "footprint": "L_0603_1608Metric",
+  "note": "two-pad part",
+  "ref": "L60"
+ },
+ "C148036": {
+  "all": {
+   "0": 3.04,
+   "180": 3.32,
+   "270": 0.04,
+   "90": 5.11
+  },
+  "corr": 270,
+  "fit": 0.039,
+  "footprint": "MSOP-8_3x3mm_P0.65mm",
+  "note": "",
+  "pads": 8,
+  "ref": "U36"
+ },
+ "C15195": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C84"
+ },
+ "C1525": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C43"
+ },
+ "C1532": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C121"
+ },
+ "C1555": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C65"
+ },
+ "C155599": {
+  "all": {
+   "0": 1.52,
+   "180": 1.51,
+   "270": 0.09,
+   "90": 2.47
+  },
+  "corr": 270,
+  "fit": 0.09,
+  "footprint": "TDFN-12_2x3mm_P0.5mm",
+  "note": "",
+  "pads": 12,
+  "ref": "U111"
+ },
+ "C15849": {
+  "corr": null,
+  "footprint": "C_0603_1608Metric",
+  "note": "two-pad part",
+  "ref": "C102"
+ },
+ "C15850": {
+  "corr": null,
+  "footprint": "C_0805_2012Metric",
+  "note": "two-pad part",
+  "ref": "C53"
+ },
+ "C160404": {
+  "all": {
+   "0": 0.0,
+   "180": 1.63,
+   "270": 1.53,
+   "90": 1.16
+  },
+  "corr": 0,
+  "fit": 0.001,
+  "footprint": "JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal",
+  "note": "",
+  "pads": 4,
+  "ref": "J43"
+ },
+ "C160405": {
+  "all": {
+   "0": 0.0,
+   "180": 2.83,
+   "270": 2.24,
+   "90": 2.0
+  },
+  "corr": 0,
+  "fit": 0.001,
+  "footprint": "JST_SH_SM06B-SRSS-TB_1x06-1MP_P1.00mm_Horizontal",
+  "note": "",
+  "pads": 6,
+  "ref": "J44"
+ },
+ "C161541": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C34"
+ },
+ "C17168": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R60"
+ },
+ "C17477": {
+  "corr": null,
+  "footprint": "R_0805_2012Metric",
+  "note": "two-pad part",
+  "ref": "R100"
+ },
+ "C18547833": {
+  "corr": null,
+  "footprint": "L_Coilcraft_XAL4040-XXX",
+  "note": "two-pad part",
+  "ref": "L103"
+ },
+ "C19666": {
+  "corr": null,
+  "footprint": "C_0603_1608Metric",
+  "note": "two-pad part",
+  "ref": "C106"
+ },
+ "C201632": {
+  "all": {
+   "0": 1.13,
+   "180": 1.13,
+   "270": 0.01,
+   "90": 1.59
+  },
+  "corr": 270,
+  "fit": 0.007,
+  "footprint": "VSON-8_3.3x3.3mm_P0.65mm_NexFET",
+  "note": "",
+  "pads": 5,
+  "ref": "Q103"
+ },
+ "C2043868": {
+  "corr": null,
+  "footprint": "L_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "L3"
+ },
+ "C2066854": {
+  "all": {
+   "0": 1.9,
+   "180": 0.0,
+   "270": 1.67,
+   "90": 1.67
+  },
+  "corr": 180,
+  "fit": 0.0,
+  "footprint": "SOT-23",
+  "note": "",
+  "pads": 3,
+  "ref": "U63"
+ },
+ "C206881": {
+  "all": {
+   "0": 4.31,
+   "180": 4.31,
+   "270": 0.07,
+   "90": 6.03
+  },
+  "corr": 270,
+  "fit": 0.075,
+  "footprint": "QFN-48-1EP_7x7mm_Pitch0.5mm",
+  "note": "",
+  "pads": 49,
+  "ref": "U1"
+ },
+ "C20917": {
+  "all": {
+   "0": 1.9,
+   "180": 0.0,
+   "270": 1.67,
+   "90": 1.67
+  },
+  "corr": 180,
+  "fit": 0.0,
+  "footprint": "SOT-23",
+  "note": "",
+  "pads": 3,
+  "ref": "Q20"
+ },
+ "C21107": {
+  "corr": null,
+  "footprint": "D_SOD-323",
+  "note": "two-pad part",
+  "ref": "D50"
+ },
+ "C2149796": {
+  "all": {
+   "0": 2.48,
+   "180": 0.14,
+   "270": 1.41,
+   "90": 1.42
+  },
+  "corr": 180,
+  "fit": 0.142,
+  "footprint": "SOT-363_SC-70-6",
+  "note": "",
+  "pads": 6,
+  "ref": "U51"
+ },
+ "C2162868": {
+  "corr": null,
+  "footprint": "L_Wuerth_HCI-5040",
+  "note": "two-pad part",
+  "ref": "L100"
+ },
+ "C221662": {
+  "all": {
+   "0": 5.25,
+   "180": 2.25,
+   "270": 3.34,
+   "90": 2.89
+  },
+  "corr": null,
+  "fit": 2.254,
+  "footprint": "SW_CK_JS202011AQN_DPDT_Angled",
+  "note": "poor fit: the library footprint differs",
+  "pads": 6,
+  "ref": "SW101"
+ },
+ "C221841": {
+  "all": {
+   "0": 0.0,
+   "180": 2.12,
+   "270": 1.5,
+   "90": 1.5
+  },
+  "corr": 0,
+  "fit": 0.0,
+  "footprint": "SW_SPDT_PCM12_EdgeMount",
+  "note": "",
+  "pads": 3,
+  "ref": "SW50"
+ },
+ "C22276": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R65"
+ },
+ "C223985": {
+  "corr": null,
+  "footprint": "D_SMA",
+  "note": "two-pad part",
+  "ref": "D100"
+ },
+ "C231329": {
+  "corr": null,
+  "footprint": "SW_SPST_B3U-1000P",
+  "note": "two-pad part",
+  "ref": "SW41"
+ },
+ "C23631": {
+  "corr": null,
+  "footprint": "C_1206_3216Metric",
+  "note": "two-pad part",
+  "ref": "C168"
+ },
+ "C2451095": {
+  "all": {
+   "0": 0.12,
+   "180": 3.28,
+   "270": 1.97,
+   "90": 1.95
+  },
+  "corr": 0,
+  "fit": 0.115,
+  "footprint": "Crystal_SMD_3225-4Pin_3.2x2.5mm",
+  "note": "",
+  "pads": 4,
+  "ref": "X1"
+ },
+ "C2479336": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R103"
+ },
+ "C25076": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R40"
+ },
+ "C25078": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R102"
+ },
+ "C25104": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R89"
+ },
+ "C25120": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R85"
+ },
+ "C254700": {
+  "all": {
+   "0": 12.07,
+   "180": 0.0,
+   "270": 7.98,
+   "90": 7.99
+  },
+  "corr": 180,
+  "fit": 0.001,
+  "footprint": "AMPHENOL_61083-063402LF",
+  "note": "",
+  "pads": 60,
+  "ref": "J10"
+ },
+ "C25741": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R29"
+ },
+ "C25744": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R15"
+ },
+ "C25752": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R80"
+ },
+ "C25755": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R114"
+ },
+ "C25756": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R111"
+ },
+ "C25780": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R109"
+ },
+ "C25798": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R110"
+ },
+ "C25879": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R72"
+ },
+ "C25900": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R48"
+ },
+ "C25921": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R113"
+ },
+ "C25923": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R81"
+ },
+ "C26083": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R64"
+ },
+ "C265101": {
+  "all": {
+   "0": 2.83,
+   "180": 0.0,
+   "270": 2.0,
+   "90": 2.0
+  },
+  "corr": 180,
+  "fit": 0.0,
+  "footprint": "JST_PH_S3B-PH-SM4-TB_1x03-1MP_P2.00mm_Horizontal",
+  "note": "",
+  "pads": 3,
+  "ref": "J3"
+ },
+ "C2682616": {
+  "all": {
+   "0": 1.41,
+   "180": 1.41,
+   "270": 0.06,
+   "90": 2.0
+  },
+  "corr": 270,
+  "fit": 0.058,
+  "footprint": "DFN-8-1EP_2x2mm_P0.5mm_EP0.9x1.3mm",
+  "note": "",
+  "pads": 9,
+  "ref": "U103"
+ },
+ "C2683016": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R3"
+ },
+ "C27009": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R92"
+ },
+ "C27013": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R119"
+ },
+ "C27016": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R112"
+ },
+ "C2852592": {
+  "corr": null,
+  "footprint": "LED_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "D0"
+ },
+ "C2853064": {
+  "corr": null,
+  "footprint": "LED_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "D8"
+ },
+ "C2862740": {
+  "all": {
+   "0": 2.78,
+   "180": 0.04,
+   "270": 1.87,
+   "90": 1.87
+  },
+  "corr": 180,
+  "fit": 0.038,
+  "footprint": "SOT-23-5",
+  "note": "",
+  "pads": 5,
+  "ref": "U109"
+ },
+ "C2864878": {
+  "all": {
+   "0": 0.07,
+   "180": 1.69,
+   "270": 0.99,
+   "90": 0.99
+  },
+  "corr": 0,
+  "fit": 0.074,
+  "footprint": "WSON-6_1.5x1.5mm_P0.5mm",
+  "note": "",
+  "pads": 6,
+  "ref": "U102"
+ },
+ "C2865523": {
+  "all": {
+   "0": 1.13,
+   "180": 1.13,
+   "270": 0.01,
+   "90": 1.59
+  },
+  "corr": 270,
+  "fit": 0.007,
+  "footprint": "VSON-8_3.3x3.3mm_P0.65mm_NexFET",
+  "note": "",
+  "pads": 5,
+  "ref": "Q102"
+ },
+ "C29402": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R104"
+ },
+ "C2941042": {
+  "all": {
+   "0": 1.89,
+   "180": 1.9,
+   "270": 0.01,
+   "90": 3.24
+  },
+  "corr": 270,
+  "fit": 0.013,
+  "footprint": "SOT-23-6",
+  "note": "",
+  "pads": 6,
+  "ref": "U106"
+ },
+ "C2984424": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R7"
+ },
+ "C3020560": {
+  "corr": null,
+  "footprint": "USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+  "note": "pad numbers do not match (['1', '2', '3', '4'] / ['A1', 'A12', 'A4', 'A5'])",
+  "ref": "J100"
+ },
+ "C307434": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C105"
+ },
+ "C318580": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C117"
+ },
+ "C32949": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C118"
+ },
+ "C344018": {
+  "corr": null,
+  "footprint": "L_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "L11"
+ },
+ "C409086": {
+  "corr": null,
+  "footprint": "R_1206_3216Metric",
+  "note": "two-pad part",
+  "ref": "R115"
+ },
+ "C412901": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R5"
+ },
+ "C4153167": {
+  "all": {
+   "0": 0.06,
+   "180": 12.43,
+   "270": 7.45,
+   "90": 7.45
+  },
+  "corr": 0,
+  "fit": 0.06,
+  "footprint": "ublox_MAX",
+  "note": "",
+  "pads": 18,
+  "ref": "U50"
+ },
+ "C42388202": {
+  "corr": null,
+  "footprint": "RAK4630",
+  "note": "no footprint in the library",
+  "ref": "U40"
+ },
+ "C42459160": {
+  "all": {
+   "0": 3.97,
+   "180": 3.97,
+   "270": 0.34,
+   "90": 5.64
+  },
+  "corr": 270,
+  "fit": 0.339,
+  "footprint": "SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm",
+  "note": "",
+  "pads": 11,
+  "ref": "U100"
+ },
+ "C427210": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R11"
+ },
+ "C440252": {
+  "corr": null,
+  "footprint": "R_0603_1608Metric",
+  "note": "two-pad part",
+  "ref": "TH100"
+ },
+ "C4555951": {
+  "corr": null,
+  "footprint": "L_Coilcraft_XAL4040-XXX",
+  "note": "two-pad part",
+  "ref": "L102"
+ },
+ "C45783": {
+  "corr": null,
+  "footprint": "C_0805_2012Metric",
+  "note": "two-pad part",
+  "ref": "C107"
+ },
+ "C47616": {
+  "all": {
+   "0": 1.13,
+   "180": 1.13,
+   "270": 0.01,
+   "90": 1.59
+  },
+  "corr": 270,
+  "fit": 0.007,
+  "footprint": "VSON-8_3.3x3.3mm_P0.65mm_NexFET",
+  "note": "",
+  "pads": 5,
+  "ref": "Q100"
+ },
+ "C49851": {
+  "all": {
+   "0": 3.16,
+   "180": 3.35,
+   "270": 0.05,
+   "90": 5.36
+  },
+  "corr": 270,
+  "fit": 0.048,
+  "footprint": "TSSOP-10_3x3mm_P0.5mm",
+  "note": "",
+  "pads": 10,
+  "ref": "U105"
+ },
+ "C510088": {
+  "corr": null,
+  "footprint": "R_0603_1608Metric",
+  "note": "two-pad part",
+  "ref": "R71"
+ },
+ "C511344": {
+  "all": {
+   "0": 1.89,
+   "180": 1.9,
+   "270": 0.01,
+   "90": 3.24
+  },
+  "corr": 270,
+  "fit": 0.013,
+  "footprint": "SOT-23-6",
+  "note": "",
+  "pads": 6,
+  "ref": "U64"
+ },
+ "C5140604": {
+  "all": {
+   "0": 3.59,
+   "180": 3.41,
+   "270": 0.0,
+   "90": 5.08
+  },
+  "corr": 270,
+  "fit": 0.0,
+  "footprint": "PinHeader_2x03_P2.54mm_Vertical",
+  "note": "",
+  "pads": 6,
+  "ref": "P7"
+ },
+ "C5184785": {
+  "all": {
+   "0": 3.88,
+   "180": 2.93,
+   "270": 0.0,
+   "90": 4.15
+  },
+  "corr": 270,
+  "fit": 0.0,
+  "footprint": "PinHeader_1x04_P2.54mm_Vertical",
+  "note": "",
+  "pads": 4,
+  "ref": "P5"
+ },
+ "C524641": {
+  "corr": null,
+  "footprint": "L_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "L1"
+ },
+ "C52923": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C60"
+ },
+ "C53373578": {
+  "corr": null,
+  "footprint": "L_Wuerth_HCI-1050",
+  "note": "two-pad part",
+  "ref": "L101"
+ },
+ "C5354975": {
+  "corr": null,
+  "footprint": "LED_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "D1"
+ },
+ "C5382952": {
+  "all": {
+   "0": 3.51,
+   "180": 3.46,
+   "270": 0.1,
+   "90": 5.79
+  },
+  "corr": 270,
+  "fit": 0.104,
+  "footprint": "PinHeader_2x05_P1.27mm_Vertical_SMD",
+  "note": "",
+  "pads": 10,
+  "ref": "J42"
+ },
+ "C5422271": {
+  "all": {
+   "0": 12.36,
+   "180": 12.22,
+   "270": 4.77,
+   "90": 17.28
+  },
+  "corr": null,
+  "fit": 4.774,
+  "footprint": "LS_2x20_P2.00mm_SMD_MezzanineBottom",
+  "note": "poor fit: the library footprint differs",
+  "pads": 40,
+  "ref": "J1"
+ },
+ "C5542783": {
+  "all": {
+   "0": 0.01,
+   "180": 10.27,
+   "270": 7.85,
+   "90": 7.55
+  },
+  "corr": 0,
+  "fit": 0.006,
+  "footprint": "RJ45_Wuerth_7499111446_EdgeMount",
+  "note": "",
+  "pads": 14,
+  "ref": "J60"
+ },
+ "C557186": {
+  "corr": null,
+  "footprint": "Crystal_SMD_3225-4Pin_3.2x2.5mm",
+  "note": "no footprint in the library",
+  "ref": "Y2"
+ },
+ "C57156": {
+  "all": {
+   "0": 4.92,
+   "180": 4.92,
+   "270": 0.0,
+   "90": 8.04
+  },
+  "corr": 270,
+  "fit": 0.003,
+  "footprint": "TSSOP-28_4.4x9.7mm_P0.65mm",
+  "note": "",
+  "pads": 28,
+  "ref": "U35"
+ },
+ "C576403": {
+  "corr": null,
+  "footprint": "L_1008_2520Metric",
+  "note": "two-pad part",
+  "ref": "L64"
+ },
+ "C5875733": {
+  "corr": null,
+  "footprint": "LED_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "D2"
+ },
+ "C5875753": {
+  "corr": null,
+  "footprint": "LED_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "D101"
+ },
+ "C6038009": {
+  "corr": null,
+  "footprint": "BatteryHolder_Keystone_1042_1x18650",
+  "note": "two-pad part",
+  "ref": "BT100"
+ },
+ "C620664": {
+  "corr": null,
+  "footprint": "R_1210_3225Metric",
+  "note": "two-pad part",
+  "ref": "R91"
+ },
+ "C633487": {
+  "all": {
+   "0": 5.88,
+   "180": 5.88,
+   "270": 0.03,
+   "90": 8.32
+  },
+  "corr": 270,
+  "fit": 0.031,
+  "footprint": "QFN-56-1EP_8x8mm_P0.5mm_EP5.9x5.9mm",
+  "note": "",
+  "pads": 57,
+  "ref": "U60"
+ },
+ "C6461553": {
+  "corr": null,
+  "footprint": "PinHeader_1x06_P2.54mm_Horizontal_EdgeMount",
+  "note": "no footprint in the library",
+  "ref": "J2"
+ },
+ "C70593": {
+  "all": {
+   "0": 0.12,
+   "180": 3.28,
+   "270": 1.97,
+   "90": 1.95
+  },
+  "corr": 0,
+  "fit": 0.115,
+  "footprint": "Crystal_SMD_3225-4Pin_3.2x2.5mm",
+  "note": "",
+  "pads": 4,
+  "ref": "Y3"
+ },
+ "C710871": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C27"
+ },
+ "C71693": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C5"
+ },
+ "C76945": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C6"
+ },
+ "C76971": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C21"
+ },
+ "C7830": {
+  "all": {
+   "0": 2.24,
+   "180": 0.26,
+   "270": 1.4,
+   "90": 1.4
+  },
+  "corr": 180,
+  "fit": 0.264,
+  "footprint": "SOT-353_SC-70-5",
+  "note": "",
+  "pads": 5,
+  "ref": "U23"
+ },
+ "C7843": {
+  "all": {
+   "0": 3.47,
+   "180": 0.27,
+   "270": 1.98,
+   "90": 1.99
+  },
+  "corr": 180,
+  "fit": 0.269,
+  "footprint": "SOT-23-6",
+  "note": "",
+  "pads": 6,
+  "ref": "U20"
+ },
+ "C80200": {
+  "all": {
+   "0": 0.05,
+   "180": 3.15,
+   "270": 2.29,
+   "90": 2.29
+  },
+  "corr": 0,
+  "fit": 0.047,
+  "footprint": "Texas_RTW_WQFN-24-1EP_4x4mm_P0.5mm_EP2.7x2.7mm_ThermalVias",
+  "note": "",
+  "pads": 25,
+  "ref": "U101"
+ },
+ "C840107": {
+  "all": {
+   "0": 2.0,
+   "180": 2.14,
+   "270": 0.0,
+   "90": 3.41
+  },
+  "corr": 270,
+  "fit": 0.002,
+  "footprint": "VSSOP-8_2.3x2mm_P0.5mm",
+  "note": "",
+  "pads": 8,
+  "ref": "U34"
+ },
+ "C84354": {
+  "corr": null,
+  "footprint": "D_SOD-123",
+  "note": "two-pad part",
+  "ref": "D21"
+ },
+ "C852602": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R1"
+ },
+ "C852677": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R9"
+ },
+ "C85883": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C7"
+ },
+ "C86287": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C165"
+ },
+ "C8734": {
+  "all": {
+   "0": 6.21,
+   "180": 6.21,
+   "270": 0.1,
+   "90": 8.94
+  },
+  "corr": 270,
+  "fit": 0.101,
+  "footprint": "LQFP-48_7x7mm_Pitch0.5mm",
+  "note": "",
+  "pads": 48,
+  "ref": "U3"
+ },
+ "C882469": {
+  "corr": null,
+  "footprint": "L_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "L50"
+ },
+ "C88373": {
+  "corr": null,
+  "footprint": "U.FL_Hirose_U.FL-R-SMT-1_Vertical",
+  "note": "two-pad part",
+  "ref": "P2"
+ },
+ "C88896": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C1"
+ },
+ "C913479": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C40"
+ },
+ "C915088": {
+  "all": {
+   "0": 0.0,
+   "180": 1.64,
+   "270": 1.23,
+   "90": 1.23
+  },
+  "corr": 0,
+  "fit": 0.0,
+  "footprint": "Texas_RWU0007A_VQFN-7_2x2mm_P0.5mm",
+  "note": "",
+  "pads": 7,
+  "ref": "U107"
+ },
+ "C96446": {
+  "corr": null,
+  "footprint": "C_0603_1608Metric",
+  "note": "two-pad part",
+  "ref": "C70"
+ },
+ "C99269": {
+  "all": {
+   "0": 1.18,
+   "180": 1.19,
+   "270": 0.11,
+   "90": 2.06
+  },
+  "corr": 270,
+  "fit": 0.109,
+  "footprint": "SOT-563",
+  "note": "",
+  "pads": 6,
+  "ref": "U37"
+ },
+ "C99548": {
+  "corr": null,
+  "footprint": "Fuse_Littelfuse-NANO2-451_453",
+  "note": "two-pad part",
+  "ref": "F100"
+ }
+}

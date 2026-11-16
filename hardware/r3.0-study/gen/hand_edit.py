@@ -5,7 +5,7 @@ Lines of the edit file (board mm, '#' starts a comment):
   RMVIA x,y                          remove the via there
   ROT <ref> <degrees>                turn a footprint about its centre (done in the rm run; check afterwards)
   MV  x0,y0 x1,y1                    move the via at the first point; track ends on it follow
-  T   <net> <layer> <width> x,y x,y [x,y ...]
+  T   <net> <layer> <width> x,y x,y [x,y ...]      (a space in a net name is written %20)
   V   <net> x,y [diameter drill]     (default 0.45 / 0.2)
 
 Usage: python hand_edit.py edits.txt check|rm|add
@@ -45,9 +45,9 @@ for line in open(sys.argv[1], encoding='utf-8'):
     elif f[0] == 'MV':
         MV.append((pt(f[1]), pt(f[2])))
     elif f[0] == 'T':
-        T.append((f[1], board.GetLayerID(f[2]), float(f[3]), [pt(s) for s in f[4:]]))
+        T.append((f[1].replace('%20', ' '), board.GetLayerID(f[2]), float(f[3]), [pt(s) for s in f[4:]]))
     elif f[0] == 'V':
-        V.append((f[1], pt(f[2]), float(f[3]) if len(f) > 3 else 0.45, float(f[4]) if len(f) > 4 else 0.2))
+        V.append((f[1].replace('%20', ' '), pt(f[2]), float(f[3]) if len(f) > 3 else 0.45, float(f[4]) if len(f) > 4 else 0.2))
     else:
         raise SystemExit('bad line: ' + line)
 

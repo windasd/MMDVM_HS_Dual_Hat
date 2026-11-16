@@ -115,6 +115,10 @@ def host_if():
         LVC1T45('U21', '+1V8_HOST', '+3V3', 'LS_UART0_TX', 'RXD', True, 'host UART0 TX -> STM32 RX'),
         LVC1T45('U22', '+1V8_HOST', '+3V3', 'LS_GPIO_A', 'HOST_BOOT0', True, 'GPIO-A -> STM32 BOOT0 (via R25)'),
         OD_BUF('U23', '+1V8_HOST', 'LS_GPIO_B', 'NRST', 'GPIO-B low -> STM32 NRST low (open drain)'),
+        # The host GPIOs are inputs until software configures them. Without these the buffer inputs float once
+        # +1V8 is up: the STM32 could be held in reset or start in its boot loader.
+        R('R57', '100k', 'LS_GPIO_A', 'GND', Note='BOOT0 request low until the host drives GPIO-A'),
+        R('R58', '100k', 'LS_GPIO_B', '+1V8_HOST', Note='no STM32 reset until the host drives GPIO-B'),
         # console (UART1 = ttyOWL5) to the side-panel header, FTDI pin order
         LVC1T45('U24', '+1V8_HOST', '+3V3', 'LS_CON_TX', 'CON_RXD_B', True, 'host console TX -> PC'),
         LVC1T45('U25', '+1V8_HOST', '+3V3', 'LS_CON_RX', 'CON_TXD_B', False, 'PC -> host console RX'),
@@ -126,6 +130,8 @@ def host_if():
           {'Note': 'FTDI TTL-232R-3V3 order: 1 GND, 2 CTS nc, 3 VCC nc, 4 TXD in, 5 RXD out, 6 RTS nc'}),
         # Meshtastic MCU reset, GPS PPS and GPS switch state
         OD_BUF('U26', '+1V8_HOST', 'LS_GPIO_G', 'MESH_RST_N', 'GPIO-G low -> RAK4630 reset'),
+        R('R59', '100k', 'LS_GPIO_G', '+1V8_HOST',
+          Note='the always-on RAK4630 must not be reset while the host boots (GPIO-G floating)'),
         LVC1T45('U27', '+1V8_HOST', '+3V3_MESH', 'LS_GPIO_H', 'GPS_PPS', False, 'GPS PPS -> GPIO-H (pps-gpio)'),
         LVC1T45('U28', '+1V8_HOST', '+3V3_MESH', 'LS_GPIO_I', 'GPS_ON', False, 'GPS switch -> GPIO-I'),
         # power-hold: JP2 selects +1V8 present (default) or GPIO-F (gpio-poweroff, active low)

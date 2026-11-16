@@ -5,15 +5,18 @@
   production/hand_solder.csv  those parts, with the reason
   production/check_orientation.csv   the parts whose orientation matters, for the placement preview
 
-Rotation: top-side angles are KiCad's; bottom-side angles are mirrored, (180 - angle) mod 360, as JLCPCB views
-the bottom side from below. No per-package corrections are applied: the published correction tables were made
-for older footprint libraries and a wrong correction is worse than none. Order with "Confirm Parts Placement"
-and compare check_orientation.csv with the preview.
+Rotation: bottom-side angles are mirrored, (180 - angle) mod 360, as JLCPCB views the bottom side from below.
+Top-side parts then get the correction of jlc_rotations.json (jlc_rotation.py: the quarter turn between the
+KiCad footprint and the footprint in JLCPCB's library, found by matching pads). Parts without a decided
+correction (symmetric two-pad parts, bottom-side parts, footprints that differ from the library's) keep the
+KiCad angle; the ones whose orientation matters are flagged in check_orientation.csv. Still order with
+"Confirm Parts Placement" and look at those in the preview.
 
 Usage: python jlc_files.py [front_panel]     (after make_production.sh has written the KiCad placement file;
        with `front_panel` the files of ../front_panel are written instead)
 """
 import csv
+import json
 import os
 import re
 
@@ -26,12 +29,14 @@ skip = {} if FP else {r['Reference']: r['Reason'] for r in csv.DictReader(open(o
 pos = list(csv.DictReader(open(os.path.join(OUT, ('front_panel' if FP else 'mmdvm_mesh') + '-pos.csv'), encoding='utf-8')))
 bom = list(csv.DictReader(open(os.path.join(PRJ, 'BOM.csv'), encoding='utf-8-sig')))
 inbom = {ref: r for r in bom for ref in r['Reference'].split(',')}
-n = 0
+rotf = os.path.join(HERE, 'jlc_rotations.json')
+rots = {} if FP or not os.path.exists(rotf) else json.load(open(rotf, encoding='utf-8'))
+n = tocheck = 0
 with open(os.path.join(OUT, 'CPL_JLCPCB.csv'), 'w', newline='', encoding='utf-8') as f, \
         open(os.path.join(OUT, 'check_orientation.csv'), 'w', newline='', encoding='utf-8') as g:
     w, c = csv.writer(f), csv.writer(g)
     w.writerow(['Designator', 'Mid X', 'Mid Y', 'Layer', 'Rotation'])
-    c.writerow(['Designator', 'Value', 'Package', 'Layer', 'KiCad angle', 'CPL angle'])
+    c.writerow(['Designator', 'Value', 'Package', 'Layer', 'KiCad angle', 'CPL angle', 'Basis'])
     for p in pos:
         ref = p['Ref']
         if ref in skip or ref not in inbom:
@@ -39,10 +44,20 @@ with open(os.path.join(OUT, 'CPL_JLCPCB.csv'), 'w', newline='', encoding='utf-8'
         rot = float(p['Rot']) % 360
         bottom = p['Side'] == 'bottom'
         out = (180 - rot) % 360 if bottom else rot
+        info = rots.get(inbom[ref]['LCSC'].strip(), {})
+        corr = info.get('corr')
+        if corr is not None and not bottom:
+            out = (out + corr) % 360
+            state = 'corrected by %d (library footprint, fit %.2f mm)' % (corr, info.get('fit', 0)) if corr else 'same as the library footprint'
+        elif bottom:
+            state = 'CHECK: bottom side, mirrored only'
+        else:
+            state = 'CHECK: ' + (info.get('note') or 'no library footprint data')
         w.writerow([ref, '%.4fmm' % float(p['PosX']), '%.4fmm' % float(p['PosY']), 'Bottom' if bottom else 'Top', '%g' % out])
         n += 1
         if not re.match(r'^[RCL]\d', ref) or 'Elec' in p['Package'] or 'Tantal' in p['Package']:
-            c.writerow([ref, p['Val'], p['Package'], 'Bottom' if bottom else 'Top', '%g' % rot, '%g' % out])
+            c.writerow([ref, p['Val'], p['Package'], 'Bottom' if bottom else 'Top', '%g' % rot, '%g' % out, state])
+            tocheck += state.startswith('CHECK')
 with open(os.path.join(OUT, 'BOM_JLCPCB.csv'), 'w', newline='', encoding='utf-8') as f:
     w = csv.writer(f)
     w.writerow(['Comment', 'Designator', 'Footprint', 'LCSC Part #'])
@@ -60,6 +75,6 @@ with open(os.path.join(OUT, 'hand_solder.csv'), 'w', newline='', encoding='utf-8
         w.writerow([ref, r.get('Value', ''), r.get('MPN', ''), r.get('Mouser', ''), why])
 placed = {p['Ref'] for p in pos}
 nopos = sorted(ref for ref in inbom if ref not in placed and ref not in skip)
-print('CPL: %d parts, BOM: %d lines, by hand: %d parts' % (n, lines, len(skip)))
+print('CPL: %d parts, BOM: %d lines, by hand: %d parts, orientation still to check by eye: %d' % (n, lines, len(skip), tocheck))
 if nopos:
     print('in the BOM but not in the placement file (through-hole parts are listed there only if KiCad exports them):', ', '.join(nopos))

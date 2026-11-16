@@ -24,7 +24,7 @@ repeated at the end of this file.
 | Copper to board edge | 0.3 mm or more |
 | Solder mask / silkscreen | both sides |
 | Surface finish | ENIG recommended (0.5 mm pitch QFN / LGA, RAK4630 castellations) |
-| Fiducials | none on the board – let JLCPCB add tooling holes / use pads |
+| Fiducials | three per side (1 mm dot, 2 mm mask opening), FID1–FID6; not in the BOM or CPL |
 
 Files: `production/gerber_drill/` (Gerber X2 + Excellon, PTH and NPTH separate, drill maps, `.gbrjob`);
 upload `production/mmdvm_mesh-gerber.zip`. Regenerate with `bash gen/make_production.sh`.
@@ -38,23 +38,26 @@ No impedance control. `bash gen/make_production.sh front_panel`.
 
 * **Both sides carry SMD parts** (bottom: 8 x 0402 termination resistors, the two 96Boards connectors J1 / J10,
   the cell holders). Order double-sided assembly.
-* `production/BOM_JLCPCB.csv` and `production/CPL_JLCPCB.csv` are in JLCPCB's format (362 parts, 144 lines).
+* `production/BOM_JLCPCB.csv` and `production/CPL_JLCPCB.csv` are in JLCPCB's format (365 parts, 144 lines).
   Unfitted parts (C142, R124, D20, SW2) are in neither file.
 * **Not from JLCPCB** (`production/hand_solder.csv`): the four cell holders BT100–BT103 (Keystone 1042P) and
   the charger inductor L100 (Wurth 744316100) had no assembly stock on 2026-11-16. Buy and solder them by hand.
 * **Check the stock on the day of the order:** `python gen/stock_check.py <boards>`. 114 of the 146 BOM lines
   are extended parts (a loading fee each). Thin on 2026-11-16: STM6601CM2DDM6F (23), J1 (10), RJ45 (21), X1 (7).
-* **Part orientation:** bottom-side angles in the CPL are mirrored for JLCPCB; no per-package corrections are
-  applied. Tick "Confirm Parts Placement" and compare the preview with `production/check_orientation.csv`
-  (94 parts). SOT-23 family, QFN and LEDs are the usual suspects.
+* **Part orientation:** the CPL angles of 56 parts come from comparing each KiCad footprint with the footprint
+  in JLCPCB's own library, pad by pad (`gen/jlc_rotation.py`; 45 are turned, 11 already agree). 38 parts could
+  not be decided that way and are marked CHECK in `production/check_orientation.csv`: LEDs and diodes (pad
+  numbers of two-terminal parts are not a physical reference), the U.FL sockets, the RAK4630 and three other
+  parts with no library footprint, the switches, the USB-C socket and the two bottom-side connectors. Tick
+  "Confirm Parts Placement" and look at those in the preview.
 * Through-hole parts in the BOM: J2, J5, P5, P7 (pin headers), J60 (RJ45), J100 (USB-C shell pins), SW101.
 * The RJ45 (J60), the slide switches and the console header overhang the board edge.
 
 ## Reviewed and accepted
 
 * `mmdvm_mesh.kicad_dru` waives three courtyard / silk checks (U3 with C44 / C45 as in rev1.3; Y3 beside SW101).
-* 121 reference designators are hidden on silk (dense areas); the assembly uses the placement file.
-* The battery switch is marked OFF only and the GPS switch ON only (no room for the second label).
+* The GPS switch is marked ON only and neither slide switch has a name on silk (no room at the board edge); the enclosure carries the labels.
+* 106 reference designators are hidden on silk for lack of room.
 
 ## Not verified – read before ordering
 
@@ -63,7 +66,7 @@ No impedance control. `bash gen/make_production.sh front_panel`.
   fallback (design record 16.10).
 * Q100 / Q101 are CSD16340Q3 on the generic NexFET 3.3 x 3.3 footprint; its land pattern was not compared
   with the "Q3" package drawing.
-* The In2 ground strip under the USB pair is crossed by 24 other nets (11 pieces, stitched to the In1 plane
+* The In2 ground strip under the USB pair is still crossed by 17 tracks (it was 29; stitched to the In1 plane
   every 6 mm). The 90 ohm figure assumes an unbroken reference.
 * Two vias of the USB pair sit 0.12 mm from the pads of U60, under the package.
 * The VCO loop-filter node of U1 (rev1.3 RF section) is autorouted here: check the 433 MHz spectrum.

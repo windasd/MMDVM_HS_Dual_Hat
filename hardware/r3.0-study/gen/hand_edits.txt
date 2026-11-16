@@ -167,3 +167,6 @@ T /Ethernet/ETH_SHIELD F.Cu 0.2 161.91,113.24 161.8,112.9
 # CELL+ ran 0.16 mm from the locating hole of BT103 at 170.87, 126.72 (JLCPCB wants 0.2 mm copper to a bare hole)
 RM In2.Cu 172.41,128.86 162.46,128.86
 T CELL+ In2.Cu 0.5 172.41,128.86 172.26,129.01 162.61,129.01 162.46,128.86
+# 2026-11-16 (second round), not hand_edit.py: reref_usb.py moved 12 crossings off the USB reference strip;
+# R57 / R58 / R59 added with place_near.py + add_parts.py at 141, 195.2 / 142.6, 198.2 / 165.9, 196 and joined
+# with patch_route.py; add_fiducials.py; the battery switch ON label.

@@ -38,6 +38,8 @@ A study for a larger board in `hardware/r3.0-study`: the rev1.3 MMDVM section pl
 
 **This board has never been manufactured or tested.** The schematic and layout pass ERC / DRC and were checked against the data sheets, nothing more. The design record, including the list of what is still unverified, is `docs/meshtastic-gps-study.md` (in Traditional Chinese; section 16 covers the fabrication preparation). `hardware/r3.0-study/FAB_NOTES.md` has the ordering parameters.
 
+Also untested: host-side software for the Bubblegum-96 in `software/bubblegum96` (device-tree overlay, MMDVM-Host / MMDVM-Display configuration, fan, GPS, Meshtastic, network) and a screen design for the 5-inch TJC8048X550 display in `display/tjc8048x550` (layout, mock-ups and build steps; the `.HMI` / `.tft` file itself has to be built in the vendor's editor).
+
 ## KiCad 10 migration (2026)
 
 Both revisions have been migrated to KiCad 10 (KiCad 10.0 or newer is required to open them).
