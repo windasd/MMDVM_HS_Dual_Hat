@@ -2134,5 +2134,11 @@
   "Mouser": "603-RC0402FR-0710KL",
   "LCSC": "C25744",
   "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "C141": {
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC",
+  "LCSC": "C52923"
  }
 }

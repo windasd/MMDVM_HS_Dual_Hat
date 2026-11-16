@@ -173,7 +173,8 @@ def power():
         P('SW101', 'Switch:SW_DPDT_x2', 'BATTERY ON/OFF',
           {'1': 'PROT_DOUT', '2': 'PROT_DGATE', '3': 'CELL-', '4': 'GND', '5': 'PROT_CGATE', '6': 'PROT_COUT'},
           'Button_Switch_THT:SW_CK_JS202011AQN_DPDT_Angled',
-          {'MPN': 'C&K JS202011AQN', 'Note': 'VERIFY which lever position closes 2-1 / 5-6 (marked ON)'}),
+          {'MPN': 'C&K JS202011AQN', 'Note': 'ON = lever towards the pad 1 / 6 end (C&K drawing: the lever '
+                                             'closes the terminals at its own end)'}),
         R('R130', '1M', 'PROT_DGATE', 'CELL-', Note='gate defined while the switch travels'),
         R('R131', '1M', 'PROT_CGATE', 'GND', Note='gate defined while the switch travels'),
         # ---- fuel gauge
@@ -181,7 +182,7 @@ def power():
                                                      '5': 'PWR_INT_N', '6': 'GND', '7': 'SCL_AON', '8': 'SDA_AON',
                                                      '9': 'GND'},
           'Package_DFN_QFN:DFN-8-1EP_2x2mm_P0.5mm_EP0.9x1.3mm',
-          {'MPN': 'MAX17048G+T10', 'Note': 'I2C 0x36; check EP size against ADI 90-0065'}),
+          {'MPN': 'MAX17048G+T10', 'Note': 'I2C 0x36; pinout checked against the data sheet; EP land (90-0065) not checked'}),
         C('C112', '100n', 'CELL+', 'GND'),
         # ---- 12 V boost for the host (TPS61178, load disconnect P-FET)
         P('U104', 'MMDVM_r30:TPS61178', 'TPS61178', {
@@ -250,10 +251,14 @@ def power():
         C('C137', '1u', '+3V5', 'GND'), C('C138', '1u', '+3V3', 'GND'), C('C139', '10u', '+3V3', 'GND', FP_C0603),
         # ---- push-button power controller (host-side rails)
         P('U111', 'Power_Management:STM6601', 'STM6601CA2BDM6F', {
-            '1': '+3V3_MESH', '2': '+3V3_MESH', '3': None, '4': 'HOST_HOLD', '5': None, '6': 'PWR_BTN_N',
+            '1': '+3V3_MESH', '2': '+3V3_MESH', '3': 'STM_VREF', '4': 'HOST_HOLD', '5': None, '6': 'PWR_BTN_N',
             '7': None, '8': None, '9': 'HOST_PWR_EN', '10': None, '11': 'BTN_INT_N', '12': 'GND'},
           'Package_DFN_QFN:TDFN-12_2x3mm_P0.5mm',
-          {'Note': 'active-high push-pull EN, long press forces off; alt. STM6601CM2DDM6F'}),
+          {'Note': 'active-high push-pull EN. SR is held high, so there is no long-push forced off (it needs PB '
+                   'and SR low plus a CSRD capacitor): a hung host is switched off with SW101. PS_HOLD must rise '
+                   'within tON_BLANK 1.4 s; alt. STM6601CM2DDM6F (5.6 s, VTH+ 3.1 V)'}),
+        # DS (DocID15453 rev 14): the VREF pin needs its capacitor even when the reference is not used
+        C('C141', '1u', 'STM_VREF', 'GND', Note='mandatory VREF capacitor'),
         C('C140', '100n', '+3V3_MESH', 'GND'), R('R121', '100k', 'PWR_BTN_N', '+3V3_MESH'),
         R('R122', '100k', 'HOST_PWR_EN', 'GND'), R('R123', '10k', 'BTN_INT_N', '+3V3_MESH'),
         P('SW100', 'Switch:SW_Push', 'POWER', {'1': 'PWR_BTN_N', '2': 'GND'},
