@@ -52,9 +52,12 @@ FIXED = {
     'P5': (74.0, 34.5, 90, 'F'), 'P7': (75.0, 41.5, 90, 'F'),   # THT headers away from the Bubblegum USB-A
     'U40': (30.8, 106.5, 0, 'F'),           # RAK4630 in the gap between the cell-holder locating holes
     'J40': (46.2, 102.3, 0, 'F'),           # LoRa U.FL right next to RAK pad 37 (42.2, 102.3)
-    'J41': (16.4, 110.7, 0, 'F'),           # BLE U.FL right next to RAK pad 15 (19.4, 110.7)
+    'J41': (15.8, 110.7, 180, 'F'),         # BLE U.FL, centre pin facing RAK pad 15 (19.4, 110.7): 1.5 mm feed
+    # GPS antenna connector and bias tee right beside MAX-M10S RF_IN (pin 11): 5 mm feed on F.Cu only
+    'J50': (39.9, 123.5, 270, 'F'), 'L50': (38.8, 128.93, 270, 'F'), 'C84': (40.35, 129.7, 0, 'F'),
     'J3': (79.0, 64.0, 0, 'F'),             # fan cable towards the top plenum
 }
+R13_TURN = {'P1': 180}              # r1.3 parts turned in place: U.FL centre pin towards its filter (L2)
 # +Y edge parts: (rotation, 'pad' = edge-side SMD pads end `val` from the edge | 'court' = courtyard, val)
 EDGE_PARTS = {'J100': (180, 'court', 0.6), 'SW100': (180, 'pad', -0.35), 'SW50': (180, 'pad', -0.35),
               'D51': (90, 'court', -1.0), 'J60': (180, 'court', 1.0), 'SW101': (180, 'court', -0.1)}
@@ -254,7 +257,7 @@ def main():
             continue
         q = fp13.GetPosition()
         u, v = pcbnew.ToMM(q.x) - R13_ORIGIN[0], pcbnew.ToMM(q.y) - R13_ORIGIN[1]
-        add(ref, pos=pcbnew.VECTOR2I(mm(X0 + R13_DX + u), mm(Y0 + R13_DY + v)), rot=fp13.GetOrientationDegrees(),
+        add(ref, pos=pcbnew.VECTOR2I(mm(X0 + R13_DX + u), mm(Y0 + R13_DY + v)), rot=fp13.GetOrientationDegrees() + R13_TURN.get(ref, 0),
             side='B' if fp13.IsFlipped() else 'F')
         for pad13 in fp13.Pads():
             n13, nn = pad13.GetNetname(), pins.get((ref, pad13.GetNumber()))

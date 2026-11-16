@@ -153,11 +153,10 @@ def power():
                    'Fuse:Fuse_Littelfuse-NANO2-451_453', {'MPN': 'Littelfuse 0451007.MRL',
                                                  'Note': 'opens if a cell is inserted reversed'}))
     p += [
-        P('U102', 'Battery_Management:BQ297xy', 'BQ29728', {'1': None, '2': 'PROT_COUT', '3': 'PROT_DOUT',
+        P('U102', 'Battery_Management:BQ297xy', 'BQ29707', {'1': None, '2': 'PROT_COUT', '3': 'PROT_DOUT',
                                                             '4': 'CELL-', '5': 'PROT_BAT', '6': 'PROT_VM'},
           'Package_SON:WSON-6_1.5x1.5mm_P0.5mm',
-          {'Note': 'BQ29728: OV 4.28 V, UV 2.80 V, OCC -100 mV, OCD +150 mV (9-13 A with 2x CSD17577Q3A); '
-                   'keep BQ25895 charge current <= 4 A'}),
+          {'Note': 'BQ29707: OV 4.28 V, UV 2.80 V, OCC -150 mV, OCD +200 mV (data sheet SLUSBU9I table 4); BQ29728 (-60 / +100 mV) would trip near the 12 V boost full-load battery current'}),
         R('R107', '330R', 'CELL+', 'PROT_BAT'), C('C111', '100n', 'PROT_BAT', 'CELL-'),
         R('R108', '2k2', 'GND', 'PROT_VM'),
         P('Q100', 'Transistor_FET:CSD17577Q3A', 'CSD17577Q3A', {'1': 'CELL-', '2': 'CELL-', '3': 'CELL-',
@@ -167,7 +166,7 @@ def power():
                                                                 '4': 'PROT_CGATE', '5': 'PROT_MID'}, FP_NFET,
           {'Note': 'charge FET'}),
         # ---- battery master switch: a DPDT slide switch in the two gate lines of the protection FETs.
-        # ON: gates follow the BQ29728. OFF: each gate is tied to its own source, both FETs are off and the
+        # ON: gates follow the BQ29707. OFF: each gate is tied to its own source, both FETs are off and the
         # pack is isolated in both directions (no discharge, no charging) with no extra standby current.
         # Wired by terminal position, not by pole numbering: the two terminals at one end (1, 6) are the ON
         # throws, the two at the other end (3, 4) the OFF throws, 2 and 5 are the commons.

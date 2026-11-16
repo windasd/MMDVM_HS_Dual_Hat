@@ -135,7 +135,7 @@
 "U64","93AA66A","Package_TO_SOT_SMD:SOT-23-6","1","Microchip","93AA66AT-I/OT","579-93AA66AT-I/OT","",""
 "U100","CH224A","Package_SO:SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm","1","WCH (Jiangsu Qin Heng)","CH224A","","","C42459160"
 "U101","BQ25895","Package_DFN_QFN:Texas_RTW_WQFN-24-1EP_4x4mm_P0.5mm_EP2.7x2.7mm_ThermalVias","1","Texas Instruments","BQ25895RTWR","595-BQ25895RTWR","","C80200"
-"U102","BQ29728","Package_SON:WSON-6_1.5x1.5mm_P0.5mm","1","Texas Instruments","BQ29728DSER","595-BQ29728DSER","","C3682679"
+"U102","BQ29707","Package_SON:WSON-6_1.5x1.5mm_P0.5mm","1","Texas Instruments","BQ29707DSER","595-BQ29707DSER","",""
 "U103","MAX17048","Package_DFN_QFN:DFN-8-1EP_2x2mm_P0.5mm_EP0.9x1.3mm","1","Analog Devices (Maxim)","MAX17048G+T10","700-MAX17048G+T10","","C2682616"
 "U104","TPS61178","MMDVM_r30:TPS61178_RNW","1","Texas Instruments","TPS61178RNWR","595-TPS61178RNWR","","C127918"
 "U105","INA226","Package_SO:TSSOP-10_3x3mm_P0.5mm","1","Texas Instruments","INA226AIDGSR","595-INA226AIDGSR","","C49851"

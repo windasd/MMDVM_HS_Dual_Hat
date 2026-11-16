@@ -22,9 +22,12 @@ PCB = os.path.join(M.PRJ, 'mmdvm_mesh.kicad_pcb')
 board = pcbnew.LoadBoard(PCB)
 G = 0.1                       # grid, mm
 W, VIA_D, VIA_DR, CL = 0.2, 0.45, 0.2, 0.1
+W = float(os.environ.get('PR_W', W))            # track width override, e.g. 0.35 for 50 ohm RF feeds
 R_TRK = W / 2 + CL + 0.03     # obstacle inflation for a track centre line
 R_VIA = VIA_D / 2 + CL + 0.01    # exact distance test from the via centre, so a small margin is enough
 LAYERS = [pcbnew.F_Cu, pcbnew.In2_Cu, pcbnew.B_Cu]
+if os.environ.get('PR_LAYERS'):                # restrict to named layers, e.g. PR_LAYERS=F.Cu
+    LAYERS = [ly for ly in LAYERS if pcbnew.BOARD.GetStandardLayerName(ly) in os.environ['PR_LAYERS'].split(',')]
 MARGIN = float(os.environ.get('PR_MARGIN', '9.0'))
 VIA_COST = 40.0
 tomm = pcbnew.ToMM
@@ -166,7 +169,7 @@ def route(spec_a, spec_b):
             for g in grids:
                 mark(g, bb[0], bb[1], bb[2], bb[3], test)
 
-    allk = [0, 1, 2]
+    allk = list(range(len(LAYERS)))
     for t in board.GetTracks():
         if t.GetNetname() == net:
             if t.GetClass() == 'PCB_VIA':            # no second via within hole-to-hole distance

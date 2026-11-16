@@ -12757,7 +12757,7 @@
 				)
 			)
 		)
-		(property "Value" "BQ29728"
+		(property "Value" "BQ29707"
 			(at 436.88 243.84 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12799,7 +12799,7 @@
 				)
 			)
 		)
-		(property "Note" "BQ29728: OV 4.28 V, UV 2.80 V, OCC -100 mV, OCD +150 mV (9-13 A with 2x CSD17577Q3A); keep BQ25895 charge current <= 4 A"
+		(property "Note" "BQ29707: OV 4.28 V, UV 2.80 V, OCC -150 mV, OCD +200 mV (data sheet SLUSBU9I table 4); BQ29728 (-60 / +100 mV) would trip near the 12 V boost full-load battery current"
 			(at 436.88 231.14 0)
 			(hide yes)
 			(show_name no)
@@ -12821,7 +12821,7 @@
 				)
 			)
 		)
-		(property "MPN" "BQ29728DSER"
+		(property "MPN" "BQ29707DSER"
 			(at 436.88 231.14 0)
 			(hide yes)
 			(show_name no)
@@ -12832,7 +12832,7 @@
 				)
 			)
 		)
-		(property "Mouser" "595-BQ29728DSER"
+		(property "Mouser" "595-BQ29707DSER"
 			(at 436.88 231.14 0)
 			(hide yes)
 			(show_name no)
@@ -12854,7 +12854,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C3682679"
+		(property "LCSC" ""
 			(at 436.88 231.14 0)
 			(hide yes)
 			(show_name no)
