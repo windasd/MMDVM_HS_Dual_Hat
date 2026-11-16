@@ -1,4 +1,5 @@
 (fp_lib_table
-  (lib (name MMDVM)(type KiCad)(uri ${KIPRJMOD}/libraries)(options "")(descr ""))
-  (lib (name Logos)(type KiCad)(uri ${KIPRJMOD}/libraries/w_logo.pretty)(options "")(descr ""))
+  (version 7)
+  (lib (name "MMDVM")(type "KiCad")(uri "${KIPRJMOD}/../../libraries/mmdvm_hs_dual_hat.pretty")(options "")(descr "MMDVM_HS_Dual_Hat project footprints"))
+  (lib (name "Logos")(type "KiCad")(uri "${KIPRJMOD}/../../libraries/w_logo.pretty")(options "")(descr ""))
 )
