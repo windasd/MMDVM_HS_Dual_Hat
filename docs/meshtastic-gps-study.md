@@ -1381,6 +1381,15 @@ Würth 官網拒絕自動下載，我是從第三方網站上的原廠規格書�
 - 做的時候順便發現並已更正的文件錯誤：風扇控制器文件寫 AMC6821，線路圖是 EMC2301＋TMP102（EMC2301 沒有內建溫度曲線，主機當機時風扇不會自己調）；乙太網路驅動應為 `smsc75xx`；上游的主程式已改名 `MMDVM-Host`。
 - 後來補上的：依 MAX17048 做低電量關機（`power/`）、GPS 開關的監看服務（`gps/mmdvm-gps-switch.sh`）、DMRGateway／YSFGateway 的編譯與服務（`mmdvm/build-gateways.sh`，開啟 `USE_GPSD`）。同樣沒有實測。
 - **BrandMeister＋DMR（使用者的用法，原本用 Pi-Star）**：Pi-Star 沒有 Bubblegum-96 的映像檔，所以用 `mmdvm/setup-brandmeister.sh` 手動設成同樣的用法。差別是 Pi-Star 用的舊版 MMDVMHost 直接登入 BrandMeister 主控站，新版 MMDVM-Host 只能透過本機的 DMRGateway，所以多一層。BrandMeister 的主控站清單裡沒有台灣（2026-11-16 查），鄰近的是 4501 韓國、4602 中國、5021 馬來西亞、5151 菲律賓；用原本在 Pi-Star 選的那一個。腳本在 PC 上對上游範例設定檔試過，沒有在實機上登入過。
+- **Pi-Star 移植（`software/bubblegum96/pistar/`，使用者要求完整的 Pi-Star 功能含網頁）**：
+  - 做法：安裝腳本在 Ubuntu 24.04 arm64 上從原始碼編譯 Pi-Star 用的舊版 MMDVMHost 和各閘道器（版本是從 Pi-Star 的執行檔裡讀出來的 commit），安裝時從上游下載 Pi-Star 的網頁和管理腳本，再針對這塊板子調整。Pi-Star 的 repo 沒有標示授權，所以它的程式碼不放進這個 repo。
+  - Pi-Star 現成的執行檔是 32 位元、而且連結樹莓派的函式庫，不能用，全部要自己編。
+  - 序列埠用 udev 把 `/dev/ttyAMA0` 指到 `ttyOWL2`，數據機類型選「MMDVM_HS_Duplex_Hat … for Pi (GPIO)」。
+  - 會亂動 GPIO 的三支上游腳本（找數據機、重置、韌體升級）換成自己寫的版本，因為它們寫死的 GPIO 編號在 S900 上是別的腳。
+  - 這塊板子上做不到的（都列在 `pistar/FEATURES.md`）：系統升級、唯讀根檔案系統、自動 AP、網頁 SSH、Mobile GPS、PiStar-Remote／Keeper（Python 2）。
+  - **沒有在實機上跑過，也沒有編譯過。** 檢查過的只有：腳本語法、安裝腳本的模擬執行、修補檔能套用到指定的上游版本、sudoers 語法。PHP 語法沒檢查（這台機器沒有 PHP）。
+  - 第一次開機最可能出問題的地方：網頁在 PHP 8.3 下的相容性、網頁透過 sudo 執行指令的路徑、自己產生的 systemd 服務檔和 nginx 設定、用 GCC 13 編譯舊版原始碼。
+  - 和原本的最小設定二選一安裝，兩者不能同時啟用。
 - 仍然沒有做的：長期插電時把充電電壓降到 4.1 V、INA226 記錄、MMDVM-Info、D-Star／P25／NXDN 的閘道器。
 - 充電 IC 的 INT 和電量計的 ALRT 共用 GPIO-D，mainline 驅動不能共用中斷，目前只給充電 IC 用。
 

@@ -98,6 +98,23 @@ working tree: run them as `bash <script>` or `chmod +x` them first.
     `meshtastic/README.md` (first provisioning over USB or BLE).
 11. **Network.** `sudo netplan try`; `ip link show lan0`.
 
+## Two ways to run the hotspot: choose one
+
+1. **The minimal package** (everything in this directory except `pistar/`):
+   the current MMDVM-Host with MMDVM-Display and DMRGateway, configured by
+   editing files or with `mmdvm/setup-brandmeister.sh`. No web pages.
+2. **A port of Pi-Star** in `pistar/`: the software Pi-Star runs (the older,
+   file-logging MMDVMHost and gateways at the versions Pi-Star ships) built
+   from source, with Pi-Star's own dashboard and admin pages downloaded from
+   upstream at install time and adapted to this board. See `pistar/README.md`
+   and `pistar/FEATURES.md` for what works, what is replaced and what is not
+   available here.
+
+They use the same unit names and binaries, so only one can be active;
+`pistar/install-pistar.sh` refuses to run while the minimal package's units
+are enabled. The device-tree overlay, `gpio/`, `fan/`, `power/`, `gps/` and
+`network/` are needed by both. Neither has been run on hardware.
+
 ## DMR on BrandMeister (coming from Pi-Star)
 
 Pi-Star itself is distributed as images for the Raspberry Pi and a few other

@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+# Replacement for Pi-Star's pistar-watchdog on the Bubblegum-96.
+#
+# Why a replacement: upstream's watchdog is a Python 2 program
+# ("#!/usr/bin/python", "import ConfigParser"); Ubuntu 24.04 has no Python 2.
+# It also deletes rotated files under /var/log when that file system is over
+# 90 % full, which is right for Pi-Star's small tmpfs but not for a general
+# Ubuntu root.
+#
+# What is kept: the idea. Every minute each Pi-Star daemon is looked up with
+# pgrep; one that is not running is restarted through its systemd unit. The
+# Pi-Star service wrapper (/usr/local/sbin/<unit>.service) decides whether the
+# daemon should run at all (mode enabled, configured, ...) and exits quietly
+# if not, exactly as with the upstream watchdog. Unlike upstream, a unit that
+# does not come up is retried with a growing interval (1 min ... 1 h) so that
+# switched-off modes do not fill the journal.
+#
+# The dashboard's admin page shows the watchdog as running when
+# "pgrep -f /usr/local/sbin/pistar-watchdog" finds a process, so the file
+# name and path must stay.
+# Part of software/bubblegum96/pistar (not Pi-Star code). UNTESTED.
+set -u
+
+INTERVAL=60
+MAX_BACKOFF=3600
+UNIT_DIR=/lib/systemd/system
+
+# "<process name as pgrep -x sees it> <systemd unit without .service>"
+# Only checked while /etc/dstar-radio.mmdvmhost exists (MMDVMHost mode).
+MMDVM_SET="
+MMDVMHost mmdvmhost
+DMRGateway dmrgateway
+YSFGateway ysfgateway
+DGIdGateway dgidgateway
+P25Gateway p25gateway
+M17Gateway m17gateway
+NXDNGateway nxdngateway
+YSFParrot ysfparrot
+P25Parrot p25parrot
+NXDNParrot nxdnparrot
+YSF2DMR ysf2dmr
+YSF2NXDN ysf2nxdn
+YSF2P25 ysf2p25
+DMR2YSF dmr2ysf
+DMR2NXDN dmr2nxdn
+DAPNETGateway dapnetgateway
+"
+# Checked in every mode.
+COMMON_SET="
+ircddbgatewayd ircddbgateway
+timeserverd timeserver
+"
+
+declare -A next_try backoff
+
+check() {
+	local proc="$1" unit="$2" now
+	[ -f "${UNIT_DIR}/${unit}.service" ] || return 0
+	if pgrep -x "$proc" >/dev/null 2>&1; then
+		backoff[$unit]=$INTERVAL
+		next_try[$unit]=0
+		return 0
+	fi
+	now="$(date +%s)"
+	if [ "${next_try[$unit]:-0}" -gt "$now" ]; then
+		return 0
+	fi
+	systemctl restart "${unit}.service" >/dev/null 2>&1 || true
+	sleep 5
+	if pgrep -x "$proc" >/dev/null 2>&1; then
+		echo "pistar-watchdog: restarted ${unit}.service"
+		backoff[$unit]=$INTERVAL
+		next_try[$unit]=0
+	else
+		local b="${backoff[$unit]:-$INTERVAL}"
+		next_try[$unit]=$((now + b))
+		b=$((b * 2))
+		[ "$b" -gt "$MAX_BACKOFF" ] && b=$MAX_BACKOFF
+		backoff[$unit]=$b
+	fi
+}
+
+check_set() {
+	local proc unit
+	while read -r proc unit; do
+		[ -n "$proc" ] || continue
+		check "$proc" "$unit"
+	done <<<"$1"
+}
+
+# Let the timers start everything first (upstream waits 90 s as well).
+sleep 90
+
+while true; do
+	if [ -f /etc/dstar-radio.mmdvmhost ]; then
+		check_set "$MMDVM_SET"
+	fi
+	if [ -f /etc/dstar-radio.mmdvmhost ] || [ -f /etc/dstar-radio.dstarrepeater ]; then
+		check_set "$COMMON_SET"
+	fi
+	sleep "$INTERVAL"
+done

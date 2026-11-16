@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Replacement for Pi-Star's pistar-mmdvmhshatreset on the Bubblegum-96.
+#
+# Upstream pulses Raspberry Pi GPIO 20 / 21 through sysfs. Those numbers mean
+# other pins here, so the reset goes through the board's own helper
+# (GPIO-A = BOOT0, GPIO-B = NRST, see ../gpio/mmdvm-gpio.sh).
+# Part of software/bubblegum96/pistar (not Pi-Star code). UNTESTED.
+set -euo pipefail
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "You need to be root to run this command..." >&2
+	exit 1
+fi
+tool=/usr/local/sbin/mmdvm-gpio
+if [ ! -x "$tool" ]; then
+	echo "error: $tool not found - install the board files first (software/bubblegum96/install.sh)" >&2
+	exit 1
+fi
+echo "Resetting the MMDVM_HS modem (BOOT0 low, NRST pulse)..."
+"$tool" reset-modem
+echo "Done"

@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+# Board facts of the r3.0-study mezzanine on a Bubblegum-96, written into the
+# Pi-Star configuration. Part of software/bubblegum96/pistar (not Pi-Star code).
+#
+# UNTESTED: never run on the target.
+#
+#   pistar-b96-presets --hardware   only what the wiring dictates:
+#       /etc/mmdvmhost [Modem]   Port=/dev/ttyAMA0  Protocol=uart
+#                                UARTPort=/dev/ttyAMA0  UARTSpeed=115200
+#                      [Nextion] Port=modem
+#     (/dev/ttyAMA0 is the udev alias of /dev/ttyOWL2; Pi-Star's pages write
+#      /dev/ttyAMA0 for every "GPIO" modem type, so the alias keeps them valid.)
+#
+#   pistar-b96-presets --defaults   the above plus first-install choices that
+#     the user may change later in the web pages:
+#       [General] Duplex=1  Display=Nextion
+#       [Nextion] ScreenLayout=3      (display/tjc8048x550 is drawn for 3)
+#     and a [GPSD] section (Enable=0, 127.0.0.1:2947) in the gateways that
+#     were built with gpsd support, so that it only has to be switched on.
+#
+#   pistar-b96-presets --set <file> <section> <key> <value>
+#     the ini editor used above, for install-pistar.sh.
+#
+# Called by install-pistar.sh, by the board's pistar-factory-reset, and (with
+# --hardware) by the patched restore page through sudo.
+set -euo pipefail
+
+MMDVM_INI="${PISTAR_B96_MMDVM_INI:-/etc/mmdvmhost}"
+MODEM_PORT=/dev/ttyAMA0
+MODEM_SPEED=115200
+
+die() { echo "pistar-b96-presets: $*" >&2; exit 1; }
+
+# ini_set <file> <section> <key> <value>
+# Replaces the first "key=" line of the section, appends the key to the
+# section when it is missing, appends the section when that is missing.
+# Carriage returns are removed (the daemons read LF files).
+ini_set() {
+	local file="$1" section="$2" key="$3" value="$4" tmp
+	[ -f "$file" ] || return 0
+	tmp="$(mktemp)"
+	awk -v s="[$section]" -v k="$key" -v v="$value" '
+		function blanks() { while (pend > 0) { print ""; pend-- } }
+		{ sub(/\r$/, "") }
+		/^[ \t]*$/ { pend++; next }
+		/^\[/ {
+			if (insec && !done) { print k "=" v; done = 1 }
+			blanks()
+			insec = ($0 == s)
+			if (insec) seen = 1
+			print
+			next
+		}
+		{ blanks() }
+		insec && !done && index($0, k "=") == 1 { print k "=" v; done = 1; next }
+		{ print }
+		END {
+			if (insec && !done) { print k "=" v; done = 1 }
+			if (!seen) { print ""; print s; print k "=" v }
+		}
+	' "$file" >"$tmp" || { rm -f "$tmp"; die "awk failed on $file"; }
+	# Keep owner, mode and inode of the target.
+	cat "$tmp" >"$file"
+	rm -f "$tmp"
+}
+
+# ini_has_section <file> <section>
+ini_has_section() {
+	[ -f "$1" ] && grep -q "^\[$2\]" "$1"
+}
+
+hardware() {
+	[ -f "$MMDVM_INI" ] || die "$MMDVM_INI does not exist"
+	ini_set "$MMDVM_INI" Modem Port "$MODEM_PORT"
+	ini_set "$MMDVM_INI" Modem Protocol uart
+	ini_set "$MMDVM_INI" Modem UARTPort "$MODEM_PORT"
+	ini_set "$MMDVM_INI" Modem UARTSpeed "$MODEM_SPEED"
+	ini_set "$MMDVM_INI" Nextion Port modem
+	echo "Board presets (modem port, display port) written to $MMDVM_INI"
+}
+
+defaults() {
+	hardware
+	ini_set "$MMDVM_INI" General Duplex 1
+	ini_set "$MMDVM_INI" General Display Nextion
+	ini_set "$MMDVM_INI" Nextion ScreenLayout 3
+	local f
+	for f in /etc/dmrgateway /etc/ysfgateway /etc/nxdngateway /etc/m17gateway /etc/dgidgateway; do
+		[ -f "$f" ] || continue
+		if ! ini_has_section "$f" GPSD; then
+			ini_set "$f" GPSD Enable 0
+			ini_set "$f" GPSD Address 127.0.0.1
+			ini_set "$f" GPSD Port 2947
+		fi
+	done
+	echo "Board defaults (duplex, Nextion layout 3, [GPSD] off) written"
+}
+
+case "${1:-}" in
+--set)
+	# Generic helper for install-pistar.sh: --set <file> <section> <key> <value>
+	[ "$#" -eq 5 ] || die "usage: $0 --set <file> <section> <key> <value>"
+	[ -f "$2" ] || die "$2 does not exist"
+	ini_set "$2" "$3" "$4" "$5"
+	;;
+--hardware | --defaults)
+	[ "$(id -u)" -eq 0 ] || [ -n "${PISTAR_B96_MMDVM_INI:-}" ] || die "run as root"
+	if [ "$1" = --hardware ]; then hardware; else defaults; fi
+	;;
+*)
+	echo "usage: $0 --hardware | --defaults | --set <file> <section> <key> <value>" >&2
+	exit 2
+	;;
+esac
