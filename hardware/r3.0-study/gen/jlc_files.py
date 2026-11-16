@@ -10,19 +10,22 @@ the bottom side from below. No per-package corrections are applied: the publishe
 for older footprint libraries and a wrong correction is worse than none. Order with "Confirm Parts Placement"
 and compare check_orientation.csv with the preview.
 
-Usage: python jlc_files.py      (after make_production.sh has written production/mmdvm_mesh-pos.csv)
+Usage: python jlc_files.py [front_panel]     (after make_production.sh has written the KiCad placement file;
+       with `front_panel` the files of ../front_panel are written instead)
 """
 import csv
 import os
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, '..', 'production')
-skip = {r['Reference']: r['Reason'] for r in csv.DictReader(open(os.path.join(HERE, 'jlc_exclude.csv'), encoding='utf-8'))}
-pos = list(csv.DictReader(open(os.path.join(OUT, 'mmdvm_mesh-pos.csv'), encoding='utf-8')))
-bom = list(csv.DictReader(open(os.path.join(HERE, '..', 'BOM.csv'), encoding='utf-8-sig')))
+import sys
+FP = len(sys.argv) > 1 and sys.argv[1] == 'front_panel'
+PRJ = os.path.join(HERE, '..', 'front_panel') if FP else os.path.join(HERE, '..')
+OUT = os.path.join(PRJ, 'production')
+skip = {} if FP else {r['Reference']: r['Reason'] for r in csv.DictReader(open(os.path.join(HERE, 'jlc_exclude.csv'), encoding='utf-8'))}
+pos = list(csv.DictReader(open(os.path.join(OUT, ('front_panel' if FP else 'mmdvm_mesh') + '-pos.csv'), encoding='utf-8')))
+bom = list(csv.DictReader(open(os.path.join(PRJ, 'BOM.csv'), encoding='utf-8-sig')))
 inbom = {ref: r for r in bom for ref in r['Reference'].split(',')}
-POLAR = re.compile(r'^(U|Q|D|LED|J|P|SW|Y|X|BT|T|FB?\d*$)')       # everything that is not a two-pad R / C / L
 n = 0
 with open(os.path.join(OUT, 'CPL_JLCPCB.csv'), 'w', newline='', encoding='utf-8') as f, \
         open(os.path.join(OUT, 'check_orientation.csv'), 'w', newline='', encoding='utf-8') as g:

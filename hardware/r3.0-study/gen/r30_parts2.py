@@ -230,7 +230,7 @@ def power():
           'Package_DFN_QFN:Texas_RWU0007A_VQFN-7_2x2mm_P0.5mm', {'MPN': 'TPS61022RWUR', 'Note': 'MODE high = FPWM'}),
         P('L102', 'Device:L', '1uH', {'1': 'VSYS', '2': 'B5_SW'}, 'Inductor_SMD:L_Coilcraft_XAL4040-XXX',
           {'MPN': 'Coilcraft XAL4040-102 (1 uH)'}),
-        R('R116', '732k', '+5V', 'B5_FB', Note='check VREF (0.6 V assumed)'), R('R117', '100k', 'B5_FB', 'GND'),
+        R('R116', '732k', '+5V', 'B5_FB', Note='VREF 0.600 V +-2.5 % (SLVSDX7D): 4.99 V'), R('R117', '100k', 'B5_FB', 'GND'),
         C('C128', '10u', 'VSYS', 'GND', FP_C0805), C('C129', '22u', '+5V', 'GND', FP_C0805),
         C('C130', '22u', '+5V', 'GND', FP_C0805),
         # ---- 3.5 V buck-boost (always on) -> LDOs

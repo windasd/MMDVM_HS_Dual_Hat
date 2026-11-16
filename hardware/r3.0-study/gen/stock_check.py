@@ -4,7 +4,8 @@ For each BOM line: does the library part number match the MPN of the BOM, is it 
 and how many are in the assembly stock. (The LCSC shop stock is a different figure: common basic parts show
 0 there while JLCPCB holds millions.) Run it again on the day of the order.
 
-Usage: python stock_check.py [boards]        (boards: how many boards the order is for, default 5)
+Usage: python stock_check.py [boards] [BOM.csv]     (boards: how many boards the order is for, default 5;
+       BOM.csv: another grouped BOM, e.g. ../front_panel/BOM.csv)
 """
 import csv
 import json
@@ -23,7 +24,8 @@ def norm(s):
     return re.sub(r'[^A-Z0-9]', '', s.upper())
 
 
-rows = list(csv.DictReader(open(os.path.join(HERE, '..', 'BOM.csv'), encoding='utf-8-sig')))
+BOM = sys.argv[2] if len(sys.argv) > 2 else os.path.join(HERE, '..', 'BOM.csv')
+rows = list(csv.DictReader(open(BOM, encoding='utf-8-sig')))
 bad = ext = 0
 print('%-10s %-26s %-26s %-5s %8s %6s  %s' % ('LCSC', 'BOM MPN', 'library part', 'type', 'stock', 'need', 'refs'))
 for r in rows:
