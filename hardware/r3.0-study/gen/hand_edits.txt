@@ -164,3 +164,6 @@ T /Ethernet/ETH_SHIELD F.Cu 0.2 161.91,113.24 161.8,112.9
 # 2026-11-16, not hand_edit.py: C142 / R124 (unfitted start-up assist) added with add_parts.py at 168.7, 118.1
 # and 171.3, 118.1 and joined with patch_route.py; antenna feeds set to 0.32 mm (rf_lines.py); the USB pair
 # narrowed from 0.25 to 0.235 mm.
+# CELL+ ran 0.16 mm from the locating hole of BT103 at 170.87, 126.72 (JLCPCB wants 0.2 mm copper to a bare hole)
+RM In2.Cu 172.41,128.86 162.46,128.86
+T CELL+ In2.Cu 0.5 172.41,128.86 172.26,129.01 162.61,129.01 162.46,128.86

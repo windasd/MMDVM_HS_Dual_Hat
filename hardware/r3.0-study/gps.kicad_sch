@@ -2,7 +2,7 @@
 	(version 20260306)
 	(generator "eeschema")
 	(generator_version "10.0")
-	(uuid "d5a8f73e-8401-4679-ab8d-4be96a364ed0")
+	(uuid "0a33b36c-1a6d-4f5f-a7d4-5ee94c887313")
 	(paper "A3")
 	(title_block
 		(title "GPS")
@@ -2237,372 +2237,32 @@
 		)
 	)
 	(no_connect
-		(at 78.74 99.06)
-		(uuid "0614e91b-1fe1-4dac-a017-3999b8f71fe2")
+		(at 152.4 71.12)
+		(uuid "2112bc78-b76e-4a1f-bb43-ad663b567842")
 	)
 	(no_connect
 		(at 78.74 96.52)
-		(uuid "355715f9-1056-49df-bdb8-40219b04c4ff")
-	)
-	(no_connect
-		(at 152.4 71.12)
-		(uuid "5452ef35-bb53-430d-896e-f67e6b71565c")
-	)
-	(no_connect
-		(at 78.74 86.36)
-		(uuid "9095623b-bd7d-49a5-b45a-72738b2ed39e")
-	)
-	(no_connect
-		(at 78.74 91.44)
-		(uuid "9fd7ce27-37d1-49e4-a505-c2b1c85696c8")
-	)
-	(no_connect
-		(at 109.22 81.28)
-		(uuid "a691a06b-27b5-4c6f-b39d-6c1d5a8093c0")
+		(uuid "22d36697-c65c-4a6b-9319-ac8409bd50b5")
 	)
 	(no_connect
 		(at 78.74 83.82)
-		(uuid "b71b2c08-b9d5-47cd-883b-81b68e182d62")
+		(uuid "49540f89-d8e5-4136-9ac6-b8d5346cdbbe")
 	)
-	(wire
-		(pts
-			(xy 88.9 68.58) (xy 88.9 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0f0186ae-def7-4509-8088-4ac33ef868b0")
+	(no_connect
+		(at 78.74 91.44)
+		(uuid "a8be4d05-0f1c-4629-8b90-679e29ea141b")
 	)
-	(wire
-		(pts
-			(xy 93.98 104.14) (xy 93.98 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0f499a59-5c42-4cbc-9cdc-49084c5277cb")
+	(no_connect
+		(at 78.74 99.06)
+		(uuid "d4af18d9-ba4a-4e9d-afdd-35b648b165b1")
 	)
-	(wire
-		(pts
-			(xy 129.54 165.1) (xy 137.16 165.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0f88f5d9-a2cf-424b-96a8-caf920a88a7f")
+	(no_connect
+		(at 78.74 86.36)
+		(uuid "d59baa68-ccd8-47aa-8124-685c89bd5eeb")
 	)
-	(wire
-		(pts
-			(xy 73.66 232.41) (xy 73.66 240.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "156b974d-0fc2-46da-8a38-d61b4a73b82a")
-	)
-	(wire
-		(pts
-			(xy 170.18 223.52) (xy 162.56 223.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1de8b66f-8008-41fc-bde1-52c9faa3821f")
-	)
-	(wire
-		(pts
-			(xy 170.18 73.66) (xy 177.8 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "23d40ddc-e01a-4635-a38e-1499e9ea4fb8")
-	)
-	(wire
-		(pts
-			(xy 124.46 232.41) (xy 124.46 240.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "29b12ad8-c357-4e99-9170-d68b6bb185ca")
-	)
-	(wire
-		(pts
-			(xy 149.86 73.66) (xy 142.24 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3d4762d5-5070-4eb0-b14d-ca059cf2e078")
-	)
-	(wire
-		(pts
-			(xy 73.66 224.79) (xy 73.66 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "42482a37-df52-4f72-8274-7478b37fe854")
-	)
-	(wire
-		(pts
-			(xy 269.24 74.93) (xy 269.24 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4af49135-64c1-4ee5-affe-1e9f1f65657b")
-	)
-	(wire
-		(pts
-			(xy 285.75 223.52) (xy 293.37 223.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "56f18fb1-1665-4360-b409-e091a9c41dd1")
-	)
-	(wire
-		(pts
-			(xy 124.46 224.79) (xy 124.46 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "57e7fe1b-f498-4349-b3ad-a11a410b200d")
-	)
-	(wire
-		(pts
-			(xy 218.44 67.31) (xy 218.44 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5a98d922-e1bd-4596-a2f4-daf87eb9696d")
-	)
-	(wire
-		(pts
-			(xy 78.74 76.2) (xy 71.12 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5ca06b62-e185-4521-acec-e6d90265a42f")
-	)
-	(wire
-		(pts
-			(xy 91.44 68.58) (xy 91.44 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5e97f3b0-8490-475c-bf35-07b69dfcf58e")
-	)
-	(wire
-		(pts
-			(xy 330.2 232.41) (xy 330.2 240.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6ed86ccd-05d5-4599-b112-c10f1697aa69")
-	)
-	(wire
-		(pts
-			(xy 330.2 224.79) (xy 330.2 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "742a9cd1-e7b2-449b-92fb-4b6b1a5858ab")
-	)
-	(wire
-		(pts
-			(xy 218.44 74.93) (xy 218.44 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7789beca-c2db-4f47-9467-427160d9e840")
-	)
-	(wire
-		(pts
-			(xy 109.22 93.98) (xy 116.84 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7a31539a-5b25-4d68-b22e-8d860525685b")
-	)
-	(wire
-		(pts
-			(xy 160.02 78.74) (xy 160.02 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8220c24c-a829-4e4f-a72c-af453edf869f")
-	)
-	(wire
-		(pts
-			(xy 149.86 68.58) (xy 142.24 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8cad262f-784b-4eed-9680-57ed19917868")
-	)
-	(wire
-		(pts
-			(xy 93.98 68.58) (xy 93.98 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "95229b62-deff-4bfa-8ed5-9fc98a876d26")
-	)
-	(wire
-		(pts
-			(xy 320.04 74.93) (xy 320.04 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9871940c-cf59-4616-9abc-b4e1463f0d46")
-	)
-	(wire
-		(pts
-			(xy 73.66 158.75) (xy 73.66 151.13)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99cd4520-4f40-435f-8459-424e37e8b055")
-	)
-	(wire
-		(pts
-			(xy 320.04 67.31) (xy 320.04 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9fe2fa02-5e1f-41fd-84fa-5012215f0f07")
-	)
-	(wire
-		(pts
-			(xy 269.24 67.31) (xy 269.24 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a1e26892-c8da-409e-b07f-0ce952beafb3")
-	)
-	(wire
-		(pts
-			(xy 182.88 158.75) (xy 182.88 151.13)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a23dfa7a-be63-4103-8113-6ad9c3d85200")
-	)
-	(wire
-		(pts
-			(xy 289.56 166.37) (xy 289.56 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a3c670d0-7ee8-4782-aa6a-bb4079664fca")
-	)
-	(wire
-		(pts
-			(xy 340.36 166.37) (xy 340.36 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a3d5d1fa-ce36-489a-9c65-908a9b387335")
-	)
-	(wire
-		(pts
-			(xy 182.88 166.37) (xy 182.88 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b0667be0-7b96-4679-bee1-1973af713d04")
-	)
-	(wire
-		(pts
-			(xy 229.87 160.02) (xy 222.25 160.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b759925c-c8ba-4e58-a396-b4b14961f9a0")
-	)
-	(wire
-		(pts
-			(xy 99.06 68.58) (xy 99.06 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c04eca63-9869-499c-bb63-02c383362926")
-	)
-	(wire
-		(pts
-			(xy 226.06 223.52) (xy 226.06 231.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c05f62b4-6209-41cc-a420-bfcacbc4a8c2")
-	)
-	(wire
-		(pts
-			(xy 129.54 160.02) (xy 137.16 160.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c3f8e4a3-0122-4dcb-adb3-d15aed29fe61")
+	(no_connect
+		(at 109.22 81.28)
+		(uuid "fbca73e0-494f-44b8-9e7c-bb3633d86b56")
 	)
 	(wire
 		(pts
@@ -2612,57 +2272,37 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "c479358b-9c8d-4d94-aa07-7c38ae36884a")
+		(uuid "0a90a40d-b0f9-4c75-80c9-3ba1c27161fd")
 	)
 	(wire
 		(pts
-			(xy 109.22 86.36) (xy 116.84 86.36)
+			(xy 218.44 67.31) (xy 218.44 59.69)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c48d8d7d-f890-4d5f-a541-337b8709efa0")
+		(uuid "1c0dda60-2875-49d7-b11c-200814b44c90")
 	)
 	(wire
 		(pts
-			(xy 78.74 78.74) (xy 71.12 78.74)
+			(xy 269.24 74.93) (xy 269.24 82.55)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ca013583-4fe1-465c-a3c7-31aeb5717ae0")
+		(uuid "1f7f3e1e-12a3-45d0-b1f9-c318e15d25ab")
 	)
 	(wire
 		(pts
-			(xy 278.13 223.52) (xy 270.51 223.52)
+			(xy 170.18 73.66) (xy 177.8 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d5d66a5b-6b42-47f8-98e1-00dffb16bf14")
-	)
-	(wire
-		(pts
-			(xy 289.56 158.75) (xy 289.56 151.13)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ddde21a1-4f23-48b0-a73f-744690185224")
-	)
-	(wire
-		(pts
-			(xy 73.66 166.37) (xy 73.66 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e81cf958-b782-4ab6-8d8f-ffa9ae75e60e")
+		(uuid "25cff14b-1208-491c-b96f-19d9ec6c483f")
 	)
 	(wire
 		(pts
@@ -2672,7 +2312,87 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e972b1f4-58ee-4856-bd42-fc365a7c1b5e")
+		(uuid "261e2b42-4384-4ea1-be1c-7da5685ddae7")
+	)
+	(wire
+		(pts
+			(xy 182.88 158.75) (xy 182.88 151.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3346da47-1bc8-4155-aee0-0d309399f4da")
+	)
+	(wire
+		(pts
+			(xy 229.87 160.02) (xy 222.25 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3ace1381-db20-4261-bfee-30e780f42966")
+	)
+	(wire
+		(pts
+			(xy 182.88 166.37) (xy 182.88 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3dcd72a5-7aea-4c60-88b0-bb5d7c90a273")
+	)
+	(wire
+		(pts
+			(xy 93.98 68.58) (xy 93.98 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44cf4606-f36b-4a0e-874d-c51db2c99126")
+	)
+	(wire
+		(pts
+			(xy 129.54 165.1) (xy 137.16 165.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44dd9cc9-6632-4208-ad12-1c724e26f66e")
+	)
+	(wire
+		(pts
+			(xy 226.06 223.52) (xy 226.06 231.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "458f63a0-a4db-4896-bac8-1db5f8ea4195")
+	)
+	(wire
+		(pts
+			(xy 170.18 223.52) (xy 162.56 223.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "45f78c6f-8fe8-48c5-a243-eb6c32aab758")
+	)
+	(wire
+		(pts
+			(xy 124.46 224.79) (xy 124.46 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "491c989c-15ca-4b11-98d6-4143ae7acd86")
 	)
 	(wire
 		(pts
@@ -2682,37 +2402,57 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ec74af6c-f97a-4ae2-be2b-3530341d424f")
+		(uuid "4bf0af27-468e-4a8c-92fd-336d31474d52")
 	)
 	(wire
 		(pts
-			(xy 170.18 68.58) (xy 177.8 68.58)
+			(xy 289.56 158.75) (xy 289.56 151.13)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ef2882e7-1217-48de-b4d8-2eab61995bfe")
+		(uuid "526c77f8-fafa-41ac-a61f-5a24034724d9")
 	)
 	(wire
 		(pts
-			(xy 175.26 228.6) (xy 175.26 236.22)
+			(xy 218.44 74.93) (xy 218.44 82.55)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f14a1b48-c9d2-4b52-8efd-bdbf0ab40270")
+		(uuid "54808e81-3c3c-4e02-9c5a-981f9e756223")
 	)
 	(wire
 		(pts
-			(xy 93.98 104.14) (xy 93.98 111.76)
+			(xy 330.2 224.79) (xy 330.2 217.17)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f293c8f3-b35a-45c2-9bc8-6953b888b643")
+		(uuid "5570506b-1879-4684-9061-0497bbf5057e")
+	)
+	(wire
+		(pts
+			(xy 278.13 223.52) (xy 270.51 223.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "57f48177-bbb3-438c-bc42-8fce30e9c164")
+	)
+	(wire
+		(pts
+			(xy 73.66 166.37) (xy 73.66 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "595d5311-931f-48f0-aa7c-dd1f4849ab1a")
 	)
 	(wire
 		(pts
@@ -2722,7 +2462,147 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "f37a5771-fe34-4cc6-a5ee-143718c9f0e7")
+		(uuid "61fb8081-6390-4bfd-ade6-5d43a5e874f0")
+	)
+	(wire
+		(pts
+			(xy 330.2 232.41) (xy 330.2 240.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7223e723-0e7f-47b8-b343-6cb26120bc6c")
+	)
+	(wire
+		(pts
+			(xy 73.66 224.79) (xy 73.66 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7430a818-703d-46ee-8b33-41d23d9934e1")
+	)
+	(wire
+		(pts
+			(xy 99.06 68.58) (xy 99.06 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83770f02-81b7-4000-999a-8ebcb552d440")
+	)
+	(wire
+		(pts
+			(xy 340.36 166.37) (xy 340.36 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86332d41-8ad8-4d83-8be9-ea6df5f851c1")
+	)
+	(wire
+		(pts
+			(xy 73.66 158.75) (xy 73.66 151.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9043cf71-f612-4b21-a248-421e13cf1d3d")
+	)
+	(wire
+		(pts
+			(xy 93.98 104.14) (xy 93.98 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "95305a99-44f1-4949-9940-b6655638fef7")
+	)
+	(wire
+		(pts
+			(xy 91.44 68.58) (xy 91.44 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "978ff144-f399-4d2e-b158-f31bd886f244")
+	)
+	(wire
+		(pts
+			(xy 124.46 232.41) (xy 124.46 240.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9e138c0f-dcee-45d7-bb8d-d8e09715e283")
+	)
+	(wire
+		(pts
+			(xy 73.66 232.41) (xy 73.66 240.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a09e5bb3-e3ff-4082-b1b5-ee29c0abef3c")
+	)
+	(wire
+		(pts
+			(xy 160.02 78.74) (xy 160.02 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b194aab4-94cb-4543-ad66-9283afacd28c")
+	)
+	(wire
+		(pts
+			(xy 93.98 104.14) (xy 93.98 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b8a2bdc4-4194-437b-8f51-2ce76e42f063")
+	)
+	(wire
+		(pts
+			(xy 175.26 228.6) (xy 175.26 236.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb85b8a6-03f2-4bbc-b4b3-da8dc159c448")
+	)
+	(wire
+		(pts
+			(xy 149.86 73.66) (xy 142.24 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bbb23579-63d6-4cad-9849-95223c559b72")
+	)
+	(wire
+		(pts
+			(xy 109.22 93.98) (xy 116.84 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c225d50a-baf0-46c7-8064-4eecc65b7ea9")
 	)
 	(wire
 		(pts
@@ -2732,137 +2612,127 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fa99c7d7-c00b-4ea2-96cf-710fed043967")
+		(uuid "c261a05a-3846-40c5-af8a-a06219abe513")
 	)
-	(label "GPS_RF"
-		(at 162.56 223.52 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
+	(wire
+		(pts
+			(xy 109.22 86.36) (xy 116.84 86.36)
 		)
-		(uuid "07752ee3-6a99-4ea6-ba2b-b8d1c91391d6")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c45672bb-23ac-4f7c-92bd-8f7da2e4d8a1")
 	)
-	(label "GPS_SAFEBOOT_N"
-		(at 226.06 231.14 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
+	(wire
+		(pts
+			(xy 78.74 76.2) (xy 71.12 76.2)
 		)
-		(uuid "09a64b44-5b0c-4ff9-bfcb-cf5342e19df9")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d86ed4a8-87c5-4059-ade8-b4a31838e1cf")
 	)
-	(label "GPS_RF"
-		(at 124.46 240.03 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
+	(wire
+		(pts
+			(xy 289.56 166.37) (xy 289.56 173.99)
 		)
-		(uuid "0f25c4b2-26c9-4227-8654-f81bd5204ea4")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9260c0f-08fa-4472-987a-bb2a12a3e433")
 	)
-	(label "D51_A"
-		(at 293.37 223.52 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 149.86 68.58) (xy 142.24 68.58)
 		)
-		(uuid "23b8d12f-6e8c-4b7d-986f-59fbc08f4b50")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dfda8c3f-0840-4abc-90db-c2d13eb416f3")
 	)
-	(label "GPS_RF"
-		(at 116.84 86.36 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 285.75 223.52) (xy 293.37 223.52)
 		)
-		(uuid "2520fb50-9b3b-4964-89e4-2f42748cef1d")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e03a967e-5564-4499-88db-bfa9eb487934")
 	)
-	(label "GPS_ANT_BIAS"
-		(at 124.46 217.17 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 320.04 67.31) (xy 320.04 59.69)
 		)
-		(uuid "322dec77-0da5-4f1f-a3ed-c32ecfa9091d")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e1664c8c-ddfd-4e74-9600-b41805afb5ab")
 	)
-	(label "GPS_ANT_BIAS"
-		(at 340.36 173.99 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
+	(wire
+		(pts
+			(xy 170.18 68.58) (xy 177.8 68.58)
 		)
-		(uuid "345ee2cf-0e9d-4454-b348-4a5ee9b6da19")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e2be9e9e-d502-4f59-ae07-647249b94f85")
 	)
-	(label "GPS_VCC_RF"
-		(at 340.36 151.13 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 269.24 67.31) (xy 269.24 59.69)
 		)
-		(uuid "4d6b2b73-7ac5-4c3b-9a7c-a82d43a2af3a")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6b07bb1-c432-4f6f-b5ec-f17346bd3cc9")
 	)
-	(label "GPS_QOD"
-		(at 218.44 59.69 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 78.74 78.74) (xy 71.12 78.74)
 		)
-		(uuid "67a58882-6ff2-4d65-bea8-44c9da2f3862")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e92b98f3-3bee-4864-8af4-011bf206994d")
 	)
-	(label "GPS_VCC_RF"
-		(at 99.06 60.96 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 88.9 68.58) (xy 88.9 60.96)
 		)
-		(uuid "9167e25c-714d-4ff9-a29f-29699d0eba8f")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5b2c5ae-585c-4cc9-838f-9a5cb0e7ce61")
 	)
-	(label "GPS_SAFEBOOT_N"
-		(at 71.12 93.98 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
+	(wire
+		(pts
+			(xy 320.04 74.93) (xy 320.04 82.55)
 		)
-		(uuid "ac673d64-96c1-4857-9927-679d0641a4b2")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5e253e6-aa37-4a28-ac1f-521cc4335ad5")
 	)
-	(label "GPS_QOD"
-		(at 177.8 73.66 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 129.54 160.02) (xy 137.16 160.02)
 		)
-		(uuid "d0a3f15b-3355-40b1-b166-e4f01e8ba517")
-	)
-	(label "D51_A"
-		(at 330.2 240.03 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
+		(stroke
+			(width 0)
+			(type default)
 		)
-		(uuid "ede77911-d68b-4aa1-81a2-7639b1d36f4b")
+		(uuid "fed47238-5f57-4d7b-add8-a4401712da15")
 	)
 	(label "GPS_ANT_BIAS"
 		(at 73.66 217.17 90)
@@ -2872,161 +2742,137 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "fe46caf6-6a5e-42d3-85ff-c40441965215")
+		(uuid "06a88e00-9781-471d-80dd-b7d6765fac9a")
 	)
-	(global_label "GPS_RXD"
-		(shape bidirectional)
-		(at 71.12 76.2 180)
+	(label "GPS_VCC_RF"
+		(at 99.06 60.96 90)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left bottom)
 		)
-		(uuid "0ffbaf91-0413-4a20-bfc2-469c98c8ec4b")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 71.12 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
+		(uuid "10285f1a-1d24-465d-96c8-cdcb96d01f81")
 	)
-	(global_label "GPS_VBCKP"
-		(shape bidirectional)
-		(at 289.56 151.13 90)
+	(label "GPS_VCC_RF"
+		(at 340.36 151.13 90)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify left bottom)
 		)
-		(uuid "120ec98c-998b-4cad-ab4f-ad1c6491c282")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 289.56 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
+		(uuid "3ffd00d7-ed65-4366-b7b5-eb9b9a21af99")
 	)
-	(global_label "GPS_VBCKP"
-		(shape bidirectional)
-		(at 222.25 160.02 180)
+	(label "GPS_QOD"
+		(at 218.44 59.69 90)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left bottom)
 		)
-		(uuid "31155066-ac12-4a6d-a84a-338475731e6a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 222.25 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
+		(uuid "64f5a18a-cec3-4ad9-8304-7f948e774a32")
 	)
-	(global_label "GPS_VBCKP"
-		(shape bidirectional)
-		(at 93.98 60.96 90)
+	(label "GPS_SAFEBOOT_N"
+		(at 226.06 231.14 270)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right bottom)
 		)
-		(uuid "3599b7f3-4251-457e-9070-1a635615709e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 93.98 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
+		(uuid "6ee50c8a-872b-41d2-83c8-be04375f220c")
 	)
-	(global_label "GPS_ON"
-		(shape bidirectional)
-		(at 142.24 73.66 180)
+	(label "GPS_RF"
+		(at 116.84 86.36 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left bottom)
 		)
-		(uuid "379484bd-5b27-419c-abe3-b63cea1e615f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 142.24 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
+		(uuid "700e4ed5-cab4-4087-ab13-c22a92324315")
 	)
-	(global_label "GPS_ON"
-		(shape bidirectional)
-		(at 182.88 151.13 90)
+	(label "D51_A"
+		(at 330.2 240.03 270)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right bottom)
 		)
-		(uuid "809822ba-144a-4433-aca5-d10f20ea2a14")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.88 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
+		(uuid "880ed94f-6c1b-4a27-92a6-5b6e881a6178")
 	)
-	(global_label "GPS_PPS"
-		(shape bidirectional)
-		(at 116.84 93.98 0)
+	(label "GPS_QOD"
+		(at 177.8 73.66 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify left bottom)
 		)
-		(uuid "9ec6df18-df26-4522-9d67-80140b8a9cb6")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 116.84 93.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
+		(uuid "8e1bfc9a-b7ba-451f-b38e-72c3191da97b")
+	)
+	(label "GPS_RF"
+		(at 162.56 223.52 180)
+		(effects
+			(font
+				(size 1.27 1.27)
 			)
+			(justify right bottom)
 		)
+		(uuid "8e467221-b313-4941-a23e-4b8b6852fead")
+	)
+	(label "GPS_RF"
+		(at 124.46 240.03 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "912b81cd-97df-45be-bb44-28b5b6f9d17f")
+	)
+	(label "GPS_SAFEBOOT_N"
+		(at 71.12 93.98 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "944fdbf0-9de6-40a6-a916-92b80bbf8843")
+	)
+	(label "D51_A"
+		(at 293.37 223.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0b22e6b-a9d5-42fd-9507-0944b44d8181")
+	)
+	(label "GPS_ANT_BIAS"
+		(at 340.36 173.99 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c4c9856e-f389-41ac-a1e4-94a2e5cc63b7")
+	)
+	(label "GPS_ANT_BIAS"
+		(at 124.46 217.17 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f9d86690-507d-470c-996d-0a459ff02cce")
 	)
 	(global_label "GPS_TXD"
 		(shape bidirectional)
@@ -3037,7 +2883,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b97fc632-384c-4a80-a957-aebb33fbc1d8")
+		(uuid "15e679e9-ed73-4ab0-826d-0fdbb76b7c32")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 71.12 78.74 0)
 			(hide yes)
@@ -3059,9 +2905,75 @@
 			)
 			(justify left)
 		)
-		(uuid "ca4670ac-cf48-4dd8-950e-53d804023e84")
+		(uuid "177cf0f3-f90c-4796-bd1c-d86f2df3075e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 137.16 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "GPS_RXD"
+		(shape bidirectional)
+		(at 71.12 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "3e91965d-dc8e-4b52-8528-1dddde8ebea1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 71.12 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "GPS_ON"
+		(shape bidirectional)
+		(at 182.88 151.13 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5b5efcdd-3672-479a-85a6-069ceeb3048e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 182.88 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "GPS_PPS"
+		(shape bidirectional)
+		(at 116.84 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "721f2a24-d268-48b7-b38b-12d0c5940d5f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 116.84 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3081,7 +2993,7 @@
 			)
 			(justify right)
 		)
-		(uuid "d2e1e54f-c8a9-4011-9b53-71ff53be6ddd")
+		(uuid "7a0d293a-3a10-41c2-b5a8-11fd0a7e4941")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 111.76 162.56 0)
 			(hide yes)
@@ -3094,39 +3006,18 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "Device:C")
-		(at 320.04 71.12 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "0b0efda2-3c16-44de-ac6c-783f0110ea37")
-		(property "Reference" "C81"
-			(at 320.04 62.23 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
+	(global_label "GPS_ON"
+		(shape bidirectional)
+		(at 142.24 73.66 180)
+		(effects
+			(font
+				(size 1.27 1.27)
 			)
+			(justify right)
 		)
-		(property "Value" "10u"
-			(at 320.04 80.01 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 320.04 71.12 0)
+		(uuid "a6e78407-aee1-4741-af14-7fdeb22032c2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 142.24 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3136,8 +3027,19 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
-			(at 320.04 71.12 0)
+	)
+	(global_label "GPS_VBCKP"
+		(shape bidirectional)
+		(at 93.98 60.96 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a7dadd8e-22d7-474c-8615-ea3773cef402")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 93.98 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3147,18 +3049,19 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 320.04 71.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
+	)
+	(global_label "GPS_VBCKP"
+		(shape bidirectional)
+		(at 222.25 160.02 180)
+		(effects
+			(font
+				(size 1.27 1.27)
 			)
+			(justify right)
 		)
-		(property "MFR" "Samsung Electro-Mechanics"
-			(at 320.04 71.12 0)
+		(uuid "d1eb2c85-fb81-4219-8e80-352ffc10f9ac")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 222.25 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3168,68 +3071,32 @@
 				)
 			)
 		)
-		(property "MPN" "CL10A106MA8NRNC"
-			(at 320.04 71.12 0)
+	)
+	(global_label "GPS_VBCKP"
+		(shape bidirectional)
+		(at 289.56 151.13 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f44ceca1-a2e9-4e8a-af6a-67dfcbd758a5")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 289.56 151.13 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser" "187-CL10A106MA8NRNC"
-			(at 320.04 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_MPN" ""
-			(at 320.04 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C96446"
-			(at 320.04 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "285ca442-00fc-43a5-be7d-ee3acc68dd14")
-		)
-		(pin "1"
-			(uuid "1516388a-6f5a-4454-b2ef-4586cf968e13")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "C81")
-					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 73.66 228.6 0)
+		(at 289.56 162.56 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3237,9 +3104,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "189d824a-cb6d-4a25-a98a-ba829d3e53e6")
-		(property "Reference" "C84"
-			(at 73.66 219.71 0)
+		(uuid "09fab44f-c66a-47e6-b4d0-b0e7c0133818")
+		(property "Reference" "C83"
+			(at 289.56 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3248,8 +3115,8 @@
 				)
 			)
 		)
-		(property "Value" "10n"
-			(at 73.66 237.49 0)
+		(property "Value" "1u"
+			(at 289.56 171.45 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3259,7 +3126,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 73.66 228.6 0)
+			(at 289.56 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3270,7 +3137,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 73.66 228.6 0)
+			(at 289.56 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3281,7 +3148,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 73.66 228.6 0)
+			(at 289.56 162.56 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3291,7 +3158,7 @@
 			)
 		)
 		(property "MFR" "Samsung Electro-Mechanics"
-			(at 73.66 228.6 0)
+			(at 289.56 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3301,8 +3168,8 @@
 				)
 			)
 		)
-		(property "MPN" "CL05B103KB5NNNC"
-			(at 73.66 228.6 0)
+		(property "MPN" "CL05A105KA5NQNC"
+			(at 289.56 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3312,8 +3179,8 @@
 				)
 			)
 		)
-		(property "Mouser" "187-CL05B103KB5NNNC"
-			(at 73.66 228.6 0)
+		(property "Mouser" "187-CL05A105KA5NQNC"
+			(at 289.56 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3324,7 +3191,7 @@
 			)
 		)
 		(property "Mouser_MPN" ""
-			(at 73.66 228.6 0)
+			(at 289.56 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3334,8 +3201,8 @@
 				)
 			)
 		)
-		(property "LCSC" "C15195"
-			(at 73.66 228.6 0)
+		(property "LCSC" "C52923"
+			(at 289.56 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3346,251 +3213,23 @@
 			)
 		)
 		(pin "1"
-			(uuid "8eaf60cb-d443-45c2-8044-0dd1ab91d8fd")
+			(uuid "cccc4abb-e88e-4e47-ab1f-76c69bfd28df")
 		)
 		(pin "2"
-			(uuid "de9269bc-2ca2-4ea5-aaa5-f3e2e3a8ef1c")
+			(uuid "3d45841c-e1d9-4f96-b8f1-7f393ad5bf13")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "C84")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "C83")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 93.98 111.76 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "1a39d1f8-2479-41c0-bebc-e233ef9d05a9")
-		(property "Reference" "#PWR5001"
-			(at 93.98 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 93.98 119.38 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 93.98 111.76 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e420db87-caff-45a6-a8bd-65721c6e0aae")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5001")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 93.98 111.76 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "1bc8ab5f-6d19-4fa7-b80b-f0270ea26094")
-		(property "Reference" "#PWR5004"
-			(at 93.98 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 93.98 119.38 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 111.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 93.98 111.76 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f7a22532-fa2c-4c05-b801-87e32ba12c3d")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5004")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 160.02 86.36 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "28976525-7215-4413-9b7c-39275da43a21")
-		(property "Reference" "#PWR5007"
-			(at 160.02 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 160.02 93.98 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 160.02 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 160.02 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 160.02 86.36 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "87bc5e07-ccc1-48b9-a0fe-b610ea4fad9d")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5007")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 182.88 162.56 0)
+		(lib_id "Switch:SW_SPDT")
+		(at 124.46 162.56 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3598,9 +3237,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "2d1ed0a7-56a5-425e-adc7-637a82977a15")
-		(property "Reference" "R70"
-			(at 182.88 153.67 0)
+		(uuid "0b209fa5-8cc9-4a48-8342-0296605569ba")
+		(property "Reference" "SW50"
+			(at 124.46 154.94 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3609,8 +3248,8 @@
 				)
 			)
 		)
-		(property "Value" "100k"
-			(at 182.88 171.45 0)
+		(property "Value" "GPS ON/OFF"
+			(at 124.46 170.18 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3619,8 +3258,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 182.88 162.56 0)
+		(property "Footprint" "MMDVM_r30:SW_SPDT_PCM12_EdgeMount"
+			(at 124.46 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3631,7 +3270,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 182.88 162.56 0)
+			(at 124.46 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3642,7 +3281,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 182.88 162.56 0)
+			(at 124.46 162.56 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3651,8 +3290,8 @@
 				)
 			)
 		)
-		(property "MFR" "UNI-ROYAL (Uniroyal Elec)"
-			(at 182.88 162.56 0)
+		(property "MPN" "PCM12SMTR"
+			(at 124.46 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3662,8 +3301,8 @@
 				)
 			)
 		)
-		(property "MPN" "0402WGF1003TCE"
-			(at 182.88 162.56 0)
+		(property "Note" "side-actuated slide switch"
+			(at 124.46 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3673,8 +3312,8 @@
 				)
 			)
 		)
-		(property "Mouser" "603-RC0402FR-07100KL"
-			(at 182.88 162.56 0)
+		(property "MFR" "C&K"
+			(at 124.46 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3684,8 +3323,8 @@
 				)
 			)
 		)
-		(property "Mouser_MPN" "RC0402FR-07100KL"
-			(at 182.88 162.56 0)
+		(property "Mouser" "611-PCM12SMTR"
+			(at 124.46 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3695,8 +3334,19 @@
 				)
 			)
 		)
-		(property "LCSC" "C25741"
-			(at 182.88 162.56 0)
+		(property "Mouser_MPN" ""
+			(at 124.46 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C221841"
+			(at 124.46 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3707,148 +3357,18 @@
 			)
 		)
 		(pin "2"
-			(uuid "71491bc2-8cf3-4dbf-9453-d2a827fbe4f1")
+			(uuid "a44046e7-da64-451e-a1c8-fb7e2630c233")
 		)
 		(pin "1"
-			(uuid "d4406274-22ab-40fe-bb20-e7fc172377be")
+			(uuid "ff40e59c-4264-4e67-bdcb-babd1aad5a17")
+		)
+		(pin "3"
+			(uuid "0c22f571-a8f3-4b00-a1c6-c58b87a8aa68")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "R70")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 330.2 228.6 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "2f495462-0d96-4933-9829-b3e1323463eb")
-		(property "Reference" "R72"
-			(at 330.2 219.71 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "2k2"
-			(at 330.2 237.49 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 330.2 228.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 330.2 228.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 330.2 228.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFR" "UNI-ROYAL (Uniroyal Elec)"
-			(at 330.2 228.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "0402WGF2201TCE"
-			(at 330.2 228.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser" "603-RC0402FR-072K2L"
-			(at 330.2 228.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_MPN" "RC0402FR-072K2L"
-			(at 330.2 228.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C25879"
-			(at 330.2 228.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "08ee2468-66e9-4c93-8bac-c69308f9148a")
-		)
-		(pin "2"
-			(uuid "dbad8458-2c1a-4b0c-9c52-e20ab2a5e47b")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "R72")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "SW50")
 					(unit 1)
 				)
 			)
@@ -3864,7 +3384,7 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "30885fb5-c9cf-466d-9b10-8cb0f06ccde2")
+		(uuid "129cb60e-e2d6-4783-b393-1be55f76de63")
 		(property "Reference" "TP50"
 			(at 226.06 218.44 0)
 			(show_name no)
@@ -3918,12 +3438,244 @@
 			)
 		)
 		(pin "1"
-			(uuid "7d596194-47f5-440e-bb7b-36f14c068e97")
+			(uuid "cc9475e4-dfff-4944-a213-cd6b04462b86")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
 					(reference "TP50")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Power_Management:TPS22919DCK")
+		(at 160.02 71.12 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "1c3c051b-2087-4666-851e-8338a7a99997")
+		(property "Reference" "U51"
+			(at 160.02 63.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TPS22919"
+			(at 160.02 83.82 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
+			(at 160.02 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 160.02 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 160.02 71.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "TPS22919DCKR"
+			(at 160.02 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Ron ~90 mOhm (< 0.2 Ohm rule)"
+			(at 160.02 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "Texas Instruments"
+			(at 160.02 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "595-TPS22919DCKR"
+			(at 160.02 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 160.02 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2149796"
+			(at 160.02 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "8faf9c23-b0b2-4f14-85d6-97bcb4b2d0aa")
+		)
+		(pin "1"
+			(uuid "7440af66-b909-4ac8-b816-41d8cb124a26")
+		)
+		(pin "5"
+			(uuid "5fa0d11f-ebce-4bf6-8d45-13f44247bae3")
+		)
+		(pin "6"
+			(uuid "46287b19-5761-4b27-b667-0c8213c47702")
+		)
+		(pin "4"
+			(uuid "79464d17-5a97-4f1e-8170-fad6c016be4d")
+		)
+		(pin "3"
+			(uuid "d6eb7f0b-1e9c-4bb3-b88f-2b21ffbcb8eb")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "U51")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 320.04 59.69 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "238bb74d-8725-4f27-8e57-3ba2f8b51237")
+		(property "Reference" "#PWR5012"
+			(at 320.04 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_GPS"
+			(at 320.04 52.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 320.04 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 320.04 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 320.04 59.69 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6e0630c3-6ca7-41a3-9146-2ea6c50342a6")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5012")
 					(unit 1)
 				)
 			)
@@ -3939,7 +3691,7 @@
 		(on_board no)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "35d1c449-f0b3-45a0-9db8-01530c93737e")
+		(uuid "2905cda6-fba3-4711-b525-b97e6c2173e9")
 		(property "Reference" "#PWR5016"
 			(at 137.16 165.1 0)
 			(hide yes)
@@ -3994,11 +3746,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "58409ebf-6617-49a7-8cf0-a47208f1841b")
+			(uuid "b1e18fdb-4fde-4282-ae22-97e1dc22903a")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
 					(reference "#PWR5016")
 					(unit 1)
 				)
@@ -4007,7 +3759,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 289.56 173.99 0)
+		(at 73.66 173.99 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4015,9 +3767,9 @@
 		(on_board no)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "40e396c1-170a-4ef1-a523-f0336a4f4b63")
-		(property "Reference" "#PWR5019"
-			(at 289.56 173.99 0)
+		(uuid "2fd47b87-228e-47de-854b-8f798a6c646f")
+		(property "Reference" "#PWR5015"
+			(at 73.66 173.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4028,7 +3780,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 289.56 181.61 0)
+			(at 73.66 181.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4038,7 +3790,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 289.56 173.99 0)
+			(at 73.66 173.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4049,7 +3801,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 289.56 173.99 0)
+			(at 73.66 173.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4060,7 +3812,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 289.56 173.99 0)
+			(at 73.66 173.99 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4070,12 +3822,745 @@
 			)
 		)
 		(pin "1"
-			(uuid "830dfa2d-40a8-4988-b096-d4878f7e89eb")
+			(uuid "b43de8a3-50a7-4de6-ac5a-418401e1994a")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5019")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 73.66 240.03 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "32659e17-7eaa-4b4b-84a0-03b5aa2d3046")
+		(property "Reference" "#PWR5020"
+			(at 73.66 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 73.66 247.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 73.66 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 73.66 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 73.66 240.03 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e9a26c3e-0d92-4941-a40a-e7be31f460ec")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5020")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 330.2 217.17 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "337ad5bc-8fc0-4f1d-943e-42ffd9fe87bf")
+		(property "Reference" "#PWR5023"
+			(at 330.2 217.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_GPS"
+			(at 330.2 209.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 330.2 217.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 330.2 217.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 330.2 217.17 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d9b005b0-4d3d-4b7f-8ab3-ac948035e7e2")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5023")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 281.94 223.52 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "337e08dc-2455-42b9-969c-9b882723ef00")
+		(property "Reference" "D51"
+			(at 281.94 218.44 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "green"
+			(at 281.94 228.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+			(at 281.94 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 281.94 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 281.94 223.52 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "APHHS1005LCGCK"
+			(at 281.94 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "Kingbright"
+			(at 281.94 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "604-APHHS1005CGCK"
+			(at 281.94 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "APHHS1005CGCK"
+			(at 281.94 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C5354975"
+			(at 281.94 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d03b0d05-cb08-42cf-af9c-53040dd41edb")
+		)
+		(pin "2"
+			(uuid "044d06f2-2119-40cc-95d4-bf8a5f34437f")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "D51")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 270.51 223.52 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3819922a-c2f3-4b62-920a-68a4c837d472")
+		(property "Reference" "#PWR5022"
+			(at 270.51 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 262.89 223.52 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 270.51 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 270.51 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 270.51 223.52 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b289f988-c2b5-4cde-b352-97576b1fafdc")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5022")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 73.66 151.13 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3af46087-8628-4921-8055-0cc53b39a199")
+		(property "Reference" "#PWR5014"
+			(at 73.66 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_GPS"
+			(at 73.66 143.51 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 73.66 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 73.66 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 73.66 151.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9d58cc0a-c9cb-4c18-b3b4-ad4df9573e0a")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5014")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 233.68 160.02 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3be05f4e-a8a0-4c2e-8bd3-94ba568ced5f")
+		(property "Reference" "D50"
+			(at 233.68 154.94 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAT54"
+			(at 233.68 165.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-323"
+			(at 233.68 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 233.68 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 233.68 160.02 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "BAT54HT1G"
+			(at 233.68 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "backup supply keeps ephemeris while the GPS is switched off"
+			(at 233.68 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "onsemi"
+			(at 233.68 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "863-BAT54HT1G"
+			(at 233.68 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 233.68 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C21107"
+			(at 233.68 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "bf864c60-e153-4003-b866-472559ebefbe")
+		)
+		(pin "1"
+			(uuid "d806d586-532e-4ee1-aaea-64750e39e612")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "D50")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 88.9 60.96 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3c4911ef-08aa-4713-8676-a6963fe3ce5c")
+		(property "Reference" "#PWR5003"
+			(at 88.9 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_GPS"
+			(at 88.9 53.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 88.9 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 88.9 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 88.9 60.96 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4ad8ba11-b72e-4dba-81f8-404573149243")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5003")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 93.98 111.76 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4b3b6481-d7df-4a66-b1b0-f76bf9575587")
+		(property "Reference" "#PWR5005"
+			(at 93.98 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 93.98 119.38 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 93.98 111.76 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "414d82ff-d888-4fb1-a09a-9f9d7342f09d")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5005")
 					(unit 1)
 				)
 			)
@@ -4091,7 +4576,7 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "4bcb0426-4577-4398-91c0-9789f2f849e4")
+		(uuid "508fe2ea-b854-46a7-8fdc-2be638819450")
 		(property "Reference" "L50"
 			(at 124.46 219.71 0)
 			(show_name no)
@@ -4211,1676 +4696,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "30eebf14-cb7d-471d-9e29-a323bb2b8144")
+			(uuid "309b4396-7f66-44ba-bcdf-948c4a22aeba")
 		)
 		(pin "1"
-			(uuid "bc42efd3-5e7c-4a10-a969-b4ac2f59bcf5")
+			(uuid "9cf29d72-6f91-40b5-8a87-1d782cf59a02")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
 					(reference "L50")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 330.2 217.17 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "5a5630ec-2bbe-4871-80cc-dc9b1fd07c25")
-		(property "Reference" "#PWR5023"
-			(at 330.2 217.17 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3_GPS"
-			(at 330.2 209.55 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 330.2 217.17 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 330.2 217.17 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 330.2 217.17 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "145b347a-0930-432b-b9e0-fb66ba8709b2")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5023")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 73.66 240.03 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "5cfbcc79-19d5-4e5e-aa6d-ad5d33ceb670")
-		(property "Reference" "#PWR5020"
-			(at 73.66 240.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 73.66 247.65 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 73.66 240.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 73.66 240.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 73.66 240.03 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2473a971-6d62-4782-bf1d-d3e467e6e712")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5020")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 182.88 173.99 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "60f22164-4527-486c-aa55-ae67bdae6dc3")
-		(property "Reference" "#PWR5017"
-			(at 182.88 173.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 182.88 181.61 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 182.88 173.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 182.88 173.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 182.88 173.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "fa6df85a-08e2-40f5-b647-9a9919060705")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5017")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 320.04 82.55 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "6c768404-bf15-41c1-87cf-1b3652f568fc")
-		(property "Reference" "#PWR5013"
-			(at 320.04 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 320.04 90.17 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 320.04 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 320.04 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 320.04 82.55 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3fa31c04-ed91-48a9-b0a3-371739e0d076")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5013")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 269.24 59.69 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "6d09f170-1fa0-46a3-bda6-d6223b8a84bb")
-		(property "Reference" "#PWR5010"
-			(at 269.24 59.69 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3_MESH"
-			(at 269.24 52.07 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 269.24 59.69 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 269.24 59.69 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 269.24 59.69 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "292fefb2-02a0-4de1-971f-2beda0b9d87b")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5010")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "RF_GPS:MAX-M10S")
-		(at 93.98 86.36 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "75c5b038-efb7-4e85-b92c-f697f1feabdc")
-		(property "Reference" "U50"
-			(at 93.98 63.5 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "MAX-M10S"
-			(at 93.98 109.22 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "RF_GPS:ublox_MAX"
-			(at 93.98 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 93.98 86.36 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "MAX-M10S-00B"
-			(at 93.98 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Note" "VIO_SEL open = 3.3 V I/O; UART 9600"
-			(at 93.98 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFR" "u-blox"
-			(at 93.98 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser" "377-MAX-M10S-00B"
-			(at 93.98 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_MPN" ""
-			(at 93.98 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C4153167"
-			(at 93.98 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "13"
-			(uuid "5f3eafd3-0bb7-4188-acd5-ac3270a7bd89")
-		)
-		(pin "17"
-			(uuid "0c8c0e80-1998-499a-b126-242d52549960")
-		)
-		(pin "14"
-			(uuid "51009b9d-cabe-48e5-a8ef-eccd291c8af4")
-		)
-		(pin "8"
-			(uuid "1f85d9a0-b52a-45d3-99f3-0dbd322a25ac")
-		)
-		(pin "9"
-			(uuid "be25ac48-e0da-4f86-a150-4d2d90854034")
-		)
-		(pin "15"
-			(uuid "b51697c1-9477-427d-8525-4e940aa01c25")
-		)
-		(pin "18"
-			(uuid "4c246124-2517-4088-a9f3-996237013e1d")
-		)
-		(pin "7"
-			(uuid "03b76f94-4ae2-4522-b6bd-50560f1a368a")
-		)
-		(pin "12"
-			(uuid "dc73211d-114d-4c8c-a882-f20b12528532")
-		)
-		(pin "10"
-			(uuid "b715d6d5-ac2d-4d05-863c-b505c316ef80")
-		)
-		(pin "11"
-			(uuid "e94e733d-b773-46ea-985d-a1504cffdd72")
-		)
-		(pin "16"
-			(uuid "107f7665-7b4d-4e7a-b395-491159de457d")
-		)
-		(pin "1"
-			(uuid "f8a35dec-a24a-436d-9f73-08676c37c04a")
-		)
-		(pin "5"
-			(uuid "c8acef7a-45e7-4909-b7c2-0dc001a52542")
-		)
-		(pin "4"
-			(uuid "2eb8a409-7784-4530-96d8-211fbc7fe6b9")
-		)
-		(pin "3"
-			(uuid "b521ccfa-b71e-439f-ab47-69d20cb912c8")
-		)
-		(pin "2"
-			(uuid "e49555a5-ad85-4883-8581-9cec2ddc6b43")
-		)
-		(pin "6"
-			(uuid "51c58829-1f74-455c-a789-1a7d6e690794")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "U50")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Switch:SW_SPDT")
-		(at 124.46 162.56 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7db44cd0-8589-42f7-826d-8d9018322518")
-		(property "Reference" "SW50"
-			(at 124.46 154.94 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GPS ON/OFF"
-			(at 124.46 170.18 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "MMDVM_r30:SW_SPDT_PCM12_EdgeMount"
-			(at 124.46 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 124.46 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 124.46 162.56 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "PCM12SMTR"
-			(at 124.46 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Note" "side-actuated slide switch"
-			(at 124.46 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFR" "C&K"
-			(at 124.46 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser" "611-PCM12SMTR"
-			(at 124.46 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_MPN" ""
-			(at 124.46 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C221841"
-			(at 124.46 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "3"
-			(uuid "1c0869f9-3f2e-4698-bbf0-6ebd516658b6")
-		)
-		(pin "1"
-			(uuid "5f84c797-a591-425f-a9fa-c616411e1ea3")
-		)
-		(pin "2"
-			(uuid "b3681660-8d54-4873-9ad6-758e62b762b8")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "SW50")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 73.66 162.56 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7ef25e42-f198-4ca2-8b56-d2e255dd1078")
-		(property "Reference" "C82"
-			(at 73.66 153.67 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100n"
-			(at 73.66 171.45 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 73.66 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 73.66 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 73.66 162.56 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFR" "Samsung Electro-Mechanics"
-			(at 73.66 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "CL05B104KO5NNNC"
-			(at 73.66 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser" "187-CL05B104KO5NNNC"
-			(at 73.66 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_MPN" ""
-			(at 73.66 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C1525"
-			(at 73.66 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c4eef95b-7379-4332-81d5-5c7d7c956fcf")
-		)
-		(pin "2"
-			(uuid "e59cbdc4-e471-4b7d-9c82-c2463d016d10")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "C82")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 88.9 60.96 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "8424e359-a1d3-4fff-901e-06deecc09a56")
-		(property "Reference" "#PWR5003"
-			(at 88.9 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3_GPS"
-			(at 88.9 53.34 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 88.9 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 88.9 60.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 88.9 60.96 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9201160d-cfa7-4b46-ae7d-9c21e6d3d49a")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5003")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 175.26 236.22 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "8701b30c-4c34-4d73-8d4e-ec9687971a61")
-		(property "Reference" "#PWR5021"
-			(at 175.26 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 175.26 243.84 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 175.26 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 175.26 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 175.26 236.22 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4dd2cd7d-2b3a-4d2f-b8c0-90aa5434f3ac")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5021")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 218.44 82.55 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "8d283b74-be85-45e9-97bb-d784c4e803bb")
-		(property "Reference" "#PWR5009"
-			(at 218.44 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3_GPS"
-			(at 218.44 90.17 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 218.44 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 218.44 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 218.44 82.55 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "7dc77dad-9f7c-487e-8c7e-2c1c6ad81a1a")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5009")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 245.11 160.02 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "9227c642-2b9e-47a7-afae-a9267474b3f3")
-		(property "Reference" "#PWR5018"
-			(at 245.11 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3_MESH"
-			(at 252.73 160.02 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 245.11 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 245.11 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 245.11 160.02 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8d32b481-9975-42e8-b334-2cf5cb3cd6c7")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5018")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 73.66 151.13 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "9ca8c842-b818-453b-a6f9-fd5cd4868934")
-		(property "Reference" "#PWR5014"
-			(at 73.66 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3_GPS"
-			(at 73.66 143.51 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 73.66 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 73.66 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 73.66 151.13 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d359f156-de41-40ba-9653-2483125c9f47")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5014")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 73.66 173.99 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a5156054-856a-4bed-bc3a-70e7c9cde0d8")
-		(property "Reference" "#PWR5015"
-			(at 73.66 173.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 73.66 181.61 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 73.66 173.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 73.66 173.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 73.66 173.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b7500f45-0a07-46d3-9a6b-e14076531dd8")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5015")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 269.24 71.12 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a889d763-190f-4a7e-a704-fc02c4523ab3")
-		(property "Reference" "C80"
-			(at 269.24 62.23 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1u"
-			(at 269.24 80.01 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 269.24 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 269.24 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 269.24 71.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFR" "Samsung Electro-Mechanics"
-			(at 269.24 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "CL05A105KA5NQNC"
-			(at 269.24 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser" "187-CL05A105KA5NQNC"
-			(at 269.24 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_MPN" ""
-			(at 269.24 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C52923"
-			(at 269.24 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "ec3fc6ad-eeb2-4bbd-a523-6b0f26fe8635")
-		)
-		(pin "1"
-			(uuid "5590678d-2f1f-45e1-9284-7ca41e2fb7c4")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "C80")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Schottky")
-		(at 233.68 160.02 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "aa0b7831-4b59-4d7c-97c9-c044208b96b7")
-		(property "Reference" "D50"
-			(at 233.68 154.94 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BAT54"
-			(at 233.68 165.1 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-323"
-			(at 233.68 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 233.68 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 233.68 160.02 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "BAT54HT1G"
-			(at 233.68 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Note" "backup supply keeps ephemeris while the GPS is switched off"
-			(at 233.68 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFR" "onsemi"
-			(at 233.68 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser" "863-BAT54HT1G"
-			(at 233.68 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_MPN" ""
-			(at 233.68 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C21107"
-			(at 233.68 160.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "71f0a413-d594-4483-b98d-cbff445f8069")
-		)
-		(pin "2"
-			(uuid "d92b43cb-ce4f-4b01-b1d6-10b35a3594d5")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "D50")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 142.24 68.58 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "aac36538-b8ea-4a83-91cd-0fc493e7c8cb")
-		(property "Reference" "#PWR5006"
-			(at 142.24 68.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3_MESH"
-			(at 134.62 68.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 142.24 68.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 142.24 68.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 142.24 68.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4ce66eb9-b57d-4405-8f56-492a50007250")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5006")
 					(unit 1)
 				)
 			)
@@ -5896,7 +4720,7 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "abdc6171-968b-4ace-ba93-769c86d49c03")
+		(uuid "520f5105-9418-40b8-babc-33198145af6e")
 		(property "Reference" "J50"
 			(at 175.26 218.44 0)
 			(show_name no)
@@ -6016,14 +4840,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "53a441b7-e8ca-4cf4-87cd-268cbef84480")
+			(uuid "66be92c4-d021-4eef-8587-a07d8776dc8b")
 		)
 		(pin "2"
-			(uuid "d2e2fc2b-f333-4b0a-997d-7393e0da351c")
+			(uuid "eafcb7a7-9b95-4e8f-bf6b-6ca8b0cf5214")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
 					(reference "J50")
 					(unit 1)
 				)
@@ -6031,18 +4855,19 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:LED")
-		(at 281.94 223.52 0)
+		(lib_id "power:GND")
+		(at 269.24 82.55 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
+		(in_bom no)
+		(on_board no)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "bc81d9e2-9f03-4afb-9b4f-9fc48cd6732a")
-		(property "Reference" "D51"
-			(at 281.94 218.44 0)
+		(uuid "55fce6f3-756b-4619-8154-b538e11d64a6")
+		(property "Reference" "#PWR5011"
+			(at 269.24 82.55 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6051,8 +4876,8 @@
 				)
 			)
 		)
-		(property "Value" "green"
-			(at 281.94 228.6 0)
+		(property "Value" "GND"
+			(at 269.24 90.17 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6061,8 +4886,8 @@
 				)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
-			(at 281.94 223.52 0)
+		(property "Footprint" ""
+			(at 269.24 82.55 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6073,7 +4898,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 281.94 223.52 0)
+			(at 269.24 82.55 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6084,7 +4909,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 281.94 223.52 0)
+			(at 269.24 82.55 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6093,8 +4918,51 @@
 				)
 			)
 		)
-		(property "MPN" "APHHS1005LCGCK"
-			(at 281.94 223.52 0)
+		(pin "1"
+			(uuid "6a36d720-82c7-4de9-8260-3537514a3bf7")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 182.88 162.56 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "561d0049-cef2-4163-986f-8ab67ae5f0eb")
+		(property "Reference" "R70"
+			(at 182.88 153.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 182.88 171.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 182.88 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6104,8 +4972,8 @@
 				)
 			)
 		)
-		(property "MFR" "Kingbright"
-			(at 281.94 223.52 0)
+		(property "Datasheet" ""
+			(at 182.88 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6115,8 +4983,18 @@
 				)
 			)
 		)
-		(property "Mouser" "604-APHHS1005CGCK"
-			(at 281.94 223.52 0)
+		(property "Description" ""
+			(at 182.88 162.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "UNI-ROYAL (Uniroyal Elec)"
+			(at 182.88 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6126,8 +5004,8 @@
 				)
 			)
 		)
-		(property "Mouser_MPN" "APHHS1005CGCK"
-			(at 281.94 223.52 0)
+		(property "MPN" "0402WGF1003TCE"
+			(at 182.88 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6137,8 +5015,30 @@
 				)
 			)
 		)
-		(property "LCSC" "C5354975"
-			(at 281.94 223.52 0)
+		(property "Mouser" "603-RC0402FR-07100KL"
+			(at 182.88 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "RC0402FR-07100KL"
+			(at 182.88 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25741"
+			(at 182.88 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6149,15 +5049,300 @@
 			)
 		)
 		(pin "1"
-			(uuid "c30a29eb-9429-4589-99b9-bd25b288d93c")
+			(uuid "bb370189-931b-4cf8-a29b-967cdd48f595")
 		)
 		(pin "2"
-			(uuid "ce1caee5-235b-42d4-b48d-887d75e812ab")
+			(uuid "56be8519-1489-407a-9d75-92946a5f964a")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "D51")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "R70")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 330.2 228.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "5e503c5b-7617-47b9-b906-e80a736a5c3f")
+		(property "Reference" "R72"
+			(at 330.2 219.71 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2k2"
+			(at 330.2 237.49 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 330.2 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 330.2 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 330.2 228.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "UNI-ROYAL (Uniroyal Elec)"
+			(at 330.2 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0402WGF2201TCE"
+			(at 330.2 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "603-RC0402FR-072K2L"
+			(at 330.2 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" "RC0402FR-072K2L"
+			(at 330.2 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25879"
+			(at 330.2 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "f245963c-fcf2-4c67-aa93-1e3e4ceaa484")
+		)
+		(pin "1"
+			(uuid "4896b997-f705-4497-a342-0e88040ca623")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "R72")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 91.44 60.96 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "67fd2de1-5dbe-4af3-b298-655d76c34f6b")
+		(property "Reference" "#PWR5002"
+			(at 91.44 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_GPS"
+			(at 91.44 53.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 91.44 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 91.44 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 91.44 60.96 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "96ff5a8b-c301-464a-9448-6230f925fc5f")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5002")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 142.24 68.58 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "68a5cde0-c365-4876-8ce6-f38d76c5f160")
+		(property "Reference" "#PWR5006"
+			(at 142.24 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_MESH"
+			(at 134.62 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 142.24 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 142.24 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 142.24 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8f321794-0773-4f30-bb44-c83d57bbbb9c")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5006")
 					(unit 1)
 				)
 			)
@@ -6173,8 +5358,8 @@
 		(on_board no)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "c0817ea4-0353-4ee6-a1c6-826fc4f021d4")
-		(property "Reference" "#PWR5005"
+		(uuid "68ad0a9d-2ba9-4cfa-8d37-1821b1dbd9bf")
+		(property "Reference" "#PWR5001"
 			(at 93.98 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -6228,12 +5413,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "f768de58-cf05-4533-a393-6ff5871b5bdd")
+			(uuid "fd9a98f8-ee03-42d2-b238-1c38073a0283")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5005")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5001")
 					(unit 1)
 				)
 			)
@@ -6241,7 +5426,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 270.51 223.52 270)
+		(at 93.98 111.76 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6249,9 +5434,9 @@
 		(on_board no)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "c7412af9-e4ee-4664-b405-50c927323f92")
-		(property "Reference" "#PWR5022"
-			(at 270.51 223.52 0)
+		(uuid "69fd1a73-b940-4424-8f8b-c2431cdf1bef")
+		(property "Reference" "#PWR5004"
+			(at 93.98 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6262,7 +5447,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 262.89 223.52 0)
+			(at 93.98 119.38 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6272,7 +5457,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 270.51 223.52 0)
+			(at 93.98 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6283,7 +5468,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 270.51 223.52 0)
+			(at 93.98 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6294,7 +5479,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 270.51 223.52 0)
+			(at 93.98 111.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6304,168 +5489,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "b0cbdba5-1eda-480e-93fb-655de09c8aaa")
+			(uuid "e273c550-79b4-4f3c-ba6d-24c40ec5e7e3")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5022")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Power_Management:TPS22919DCK")
-		(at 160.02 71.12 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d553ada9-8888-4903-856c-57a22eb1e206")
-		(property "Reference" "U51"
-			(at 160.02 63.5 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "TPS22919"
-			(at 160.02 83.82 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-363_SC-70-6"
-			(at 160.02 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 160.02 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 160.02 71.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "TPS22919DCKR"
-			(at 160.02 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Note" "Ron ~90 mOhm (< 0.2 Ohm rule)"
-			(at 160.02 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFR" "Texas Instruments"
-			(at 160.02 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser" "595-TPS22919DCKR"
-			(at 160.02 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Mouser_MPN" ""
-			(at 160.02 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C2149796"
-			(at 160.02 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8ec2a61f-799c-4df3-ab21-ed7a387a4563")
-		)
-		(pin "3"
-			(uuid "6d6a93f9-dc1e-4531-b185-14579cae9c75")
-		)
-		(pin "2"
-			(uuid "9ba483c4-ad35-4ab2-b783-2c1c062cdc7f")
-		)
-		(pin "5"
-			(uuid "3024bc6e-7c5a-4258-8fcc-963ec6871688")
-		)
-		(pin "4"
-			(uuid "44db1824-748d-47f5-88af-15e19c027b61")
-		)
-		(pin "6"
-			(uuid "b1948f07-5e4e-482c-a797-b34dfe666cd3")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "U51")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5004")
 					(unit 1)
 				)
 			)
@@ -6473,7 +5502,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 289.56 162.56 0)
+		(at 73.66 228.6 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6481,9 +5510,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "d9284b17-fa6d-4508-86b7-7a8e6d5c539a")
-		(property "Reference" "C83"
-			(at 289.56 153.67 0)
+		(uuid "73a2c6d3-b2b0-433d-bd11-bae9540b380b")
+		(property "Reference" "C84"
+			(at 73.66 219.71 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6492,8 +5521,8 @@
 				)
 			)
 		)
-		(property "Value" "1u"
-			(at 289.56 171.45 0)
+		(property "Value" "10n"
+			(at 73.66 237.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6503,7 +5532,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 289.56 162.56 0)
+			(at 73.66 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6514,7 +5543,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 289.56 162.56 0)
+			(at 73.66 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6525,7 +5554,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 289.56 162.56 0)
+			(at 73.66 228.6 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6535,7 +5564,7 @@
 			)
 		)
 		(property "MFR" "Samsung Electro-Mechanics"
-			(at 289.56 162.56 0)
+			(at 73.66 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6545,8 +5574,8 @@
 				)
 			)
 		)
-		(property "MPN" "CL05A105KA5NQNC"
-			(at 289.56 162.56 0)
+		(property "MPN" "CL05B103KB5NNNC"
+			(at 73.66 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6556,8 +5585,8 @@
 				)
 			)
 		)
-		(property "Mouser" "187-CL05A105KA5NQNC"
-			(at 289.56 162.56 0)
+		(property "Mouser" "187-CL05B103KB5NNNC"
+			(at 73.66 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6568,7 +5597,7 @@
 			)
 		)
 		(property "Mouser_MPN" ""
-			(at 289.56 162.56 0)
+			(at 73.66 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6578,8 +5607,8 @@
 				)
 			)
 		)
-		(property "LCSC" "C52923"
-			(at 289.56 162.56 0)
+		(property "LCSC" "C15195"
+			(at 73.66 228.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6590,15 +5619,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "aa5b25d0-9a28-4c80-9a03-86e8f698d72c")
+			(uuid "40bc972d-add7-48d0-b1e3-a1e5b9fad5b4")
 		)
 		(pin "1"
-			(uuid "071ff127-5a81-4cde-8c7f-46684a3159bc")
+			(uuid "0dfe171a-6648-4322-85b6-9afcda71a2dd")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "C83")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "C84")
 					(unit 1)
 				)
 			)
@@ -6606,7 +5635,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 320.04 59.69 0)
+		(at 245.11 160.02 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6614,9 +5643,9 @@
 		(on_board no)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "dda0a190-3e54-448b-be1c-c034b4e9d0bf")
-		(property "Reference" "#PWR5012"
-			(at 320.04 59.69 0)
+		(uuid "73b1c648-db1f-440e-8c9d-1e2257957669")
+		(property "Reference" "#PWR5018"
+			(at 245.11 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6626,8 +5655,8 @@
 				)
 			)
 		)
-		(property "Value" "+3V3_GPS"
-			(at 320.04 52.07 0)
+		(property "Value" "+3V3_MESH"
+			(at 252.73 160.02 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6637,7 +5666,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 320.04 59.69 0)
+			(at 245.11 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6648,7 +5677,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 320.04 59.69 0)
+			(at 245.11 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6659,7 +5688,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 320.04 59.69 0)
+			(at 245.11 160.02 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6669,88 +5698,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "68babc15-5f6a-47c7-b3fb-18d9658bfd35")
+			(uuid "f26cb949-e2dc-4550-82bf-08daa01bbe4a")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5012")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 177.8 68.58 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e70a6aee-3106-4e97-9136-457fc742ff68")
-		(property "Reference" "#PWR5008"
-			(at 177.8 68.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3V3_GPS"
-			(at 185.42 68.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 177.8 68.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 177.8 68.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 177.8 68.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3fa54227-9a41-4c2c-9f8e-cfb268809581")
-		)
-		(instances
-			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5008")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5018")
 					(unit 1)
 				)
 			)
@@ -6766,7 +5719,7 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "e9c41f8e-bb1d-474f-af2d-29ee0df4204b")
+		(uuid "987fd774-23d0-45bf-b3ef-01c22af6172a")
 		(property "Reference" "R73"
 			(at 218.44 62.23 0)
 			(show_name no)
@@ -6885,15 +5838,15 @@
 				)
 			)
 		)
-		(pin "2"
-			(uuid "f1005fa7-59de-4ed3-9607-1a639f960cc2")
-		)
 		(pin "1"
-			(uuid "6f57cad2-41c2-4e29-b725-bda169974caa")
+			(uuid "354440f9-0344-449b-ae10-9410e299e48e")
+		)
+		(pin "2"
+			(uuid "68e0df4f-7d31-4453-9e20-c4075960e498")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
 					(reference "R73")
 					(unit 1)
 				)
@@ -6901,19 +5854,18 @@
 		)
 	)
 	(symbol
-		(lib_id "power:VCC")
-		(at 91.44 60.96 0)
+		(lib_id "Device:C")
+		(at 320.04 71.12 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
+		(in_bom yes)
+		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "f30a905d-f760-4fa5-83ba-1f4abb23e1a7")
-		(property "Reference" "#PWR5002"
-			(at 91.44 60.96 0)
-			(hide yes)
+		(uuid "aed7ced3-4754-42e0-ab3a-caea0c4a1170")
+		(property "Reference" "C81"
+			(at 320.04 62.23 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6922,8 +5874,8 @@
 				)
 			)
 		)
-		(property "Value" "+3V3_GPS"
-			(at 91.44 53.34 0)
+		(property "Value" "10u"
+			(at 320.04 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6932,8 +5884,8 @@
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 91.44 60.96 0)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 320.04 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6944,7 +5896,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 91.44 60.96 0)
+			(at 320.04 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6955,7 +5907,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 91.44 60.96 0)
+			(at 320.04 71.12 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6964,13 +5916,71 @@
 				)
 			)
 		)
+		(property "MFR" "Samsung Electro-Mechanics"
+			(at 320.04 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL10A106MA8NRNC"
+			(at 320.04 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "187-CL10A106MA8NRNC"
+			(at 320.04 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 320.04 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C96446"
+			(at 320.04 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "2dc12206-6a2c-4923-8e4f-c7930cefd572")
+		)
 		(pin "1"
-			(uuid "a42a752c-e17b-48fd-b9f4-4dc15202349b")
+			(uuid "760a94a0-f588-49b9-9ba4-a1381b26bf6c")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5002")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "C81")
 					(unit 1)
 				)
 			)
@@ -6978,7 +5988,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 269.24 82.55 0)
+		(at 175.26 236.22 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6986,9 +5996,9 @@
 		(on_board no)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "f6c2f4a4-5381-4e95-8a17-4ce1be0b3f4f")
-		(property "Reference" "#PWR5011"
-			(at 269.24 82.55 0)
+		(uuid "aef0b9e5-6d8c-4da4-a166-8a07ef78a478")
+		(property "Reference" "#PWR5021"
+			(at 175.26 236.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6999,7 +6009,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 269.24 90.17 0)
+			(at 175.26 243.84 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7009,7 +6019,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 269.24 82.55 0)
+			(at 175.26 236.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7020,7 +6030,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 269.24 82.55 0)
+			(at 175.26 236.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7031,7 +6041,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 269.24 82.55 0)
+			(at 175.26 236.22 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7041,12 +6051,489 @@
 			)
 		)
 		(pin "1"
-			(uuid "48b27d06-aee7-407d-bd1d-b13a3e301bc0")
+			(uuid "d3d9f745-dc76-4619-ba2e-20204096c406")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
-					(reference "#PWR5011")
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5021")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 218.44 82.55 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b674f37a-4d79-4f91-9ff9-3806133743af")
+		(property "Reference" "#PWR5009"
+			(at 218.44 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_GPS"
+			(at 218.44 90.17 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 218.44 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 218.44 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 218.44 82.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5aa8f43b-132d-4c4d-a29a-64120c1c48ca")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5009")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "RF_GPS:MAX-M10S")
+		(at 93.98 86.36 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b7247973-105f-4d4b-9814-be95181be0f1")
+		(property "Reference" "U50"
+			(at 93.98 63.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MAX-M10S"
+			(at 93.98 109.22 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RF_GPS:ublox_MAX"
+			(at 93.98 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 93.98 86.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MAX-M10S-00B"
+			(at 93.98 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "VIO_SEL open = 3.3 V I/O; UART 9600"
+			(at 93.98 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "u-blox"
+			(at 93.98 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "377-MAX-M10S-00B"
+			(at 93.98 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 93.98 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4153167"
+			(at 93.98 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "17"
+			(uuid "e78f143c-bcb7-4593-a1ce-87fc928d8a2a")
+		)
+		(pin "12"
+			(uuid "3a0d5441-61a9-4027-a4e7-aad1c7ad9b77")
+		)
+		(pin "15"
+			(uuid "48c1f6cb-5cc9-4bcb-8b96-65431c45effb")
+		)
+		(pin "14"
+			(uuid "0a71177b-7d61-401e-b9f6-7da2f2fa0d98")
+		)
+		(pin "13"
+			(uuid "079d7346-f11c-425b-8847-71a3e3e4416d")
+		)
+		(pin "9"
+			(uuid "c8c2fa87-48d5-4485-8e76-c396f4455b6d")
+		)
+		(pin "16"
+			(uuid "2b878c82-b1f6-4e14-8232-22af5c58b8f8")
+		)
+		(pin "11"
+			(uuid "7e920924-9cce-4926-8225-e3d6b196e081")
+		)
+		(pin "18"
+			(uuid "ceebc11b-6051-4078-be88-710316538de8")
+		)
+		(pin "10"
+			(uuid "39ee003e-7055-4311-bcf0-376789151a3d")
+		)
+		(pin "2"
+			(uuid "a1535696-c355-44ba-894e-5d0f61d2cc62")
+		)
+		(pin "4"
+			(uuid "7488534f-93d0-44e2-baa8-3351e4c6ed1c")
+		)
+		(pin "5"
+			(uuid "6b91d313-680a-48e3-a38c-825d17785290")
+		)
+		(pin "3"
+			(uuid "e07bf5f8-ebfe-41db-8515-be614095661d")
+		)
+		(pin "7"
+			(uuid "2dfb7515-ef87-4f5e-9970-7842dfdfc552")
+		)
+		(pin "8"
+			(uuid "f226d091-9554-4644-9859-8455891d334b")
+		)
+		(pin "1"
+			(uuid "a77d6e58-6422-4263-b8b3-2e65d9b385c2")
+		)
+		(pin "6"
+			(uuid "7a4d4e45-dbf2-4156-8c11-5f1e4a368ccd")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "U50")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 177.8 68.58 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bc980cd0-1af2-483f-9d51-1a211178d620")
+		(property "Reference" "#PWR5008"
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_GPS"
+			(at 185.42 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 177.8 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6d76ad57-6e5c-4b8c-ab70-c91e9653200e")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5008")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 73.66 162.56 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c1f58903-10db-4d95-8012-d6bdfb140cbb")
+		(property "Reference" "C82"
+			(at 73.66 153.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100n"
+			(at 73.66 171.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 73.66 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 73.66 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 73.66 162.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "Samsung Electro-Mechanics"
+			(at 73.66 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05B104KO5NNNC"
+			(at 73.66 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "187-CL05B104KO5NNNC"
+			(at 73.66 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 73.66 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 73.66 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4cb36cc3-2279-4a7f-ba7b-164ed9d11718")
+		)
+		(pin "2"
+			(uuid "6379b79e-ae04-457c-a917-9b06ce9b62ec")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "C82")
 					(unit 1)
 				)
 			)
@@ -7062,7 +6549,7 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "fcc4d5e9-d767-4ff3-8f0c-15abb6a896f3")
+		(uuid "c300bd89-ac31-4755-bdec-abf5eb2ea412")
 		(property "Reference" "R71"
 			(at 340.36 153.67 0)
 			(show_name no)
@@ -7181,16 +6668,529 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "04704358-364e-48e4-ba31-790d3cc6ab3d")
-		)
 		(pin "2"
-			(uuid "f79fdc51-cf1b-4cb4-8f2f-65b7f213927f")
+			(uuid "800cb024-b702-4f96-85b5-299c440c3d5e")
+		)
+		(pin "1"
+			(uuid "1071e2d9-3fed-4f4b-a978-844d15a5b8e1")
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/9c5cec91-dbba-4423-adeb-ebc4c92b4921/d5a8f73e-8401-4679-ab8d-4be96a364ed0"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
 					(reference "R71")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 182.88 173.99 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c5c4ef44-9326-4c98-8b15-7bd2c4dde640")
+		(property "Reference" "#PWR5017"
+			(at 182.88 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 182.88 181.61 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 182.88 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 182.88 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 182.88 173.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e3dca774-91fb-4f43-a7d8-1aa0199f1186")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5017")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 160.02 86.36 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c6704cfc-5d39-4554-b9b2-f0ad6e71bb6c")
+		(property "Reference" "#PWR5007"
+			(at 160.02 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 160.02 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 160.02 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 160.02 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 160.02 86.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4c899d63-638a-4e9f-8c7b-a3b1c420a60f")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5007")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 269.24 59.69 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d725a91d-3073-408e-87af-348ae3ff1448")
+		(property "Reference" "#PWR5010"
+			(at 269.24 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3_MESH"
+			(at 269.24 52.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 269.24 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 269.24 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 269.24 59.69 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2550ba98-c9d3-4495-94fe-ac138da439e6")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5010")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 269.24 71.12 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d787d24a-3612-4932-b56e-1b7fe542f6b1")
+		(property "Reference" "C80"
+			(at 269.24 62.23 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1u"
+			(at 269.24 80.01 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 269.24 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 269.24 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 269.24 71.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFR" "Samsung Electro-Mechanics"
+			(at 269.24 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL05A105KA5NQNC"
+			(at 269.24 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser" "187-CL05A105KA5NQNC"
+			(at 269.24 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser_MPN" ""
+			(at 269.24 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C52923"
+			(at 269.24 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ed2b4767-9ba5-47d3-a5df-74d90be43c12")
+		)
+		(pin "2"
+			(uuid "6587da6f-efea-4e68-bc9d-a00e8f2e59c4")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "C80")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 289.56 173.99 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e7c957bf-e477-4e5e-abdf-6e547f7cf948")
+		(property "Reference" "#PWR5019"
+			(at 289.56 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 289.56 181.61 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 289.56 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 289.56 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 289.56 173.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "1c9ae778-81b2-443f-a9a6-f8257b9e6376")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5019")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 320.04 82.55 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f9ea665a-96da-4518-ab4d-ea271173b16f")
+		(property "Reference" "#PWR5013"
+			(at 320.04 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 320.04 90.17 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 320.04 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 320.04 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 320.04 82.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9e82ae47-1068-44c6-ae48-e3ad4e8cb208")
+		)
+		(instances
+			(project "mmdvm_mesh"
+				(path "/7fea4e97-ae56-473b-91ea-704f3ec10938/0a33b36c-1a6d-4f5f-a7d4-5ee94c887313"
+					(reference "#PWR5013")
 					(unit 1)
 				)
 			)

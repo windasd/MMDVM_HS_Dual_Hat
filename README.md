@@ -32,6 +32,12 @@ Fully reworked 4-layer layout in Raspberry Pi Zero form factor (65 x 30 mm) with
 
 **Antenna note:** the chip antenna footprint/3D model used in the layout is the Yageo ANT1204LL08R0870A, which is an 870 MHz part. The BOM now lists the 433 MHz variant ANT1204LL20R0433A (same 12 x 4 mm body and land pattern). On-board chip antennas always need a matching network tuned on the real board; expect to retune for the 70 cm band.
 
+### Revision 3.0 study (not built)
+
+A study for a larger board in `hardware/r3.0-study`: the rev1.3 MMDVM section plus Meshtastic (RAK4630), GPS (u-blox MAX-M10S), four 18650 cells in parallel with charger and protection, and gigabit Ethernet (LAN7500), as a 96Boards mezzanine for a Bubblegum-96 host. 4 layers, 90.6 x 167.1 mm, with a small front-panel board in `hardware/r3.0-study/front_panel` and an enclosure concept in `case/meshtastic-concept`.
+
+**This board has never been manufactured or tested.** The schematic and layout pass ERC / DRC and were checked against the data sheets, nothing more. The design record, including the list of what is still unverified, is `docs/meshtastic-gps-study.md` (in Traditional Chinese; section 16 covers the fabrication preparation). `hardware/r3.0-study/FAB_NOTES.md` has the ordering parameters.
+
 ## KiCad 10 migration (2026)
 
 Both revisions have been migrated to KiCad 10 (KiCad 10.0 or newer is required to open them).

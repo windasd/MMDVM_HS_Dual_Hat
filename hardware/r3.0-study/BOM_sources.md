@@ -1,5 +1,7 @@
 # r3.0 study BOM: part-number sources
 
+> **Superseded in part (2026-11-16).** This table is the first lookup. Parts changed since then are not updated here: Q100/Q101, U60, U64, U111, Y2, Y3, C168, R91, R92, the green LEDs, and the lines that had no number. The current numbers are in `BOM.csv`; `gen/stock_check.py` checks them against the JLCPCB parts library, and `docs/meshtastic-gps-study.md` sections 16.10 / 16.11 give the reasons.
+
 Looked up 2026-11-14 (Mouser + LCSC/JLCPCB). "unverified" = the distributor page could not be opened by the lookup tool and the number comes from search results or another listing: check before ordering. "EQUIV" = LCSC does not carry the exact MPN; an equivalent is given.
 
 | Line | Refs | Qty | Value | MFR | MPN | Mouser | LCSC | Status | Source |
