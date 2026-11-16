@@ -1,0 +1,21 @@
+# Hand edits for vias that via_out_of_pad.py could not move (python hand_edit.py via_hand_edits.txt check|rm|add).
+# U101.11 BQ_TS: via out of the pad to the west, BQ_QON goes round it
+RM F.Cu 156.14,155.45 156.04,155.35
+RM F.Cu 156.04,155.35 155.94,155.35
+RM F.Cu 155.94,155.35 155.94,155.05
+RM F.Cu 155.94,155.05 155.24,154.35
+T /Power/BQ_QON F.Cu 0.2 156.14,155.45 155.55,155.45 155.24,155.14 155.24,154.35
+MV 156.64,154.95 155.72,154.95
+T /Power/BQ_TS F.Cu 0.2 155.72,154.95 156.64,154.95
+# U60.24 +3V3_ETH: via to the outer side of the pad, between the pad and the USB pair on B.Cu
+RMVIA 150.45,100.74
+V +3V3_ETH 149.83,100.75
+T +3V3_ETH B.Cu 0.45 149.83,100.75 150.45,100.74
+# C66.2 is grounded through its track: the via on the pad and its stub go
+RMVIA 114.35,195.01
+RM F.Cu 114.35,195.01 114.08,195.28
+# U51.2 GND: out of the pad to the west, down between GPS_TXD and the pad column, via below pad 3
+RMVIA 132.15,127.38
+RM F.Cu 132.15,127.38 132.48,127.38
+T GND F.Cu 0.15 132.48,127.38 131.845,127.38 131.845,128.5 132.0,128.75
+V GND 132.0,128.75

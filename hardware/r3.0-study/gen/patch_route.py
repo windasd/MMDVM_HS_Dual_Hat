@@ -186,9 +186,14 @@ def route(spec_a, spec_b):
                          ('seg', tomm(s.x), tomm(s.y), tomm(e.x), tomm(e.y), tomm(t.GetWidth()) / 2), 0)
     for fp in board.GetFootprints():
         for p in fp.Pads():
-            if p.GetNetname() == net and p.GetNetname():
-                continue
             b = p.GetBoundingBox()
+            if p.GetNetname() == net and p.GetNetname():
+                # no via on an SMD pad of the net either: an open hole in a pad draws the solder away
+                if p.GetAttribute() == pcbnew.PAD_ATTRIB_SMD and not os.environ.get('PR_PADVIA'):
+                    m = VIA_D / 2 + 0.1
+                    mark(vocc, tomm(b.GetX()) - m, tomm(b.GetY()) - m, tomm(b.GetRight()) + m, tomm(b.GetBottom()) + m,
+                         lambda x, y: True)
+                continue
             through = p.GetAttribute() in (pcbnew.PAD_ATTRIB_PTH, pcbnew.PAD_ATTRIB_NPTH)
             ks = allk if through else [k for k, ly in enumerate(LAYERS) if p.IsOnLayer(ly)]
             shape = ('rect', tomm(b.GetX()), tomm(b.GetY()), tomm(b.GetRight()), tomm(b.GetBottom()))
