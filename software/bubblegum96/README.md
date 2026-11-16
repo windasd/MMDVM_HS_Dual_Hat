@@ -29,6 +29,7 @@ Design record: `docs/meshtastic-gps-study.md` (sections 2, 3, 6, 8, 10-13,
 | `mmdvm/flash-mmdvm-hs.sh` | `/usr/local/sbin/flash-mmdvm-hs` | `stm32flash` wrapper using GPIO-A / GPIO-B |
 | `fan/mmdvm-fan.sh`, `.service`, `.default` | `/usr/local/sbin/mmdvm-fan`, unit, `/etc/default/mmdvm-fan` | Temperature curve: TMP102 -> EMC2301 PWM, hwmon paths found by name at run time |
 | `mmdvm/build-gateways.sh` | - | Builds DMRGateway and YSFGateway with `USE_GPSD`, installs the upstream sample `.ini` files if none exist |
+| `mmdvm/setup-brandmeister.sh` | - | Sets callsign, DMR ID, frequencies and a BrandMeister master in `/etc/MMDVM-Host.ini` and `/etc/DMRGateway.ini` (DMR only, like a Pi-Star hotspot on a BM master) |
 | `mmdvm/dmrgateway.service`, `mmdvm/ysfgateway.service` | `/etc/systemd/system/` (by `build-gateways.sh`) | systemd units, not enabled |
 | `power/mmdvm-battery.sh`, `.service`, `.default` | `/usr/local/sbin/mmdvm-battery`, unit, `/etc/default/mmdvm-battery` | Clean shutdown when the MAX17048 reports a low pack and no charger |
 | `gps/gpsd.default` | `/etc/default/gpsd` | gpsd on `/dev/ttySC1`, read-only |
@@ -96,6 +97,35 @@ working tree: run them as `bash <script>` or `chmod +x` them first.
 10. **Meshtastic.** `pipx install meshtastic`, then follow
     `meshtastic/README.md` (first provisioning over USB or BLE).
 11. **Network.** `sudo netplan try`; `ip link show lan0`.
+
+## DMR on BrandMeister (coming from Pi-Star)
+
+Pi-Star itself is distributed as images for the Raspberry Pi and a few other
+boards; there is none for the Bubblegum-96, so this package sets the same
+thing up by hand. The difference that matters: Pi-Star runs the old MMDVMHost,
+which logs in to the BrandMeister master directly. The current MMDVM-Host only
+talks to a local gateway, so BrandMeister is reached through DMRGateway.
+
+    bash mmdvm/build.sh
+    bash mmdvm/build-gateways.sh
+    sudo bash install.sh
+    sudo bash mmdvm/setup-brandmeister.sh --callsign BX4XXX --id 4661234          --master 4501 --rx 433000000 --tx 438000000 --cc 1
+    sudo systemctl enable --now mmdvm-gpio-init mosquitto dmrgateway mmdvmhost mmdvm-display
+
+- `--master` is the number of the `BM_<number>_...` entry you used in Pi-Star.
+  BrandMeister lists no master in Taiwan (checked 2026-11-16); the nearest are
+  4501 South Korea, 4602 China, 5021 Malaysia and 5151 Philippines.
+- The password is the Hotspot Security password of BrandMeister SelfCare
+  (`passw0rd` when that feature is off). The script asks for it; it is not
+  stored anywhere but `/etc/DMRGateway.ini`.
+- The script passes all talk groups and private calls on both slots and
+  switches the sample's reflector emulation and the XLX network off. Static
+  talk groups are managed in SelfCare, as before.
+- Only DMR is enabled in `mmdvm/MMDVM.ini`; D-Star, YSF, P25, NXDN, POCSAG and
+  FM are off.
+- The script was run against the upstream sample files on a PC and edits them
+  as intended. It has not been run on the Bubblegum-96, and no login to a
+  master has been tried.
 
 ## Design decisions that differ from the study text
 
