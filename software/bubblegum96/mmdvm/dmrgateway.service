@@ -1,0 +1,20 @@
+# DMRGateway between MMDVM-Host and the DMR networks. UNTESTED.
+# Installed by build-gateways.sh, not enabled by default.
+[Unit]
+Description=DMRGateway
+After=network-online.target mosquitto.service gpsd.service
+Wants=network-online.target mosquitto.service
+Before=mmdvmhost.service
+ConditionPathExists=/etc/DMRGateway.ini
+
+[Service]
+Type=simple
+User=mmdvm
+Group=mmdvm
+WorkingDirectory=/var/lib/mmdvm
+ExecStart=/usr/local/bin/DMRGateway /etc/DMRGateway.ini
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

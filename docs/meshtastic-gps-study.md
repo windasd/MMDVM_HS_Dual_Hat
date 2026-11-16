@@ -1379,7 +1379,8 @@ Würth 官網拒絕自動下載，我是從第三方網站上的原廠規格書�
 - **全部沒有在實機上跑過。** 只有 7 支 shell 腳本做過語法檢查；device tree 沒有編譯過（這台機器沒有 `dtc`）。說明檔裡列了 34 項假設與待確認事項。
 - 腳位對照（LS 接頭 → S900 → Linux）對過三份來源，一致。
 - 做的時候順便發現並已更正的文件錯誤：風扇控制器文件寫 AMC6821，線路圖是 EMC2301＋TMP102（EMC2301 沒有內建溫度曲線，主機當機時風扇不會自己調）；乙太網路驅動應為 `smsc75xx`；上游的主程式已改名 `MMDVM-Host`。
-- 沒有做的：依 MAX17048 做低電量關機、GPS 開關的監看服務、DMRGateway／YSFGateway。
+- 後來補上的：依 MAX17048 做低電量關機（`power/`）、GPS 開關的監看服務（`gps/mmdvm-gps-switch.sh`）、DMRGateway／YSFGateway 的編譯與服務（`mmdvm/build-gateways.sh`，開啟 `USE_GPSD`）。同樣沒有實測。
+- 仍然沒有做的：長期插電時把充電電壓降到 4.1 V、INA226 記錄、MMDVM-Info、D-Star／P25／NXDN 的閘道器。
 - 充電 IC 的 INT 和電量計的 ALRT 共用 GPIO-D，mainline 驅動不能共用中斷，目前只給充電 IC 用。
 
 **TJC 螢幕第一版（`display/tjc8048x550/`）**

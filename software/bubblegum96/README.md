@@ -28,7 +28,11 @@ Design record: `docs/meshtastic-gps-study.md` (sections 2, 3, 6, 8, 10-13,
 | `mmdvm/mmdvmhost.service`, `mmdvm/mmdvm-display.service` | `/etc/systemd/system/` | systemd units |
 | `mmdvm/flash-mmdvm-hs.sh` | `/usr/local/sbin/flash-mmdvm-hs` | `stm32flash` wrapper using GPIO-A / GPIO-B |
 | `fan/mmdvm-fan.sh`, `.service`, `.default` | `/usr/local/sbin/mmdvm-fan`, unit, `/etc/default/mmdvm-fan` | Temperature curve: TMP102 -> EMC2301 PWM, hwmon paths found by name at run time |
+| `mmdvm/build-gateways.sh` | - | Builds DMRGateway and YSFGateway with `USE_GPSD`, installs the upstream sample `.ini` files if none exist |
+| `mmdvm/dmrgateway.service`, `mmdvm/ysfgateway.service` | `/etc/systemd/system/` (by `build-gateways.sh`) | systemd units, not enabled |
+| `power/mmdvm-battery.sh`, `.service`, `.default` | `/usr/local/sbin/mmdvm-battery`, unit, `/etc/default/mmdvm-battery` | Clean shutdown when the MAX17048 reports a low pack and no charger |
 | `gps/gpsd.default` | `/etc/default/gpsd` | gpsd on `/dev/ttySC1`, read-only |
+| `gps/mmdvm-gps-switch.sh`, `.service` | `/usr/local/sbin/mmdvm-gps-switch`, unit | Restarts the RAK4630 when the GPS supply comes up (study 3.3) |
 | `gps/chrony-gps-pps.conf` | `/etc/chrony/conf.d/mmdvm-gps-pps.conf` | chrony: NMEA via gpsd SHM + `/dev/pps0` |
 | `meshtastic/README.md` | - | Host link to the RAK4630, first-boot steps, STM32 flashing notes |
 | `meshtastic/provision.sh` | `/usr/local/sbin/mmdvm-mesh-provision` | Meshtastic settings of study section 10.3 |
@@ -195,7 +199,11 @@ Meshtastic (`meshtastic/`)
 28. `--gps-always-on` (`position.gps_update_interval 5`) is an unverified
     guess at keeping the receiver powered.
 29. Serial module pins 19 / 20 at 115200 are taken from study 10.2 / 10.3.
-30. The GPS-switch watcher service of study 3.3 is not implemented.
+30. `gps/mmdvm-gps-switch.sh`: GPIO-I shows the GPS supply, which also drops
+    when the firmware switches the GPS off by itself, so the watcher only
+    restarts the MCU on the 0 -> 1 edge and at most every 120 s. Whether
+    Meshtastic needs that restart at all is not known (`RESET_MESH=0` to
+    only log).
 
 Network (`network/`)
 
@@ -206,11 +214,21 @@ Network (`network/`)
     `MACAddress=` is set or the EEPROM is programmed.
 33. No renderer is set in the netplan file.
 
+Added later (`power/`, gateways)
+
+34. `power/mmdvm-battery.sh` assumes the `max17040_battery` driver exposes
+    `capacity` and `voltage_now` and that a charging pack reports `Charging`
+    or `Full`. The limits (8 %, 3250 mV, three readings 30 s apart) are
+    starting values. `DRY_RUN=1` logs without shutting down.
+35. `mmdvm/build-gateways.sh` switches the upstream Makefiles to their
+    `-DUSE_GPSD` lines with `sed`; it stops if upstream changes those lines.
+    The sample `.ini` files are used as they are apart from `[GPSD] Enable=1`:
+    callsign, id, networks and passwords are yours to set.
+
 Not provided at all
 
-34. Low-battery shutdown from the MAX17048 reading (study 4.5), lowering the
-    charge voltage to 4.1 V for permanent mains use, INA226 logging,
-    DMRGateway / YSFGateway with `USE_GPSD`, MMDVM-Info.
+36. Lowering the charge voltage to 4.1 V for permanent mains use, INA226
+    logging, MMDVM-Info, D-Star / P25 / NXDN gateways.
 
 ## Hardware observations made while writing this
 

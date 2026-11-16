@@ -118,7 +118,14 @@ install_file 0755 fan/mmdvm-fan.sh /usr/local/sbin/mmdvm-fan
 install_conf_keep 0644 fan/mmdvm-fan.default /etc/default/mmdvm-fan
 install_file 0644 fan/mmdvm-fan.service /etc/systemd/system/mmdvm-fan.service
 
+echo "== battery"
+install_file 0755 power/mmdvm-battery.sh /usr/local/sbin/mmdvm-battery
+install_conf_keep 0644 power/mmdvm-battery.default /etc/default/mmdvm-battery
+install_file 0644 power/mmdvm-battery.service /etc/systemd/system/mmdvm-battery.service
+
 echo "== GPS"
+install_file 0755 gps/mmdvm-gps-switch.sh /usr/local/sbin/mmdvm-gps-switch
+install_file 0644 gps/mmdvm-gps-switch.service /etc/systemd/system/mmdvm-gps-switch.service
 install_conf_backup 0644 gps/gpsd.default /etc/default/gpsd
 if [ -d /etc/chrony/conf.d ]; then
 	install_conf_backup 0644 gps/chrony-gps-pps.conf /etc/chrony/conf.d/mmdvm-gps-pps.conf
@@ -143,4 +150,7 @@ Done. Nothing was enabled or started. Next steps (see README.md):
   3. sudo systemctl enable --now mosquitto mmdvmhost mmdvm-display
   4. sudo systemctl enable gpsd && sudo systemctl restart gpsd chrony
   5. sudo netplan try
+  6. Optional: sudo systemctl enable --now mmdvm-battery mmdvm-gps-switch
+     (set DRY_RUN=1 in /etc/default/mmdvm-battery for the first runs)
+  7. Optional gateways: bash mmdvm/build-gateways.sh
 EOF
