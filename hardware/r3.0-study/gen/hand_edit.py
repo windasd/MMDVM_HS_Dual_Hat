@@ -3,6 +3,7 @@
 Lines of the edit file (board mm, '#' starts a comment):
   RM  <layer> x0,y0 x1,y1            remove the track between these end points
   RMVIA x,y                          remove the via there
+  ROT <ref> <degrees>                turn a footprint about its centre (done in the rm run; check afterwards)
   MV  x0,y0 x1,y1                    move the via at the first point; track ends on it follow
   T   <net> <layer> <width> x,y x,y [x,y ...]
   V   <net> x,y [diameter drill]     (default 0.45 / 0.2)
@@ -23,7 +24,7 @@ PCB = os.path.join(M.PRJ, 'mmdvm_mesh.kicad_pcb')
 mm, F = pcbnew.ToMM, pcbnew.FromMM
 CU = (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.B_Cu)
 board = pcbnew.LoadBoard(PCB)
-RM, RMVIA, MV, T, V = [], [], [], [], []
+RM, RMVIA, MV, T, V, ROT = [], [], [], [], [], []
 
 
 def pt(s):
@@ -39,6 +40,8 @@ for line in open(sys.argv[1], encoding='utf-8'):
         RM.append((board.GetLayerID(f[1]), pt(f[2]), pt(f[3])))
     elif f[0] == 'RMVIA':
         RMVIA.append(pt(f[1]))
+    elif f[0] == 'ROT':
+        ROT.append((f[1], float(f[2])))
     elif f[0] == 'MV':
         MV.append((pt(f[1]), pt(f[2])))
     elif f[0] == 'T':
@@ -99,9 +102,11 @@ def check(need=0.1):
         for p in fp.Pads():
             bb = p.GetBoundingBox()
             r = (mm(bb.GetLeft()), mm(bb.GetTop()), mm(bb.GetRight()), mm(bb.GetBottom()))
-            obst.append(('r', tuple(ly for ly in CU if p.IsOnLayer(ly)) or CU, r, p.GetNetname(),
-                         fp.GetReference() + '.' + p.GetNumber()))
-            if p.GetAttribute() == pcbnew.PAD_ATTRIB_SMD:
+            lys = tuple(ly for ly in CU if p.IsOnLayer(ly))
+            if not lys and p.GetAttribute() != pcbnew.PAD_ATTRIB_NPTH:
+                continue                         # paste-only apertures of an exposed pad
+            obst.append(('r', lys or CU, r, p.GetNetname(), fp.GetReference() + '.' + p.GetNumber()))
+            if p.GetAttribute() == pcbnew.PAD_ATTRIB_SMD and lys:
                 smd.append((r, fp.GetReference() + '.' + p.GetNumber()))
     new = []
     for net, ly, w, pts in T:
@@ -168,6 +173,10 @@ elif mode == 'rm':
     for t in kill:
         board.Remove(t)
     print('removed', len(kill), 'of', len(RM) + len(RMVIA))
+    for ref, deg in ROT:
+        fp = [x for x in board.GetFootprints() if x.GetReference() == ref][0]
+        fp.SetOrientationDegrees((fp.GetOrientationDegrees() + deg) % 360)
+        print(ref, 'turned to', fp.GetOrientationDegrees())
     board.Save(PCB)
 elif mode == 'add':
     for a, e in MV:

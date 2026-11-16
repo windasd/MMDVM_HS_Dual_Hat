@@ -47,6 +47,8 @@ for fp in board.GetFootprints():
         bb = p.GetBoundingBox()
         r = (mm(bb.GetLeft()), mm(bb.GetTop()), mm(bb.GetRight()), mm(bb.GetBottom()))
         smd = p.GetAttribute() == pcbnew.PAD_ATTRIB_SMD
+        if smd and not any(p.IsOnLayer(ly) for ly in CU):
+            continue                             # paste-only apertures of an exposed pad
         pads.append((r, tuple(ly for ly in CU if p.IsOnLayer(ly)) or CU, p.GetNetname(), smd,
                      0.0 if smd else mm(p.GetDrillSize().x) / 2, xy(p.GetPosition()), fp.GetReference() + '.' + p.GetNumber(), p))
 rules = [z for z in board.Zones() if z.GetIsRuleArea()]
