@@ -161,3 +161,6 @@ RM F.Cu 162.85,112.31 162.85,111.20
 RM F.Cu 162.92,112.31 162.92,112.31
 T /Ethernet/ETH_SHIELD F.Cu 0.2 162.85,111.20 162.85,112.2 162.45,112.6
 T /Ethernet/ETH_SHIELD F.Cu 0.2 161.91,113.24 161.8,112.9
+# 2026-11-16, not hand_edit.py: C142 / R124 (unfitted start-up assist) added with add_parts.py at 168.7, 118.1
+# and 171.3, 118.1 and joined with patch_route.py; antenna feeds set to 0.32 mm (rf_lines.py); the USB pair
+# narrowed from 0.25 to 0.235 mm.

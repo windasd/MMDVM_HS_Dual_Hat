@@ -1,8 +1,9 @@
 """Set the antenna feed lines to the 50 ohm width of the JLC04161H-7628 stack-up (run with KiCad's python).
 
-Outer copper sits 0.2104 mm above the In1 ground plane (7628 prepreg, Er about 4.4-4.6). Hammerstad-Jensen
-gives 51-52 ohm for a 0.35 mm microstrip; the 0.20/0.25 mm lines inherited from the two-layer r1.3 board and
-from the autorouter are 61-68 ohm here. Check the width with the JLCPCB impedance calculator before ordering.
+The feeds run on F.Cu over the In1 ground plane (7628 prepreg, 0.2104 mm) with the F.Cu ground pour 0.25 mm
+to either side, i.e. they are coplanar lines. The JLCPCB impedance calculator (checked 2026-11-16) gives for
+50 ohm: 0.320 mm with a 10 mil (0.254 mm) gap, 0.349 mm with a 20 mil gap, 0.359 mm without coplanar ground.
+The width is therefore 0.32 mm (0.35 mm with the 0.25 mm pour gap would be about 3 ohm low).
 
   python rf_lines.py --strip-gps   remove the GPS feed (autorouted through In2) so it can be re-routed on F.Cu
   python rf_lines.py               widen every F.Cu segment of the feed nets, refill zones
@@ -14,7 +15,7 @@ import pcbnew
 
 import main_pcb as M
 
-W50 = 0.35
+W50 = 0.32
 NETS = ('/Meshtastic/MESH_RF_LORA', '/Meshtastic/MESH_RF_BT', '/GPS/GPS_RF', 'Net-(P1-P1)', 'Net-(P2-P1)')
 PCB = os.path.join(M.PRJ, 'mmdvm_mesh.kicad_pcb')
 board = pcbnew.LoadBoard(PCB)

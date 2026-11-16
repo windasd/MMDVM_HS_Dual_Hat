@@ -6,7 +6,7 @@ short ends at the pins and the terminations.
 
 Geometry for JLCPCB JLC04161H-7628 (1.6 mm, 4 layers; outer copper 35 um over 0.2104 mm prepreg, Er 4.4),
 edge-coupled microstrip, IPC-2141 approximation -- to be confirmed with the fab's impedance calculator:
-    100 ohm (Ethernet): W 0.20 / S 0.14 mm      90 ohm (USB): W 0.25 / S 0.14 mm
+    100 ohm (Ethernet): W 0.20 / S 0.14 mm      90 ohm (USB): W 0.235 / S 0.145 mm
 F.Cu is referenced to the In1 ground plane. The USB pair runs on B.Cu, whose neighbour In2 is a signal
 layer, so a ground strip is reserved on In2 under it (rule area now, filled by usb_ref_plane.py later).
 
@@ -249,7 +249,7 @@ ETH = [('TR0', '44', '43', '2', '3'), ('TR1', '47', '46', '4', '5'), ('TR2', '52
 for name, p, n, jp, jn in [ETH[k] for k in (3,2,1,0)]:
     route_pair(name, (('U60', p), ('U60', n)), (('J60', jp), ('J60', jn)), pcbnew.F_Cu, 0.20, 0.14, exit_a=(1, 0),
                goal_r=4.5)
-usb = route_pair('USB', (('J10', '51'), ('J10', '53')), (('U60', '13'), ('U60', '12')), pcbnew.B_Cu, 0.25, 0.14,
+usb = route_pair('USB', (('J10', '51'), ('J10', '53')), (('U60', '13'), ('U60', '12')), pcbnew.B_Cu, 0.235, 0.145,
                  goal_r=4.5)
 if usb:
     # In2 under the USB pair: no other tracks (reference plane), ground vias beside the pair every ~6 mm

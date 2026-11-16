@@ -1286,16 +1286,16 @@
   "Mouser": "710-61300621121"
  },
  "Q100": {
-  "LCSC": "C201632",
+  "LCSC": "C47616",
   "MFR": "Texas Instruments",
-  "MPN": "CSD17577Q3A",
-  "Mouser": "595-CSD17577Q3A"
+  "MPN": "CSD16340Q3",
+  "Mouser": ""
  },
  "Q101": {
-  "LCSC": "C201632",
+  "LCSC": "C47616",
   "MFR": "Texas Instruments",
-  "MPN": "CSD17577Q3A",
-  "Mouser": "595-CSD17577Q3A"
+  "MPN": "CSD16340Q3",
+  "Mouser": ""
  },
  "Q102": {
   "LCSC": "C2865523",
@@ -2120,10 +2120,10 @@
   "Mouser": "595-TPS7A2033PDBVR"
  },
  "U111": {
-  "LCSC": "C109022",
+  "LCSC": "C155599",
   "MFR": "STMicroelectronics",
-  "MPN": "STM6601CA2BDM6F",
-  "Mouser": "511-STM6601CA2BDM6F"
+  "MPN": "STM6601CM2DDM6F",
+  "Mouser": ""
  },
  "U2": {
   "LCSC": "C206881",

@@ -2,7 +2,7 @@
 	(version 20260306)
 	(generator "eeschema")
 	(generator_version "10.0")
-	(uuid "bb66bb5f-ddba-40a0-97cc-6aa7d20a415c")
+	(uuid "727dafe4-89fe-49be-a362-2e16b08d275b")
 	(paper "A4")
 	(title_block
 		(title "MMDVM_HS_Dual_Hat")
@@ -2995,7 +2995,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/b638909d-12ca-4e78-9259-bde0e381a3a2/bb66bb5f-ddba-40a0-97cc-6aa7d20a415c"
+				(path "/8df025b0-0c8c-4ba3-a494-cefca9e02668/727dafe4-89fe-49be-a362-2e16b08d275b"
 					(reference "Y1")
 					(unit 1)
 				)
@@ -3142,7 +3142,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/b638909d-12ca-4e78-9259-bde0e381a3a2/bb66bb5f-ddba-40a0-97cc-6aa7d20a415c"
+				(path "/8df025b0-0c8c-4ba3-a494-cefca9e02668/727dafe4-89fe-49be-a362-2e16b08d275b"
 					(reference "C40")
 					(unit 1)
 				)
@@ -3288,7 +3288,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/b638909d-12ca-4e78-9259-bde0e381a3a2/bb66bb5f-ddba-40a0-97cc-6aa7d20a415c"
+				(path "/8df025b0-0c8c-4ba3-a494-cefca9e02668/727dafe4-89fe-49be-a362-2e16b08d275b"
 					(reference "C41")
 					(unit 1)
 				)
@@ -3362,7 +3362,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/b638909d-12ca-4e78-9259-bde0e381a3a2/bb66bb5f-ddba-40a0-97cc-6aa7d20a415c"
+				(path "/8df025b0-0c8c-4ba3-a494-cefca9e02668/727dafe4-89fe-49be-a362-2e16b08d275b"
 					(reference "#PWR064")
 					(unit 1)
 				)
@@ -3436,7 +3436,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/b638909d-12ca-4e78-9259-bde0e381a3a2/bb66bb5f-ddba-40a0-97cc-6aa7d20a415c"
+				(path "/8df025b0-0c8c-4ba3-a494-cefca9e02668/727dafe4-89fe-49be-a362-2e16b08d275b"
 					(reference "#PWR065")
 					(unit 1)
 				)
@@ -3510,7 +3510,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/b638909d-12ca-4e78-9259-bde0e381a3a2/bb66bb5f-ddba-40a0-97cc-6aa7d20a415c"
+				(path "/8df025b0-0c8c-4ba3-a494-cefca9e02668/727dafe4-89fe-49be-a362-2e16b08d275b"
 					(reference "#PWR072")
 					(unit 1)
 				)
@@ -3782,7 +3782,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/b638909d-12ca-4e78-9259-bde0e381a3a2/bb66bb5f-ddba-40a0-97cc-6aa7d20a415c"
+				(path "/8df025b0-0c8c-4ba3-a494-cefca9e02668/727dafe4-89fe-49be-a362-2e16b08d275b"
 					(reference "U3")
 					(unit 1)
 				)
@@ -3856,7 +3856,7 @@
 		)
 		(instances
 			(project "mmdvm_mesh"
-				(path "/b638909d-12ca-4e78-9259-bde0e381a3a2/bb66bb5f-ddba-40a0-97cc-6aa7d20a415c"
+				(path "/8df025b0-0c8c-4ba3-a494-cefca9e02668/727dafe4-89fe-49be-a362-2e16b08d275b"
 					(reference "#PWR0111")
 					(unit 1)
 				)

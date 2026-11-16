@@ -12,7 +12,7 @@ rm -rf "$OUT/gerber_drill" && mkdir -p "$OUT/gerber_drill"
   --subtract-soldermask mmdvm_mesh.kicad_pcb | tail -1
 "$KC" pcb export drill -o "$OUT/gerber_drill/" --format excellon --excellon-separate-th \
   --generate-map --map-format gerberx2 mmdvm_mesh.kicad_pcb | tail -1
-"$KC" pcb export pos -o "$OUT/mmdvm_mesh-pos.csv" --format csv --units mm --side both mmdvm_mesh.kicad_pcb | tail -1
+"$KC" pcb export pos -o "$OUT/mmdvm_mesh-pos.csv" --format csv --units mm --side both --exclude-dnp mmdvm_mesh.kicad_pcb | tail -1
 "$KC" sch export pdf -o "$OUT/mmdvm_mesh-schematic.pdf" mmdvm_mesh.kicad_sch | tail -1
 cp BOM_JLCPCB.csv "$OUT/"
 "$KPY" -c "

@@ -159,12 +159,15 @@ def power():
           {'Note': 'BQ29707: OV 4.28 V, UV 2.80 V, OCC -150 mV, OCD +200 mV (data sheet SLUSBU9I table 4); BQ29728 (-60 / +100 mV) would trip near the 12 V boost full-load battery current'}),
         R('R107', '330R', 'CELL+', 'PROT_BAT'), C('C111', '100n', 'PROT_BAT', 'CELL-'),
         R('R108', '2k2', 'GND', 'PROT_VM'),
-        P('Q100', 'Transistor_FET:CSD17577Q3A', 'CSD17577Q3A', {'1': 'CELL-', '2': 'CELL-', '3': 'CELL-',
-                                                                '4': 'PROT_DGATE', '5': 'PROT_MID'}, FP_NFET,
-          {'Note': 'discharge FET'}),
-        P('Q101', 'Transistor_FET:CSD17577Q3A', 'CSD17577Q3A', {'1': 'GND', '2': 'GND', '3': 'GND',
-                                                                '4': 'PROT_CGATE', '5': 'PROT_MID'}, FP_NFET,
-          {'Note': 'charge FET'}),
+        # The gates are driven from the cell (2.8 .. 4.2 V). CSD17577Q3A is only specified from 4.5 V (typical
+        # 13 mohm at 3.0 V, off the curve below 2.85 V); CSD16340Q3 has the same SON 3.3 x 3.3 pinout and is
+        # guaranteed at 2.5 V: 7.8 mohm max (TI SLPS247). 25 V, gate +10 / -8 V: enough on one cell.
+        P('Q100', 'Transistor_FET:CSD17577Q3A', 'CSD16340Q3', {'1': 'CELL-', '2': 'CELL-', '3': 'CELL-',
+                                                               '4': 'PROT_DGATE', '5': 'PROT_MID'}, FP_NFET,
+          {'MPN': 'CSD16340Q3', 'Note': 'discharge FET; Rds(on) 7.8 mohm max at VGS 2.5 V'}),
+        P('Q101', 'Transistor_FET:CSD17577Q3A', 'CSD16340Q3', {'1': 'GND', '2': 'GND', '3': 'GND',
+                                                               '4': 'PROT_CGATE', '5': 'PROT_MID'}, FP_NFET,
+          {'MPN': 'CSD16340Q3', 'Note': 'charge FET; Rds(on) 7.8 mohm max at VGS 2.5 V'}),
         # ---- battery master switch: a DPDT slide switch in the two gate lines of the protection FETs.
         # ON: gates follow the BQ29707. OFF: each gate is tied to its own source, both FETs are off and the
         # pack is isolated in both directions (no discharge, no charging) with no extra standby current.
@@ -250,13 +253,22 @@ def power():
           'Package_TO_SOT_SMD:SOT-23-5', {'MPN': 'TPS7A2033PDBVR', 'Note': 'MMDVM (STM32 + 2x ADF7021), switched'}),
         C('C137', '1u', '+3V5', 'GND'), C('C138', '1u', '+3V3', 'GND'), C('C139', '10u', '+3V3', 'GND', FP_C0603),
         # ---- push-button power controller (host-side rails)
-        P('U111', 'Power_Management:STM6601', 'STM6601CA2BDM6F', {
+        P('U111', 'Power_Management:STM6601', 'STM6601CM2DDM6F', {
             '1': '+3V3_MESH', '2': '+3V3_MESH', '3': 'STM_VREF', '4': 'HOST_HOLD', '5': None, '6': 'PWR_BTN_N',
             '7': None, '8': None, '9': 'HOST_PWR_EN', '10': None, '11': 'BTN_INT_N', '12': 'GND'},
           'Package_DFN_QFN:TDFN-12_2x3mm_P0.5mm',
           {'Note': 'active-high push-pull EN. SR is held high, so there is no long-push forced off (it needs PB '
-                   'and SR low plus a CSRD capacitor): a hung host is switched off with SW101. PS_HOLD must rise '
-                   'within tON_BLANK 1.4 s; alt. STM6601CM2DDM6F (5.6 s, VTH+ 3.1 V)'}),
+                   'and SR low plus a CSRD capacitor): a hung host is switched off with SW101. PS_HOLD must be '
+                   'high when tON_BLANK ends: 5.6 s min (8.8 typ) on this CM2D variant, VTH+ 3.1 V; the CA2B '
+                   'variant gives only 1.4 s. See C142 / R124 if the host is slower'}),
+        # Start-up assist, not fitted: the 96Boards host raises +1V8 (-> HOST_HOLD) some time after power-on and
+        # that time is not documented for the Bubblegum-96. If it is longer than tON_BLANK the controller drops
+        # EN again. Fitting C142 (10 .. 22 uF), R124 (10k) and changing R43 to 1M holds PS_HOLD up from the EN
+        # edge for roughly C142 x 1M (10 .. 20 s). Side effect: power-off after the host shuts down is delayed
+        # by about the same time.
+        C('C142', '10u', 'HOST_PWR_EN', 'HOLD_ASSIST', FP_C0603, dnp=True,
+          Note='DNP: start-up assist, see U111'),
+        R('R124', '10k', 'HOLD_ASSIST', 'HOST_HOLD', dnp=True, Note='DNP: start-up assist, see U111'),
         # DS (DocID15453 rev 14): the VREF pin needs its capacitor even when the reference is not used
         C('C141', '1u', 'STM_VREF', 'GND', Note='mandatory VREF capacitor'),
         C('C140', '100n', '+3V3_MESH', 'GND'), R('R121', '100k', 'PWR_BTN_N', '+3V3_MESH'),
