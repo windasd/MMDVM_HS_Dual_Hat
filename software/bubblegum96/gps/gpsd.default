@@ -1,0 +1,22 @@
+# /etc/default/gpsd for the r3.0-study mezzanine. UNTESTED.
+#
+# The MAX-M10S NMEA output is wired to SC16IS752 channel B (/dev/ttySC1),
+# receive only: the host cannot send anything to the receiver (TXB is not
+# connected; the RAK4630 owns the receiver's RX pin and configures it).
+#
+#   -n        poll the receiver without waiting for a client (needed for chrony)
+#   -b        read-only: never write to the device, no speed/mode changes
+#   -s 9600   fixed speed; MAX-M10S default. TODO(verify): the speed the
+#             Meshtastic firmware leaves the receiver at, and which NMEA
+#             sentences it leaves enabled.
+#
+# PPS is not listed here: it arrives on a GPIO (pps-gpio -> /dev/pps0), not on
+# a serial control line, and chrony reads /dev/pps0 itself
+# (see chrony-gps-pps.conf).
+#
+# The GPS is off when the GPS slide switch is OFF, when Meshtastic is shut
+# down (3V3_EN low) and possibly while Meshtastic power-saves the receiver.
+
+DEVICES="/dev/ttySC1"
+GPSD_OPTIONS="-n -b -s 9600"
+USBAUTO="false"

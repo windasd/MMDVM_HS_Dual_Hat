@@ -1,0 +1,25 @@
+# MMDVM-Host (g4klx/MMDVM-Host, MQTT version) on the Bubblegum-96 mezzanine.
+# The unit shipped upstream (linux/systemd/mmdvmhost.service) still starts
+# /usr/local/bin/MMDVMHost as a forking daemon; this one runs the current
+# binary name in the foreground (Daemon=0 in the ini file). UNTESTED.
+[Unit]
+Description=MMDVM-Host (MMDVM_HS dual hat on ttyOWL2)
+After=network.target mosquitto.service mmdvm-gpio-init.service
+Wants=mosquitto.service mmdvm-gpio-init.service
+ConditionPathExists=/etc/MMDVM-Host.ini
+
+[Service]
+Type=simple
+User=mmdvm
+Group=mmdvm
+SupplementaryGroups=dialout
+WorkingDirectory=/var/lib/mmdvm
+# Do not transmit with the placeholder configuration.
+ExecStartPre=/bin/sh -c 'if grep -q "^Callsign=N0CALL" /etc/MMDVM-Host.ini; then echo "placeholder callsign in /etc/MMDVM-Host.ini" >&2; exit 78; fi'
+ExecStart=/usr/local/bin/MMDVM-Host /etc/MMDVM-Host.ini
+Restart=on-failure
+RestartSec=10
+RestartPreventExitStatus=78
+
+[Install]
+WantedBy=multi-user.target

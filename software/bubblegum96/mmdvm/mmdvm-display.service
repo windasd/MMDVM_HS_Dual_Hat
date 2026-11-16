@@ -1,0 +1,19 @@
+# MMDVM-Display (g4klx/MMDVM-Display): drives the TJC screen through MQTT and
+# the modem's serial repeater port ([Nextion] Port=modem). UNTESTED.
+[Unit]
+Description=MMDVM-Display (TJC screen via modem port)
+After=mosquitto.service mmdvmhost.service
+Wants=mosquitto.service
+ConditionPathExists=/etc/MMDVM-Display.ini
+
+[Service]
+Type=simple
+User=mmdvm
+Group=mmdvm
+WorkingDirectory=/var/lib/mmdvm
+ExecStart=/usr/local/bin/MMDVM-Display /etc/MMDVM-Display.ini
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
