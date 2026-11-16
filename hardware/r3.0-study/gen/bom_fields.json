@@ -1,0 +1,2330 @@
+{
+ "BT100": {
+  "LCSC": "C6038009",
+  "MFR": "Keystone Electronics",
+  "MPN": "1042P",
+  "Mouser": "534-1042P"
+ },
+ "BT101": {
+  "LCSC": "C6038009",
+  "MFR": "Keystone Electronics",
+  "MPN": "1042P",
+  "Mouser": "534-1042P"
+ },
+ "BT102": {
+  "LCSC": "C6038009",
+  "MFR": "Keystone Electronics",
+  "MPN": "1042P",
+  "Mouser": "534-1042P"
+ },
+ "BT103": {
+  "LCSC": "C6038009",
+  "MFR": "Keystone Electronics",
+  "MPN": "1042P",
+  "Mouser": "534-1042P"
+ },
+ "C1": {
+  "LCSC": "C88896",
+  "MFR": "Murata Electronics",
+  "MPN": "GJM1555C1H6R8BB01D",
+  "Mouser": "81-GJM1555C1H6R8BB1D"
+ },
+ "C10": {
+  "LCSC": "C85883",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM1555C1H4R7CA01D",
+  "Mouser": "81-GRM1555C1H4R7CA1D"
+ },
+ "C100": {
+  "LCSC": "C52923",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC"
+ },
+ "C101": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C102": {
+  "LCSC": "C15849",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A105KB8NNNC",
+  "Mouser": "187-CL10A105KB8NNNC"
+ },
+ "C103": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C104": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C105": {
+  "LCSC": "C307434",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B473KO5NNNC",
+  "Mouser": "187-CL05B473KO5NNNC"
+ },
+ "C106": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C107": {
+  "LCSC": "C45783",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A226MAQNNNE",
+  "Mouser": "187-CL21A226MOQNNNE (Mouser EQUIV: CL21A226MOQNNNE)"
+ },
+ "C108": {
+  "LCSC": "C45783",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A226MAQNNNE",
+  "Mouser": "187-CL21A226MOQNNNE (Mouser EQUIV: CL21A226MOQNNNE)"
+ },
+ "C109": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C11": {
+  "LCSC": "C88896",
+  "MFR": "Murata Electronics",
+  "MPN": "GJM1555C1H6R8BB01D",
+  "Mouser": "81-GJM1555C1H6R8BB1D"
+ },
+ "C110": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C111": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C112": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C113": {
+  "LCSC": "C45783",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A226MAQNNNE",
+  "Mouser": "187-CL21A226MOQNNNE (Mouser EQUIV: CL21A226MOQNNNE)"
+ },
+ "C114": {
+  "LCSC": "C45783",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A226MAQNNNE",
+  "Mouser": "187-CL21A226MOQNNNE (Mouser EQUIV: CL21A226MOQNNNE)"
+ },
+ "C115": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C116": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C117": {
+  "LCSC": "C318580",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B682KB5NNNC",
+  "Mouser": "187-CL05B682KB5NNNC"
+ },
+ "C118": {
+  "LCSC": "C32949",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05C100JB5NNNC",
+  "Mouser": "187-CL05C100JB5NNNC"
+ },
+ "C119": {
+  "LCSC": "C13585",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL31A106KBHNNNE",
+  "Mouser": "187-CL31A106KBHNNNE"
+ },
+ "C12": {
+  "LCSC": "C88896",
+  "MFR": "Murata Electronics",
+  "MPN": "GJM1555C1H6R8BB01D",
+  "Mouser": "81-GJM1555C1H6R8BB1D"
+ },
+ "C120": {
+  "LCSC": "C13585",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL31A106KBHNNNE",
+  "Mouser": "187-CL31A106KBHNNNE"
+ },
+ "C121": {
+  "LCSC": "C1532",
+  "MFR": "FH (Guangdong Fenghua Advanced Tech)",
+  "MPN": "0402B223K500NT",
+  "Mouser": "187-CL05B223KB5NNNC (Mouser EQUIV: CL05B223KB5NNNC)"
+ },
+ "C122": {
+  "LCSC": "C12891",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL31A226KAHNNNE",
+  "Mouser": "187-CL31A226KAHNNNE"
+ },
+ "C123": {
+  "LCSC": "C12891",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL31A226KAHNNNE",
+  "Mouser": "187-CL31A226KAHNNNE"
+ },
+ "C124": {
+  "LCSC": "C12891",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL31A226KAHNNNE",
+  "Mouser": "187-CL31A226KAHNNNE"
+ },
+ "C125": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C126": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C127": {
+  "LCSC": "C13585",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL31A106KBHNNNE",
+  "Mouser": "187-CL31A106KBHNNNE"
+ },
+ "C128": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C129": {
+  "LCSC": "C45783",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A226MAQNNNE",
+  "Mouser": "187-CL21A226MOQNNNE (Mouser EQUIV: CL21A226MOQNNNE)"
+ },
+ "C13": {
+  "LCSC": "C1525",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71C104KA55D",
+  "Mouser": "81-GCM155R71C104KA5J",
+  "Mouser_MPN": "GCM155R71C104KA55J"
+ },
+ "C130": {
+  "LCSC": "C45783",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A226MAQNNNE",
+  "Mouser": "187-CL21A226MOQNNNE (Mouser EQUIV: CL21A226MOQNNNE)"
+ },
+ "C131": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C132": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C133": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C134": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C135": {
+  "LCSC": "C52923",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC"
+ },
+ "C136": {
+  "LCSC": "C52923",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC"
+ },
+ "C137": {
+  "LCSC": "C52923",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC"
+ },
+ "C138": {
+  "LCSC": "C52923",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC"
+ },
+ "C139": {
+  "LCSC": "C96446",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC"
+ },
+ "C14": {
+  "LCSC": "C1525",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71C104KA55D",
+  "Mouser": "81-GCM155R71C104KA5J",
+  "Mouser_MPN": "GCM155R71C104KA55J"
+ },
+ "C140": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C141": {
+  "LCSC": "C52923",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC"
+ },
+ "C15": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C150": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C151": {
+  "LCSC": "C96446",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC"
+ },
+ "C152": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C153": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C154": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C155": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C156": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C157": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C158": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C159": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C16": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C160": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C161": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C162": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C163": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C165": {
+  "LCSC": "C86287",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05C270JB5NNNC",
+  "Mouser": ""
+ },
+ "C166": {
+  "LCSC": "C86287",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05C270JB5NNNC",
+  "Mouser": ""
+ },
+ "C167": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C168": {
+  "LCSC": "C23631",
+  "MFR": "Yageo",
+  "MPN": "CC1206KKX7RDBB102",
+  "Mouser": ""
+ },
+ "C169": {
+  "LCSC": "C96446",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC"
+ },
+ "C17": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C170": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C171": {
+  "LCSC": "C96446",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC"
+ },
+ "C172": {
+  "LCSC": "C96446",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC"
+ },
+ "C173": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C174": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C175": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C176": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C177": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C178": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C179": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C18": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C180": {
+  "LCSC": "C1532",
+  "MFR": "FH (Guangdong Fenghua Advanced Tech)",
+  "MPN": "0402B223K500NT",
+  "Mouser": "187-CL05B223KB5NNNC (Mouser EQUIV: CL05B223KB5NNNC)"
+ },
+ "C181": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C182": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C183": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C184": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C185": {
+  "LCSC": "C19666",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A475KO8NNNC",
+  "Mouser": "187-CL10A475KO8NNNC"
+ },
+ "C186": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C19": {
+  "LCSC": "C1525",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71C104KA55D",
+  "Mouser": "81-GCM155R71C104KA5J",
+  "Mouser_MPN": "GCM155R71C104KA55J"
+ },
+ "C2": {
+  "LCSC": "C88896",
+  "MFR": "Murata Electronics",
+  "MPN": "GJM1555C1H6R8BB01D",
+  "Mouser": "81-GJM1555C1H6R8BB1D"
+ },
+ "C20": {
+  "LCSC": "C1525",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71C104KA55D",
+  "Mouser": "81-GCM155R71C104KA5J",
+  "Mouser_MPN": "GCM155R71C104KA55J"
+ },
+ "C21": {
+  "LCSC": "C76971",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM1555C1H471JA16J",
+  "Mouser": "81-GCM1555C1H471JA6J"
+ },
+ "C22": {
+  "LCSC": "C76971",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM1555C1H471JA16J",
+  "Mouser": "81-GCM1555C1H471JA6J"
+ },
+ "C23": {
+  "LCSC": "C126528",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71E223KA55D",
+  "Mouser": "81-GCM155R71E223KA5D"
+ },
+ "C24": {
+  "LCSC": "C126528",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71E223KA55D",
+  "Mouser": "81-GCM155R71E223KA5D"
+ },
+ "C25": {
+  "LCSC": "C113050",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM155R71C153KA01J",
+  "Mouser": "81-GRM155R71C153KA1J"
+ },
+ "C26": {
+  "LCSC": "C113050",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM155R71C153KA01J",
+  "Mouser": "81-GRM155R71C153KA1J"
+ },
+ "C27": {
+  "LCSC": "C710871",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM155R60J102KA01D",
+  "Mouser": "81-GRM155R60J102KA1D"
+ },
+ "C28": {
+  "LCSC": "C710871",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM155R60J102KA01D",
+  "Mouser": "81-GRM155R60J102KA1D"
+ },
+ "C29": {
+  "LCSC": "C1525",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71C104KA55D",
+  "Mouser": "81-GCM155R71C104KA5J",
+  "Mouser_MPN": "GCM155R71C104KA55J"
+ },
+ "C3": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C30": {
+  "LCSC": "C1525",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71C104KA55D",
+  "Mouser": "81-GCM155R71C104KA5J",
+  "Mouser_MPN": "GCM155R71C104KA55J"
+ },
+ "C31": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C32": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C33": {
+  "LCSC": "C161541",
+  "MFR": "Kyocera AVX",
+  "MPN": "KGM05ACG1H220GH",
+  "Mouser": "581-KGM05ACG1H220GH"
+ },
+ "C34": {
+  "LCSC": "C161541",
+  "MFR": "Kyocera AVX",
+  "MPN": "KGM05ACG1H220GH",
+  "Mouser": "581-KGM05ACG1H220GH"
+ },
+ "C35": {
+  "LCSC": "C1525",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71C104KA55D",
+  "Mouser": "81-GCM155R71C104KA5J",
+  "Mouser_MPN": "GCM155R71C104KA55J"
+ },
+ "C36": {
+  "LCSC": "C1525",
+  "MFR": "Murata Electronics",
+  "MPN": "GCM155R71C104KA55D",
+  "Mouser": "81-GCM155R71C104KA5J",
+  "Mouser_MPN": "GCM155R71C104KA55J"
+ },
+ "C38": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C39": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C4": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C40": {
+  "LCSC": "C913479",
+  "MFR": "Murata Electronics",
+  "MPN": "GJM1555C1H200FB01D",
+  "Mouser": "81-GJM1555C1H200FB1D"
+ },
+ "C41": {
+  "LCSC": "C913479",
+  "MFR": "Murata Electronics",
+  "MPN": "GJM1555C1H200FB01D",
+  "Mouser": "81-GJM1555C1H200FB1D"
+ },
+ "C42": {
+  "LCSC": "C15195",
+  "MFR": "Vishay / Vitramon",
+  "MPN": "VJ0402Y103KXJCW1BC",
+  "Mouser": "77-VJ0402Y103KXJCBC"
+ },
+ "C43": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C44": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C45": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C46": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C5": {
+  "LCSC": "C71693",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM1555C1H221JA01D",
+  "Mouser": "81-GRM1555C1H221JA01"
+ },
+ "C53": {
+  "LCSC": "C15850",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL21A106KAYNNNE",
+  "Mouser": "187-CL21A106KAYNNNE"
+ },
+ "C6": {
+  "LCSC": "C76945",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM1555C1E100GA01D",
+  "Mouser": "81-GRM1555C1E100GA1D"
+ },
+ "C60": {
+  "LCSC": "C52923",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC"
+ },
+ "C61": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C62": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C63": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C64": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C65": {
+  "LCSC": "C1555",
+  "MFR": "FH (Guangdong Fenghua Advanced Tech)",
+  "MPN": "0402CG220J500NT",
+  "Mouser": "187-CL05C220JB5NNNC (Mouser EQUIV: CL05C220JB5NNNC)"
+ },
+ "C66": {
+  "LCSC": "C1555",
+  "MFR": "FH (Guangdong Fenghua Advanced Tech)",
+  "MPN": "0402CG220J500NT",
+  "Mouser": "187-CL05C220JB5NNNC (Mouser EQUIV: CL05C220JB5NNNC)"
+ },
+ "C67": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C68": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C7": {
+  "LCSC": "C85883",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM1555C1H4R7CA01D",
+  "Mouser": "81-GRM1555C1H4R7CA1D"
+ },
+ "C70": {
+  "LCSC": "C96446",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC"
+ },
+ "C71": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C72": {
+  "LCSC": "C96446",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC"
+ },
+ "C73": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C74": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C8": {
+  "LCSC": "C71693",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM1555C1H221JA01D",
+  "Mouser": "81-GRM1555C1H221JA01"
+ },
+ "C80": {
+  "LCSC": "C52923",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC"
+ },
+ "C81": {
+  "LCSC": "C96446",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC"
+ },
+ "C82": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "C83": {
+  "LCSC": "C52923",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A105KA5NQNC",
+  "Mouser": "187-CL05A105KA5NQNC"
+ },
+ "C84": {
+  "LCSC": "C15195",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B103KB5NNNC",
+  "Mouser": "187-CL05B103KB5NNNC"
+ },
+ "C9": {
+  "LCSC": "C76945",
+  "MFR": "Murata Electronics",
+  "MPN": "GRM1555C1E100GA01D",
+  "Mouser": "81-GRM1555C1E100GA1D"
+ },
+ "D0": {
+  "LCSC": "C2852592",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005SURCK",
+  "Mouser": "604-APHHS1005SURCK"
+ },
+ "D1": {
+  "LCSC": "C5354975",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005LCGCK",
+  "Mouser": "604-APHHS1005CGCK",
+  "Mouser_MPN": "APHHS1005CGCK"
+ },
+ "D100": {
+  "LCSC": "C223985",
+  "MFR": "Littelfuse",
+  "MPN": "SMAJ15CA",
+  "Mouser": "576-SMAJ15CA"
+ },
+ "D101": {
+  "LCSC": "C5875753",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005SECK",
+  "Mouser": "604-APHHS1005SECK"
+ },
+ "D102": {
+  "LCSC": "C21107",
+  "MFR": "onsemi",
+  "MPN": "BAT54HT1G",
+  "Mouser": "863-BAT54HT1G"
+ },
+ "D2": {
+  "LCSC": "C5875733",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005SYCK",
+  "Mouser": "604-APHHS1005SYCK"
+ },
+ "D21": {
+  "LCSC": "C84354",
+  "MFR": "MCC (Micro Commercial Components)",
+  "MPN": "B5819W-TP",
+  "Mouser": "833-B5819W-TP"
+ },
+ "D3": {
+  "LCSC": "C2852592",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005SURCK",
+  "Mouser": "604-APHHS1005SURCK"
+ },
+ "D4": {
+  "LCSC": "C5354975",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005LCGCK",
+  "Mouser": "604-APHHS1005CGCK",
+  "Mouser_MPN": "APHHS1005CGCK"
+ },
+ "D40": {
+  "LCSC": "C5354975",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005LCGCK",
+  "Mouser": "604-APHHS1005CGCK",
+  "Mouser_MPN": "APHHS1005CGCK"
+ },
+ "D5": {
+  "LCSC": "C5875733",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005SYCK",
+  "Mouser": "604-APHHS1005SYCK"
+ },
+ "D50": {
+  "LCSC": "C21107",
+  "MFR": "onsemi",
+  "MPN": "BAT54HT1G",
+  "Mouser": "863-BAT54HT1G"
+ },
+ "D51": {
+  "LCSC": "C5354975",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005LCGCK",
+  "Mouser": "604-APHHS1005CGCK",
+  "Mouser_MPN": "APHHS1005CGCK"
+ },
+ "D6": {
+  "LCSC": "C5875753",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005SECK",
+  "Mouser": "604-APHHS1005SECK"
+ },
+ "D7": {
+  "LCSC": "C2852592",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005SURCK",
+  "Mouser": "604-APHHS1005SURCK"
+ },
+ "D8": {
+  "LCSC": "C2853064",
+  "MFR": "Kingbright",
+  "MPN": "APHHS1005QBC/D",
+  "Mouser": "604-APHHS1005QBCD"
+ },
+ "F100": {
+  "LCSC": "C99548",
+  "MFR": "Littelfuse",
+  "MPN": "0451007.MRL",
+  "Mouser": "576-0451007.MRL"
+ },
+ "F101": {
+  "LCSC": "C99548",
+  "MFR": "Littelfuse",
+  "MPN": "0451007.MRL",
+  "Mouser": "576-0451007.MRL"
+ },
+ "F102": {
+  "LCSC": "C99548",
+  "MFR": "Littelfuse",
+  "MPN": "0451007.MRL",
+  "Mouser": "576-0451007.MRL"
+ },
+ "F103": {
+  "LCSC": "C99548",
+  "MFR": "Littelfuse",
+  "MPN": "0451007.MRL",
+  "Mouser": "576-0451007.MRL"
+ },
+ "FP:C1": {
+  "LCSC": "C96446",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL10A106MA8NRNC",
+  "Mouser": "187-CL10A106MA8NRNC"
+ },
+ "FP:C2": {
+  "LCSC": "C1525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05B104KO5NNNC",
+  "Mouser": "187-CL05B104KO5NNNC"
+ },
+ "FP:D1": {
+  "LCSC": "C5554162",
+  "MFR": "Kingbright",
+  "MPN": "APT2012QBC/D",
+  "Mouser": "604-APT2012QBC/D"
+ },
+ "FP:J1": {
+  "LCSC": "C160405",
+  "MFR": "JST",
+  "MPN": "SM06B-SRSS-TB(LF)(SN)",
+  "Mouser": "306-M06BSRSSTBLFSNPP"
+ },
+ "FP:J2": {
+  "LCSC": "C5184785",
+  "MFR": "Wurth Elektronik",
+  "MPN": "61300411121",
+  "Mouser": "710-61300411121"
+ },
+ "FP:R1": {
+  "LCSC": "C25082",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1500TCE",
+  "Mouser": "303-0402WGF1500TCE"
+ },
+ "FP:SW1": {
+  "LCSC": "C4364774",
+  "MFR": "Same Sky (CUI Devices)",
+  "MPN": "TS02-66-80-BK-260-LCR-D",
+  "Mouser": "179-TS026680BK260LCR"
+ },
+ "J1": {
+  "LCSC": "C5422271",
+  "MFR": "Amphenol FCI",
+  "MPN": "57202-G52-20LF",
+  "Mouser": "649-57202-G52-20LF"
+ },
+ "J10": {
+  "LCSC": "C254700",
+  "MFR": "Amphenol ICC (FCI)",
+  "MPN": "61083-063402LF",
+  "Mouser": "649-61083-063402LF"
+ },
+ "J100": {
+  "LCSC": "C3020560",
+  "MFR": "GCT",
+  "MPN": "USB4105-GF-A",
+  "Mouser": "640-USB4105-GF-A"
+ },
+ "J2": {
+  "LCSC": "C6461553",
+  "MFR": "Wurth Elektronik",
+  "MPN": "61300611021",
+  "Mouser": "710-61300611021"
+ },
+ "J3": {
+  "LCSC": "C265101",
+  "MFR": "JST",
+  "MPN": "S3B-PH-SM4-TB(LF)(SN)",
+  "Mouser": "306-S3BPHSM4TBLFSN"
+ },
+ "J40": {
+  "LCSC": "C88373",
+  "MFR": "Hirose",
+  "MPN": "U.FL-R-SMT-1(10)",
+  "Mouser": "798-U.FL-R-SMT-110"
+ },
+ "J41": {
+  "LCSC": "C88373",
+  "MFR": "Hirose",
+  "MPN": "U.FL-R-SMT-1(10)",
+  "Mouser": "798-U.FL-R-SMT-110"
+ },
+ "J42": {
+  "LCSC": "C5382952",
+  "MFR": "Samtec",
+  "MPN": "FTSH-105-01-F-DV-K",
+  "Mouser": "200-FTSH10501FDVK"
+ },
+ "J43": {
+  "LCSC": "C160404",
+  "MFR": "JST",
+  "MPN": "SM04B-SRSS-TB(LF)(SN)",
+  "Mouser": "306-SM04BSRSSTBLFSN"
+ },
+ "J44": {
+  "LCSC": "C160405",
+  "MFR": "JST",
+  "MPN": "SM06B-SRSS-TB(LF)(SN)",
+  "Mouser": "306-M06BSRSSTBLFSNPP"
+ },
+ "J5": {
+  "LCSC": "C144395",
+  "MFR": "JST",
+  "MPN": "B4B-XH-A(LF)(SN)",
+  "Mouser": "306-B4BXHALFSN"
+ },
+ "J50": {
+  "LCSC": "C88373",
+  "MFR": "Hirose",
+  "MPN": "U.FL-R-SMT-1(10)",
+  "Mouser": "798-U.FL-R-SMT-110"
+ },
+ "J60": {
+  "LCSC": "C5542783",
+  "MFR": "Wurth Elektronik",
+  "MPN": "7499111446",
+  "Mouser": "710-7499111446"
+ },
+ "L1": {
+  "LCSC": "C524641",
+  "MFR": "Murata Electronics",
+  "MPN": "LQW15CA22NJ00D",
+  "Mouser": "81-LQW15CA22NJ00D"
+ },
+ "L100": {
+  "LCSC": "C2162868",
+  "MFR": "Wurth Elektronik",
+  "MPN": "744316100",
+  "Mouser": "710-744316100"
+ },
+ "L101": {
+  "LCSC": "C53373578",
+  "MFR": "Wurth Elektronik",
+  "MPN": "744325180",
+  "Mouser": "710-744325180"
+ },
+ "L102": {
+  "LCSC": "C4555951",
+  "MFR": "Coilcraft",
+  "MPN": "XAL4020-102MEC",
+  "Mouser": "994-XAL4020-102MEC"
+ },
+ "L103": {
+  "LCSC": "C18547833",
+  "MFR": "Coilcraft",
+  "MPN": "XAL4020-152MEC",
+  "Mouser": "994-XAL4020-152MEC"
+ },
+ "L11": {
+  "LCSC": "C344018",
+  "MFR": "TE Connectivity / Sigma Inductors",
+  "MPN": "36501E18NJTDG",
+  "Mouser": "279-36501E18NJTDG"
+ },
+ "L12": {
+  "LCSC": "C344018",
+  "MFR": "TE Connectivity / Sigma Inductors",
+  "MPN": "36501E18NJTDG",
+  "Mouser": "279-36501E18NJTDG"
+ },
+ "L2": {
+  "LCSC": "C524641",
+  "MFR": "Murata Electronics",
+  "MPN": "LQW15CA22NJ00D",
+  "Mouser": "81-LQW15CA22NJ00D"
+ },
+ "L3": {
+  "LCSC": "C2043868",
+  "MFR": "TE Connectivity / Sigma Inductors",
+  "MPN": "36501E20NJTDG",
+  "Mouser": "279-36501E20NJTDG"
+ },
+ "L4": {
+  "LCSC": "C2043868",
+  "MFR": "TE Connectivity / Sigma Inductors",
+  "MPN": "36501E20NJTDG",
+  "Mouser": "279-36501E20NJTDG"
+ },
+ "L5": {
+  "LCSC": "C882469",
+  "MFR": "Murata Electronics",
+  "MPN": "LQW15AN27NG80D",
+  "Mouser": "81-LQW15AN27NG80D"
+ },
+ "L50": {
+  "LCSC": "C882469",
+  "MFR": "Murata Electronics",
+  "MPN": "LQW15AN27NG80D",
+  "Mouser": "81-LQW15AN27NG80D"
+ },
+ "L6": {
+  "LCSC": "C882469",
+  "MFR": "Murata Electronics",
+  "MPN": "LQW15AN27NG80D",
+  "Mouser": "81-LQW15AN27NG80D"
+ },
+ "L60": {
+  "LCSC": "C14709",
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D"
+ },
+ "L61": {
+  "LCSC": "C14709",
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D"
+ },
+ "L62": {
+  "LCSC": "C14709",
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D"
+ },
+ "L63": {
+  "LCSC": "C14709",
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D"
+ },
+ "L64": {
+  "LCSC": "C576403",
+  "MFR": "Murata Electronics",
+  "MPN": "DFE252012F-2R2M=P2",
+  "Mouser": "81-DFE252012F-2R2MP2"
+ },
+ "L65": {
+  "LCSC": "C576403",
+  "MFR": "Murata Electronics",
+  "MPN": "DFE252012F-2R2M=P2",
+  "Mouser": "81-DFE252012F-2R2MP2"
+ },
+ "L66": {
+  "LCSC": "C14709",
+  "MFR": "Murata Electronics",
+  "MPN": "BLM18PG121SN1D",
+  "Mouser": "81-BLM18PG121SN1D"
+ },
+ "L7": {
+  "LCSC": "C1332872",
+  "MFR": "Murata Electronics",
+  "MPN": "LQW15AN13NG80D",
+  "Mouser": "81-LQW15AN13NG80D"
+ },
+ "L8": {
+  "LCSC": "C1332872",
+  "MFR": "Murata Electronics",
+  "MPN": "LQW15AN13NG80D",
+  "Mouser": "81-LQW15AN13NG80D"
+ },
+ "P1": {
+  "LCSC": "C88373",
+  "MFR": "Hirose",
+  "MPN": "U.FL-R-SMT-1(10)",
+  "Mouser": "798-U.FL-R-SMT-110"
+ },
+ "P2": {
+  "LCSC": "C88373",
+  "MFR": "Hirose",
+  "MPN": "U.FL-R-SMT-1(10)",
+  "Mouser": "798-U.FL-R-SMT-110"
+ },
+ "P5": {
+  "LCSC": "C5184785",
+  "MFR": "Wurth Elektronik",
+  "MPN": "61300411121",
+  "Mouser": "710-61300411121"
+ },
+ "P7": {
+  "LCSC": "C5140604",
+  "MFR": "Wurth Elektronik",
+  "MPN": "61300621121",
+  "Mouser": "710-61300621121"
+ },
+ "Q100": {
+  "LCSC": "C47616",
+  "MFR": "Texas Instruments",
+  "MPN": "CSD16340Q3",
+  "Mouser": ""
+ },
+ "Q101": {
+  "LCSC": "C47616",
+  "MFR": "Texas Instruments",
+  "MPN": "CSD16340Q3",
+  "Mouser": ""
+ },
+ "Q102": {
+  "LCSC": "C2865523",
+  "MFR": "Texas Instruments",
+  "MPN": "CSD25404Q3",
+  "Mouser": "595-CSD25404Q3"
+ },
+ "Q103": {
+  "LCSC": "C201632",
+  "MFR": "Texas Instruments",
+  "MPN": "CSD17577Q3A",
+  "Mouser": "595-CSD17577Q3A"
+ },
+ "Q20": {
+  "LCSC": "C20917",
+  "MFR": "Alpha & Omega Semiconductor",
+  "MPN": "AO3400A",
+  "Mouser": ""
+ },
+ "R1": {
+  "LCSC": "C852602",
+  "MFR": "Susumu",
+  "MPN": "RR0510P-112-D",
+  "Mouser": "754-RR0510P-112D"
+ },
+ "R10": {
+  "LCSC": "C852677",
+  "MFR": "Panasonic",
+  "MPN": "ERA-2AEB271X",
+  "Mouser": "667-ERA-2AEB271X"
+ },
+ "R100": {
+  "LCSC": "C17477",
+  "MFR": "UNI-ROYAL",
+  "MPN": "0805W8F0000T5E",
+  "Mouser": "603-RC0805JR-070RL",
+  "Mouser_MPN": "RC0805JR-070RL"
+ },
+ "R101": {
+  "LCSC": "C17168",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF0000TCE",
+  "Mouser": "303-0402WGF0000TCE"
+ },
+ "R102": {
+  "LCSC": "C25078",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1100TCE",
+  "Mouser": "603-RC0402FR-07110RL",
+  "Mouser_MPN": "RC0402FR-07110RL"
+ },
+ "R103": {
+  "LCSC": "C2479336",
+  "MFR": "Stackpole (SEI)",
+  "MPN": "RMCF0402FT5K23",
+  "Mouser": "708-RMCF0402FT5K23"
+ },
+ "R104": {
+  "LCSC": "C29402",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF3012TCE",
+  "Mouser": "303-0402WGF3012TCE"
+ },
+ "R105": {
+  "LCSC": "C25879",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF2201TCE",
+  "Mouser": "603-RC0402FR-072K2L",
+  "Mouser_MPN": "RC0402FR-072K2L"
+ },
+ "R106": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R107": {
+  "LCSC": "C25104",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF3300TCE",
+  "Mouser": "603-RC0402FR-07330RL",
+  "Mouser_MPN": "RC0402FR-07330RL"
+ },
+ "R108": {
+  "LCSC": "C25879",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF2201TCE",
+  "Mouser": "603-RC0402FR-072K2L",
+  "Mouser_MPN": "RC0402FR-072K2L"
+ },
+ "R109": {
+  "LCSC": "C25780",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF3483TCE",
+  "Mouser": "603-RC0402FR-07348KL",
+  "Mouser_MPN": "RC0402FR-07348KL"
+ },
+ "R11": {
+  "LCSC": "C427210",
+  "MFR": "Vishay",
+  "MPN": "RCS04021K00JNED",
+  "Mouser": "71-RCS04021K00JNED"
+ },
+ "R110": {
+  "LCSC": "C25798",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF7502TCE",
+  "Mouser": "303-0402WGF7502TCE"
+ },
+ "R111": {
+  "LCSC": "C25756",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1502TCE",
+  "Mouser": "303-0402WGF1502TCE"
+ },
+ "R112": {
+  "LCSC": "C27016",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF7323TCE",
+  "Mouser": "603-RC0402FR-07732KL",
+  "Mouser_MPN": "RC0402FR-07732KL"
+ },
+ "R113": {
+  "LCSC": "C25921",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF8062TCE",
+  "Mouser": "603-RC0402FR-0780K6L",
+  "Mouser_MPN": "RC0402FR-0780K6L"
+ },
+ "R114": {
+  "LCSC": "C25755",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1503TCE",
+  "Mouser": "303-0402WGF1503TCE"
+ },
+ "R115": {
+  "LCSC": "C409086",
+  "MFR": "Panasonic",
+  "MPN": "ERJ-8CWFR010V",
+  "Mouser": "667-ERJ-8CWFR010V"
+ },
+ "R116": {
+  "LCSC": "C27016",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF7323TCE",
+  "Mouser": "603-RC0402FR-07732KL",
+  "Mouser_MPN": "RC0402FR-07732KL"
+ },
+ "R117": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R118": {
+  "LCSC": "C25076",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1000TCE",
+  "Mouser": "603-RC0402FR-07100RL",
+  "Mouser_MPN": "RC0402FR-07100RL"
+ },
+ "R119": {
+  "LCSC": "C27013",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF6043TCE",
+  "Mouser": "603-RC0402FR-07604KL",
+  "Mouser_MPN": "RC0402FR-07604KL"
+ },
+ "R12": {
+  "LCSC": "C427210",
+  "MFR": "Vishay",
+  "MPN": "RCS04021K00JNED",
+  "Mouser": "71-RCS04021K00JNED"
+ },
+ "R120": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R121": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R122": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R123": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R13": {
+  "LCSC": "C427210",
+  "MFR": "Vishay",
+  "MPN": "RCS04021K00JNED",
+  "Mouser": "71-RCS04021K00JNED"
+ },
+ "R130": {
+  "LCSC": "C26083",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1004TCE",
+  "Mouser": "303-0402WGF1004TCE"
+ },
+ "R131": {
+  "LCSC": "C26083",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1004TCE",
+  "Mouser": "303-0402WGF1004TCE"
+ },
+ "R14": {
+  "LCSC": "C427210",
+  "MFR": "Vishay",
+  "MPN": "RCS04021K00JNED",
+  "Mouser": "71-RCS04021K00JNED"
+ },
+ "R15": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R16": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R17": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R18": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R19": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R2": {
+  "LCSC": "C852602",
+  "MFR": "Susumu",
+  "MPN": "RR0510P-112-D",
+  "Mouser": "754-RR0510P-112D"
+ },
+ "R20": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R21": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R22": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R23": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R24": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R25": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R29": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R3": {
+  "LCSC": "C2683016",
+  "MFR": "Panasonic",
+  "MPN": "ERA-2AEB3831X",
+  "Mouser": "667-ERA-2AEB3831X"
+ },
+ "R30": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R31": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R32": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R4": {
+  "LCSC": "C2683016",
+  "MFR": "Panasonic",
+  "MPN": "ERA-2AEB3831X",
+  "Mouser": "667-ERA-2AEB3831X"
+ },
+ "R40": {
+  "LCSC": "C25076",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1000TCE",
+  "Mouser": "603-RC0402FR-07100RL",
+  "Mouser_MPN": "RC0402FR-07100RL"
+ },
+ "R41": {
+  "LCSC": "C25076",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1000TCE",
+  "Mouser": "603-RC0402FR-07100RL",
+  "Mouser_MPN": "RC0402FR-07100RL"
+ },
+ "R42": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R43": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R44": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R45": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R46": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R47": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R48": {
+  "LCSC": "C25900",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF4701TCE",
+  "Mouser": "603-RC0402FR-074K7L",
+  "Mouser_MPN": "RC0402FR-074K7L"
+ },
+ "R49": {
+  "LCSC": "C25900",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF4701TCE",
+  "Mouser": "603-RC0402FR-074K7L",
+  "Mouser_MPN": "RC0402FR-074K7L"
+ },
+ "R5": {
+  "LCSC": "C412901",
+  "MFR": "Vishay",
+  "MPN": "CRCW04023R90JNED",
+  "Mouser": "71-CRCW0402J-3.9-E3"
+ },
+ "R50": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R51": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R52": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R53": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R54": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R55": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R56": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R6": {
+  "LCSC": "C412901",
+  "MFR": "Vishay",
+  "MPN": "CRCW04023R90JNED",
+  "Mouser": "71-CRCW0402J-3.9-E3"
+ },
+ "R60": {
+  "LCSC": "C17168",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF0000TCE",
+  "Mouser": "303-0402WGF0000TCE"
+ },
+ "R61": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R62": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R63": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R64": {
+  "LCSC": "C26083",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1004TCE",
+  "Mouser": "303-0402WGF1004TCE"
+ },
+ "R65": {
+  "LCSC": "C22276",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1504TCE",
+  "Mouser": "708-RMCF0402FT1M50",
+  "Mouser_MPN": "RMCF0402FT1M50"
+ },
+ "R66": {
+  "LCSC": "C25900",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF4701TCE",
+  "Mouser": "603-RC0402FR-074K7L",
+  "Mouser_MPN": "RC0402FR-074K7L"
+ },
+ "R67": {
+  "LCSC": "C25900",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF4701TCE",
+  "Mouser": "603-RC0402FR-074K7L",
+  "Mouser_MPN": "RC0402FR-074K7L"
+ },
+ "R68": {
+  "LCSC": "C11702",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
+ },
+ "R7": {
+  "LCSC": "C2984424",
+  "MFR": "Panasonic",
+  "MPN": "ERA-2AEB561X",
+  "Mouser": "667-ERA-2AEB561X"
+ },
+ "R70": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R71": {
+  "LCSC": "C510088",
+  "MFR": "ROHM Semiconductor",
+  "MPN": "ESR03EZPF10R0",
+  "Mouser": "755-ESR03EZPF10R0"
+ },
+ "R72": {
+  "LCSC": "C25879",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF2201TCE",
+  "Mouser": "603-RC0402FR-072K2L",
+  "Mouser_MPN": "RC0402FR-072K2L"
+ },
+ "R73": {
+  "LCSC": "C25076",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1000TCE",
+  "Mouser": "603-RC0402FR-07100RL",
+  "Mouser_MPN": "RC0402FR-07100RL"
+ },
+ "R78": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R8": {
+  "LCSC": "C2984424",
+  "MFR": "Panasonic",
+  "MPN": "ERA-2AEB561X",
+  "Mouser": "667-ERA-2AEB561X"
+ },
+ "R80": {
+  "LCSC": "C25752",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1202TCE",
+  "Mouser": ""
+ },
+ "R81": {
+  "LCSC": "C25923",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF8061TCE",
+  "Mouser": ""
+ },
+ "R82": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R85": {
+  "LCSC": "C25120",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF499JTCE",
+  "Mouser": ""
+ },
+ "R86": {
+  "LCSC": "C25120",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF499JTCE",
+  "Mouser": ""
+ },
+ "R87": {
+  "LCSC": "C25120",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF499JTCE",
+  "Mouser": ""
+ },
+ "R88": {
+  "LCSC": "C25120",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF499JTCE",
+  "Mouser": ""
+ },
+ "R89": {
+  "LCSC": "C25104",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF3300TCE",
+  "Mouser": "603-RC0402FR-07330RL",
+  "Mouser_MPN": "RC0402FR-07330RL"
+ },
+ "R9": {
+  "LCSC": "C852677",
+  "MFR": "Panasonic",
+  "MPN": "ERA-2AEB271X",
+  "Mouser": "667-ERA-2AEB271X"
+ },
+ "R90": {
+  "LCSC": "C25104",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF3300TCE",
+  "Mouser": "603-RC0402FR-07330RL",
+  "Mouser_MPN": "RC0402FR-07330RL"
+ },
+ "R91": {
+  "LCSC": "C620664",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "1210W2F1004T5E",
+  "Mouser": "603-RC1210FR-071ML",
+  "Mouser_MPN": "RC1210FR-071ML"
+ },
+ "R92": {
+  "LCSC": "C27009",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF4533TCE",
+  "Mouser": "603-RC0402FR-07453KL",
+  "Mouser_MPN": "RC0402FR-07453KL"
+ },
+ "R93": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R94": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R95": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R96": {
+  "LCSC": "C25120",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF499JTCE",
+  "Mouser": ""
+ },
+ "R97": {
+  "LCSC": "C25120",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF499JTCE",
+  "Mouser": ""
+ },
+ "R98": {
+  "LCSC": "C25120",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF499JTCE",
+  "Mouser": ""
+ },
+ "R99": {
+  "LCSC": "C25120",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF499JTCE",
+  "Mouser": ""
+ },
+ "SW1": {
+  "LCSC": "C231329",
+  "MFR": "Aratas (formerly Omron Components)",
+  "MPN": "B3U-1000P",
+  "Mouser": "653-B3U-1000P"
+ },
+ "SW100": {
+  "LCSC": "C110293",
+  "MFR": "Alps Alpine",
+  "MPN": "SKRTLAE010",
+  "Mouser": "688-SKRTLA"
+ },
+ "SW101": {
+  "LCSC": "C221662",
+  "MFR": "C&K",
+  "MPN": "JS202011AQN",
+  "Mouser": "611-JS202011AQN"
+ },
+ "SW40": {
+  "LCSC": "C231329",
+  "MFR": "Aratas (formerly Omron Components)",
+  "MPN": "B3U-1000P",
+  "Mouser": "653-B3U-1000P"
+ },
+ "SW41": {
+  "LCSC": "C231329",
+  "MFR": "Aratas (formerly Omron Components)",
+  "MPN": "B3U-1000P",
+  "Mouser": "653-B3U-1000P"
+ },
+ "SW50": {
+  "LCSC": "C221841",
+  "MFR": "C&K",
+  "MPN": "PCM12SMTR",
+  "Mouser": "611-PCM12SMTR"
+ },
+ "TH100": {
+  "LCSC": "C440252",
+  "MFR": "Murata Electronics",
+  "MPN": "NCU18XH103F60RB",
+  "Mouser": "81-NCU18XH103F60RB"
+ },
+ "U1": {
+  "LCSC": "C206881",
+  "MFR": "Analog Devices",
+  "MPN": "ADF7021BCPZ",
+  "Mouser": "584-ADF7021BCPZ"
+ },
+ "U100": {
+  "LCSC": "C42459160",
+  "MFR": "WCH (Jiangsu Qin Heng)",
+  "MPN": "CH224A",
+  "Mouser": ""
+ },
+ "U101": {
+  "LCSC": "C80200",
+  "MFR": "Texas Instruments",
+  "MPN": "BQ25895RTWR",
+  "Mouser": "595-BQ25895RTWR"
+ },
+ "U102": {
+  "LCSC": "C2864878",
+  "MFR": "Texas Instruments",
+  "MPN": "BQ29707DSER",
+  "Mouser": "595-BQ29707DSER"
+ },
+ "U103": {
+  "LCSC": "C2682616",
+  "MFR": "Analog Devices (Maxim)",
+  "MPN": "MAX17048G+T10",
+  "Mouser": "700-MAX17048G+T10"
+ },
+ "U104": {
+  "LCSC": "C127918",
+  "MFR": "Texas Instruments",
+  "MPN": "TPS61178RNWR",
+  "Mouser": "595-TPS61178RNWR"
+ },
+ "U105": {
+  "LCSC": "C49851",
+  "MFR": "Texas Instruments",
+  "MPN": "INA226AIDGSR",
+  "Mouser": "595-INA226AIDGSR"
+ },
+ "U106": {
+  "LCSC": "C2941042",
+  "MFR": "Texas Instruments",
+  "MPN": "LM74700QDBVRQ1",
+  "Mouser": "595-LM74700QDBVRQ1"
+ },
+ "U107": {
+  "LCSC": "C915088",
+  "MFR": "Texas Instruments",
+  "MPN": "TPS61022RWUR",
+  "Mouser": "595-TPS61022RWUR"
+ },
+ "U108": {
+  "LCSC": "C12462",
+  "MFR": "Texas Instruments",
+  "MPN": "TPS63030DSKR",
+  "Mouser": "595-TPS63030DSKR"
+ },
+ "U109": {
+  "LCSC": "C2862740",
+  "MFR": "Texas Instruments",
+  "MPN": "TPS7A2033PDBVR",
+  "Mouser": "595-TPS7A2033PDBVR"
+ },
+ "U110": {
+  "LCSC": "C2862740",
+  "MFR": "Texas Instruments",
+  "MPN": "TPS7A2033PDBVR",
+  "Mouser": "595-TPS7A2033PDBVR"
+ },
+ "U111": {
+  "LCSC": "C155599",
+  "MFR": "STMicroelectronics",
+  "MPN": "STM6601CM2DDM6F",
+  "Mouser": ""
+ },
+ "U2": {
+  "LCSC": "C206881",
+  "MFR": "Analog Devices",
+  "MPN": "ADF7021BCPZ",
+  "Mouser": "584-ADF7021BCPZ"
+ },
+ "U20": {
+  "LCSC": "C7843",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1T45DBVR",
+  "Mouser": "595-SN74LVC1T45DBVR"
+ },
+ "U21": {
+  "LCSC": "C7843",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1T45DBVR",
+  "Mouser": "595-SN74LVC1T45DBVR"
+ },
+ "U22": {
+  "LCSC": "C7843",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1T45DBVR",
+  "Mouser": "595-SN74LVC1T45DBVR"
+ },
+ "U23": {
+  "LCSC": "C7830",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1G07DCKR",
+  "Mouser": "595-SN74LVC1G07DCKR"
+ },
+ "U24": {
+  "LCSC": "C7843",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1T45DBVR",
+  "Mouser": "595-SN74LVC1T45DBVR"
+ },
+ "U25": {
+  "LCSC": "C7843",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1T45DBVR",
+  "Mouser": "595-SN74LVC1T45DBVR"
+ },
+ "U26": {
+  "LCSC": "C7830",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1G07DCKR",
+  "Mouser": "595-SN74LVC1G07DCKR"
+ },
+ "U27": {
+  "LCSC": "C7843",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1T45DBVR",
+  "Mouser": "595-SN74LVC1T45DBVR"
+ },
+ "U28": {
+  "LCSC": "C7843",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1T45DBVR",
+  "Mouser": "595-SN74LVC1T45DBVR"
+ },
+ "U29": {
+  "LCSC": "C7843",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1T45DBVR",
+  "Mouser": "595-SN74LVC1T45DBVR"
+ },
+ "U3": {
+  "LCSC": "C8734",
+  "MFR": "STMicroelectronics",
+  "MPN": "STM32F103C8T6",
+  "Mouser": "511-STM32F103C8T6"
+ },
+ "U30": {
+  "LCSC": "C7830",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1G07DCKR",
+  "Mouser": "595-SN74LVC1G07DCKR"
+ },
+ "U31": {
+  "LCSC": "C7830",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1G07DCKR",
+  "Mouser": "595-SN74LVC1G07DCKR"
+ },
+ "U32": {
+  "LCSC": "C7830",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1G07DCKR",
+  "Mouser": "595-SN74LVC1G07DCKR"
+ },
+ "U33": {
+  "LCSC": "C7830",
+  "MFR": "Texas Instruments",
+  "MPN": "SN74LVC1G07DCKR",
+  "Mouser": "595-SN74LVC1G07DCKR"
+ },
+ "U34": {
+  "LCSC": "C840107",
+  "MFR": "Texas Instruments",
+  "MPN": "TCA9406DCUR",
+  "Mouser": "595-TCA9406DCUR"
+ },
+ "U35": {
+  "LCSC": "C57156",
+  "MFR": "NXP",
+  "MPN": "SC16IS752IPW,128",
+  "Mouser": "771-SC16IS752IPW128"
+ },
+ "U36": {
+  "LCSC": "C148036",
+  "MFR": "Microchip",
+  "MPN": "EMC2301-1-ACZL-TR",
+  "Mouser": "886-EMC2301-1-ACZLTR"
+ },
+ "U37": {
+  "LCSC": "C99269",
+  "MFR": "Texas Instruments",
+  "MPN": "TMP102AIDRLR",
+  "Mouser": "595-TMP102AIDRLR"
+ },
+ "U40": {
+  "LCSC": "C42388202",
+  "MFR": "RAKwireless",
+  "MPN": "RAK4630-9-SM-NI",
+  "Mouser": ""
+ },
+ "U50": {
+  "LCSC": "C4153167",
+  "MFR": "u-blox",
+  "MPN": "MAX-M10S-00B",
+  "Mouser": "377-MAX-M10S-00B"
+ },
+ "U51": {
+  "LCSC": "C2149796",
+  "MFR": "Texas Instruments",
+  "MPN": "TPS22919DCKR",
+  "Mouser": "595-TPS22919DCKR"
+ },
+ "U60": {
+  "LCSC": "C633487",
+  "MFR": "Microchip",
+  "MPN": "LAN7500I-ABZJ",
+  "Mouser": "579-LAN7500-ABZJ",
+  "Mouser_MPN": "LAN7500-ABZJ"
+ },
+ "U61": {
+  "LCSC": "C141836",
+  "MFR": "Texas Instruments",
+  "MPN": "TLV62569DBVR",
+  "Mouser": "595-TLV62569DBVR"
+ },
+ "U62": {
+  "LCSC": "C141836",
+  "MFR": "Texas Instruments",
+  "MPN": "TLV62569DBVR",
+  "Mouser": "595-TLV62569DBVR"
+ },
+ "U63": {
+  "LCSC": "C2066854",
+  "MFR": "Texas Instruments",
+  "MPN": "LM809M3X-2.93/NOPB",
+  "Mouser": "926-LM809M3X293NOPB"
+ },
+ "U64": {
+  "LCSC": "C511344",
+  "MFR": "Microchip",
+  "MPN": "93LC66AT-I/OT",
+  "Mouser": "579-93AA66AT-I/OT",
+  "Mouser_MPN": "93AA66AT-I/OT"
+ },
+ "X1": {
+  "LCSC": "C2451095",
+  "MFR": "ECS",
+  "MPN": "ECS-TXO-3225-147.4-TR",
+  "Mouser": "520-TXO-3225-14.74T"
+ },
+ "Y1": {
+  "LCSC": "C144380",
+  "MFR": "Abracon",
+  "MPN": "ABM3-8.000MHZ-D2Y-T",
+  "Mouser": "815-ABM3-8-D2Y-T"
+ },
+ "Y2": {
+  "LCSC": "C557186",
+  "MFR": "SJK (Shenzhen Crystal Technology)",
+  "MPN": "7U14745AE20UCG",
+  "Mouser": "815-M8147456MHZD1XT",
+  "Mouser_MPN": "ABM8-14.7456MHZ-D1X-T"
+ },
+ "Y3": {
+  "LCSC": "C70593",
+  "MFR": "YXC Crystal Oscillators",
+  "MPN": "X322525MRB4SI",
+  "Mouser": "717-7M-25.000MAAJ-T",
+  "Mouser_MPN": "7M-25.000MAAJ-T"
+ }
+}

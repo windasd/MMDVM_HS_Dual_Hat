@@ -1,0 +1,166 @@
+# Hand edits made on the routed board, in the order they were applied (python hand_edit.py <file> check|rm|add).
+# They are a record: the coordinates only fit the routing they were made on.
+# U101.11 BQ_TS: via out of the pad to the west, BQ_QON goes round it
+RM F.Cu 156.14,155.45 156.04,155.35
+RM F.Cu 156.04,155.35 155.94,155.35
+RM F.Cu 155.94,155.35 155.94,155.05
+RM F.Cu 155.94,155.05 155.24,154.35
+T /Power/BQ_QON F.Cu 0.2 156.14,155.45 155.55,155.45 155.24,155.14 155.24,154.35
+MV 156.64,154.95 155.72,154.95
+T /Power/BQ_TS F.Cu 0.2 155.72,154.95 156.64,154.95
+# U60.24 +3V3_ETH: via to the outer side of the pad, between the pad and the USB pair on B.Cu
+RMVIA 150.45,100.74
+V +3V3_ETH 149.83,100.75
+T +3V3_ETH B.Cu 0.45 149.83,100.75 150.45,100.74
+# C66.2 is grounded through its track: the via on the pad and its stub go
+RMVIA 114.35,195.01
+RM F.Cu 114.35,195.01 114.08,195.28
+# U51.2 GND: out of the pad to the west, down between GPS_TXD and the pad column, via below pad 3
+RMVIA 132.15,127.38
+RM F.Cu 132.15,127.38 132.48,127.38
+T GND F.Cu 0.15 132.48,127.38 131.845,127.38 131.845,128.5 132.0,128.75
+V GND 132.0,128.75
+# R109.2 GND: B12_COMP ran between R109.2 and R110.2. COMP now drops to B.Cu below pin 4 and comes up
+# beside C118 / R111, so R109.2 joins R110.2 (which has its via and C118.2) with a straight track.
+RM F.Cu 169.80,167.81 168.19,169.41
+RM F.Cu 168.19,169.41 167.91,169.41
+RM F.Cu 167.91,169.41 167.60,169.72
+RM F.Cu 167.60,169.72 167.60,170.92
+RM F.Cu 167.60,170.92 167.12,171.40
+T /Power/B12_COMP F.Cu 0.2 169.80,167.81 169.5,168.04
+V /Power/B12_COMP 169.5,168.04
+T /Power/B12_COMP B.Cu 0.2 169.5,168.04 169.2,168.04 168.75,168.49 168.75,171.0 167.3,172.45 166.45,172.45
+V /Power/B12_COMP 166.45,172.45
+T /Power/B12_COMP F.Cu 0.2 166.45,172.45 166.8,172.1 167.09,172.1
+RMVIA 168.11,168.70
+T GND F.Cu 0.3 168.11,168.70 168.11,170.05
+# U104.12 VSYS: C115 is turned so that BST drops straight to pin 13 instead of looping over pin 12;
+# the VSYS via then moves up, off the end of the pad.
+ROT C115 180
+RM F.Cu 167.52,162.65 168.04,162.13
+RM F.Cu 168.04,162.13 168.80,162.13
+RM F.Cu 168.80,162.13 168.99,162.32
+RM F.Cu 168.99,162.32 168.99,162.93
+RM F.Cu 168.99,162.93 168.30,163.62
+RM F.Cu 168.30,163.62 168.30,164.10
+RM F.Cu 168.48,162.65 166.70,164.43
+T /Power/B12_BST F.Cu 0.2 168.48,162.65 168.48,163.1 168.30,163.28 168.30,164.10
+T /Power/B12_SW F.Cu 0.4 167.52,162.65 166.70,163.47 166.70,164.43
+MV 168.80,163.80 168.80,163.48
+# C163.2 GND: the only free column for a via is taken on In2 (+1V2_ETH, a needless V-shaped detour) and on
+# B.Cu (D51_A). Both are straightened / shifted 0.3 mm, then the via moves to the right of the pad.
+RM B.Cu 147.29,96.95 149.15,95.10
+RM B.Cu 147.29,99.53 147.29,96.95
+T /GPS/D51_A B.Cu 0.2 147.29,99.53 147.29,99.0 147.6,98.69 147.6,96.65 149.15,95.10
+RM In2.Cu 147.37,97.90 147.74,97.53
+RM In2.Cu 147.74,97.53 148.57,98.35
+T +1V2_ETH In2.Cu 0.4 147.37,97.90 148.12,97.90 148.57,98.35
+MV 146.37,97.30 147.17,97.31
+# U60.49 +1V2_ETH: the VDD12PLL track and via wrapped tightly round this via. They move 0.2 mm outwards,
+# the +1V2 via moves 0.2 mm off the end of the pad.
+RM F.Cu 159.24,99.25 159.44,99.45
+RM F.Cu 159.44,99.45 159.44,100.05
+RM F.Cu 159.44,100.05 159.34,100.15
+RM F.Cu 158.44,99.25 159.24,99.25
+T /Ethernet/ETH_VDD12PLL F.Cu 0.2 158.44,99.25 159.3,99.25 159.58,99.53 159.58,100.2
+MV 159.34,100.15 159.58,100.2
+MV 158.94,99.75 159.14,99.75
+# U60.12 / U60.13 (USB pair): there is no room outside the pad row, so the two vias move to the strip
+# between the inner pad ends and the exposed pad (under the package, tented): holes 0.12 mm off the pads,
+# 0.1 mm copper clearance to the exposed pad.
+RM B.Cu 151.56,95.96 151.66,95.86
+RM B.Cu 151.66,95.86 151.66,95.76
+RM B.Cu 151.46,96.26 151.46,96.16
+RM B.Cu 151.56,96.06 151.56,95.96
+RM B.Cu 151.46,96.16 151.56,96.06
+RM B.Cu 151.66,95.76 151.75,95.66
+T /Ethernet/HS_USB_DP B.Cu 0.2 151.46,96.26 151.62,96.22
+RM B.Cu 151.84,96.46 151.84,96.36
+RM B.Cu 151.75,96.56 151.84,96.46
+RM B.Cu 151.84,96.36 152.25,95.96
+RM B.Cu 149.34,99.06 151.75,96.66
+RM B.Cu 151.75,96.66 151.75,96.56
+T /Ethernet/HS_USB_DM B.Cu 0.2 149.34,99.06 151.68,96.72 151.9,96.72 152.25,96.37 152.25,96.22
+MV 151.75,95.66 151.62,96.22
+MV 152.25,95.96 152.25,96.22
+# BQ_TS ran two loops through In2 (6 vias) because BQ_QON passed between R104 and the thermistor.
+# R104 is turned, QON goes under its body, and the four TS pads join directly on F.Cu.
+RM F.Cu 150.28,145.85 151.28,145.85
+RM F.Cu 150.39,146.50 150.29,146.40
+RM F.Cu 150.49,146.50 150.39,146.50
+RM F.Cu 150.59,146.60 150.49,146.50
+RM F.Cu 151.28,145.85 151.38,145.95
+RM F.Cu 151.38,145.95 151.47,145.95
+RM F.Cu 151.47,145.95 151.57,146.05
+RM F.Cu 151.57,146.05 151.68,146.05
+RM F.Cu 151.68,146.05 151.78,146.15
+RM F.Cu 151.78,146.15 151.97,146.15
+RM F.Cu 151.97,146.15 152.07,146.25
+RM F.Cu 152.07,146.25 152.18,146.25
+RM F.Cu 152.18,146.25 152.28,146.35
+RM F.Cu 152.28,146.35 152.38,146.35
+RM F.Cu 152.38,146.35 152.47,146.45
+RM F.Cu 152.47,146.45 152.57,146.45
+RM F.Cu 152.57,146.45 152.68,146.55
+RM F.Cu 152.68,146.55 152.78,146.55
+RM F.Cu 152.69,146.60 150.59,146.60
+RM F.Cu 152.78,146.55 152.88,146.65
+RM F.Cu 152.88,146.65 153.07,146.65
+RM F.Cu 153.07,146.65 153.18,146.75
+RM F.Cu 153.18,146.75 153.28,146.75
+RM F.Cu 153.28,146.75 153.38,146.85
+RM F.Cu 153.29,147.20 152.69,146.60
+RM F.Cu 153.38,146.85 153.47,146.85
+RM F.Cu 153.47,146.85 153.57,146.95
+RM F.Cu 153.57,146.95 153.68,146.95
+RM F.Cu 153.68,146.95 153.78,147.05
+RM F.Cu 153.78,147.05 153.88,147.05
+RM F.Cu 153.88,147.05 154.09,147.20
+RM F.Cu 154.09,147.20 153.29,147.20
+RM F.Cu 155.78,146.15 155.97,146.35
+RM F.Cu 155.97,146.35 155.97,148.55
+RM F.Cu 155.97,148.55 156.38,148.95
+RM F.Cu 155.99,147.20 156.29,146.90
+RM F.Cu 155.99,148.30 155.99,147.20
+RM F.Cu 156.29,146.90 156.60,146.69
+RM F.Cu 156.29,148.30 155.99,148.30
+RM F.Cu 156.39,148.40 156.29,148.30
+RM In2.Cu 150.29,146.40 154.39,146.40
+RM In2.Cu 152.38,147.95 150.28,145.85
+RM In2.Cu 154.39,146.40 156.39,148.40
+RM In2.Cu 155.38,147.95 152.38,147.95
+RM In2.Cu 156.38,148.95 155.38,147.95
+RMVIA 150.29,146.40
+RMVIA 150.28,145.85
+RMVIA 156.38,148.95
+RMVIA 156.39,148.40
+ROT R104 180
+RM F.Cu 155.14,146.15 154.04,146.15
+RM F.Cu 155.64,146.65 155.14,146.15
+RM F.Cu 155.64,147.85 155.64,146.65
+RM F.Cu 155.24,148.25 155.64,147.85
+T /Power/BQ_QON F.Cu 0.2 154.04,146.15 154.6,146.15 154.6,147.6 154.81,147.81 155.24,147.81 155.24,148.25
+RM F.Cu 155.11,147.20 155.11,147.74
+RM F.Cu 155.11,147.74 154.20,148.65
+T GND F.Cu 0.2 154.09,147.20 154.09,148.3
+T /Power/BQ_TS F.Cu 0.2 155.11,147.20 155.45,147.20 155.96,146.69 156.60,146.69
+# B12_COMP: the via beside C118 / R111 moves further from the switch-node pad of L101 (0.4 -> 0.9 mm)
+RM B.Cu 168.75,171.00 167.30,172.45
+RM B.Cu 167.30,172.45 166.45,172.45
+RM F.Cu 166.45,172.45 166.80,172.10
+RM F.Cu 166.80,172.10 167.09,172.10
+RMVIA 166.45,172.45
+T /Power/B12_COMP B.Cu 0.2 168.75,171.0 166.7,173.05 166.3,173.05
+V /Power/B12_COMP 166.3,173.05
+T /Power/B12_COMP F.Cu 0.2 166.3,173.05 166.6,172.75 167.09,172.75
+# C168 becomes a 1206 (2 kV), upright at 161.8, 111.3 (add_parts.py); its old stubs go, the shield via and
+# the track to R91 join the new pad 1.
+RM F.Cu 162.85,112.31 162.92,112.31
+RM F.Cu 162.85,112.31 161.91,113.24
+RM F.Cu 162.85,112.31 162.85,111.20
+RM F.Cu 162.92,112.31 162.92,112.31
+T /Ethernet/ETH_SHIELD F.Cu 0.2 162.85,111.20 162.85,112.2 162.45,112.6
+T /Ethernet/ETH_SHIELD F.Cu 0.2 161.91,113.24 161.8,112.9
+# 2026-11-16, not hand_edit.py: C142 / R124 (unfitted start-up assist) added with add_parts.py at 168.7, 118.1
+# and 171.3, 118.1 and joined with patch_route.py; antenna feeds set to 0.32 mm (rf_lines.py); the USB pair
+# narrowed from 0.25 to 0.235 mm.

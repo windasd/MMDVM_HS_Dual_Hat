@@ -1,0 +1,8 @@
+"Reference","Value","Footprint","Qty","MFR","MPN","Mouser","Mouser MPN (if different)","LCSC"
+"C1","10u","Capacitor_SMD:C_0603_1608Metric","1","Samsung Electro-Mechanics","CL10A106MA8NRNC","187-CL10A106MA8NRNC","","C96446"
+"C2","100n","Capacitor_SMD:C_0402_1005Metric","1","Samsung Electro-Mechanics","CL05B104KO5NNNC","187-CL05B104KO5NNNC","","C1525"
+"D1","blue","LED_SMD:LED_0805_2012Metric","1","Kingbright","APT2012QBC/D","604-APT2012QBC/D","","C5554162"
+"J1","TO MAIN J44","Connector_JST:JST_SH_SM06B-SRSS-TB_1x06-1MP_P1.00mm_Horizontal","1","JST","SM06B-SRSS-TB(LF)(SN)","306-M06BSRSSTBLFSNPP","","C160405"
+"J2","OLED","Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical","1","Wurth Elektronik","61300411121","710-61300411121","","C5184785"
+"R1","150R","Resistor_SMD:R_0402_1005Metric","1","UNI-ROYAL (Uniroyal Elec)","0402WGF1500TCE","303-0402WGF1500TCE","","C25082"
+"SW1","MESH","Button_Switch_THT:SW_PUSH_6mm_H8mm","1","Same Sky (CUI Devices)","TS02-66-80-BK-260-LCR-D","179-TS026680BK260LCR","","C4364774"
