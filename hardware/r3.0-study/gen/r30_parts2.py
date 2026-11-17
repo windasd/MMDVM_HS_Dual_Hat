@@ -149,7 +149,20 @@ def power():
                                                         '5': 'CELL+'},
           'Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET',
           {'MPN': 'CSD25404Q3', 'Note': 'bypass FET: 12.1 mohm max at VGS -2.5 V, 5.5 typ at -4.5 V (SLPS570)'}),
-        R('R102', '110R', 'BQ_ILIM', 'GND', Note='ILIM = 355/R -> 3.2 A'),
+        # Input current limit for an unknown adapter (worst case). IINMAX = KILIM / RILIM, KILIM 320 / 355 / 390
+        # (SLUSC88C 7.5); the I2C limit can only lower it. With VBUS at 9 V (a PD or QC 9 V contract, the
+        # smallest of which is 9 V 1.67 A) Q105 shorts R128: about 260 ohm, 1.23 / 1.37 / 1.50 A. At 5 V (no
+        # contract, any USB port) R102 + R128 = 797 ohm: 0.40 / 0.45 / 0.49 A, i.e. not above the 500 mA of a
+        # USB 2.0 port (the data sheet does not specify ILIM below 500 mA; the loop is the same).
+        # D103 + Q105 detect VBUS above about 6.8 V (Vz 5.8 .. 6.6 V + Vbe); at 5.25 V the zener leaks a few uA
+        # into R127 (Vbe < 0.1 V), at 8.55 V (9 V - 5 %) Q105 gets about 0.2 mA of base current for 3.4 mA.
+        R('R102', '237R', 'BQ_ILIM', 'ILIM_X', Note='ILIM: 237R with Q105 on (9 V), + R128 at 5 V'),
+        R('R128', '560R', 'ILIM_X', 'GND', Note='shorted by Q105 when VBUS is 9 V'),
+        P('Q105', 'Transistor_BJT:Q_NPN_BEC', 'MMBT3904', {'1': 'ILIM_DET', '2': 'GND', '3': 'ILIM_X'},
+          'Package_TO_SOT_SMD:SOT-23', {'MPN': 'MMBT3904', 'Note': 'on when VBUS > about 6.8 V'}),
+        P('D103', 'Device:D_Zener', '6V2', {'1': 'VBUS', '2': 'ILIM_ZEN'}, 'Diode_SMD:D_SOD-323',
+          {'MPN': 'MM3Z6V2T1G', 'Note': 'VBUS 9 V detect: 5.8 .. 6.6 V, 3 uA at 4 V'}),
+        R('R126', '4k7', 'ILIM_ZEN', 'ILIM_DET'), R('R127', '10k', 'ILIM_DET', 'GND'),
         R('R103', '5k23', 'REGN', 'BQ_TS', Note='JEITA network for a 103AT NTC'),
         R('R104', '30k1', 'BQ_TS', 'GND'),
         P('TH100', 'Device:Thermistor_NTC', '10k 103AT', {'1': 'BQ_TS', '2': 'GND'},

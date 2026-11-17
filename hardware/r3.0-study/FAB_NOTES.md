@@ -38,14 +38,15 @@ No impedance control. `bash gen/make_production.sh front_panel`.
 
 * **Both sides carry SMD parts** (bottom: 8 x 0402 termination resistors, the two 96Boards connectors J1 / J10,
   the cell holders). Order double-sided assembly.
-* `production/BOM_JLCPCB.csv` and `production/CPL_JLCPCB.csv` are in JLCPCB's format (368 parts, 146 lines).
+* `production/BOM_JLCPCB.csv` and `production/CPL_JLCPCB.csv` are in JLCPCB's format (373 parts, 149 lines).
   Unfitted parts (C142, R124, D105, D20, SW2) are in neither file.
 * **Not from JLCPCB** (`production/hand_solder.csv`): the four cell holders BT100–BT103 (Keystone 1042P) and
   the charger inductor L100 (Wurth 744316100) had no assembly stock on 2026-11-16. Buy and solder them by hand.
-* **Check the stock on the day of the order:** `python gen/stock_check.py <boards>`. 116 of the 148 BOM lines
-  are extended parts (a loading fee each). Thin on 2026-11-16: STM6601CM2DDM6F (23), J1 (10), RJ45 (21), X1 (7).
-* **Part orientation:** the CPL angles of 56 parts come from comparing each KiCad footprint with the footprint
-  in JLCPCB's own library, pad by pad (`gen/jlc_rotation.py`; 45 are turned, 11 already agree). 38 parts could
+* **Check the stock on the day of the order:** `python gen/stock_check.py <boards>`. 118 of the 151 BOM lines
+  are extended parts (a loading fee each). Thin on 2026-11-17: **STM6601CM2DDM6F (3, fewer than five boards
+  need)**, RJ45 J60 (6), X1 (7), J1 (10), D8 (28), TPS61022 (41), 93LC66 (48).
+* **Part orientation:** the CPL angles of 59 parts come from comparing each KiCad footprint with the footprint
+  in JLCPCB's own library, pad by pad (`gen/jlc_rotation.py`; 48 are turned, 11 already agree). 39 parts could
   not be decided that way and are marked CHECK in `production/check_orientation.csv`: LEDs and diodes (pad
   numbers of two-terminal parts are not a physical reference), the U.FL sockets, the RAK4630 and three other
   parts with no library footprint, the switches, the USB-C socket and the two bottom-side connectors. Tick
@@ -57,7 +58,7 @@ No impedance control. `bash gen/make_production.sh front_panel`.
 
 * `mmdvm_mesh.kicad_dru` waives three courtyard / silk checks (U3 with C44 / C45 as in rev1.3; Y3 beside SW101).
 * The GPS switch is marked ON only and neither slide switch has a name on silk (no room at the board edge); the enclosure carries the labels.
-* 106 reference designators are hidden on silk for lack of room.
+* 118 reference designators are hidden on silk for lack of room.
 
 ## Not verified – read before ordering
 
@@ -74,6 +75,10 @@ No impedance control. `bash gen/make_production.sh front_panel`.
 * Battery bypass U112 / Q104 (LTC4412 + CSD25404Q3): the LTC4412 data sheet could not be downloaded here; the
   wiring (VIN on the cells, SENSE on VSYS, P-FET drain on the cells) follows its standard application and the
   KiCad symbol. Check it against the data sheet's first-page circuit before ordering.
+* USB input current limit (design record 16.17): R102 237R + R128 560R on ILIM, Q105 shorts R128 when VBUS is
+  above about 6.8 V. 0.49 A max at 5 V, 1.50 A max at 9 V, so any USB port or 9 V adapter is within its rating.
+  Keep these values. Not measured: the detector threshold (D103 / R126 / R127), and the 5 V limit, which is below
+  the 500 mA the data sheet specifies ILIM for.
 * The VCO loop-filter node of U1 (rev1.3 RF section) is not the rev1.3 routing (9.3 mm, two vias, a short run on
   In2; U2 has 8.0 mm): check the 433 MHz spectrum.
 * The enclosure (`case/meshtastic-concept`) has not been printed.

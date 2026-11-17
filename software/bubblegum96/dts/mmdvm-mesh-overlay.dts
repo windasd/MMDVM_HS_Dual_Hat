@@ -270,7 +270,9 @@
 	 *  - termination 256 mA, pre-charge 256 mA, minimum system 3.5 V.
 	 *  - boost (OTG) values are mandatory in the binding but unused: the
 	 *    USB-C port is sink only.
-	 *  - ti,use-ilim-pin: R102 = 110 R sets a 3.2 A input limit.
+	 *  - ti,use-ilim-pin: keep it. The ILIM pin sets the hardware input limit for an unknown adapter: about
+	 *    1.37 A typ / 1.50 A max with VBUS at 9 V and 0.45 A typ / 0.49 A max at 5 V (R102, R128, Q105);
+	 *    without this property the driver clears EN_ILIM and the register limit (3.25 A for a DCP) applies.
 	 * Note: the driver disables the chip's I2C watchdog, so these settings
 	 * stay in force after the host shuts down (the chip stays powered).
 	 */
