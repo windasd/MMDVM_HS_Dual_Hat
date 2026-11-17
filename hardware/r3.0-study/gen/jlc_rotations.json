@@ -441,7 +441,7 @@
   "corr": null,
   "footprint": "R_0402_1005Metric",
   "note": "two-pad part",
-  "ref": "R29"
+  "ref": "R30"
  },
  "C25744": {
   "corr": null,
@@ -466,6 +466,12 @@
   "footprint": "R_0402_1005Metric",
   "note": "two-pad part",
   "ref": "R111"
+ },
+ "C25768": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R121"
  },
  "C25780": {
   "corr": null,
@@ -802,6 +808,20 @@
   "note": "",
   "pads": 6,
   "ref": "P7"
+ },
+ "C514442": {
+  "all": {
+   "0": 3.3,
+   "180": 0.08,
+   "270": 1.91,
+   "90": 1.92
+  },
+  "corr": 180,
+  "fit": 0.079,
+  "footprint": "TSOT-23-6",
+  "note": "",
+  "pads": 6,
+  "ref": "U112"
  },
  "C5184785": {
   "all": {

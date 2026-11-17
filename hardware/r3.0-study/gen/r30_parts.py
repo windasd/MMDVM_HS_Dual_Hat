@@ -58,7 +58,9 @@ def mmdvm_io():
           {'MPN': 'B3U-1000P'}),
         R('R25', '10k', 'BOOT0', 'HOST_BOOT0'),
         R('R31', '100k', 'BOOT0', 'GND', Note='new: BOOT0 low while the host is off'),
-        R('R29', '100k', 'BOOT0_SEL', 'BOOT0'),
+        # r1.3 had 100k here; with R31 (100k to GND) added, a P7 jumper to +3V3 only reached 1.65 V with the host
+        # off and 0.27 V with the host driving low through R25: below the STM32's BOOT0 high level
+        R('R29', '1k', 'BOOT0_SEL', 'BOOT0', Note='P7 jumper wins over R25 / R31: 2.97 V host low, 3.27 V host off'),
         R('R30', '100k', 'BOOT1', 'BOOT1_SEL'),
         P('JP1', 'Jumper:SolderJumper_2_Open', 'BOOT1', {'1': 'BOOT1_SEL', '2': 'GND'},
           'Jumper:SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm', in_bom=False),
@@ -140,6 +142,8 @@ def host_if():
           {'Note': '1-2: hold while +1V8 present (default); 2-3: hold = GPIO-F (gpio-poweroff active-low)'},
           in_bom=False),
         LVC1T45('U29', '+1V8_HOST', '+3V3_MESH', 'HOLD_A', 'HOST_HOLD', True, 'host alive -> STM6601 PS_HOLD'),
+        R('R125', '100k', 'LS_GPIO_F', '+1V8_HOST',
+          Note='with JP2 at 2-3: hold stays high until gpio-poweroff drives GPIO-F low (and across a reboot)'),
         R('R43', '100k', 'HOST_HOLD', 'GND', Note='low when the host is unpowered (Ioff)'),
         # open-drain status lines into host GPIOs (1.8 V pull-ups)
         OD_BUF('U30', '+1V8_HOST', 'SC16_IRQ_N', 'LS_GPIO_C', 'SC16IS752 IRQ -> GPIO-C'),

@@ -38,11 +38,11 @@ No impedance control. `bash gen/make_production.sh front_panel`.
 
 * **Both sides carry SMD parts** (bottom: 8 x 0402 termination resistors, the two 96Boards connectors J1 / J10,
   the cell holders). Order double-sided assembly.
-* `production/BOM_JLCPCB.csv` and `production/CPL_JLCPCB.csv` are in JLCPCB's format (365 parts, 144 lines).
-  Unfitted parts (C142, R124, D20, SW2) are in neither file.
+* `production/BOM_JLCPCB.csv` and `production/CPL_JLCPCB.csv` are in JLCPCB's format (368 parts, 146 lines).
+  Unfitted parts (C142, R124, D105, D20, SW2) are in neither file.
 * **Not from JLCPCB** (`production/hand_solder.csv`): the four cell holders BT100–BT103 (Keystone 1042P) and
   the charger inductor L100 (Wurth 744316100) had no assembly stock on 2026-11-16. Buy and solder them by hand.
-* **Check the stock on the day of the order:** `python gen/stock_check.py <boards>`. 115 of the 146 BOM lines
+* **Check the stock on the day of the order:** `python gen/stock_check.py <boards>`. 116 of the 148 BOM lines
   are extended parts (a loading fee each). Thin on 2026-11-16: STM6601CM2DDM6F (23), J1 (10), RJ45 (21), X1 (7).
 * **Part orientation:** the CPL angles of 56 parts come from comparing each KiCad footprint with the footprint
   in JLCPCB's own library, pad by pad (`gen/jlc_rotation.py`; 45 are turned, 11 already agree). 38 parts could
@@ -71,6 +71,9 @@ No impedance control. `bash gen/make_production.sh front_panel`.
   In1 plane there. The 90 ohm figure assumes an unbroken reference.
 * Two vias of the USB pair sit 0.12 mm from the pads of U60, under the package: the gap between the pad row and
   the exposed pad is 0.55 mm, so no standard via fits elsewhere. Tented; if in doubt order epoxy-filled vias.
+* Battery bypass U112 / Q104 (LTC4412 + CSD25404Q3): the LTC4412 data sheet could not be downloaded here; the
+  wiring (VIN on the cells, SENSE on VSYS, P-FET drain on the cells) follows its standard application and the
+  KiCad symbol. Check it against the data sheet's first-page circuit before ordering.
 * The VCO loop-filter node of U1 (rev1.3 RF section) is not the rev1.3 routing (9.3 mm, two vias, a short run on
   In2; U2 has 8.0 mm): check the 433 MHz spectrum.
 * The enclosure (`case/meshtastic-concept`) has not been printed.

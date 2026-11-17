@@ -202,3 +202,19 @@ T Net-(U1-VCOIN) F.Cu 0.25 134.0,230.95 134.95,231.39
 # 2026-11-17, not hand_edit.py: reref_usb.py whole (whole-chain re-route of the strip crossings, 10 moved),
 # a VSYS link re-routed with patch_route.py after the VSYS pour round R105's via was cut off, dangling vias
 # dropped, stitch_strip.py (19 ground vias beside the remaining cuts).
+# 2026-11-17, review fixes, not hand_edit.py: C142 re-placed as a 1210 at 168.6, 118.3 (rot 90), D105 at
+# 171.3, 115.9 (rot 90), R125 at 113.4, 191.5 (rot 180), all with add_parts.py and joined with patch_route.py;
+# the old C142 stubs removed with he/assist_rm (three F.Cu segments at y 118.10).
+# 2026-11-17, battery bypass: Q104 at 152.7, 165.0 (rot 180) and U112 at 150.6, 177.1 (rot 90) with add_parts.py;
+# the power copper below (he/bypass); U112's gate, sense, supply and ground lines with patch_route.py (the gate
+# line uses one via at the east edge of the USB reference strip, at 150.30, 166.96, the only way round Q104);
+# stitch_strip.py added three ground vias beside it.
+# Battery-to-VSYS bypass FET Q104 (CSD25404Q3) over the CELL+ collector (placed at 152.7, 165.0, rot 180):
+# drain down to the B.Cu bar through four vias south of the pad, between HOST_HOLD and SDA_AON on In2;
+# source straight into the VSYS strip that feeds the 12 V boost inductor.
+V CELL+ 151.75,167.5 0.6 0.3
+V CELL+ 152.45,167.5 0.6 0.3
+V CELL+ 151.75,168.2 0.6 0.3
+V CELL+ 152.45,168.2 0.6 0.3
+T CELL+ F.Cu 1.2 152.1,165.8 152.1,168.2
+T VSYS F.Cu 1.8 154.6,165.32 155.2,165.32

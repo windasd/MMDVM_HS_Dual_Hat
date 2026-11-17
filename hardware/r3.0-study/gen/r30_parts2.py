@@ -40,7 +40,7 @@ def meshtastic():
         P('SW41', 'Switch:SW_Push', 'MESH BTN', {'1': 'MESH_BTN_N', '2': 'GND'},
           'Button_Switch_SMD:SW_SPST_B3U-1000P', {'MPN': 'B3U-1000P', 'Note': 'bench button, parallel to the front panel'}),
         R('R62', '100k', 'MESH_BTN_N', '+3V3_MESH'),
-        R('R63', '1k', 'GPS_RXD_MCU', 'GPS_RXD', Note='GPS may be unpowered: limit back-drive'),
+        R('R63', '10k', 'GPS_RXD_MCU', 'GPS_RXD', Note='GPS may be unpowered: limit back-drive (0.3 mA)'),
         R('R64', '1M', 'CELL+', 'VBAT_ADC', Note='RAK19007 divider; ADC_MULTIPLIER 1.73; no capacitor'),
         R('R65', '1.5M', 'VBAT_ADC', 'GND'),
         R('R66', '4k7', 'SDA_MESH', '+3V3_MESH'), R('R67', '4k7', 'SCL_MESH', '+3V3_MESH'),
@@ -133,6 +133,22 @@ def power():
           {'MPN': 'Wurth 7443340100 (1 uH, >7 A)'}),
         C('C107', '22u', 'VSYS', 'GND', FP_C0805), C('C108', '22u', 'VSYS', 'GND', FP_C0805),
         C('C109', '10u', 'CELL+', 'GND', FP_C0805), C('C110', '10u', 'CELL+', 'GND', FP_C0805),
+        # Battery-to-VSYS bypass. The BQ25895 BATFET is rated 6 A continuous / 9 A for 1 s and latches off at
+        # 9 A (SLUSC88C 7.3, IBAT(FET_OCP)); the host on the 12 V boost plus the 5 V and 3.3 V loads can take
+        # 7 .. 8.5 A from the cells. An ideal diode (LTC4412 + P-FET, drain on the cells, source on VSYS, so the
+        # body diode points to the load) parallels the BATFET: it conducts only when VSYS is below the cells
+        # (battery or supplement mode) and shares the current by resistance, about 10 mohm against the BATFET's
+        # 11 .. 19 mohm plus its path, leaving the BATFET under 4 A. With VBUS present and the charger holding
+        # VSYS above the cells it is off and charging is unchanged. Side effect: the BQ25895 can no longer
+        # cut VSYS from the cells (ship mode, the /QON system reset); SW101 still disconnects the pack.
+        P('U112', 'Power_Management:LTC4412xS6', 'LTC4412', {'1': 'CELL+', '2': 'GND', '3': 'GND', '4': None,
+                                                            '5': 'BYP_GATE', '6': 'VSYS'},
+          'Package_TO_SOT_SMD:TSOT-23-6', {'MPN': 'LTC4412ES6#TRPBF',
+                                           'Note': 'ideal diode controller, 2.5 .. 28 V; CTL low = automatic; VIN decoupled by C109 / C110 on CELL+'}),
+        P('Q104', 'MMDVM_r30:PMOS_SON8', 'CSD25404Q3', {'1': 'VSYS', '2': 'VSYS', '3': 'VSYS', '4': 'BYP_GATE',
+                                                        '5': 'CELL+'},
+          'Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET',
+          {'MPN': 'CSD25404Q3', 'Note': 'bypass FET: 12.1 mohm max at VGS -2.5 V, 5.5 typ at -4.5 V (SLPS570)'}),
         R('R102', '110R', 'BQ_ILIM', 'GND', Note='ILIM = 355/R -> 3.2 A'),
         R('R103', '5k23', 'REGN', 'BQ_TS', Note='JEITA network for a 103AT NTC'),
         R('R104', '30k1', 'BQ_TS', 'GND'),
@@ -263,15 +279,21 @@ def power():
                    'variant gives only 1.4 s. See C142 / R124 if the host is slower'}),
         # Start-up assist, not fitted: the 96Boards host raises +1V8 (-> HOST_HOLD) some time after power-on and
         # that time is not documented for the Bubblegum-96. If it is longer than tON_BLANK the controller drops
-        # EN again. Fitting C142 (10 .. 22 uF), R124 (10k) and changing R43 to 1M holds PS_HOLD up from the EN
-        # edge for roughly C142 x 1M (10 .. 20 s). Side effect: power-off after the host shuts down is delayed
-        # by about the same time.
-        C('C142', '10u', 'HOST_PWR_EN', 'HOLD_ASSIST', FP_C0603, dnp=True,
-          Note='DNP: start-up assist, see U111'),
+        # EN again. C142 from EN into HOST_HOLD holds PS_HOLD up from the EN edge. During tON_BLANK the STM6601
+        # pulls PS_HOLD down internally (300k typ, 195k min), so the time constant is C142 x (R124 + R43 || 300k):
+        # with R43 changed to 1M about C142 x 240k, and PS_HOLD stays above 1.05 V for about 1.1 time constants.
+        # 5.6 .. 12 s of tON_BLANK need at least 47 uF of effective capacitance (68 uF / 6.3 V in 1210, about
+        # 50 uF left at 3.3 V); power-off after the host shuts down is then delayed by up to about a minute.
+        # D105 clamps the negative step on HOLD_ASSIST when EN falls (PS_HOLD and U29 B are rated -0.3 V min).
+        # Not tried on hardware; a timer would be cleaner. (Review 2026-11-17: 10 uF only gave about 2.7 s.)
+        C('C142', '68u', 'HOST_PWR_EN', 'HOLD_ASSIST', 'Capacitor_SMD:C_1210_3225Metric', dnp=True,
+          Note='DNP: start-up assist, see U111; 6.3 V X5R, at least 47 uF left at 3.3 V'),
+        P('D105', 'Device:D_Schottky', 'BAT54', {'1': 'HOLD_ASSIST', '2': 'GND'}, 'Diode_SMD:D_SOD-323',
+          {'MPN': 'BAT54HT1G', 'Note': 'DNP: start-up assist, clamps the step when EN falls'}, dnp=True),
         R('R124', '10k', 'HOLD_ASSIST', 'HOST_HOLD', dnp=True, Note='DNP: start-up assist, see U111'),
         # DS (DocID15453 rev 14): the VREF pin needs its capacitor even when the reference is not used
         C('C141', '1u', 'STM_VREF', 'GND', Note='mandatory VREF capacitor'),
-        C('C140', '100n', '+3V3_MESH', 'GND'), R('R121', '100k', 'PWR_BTN_N', '+3V3_MESH'),
+        C('C140', '100n', '+3V3_MESH', 'GND'), R('R121', '22k', 'PWR_BTN_N', '+3V3_MESH', Note='holds the node at 3.5 V against the BQ25895 /QON pull-up (5.8 V with VBUS) through D102; STM6601 PB max is VCC + 0.3 V'),
         R('R122', '100k', 'HOST_PWR_EN', 'GND'), R('R123', '10k', 'BTN_INT_N', '+3V3_MESH'),
         P('SW100', 'Switch:SW_Push', 'POWER', {'1': 'PWR_BTN_N', '2': 'GND'},
           'MMDVM_r30:SW_Push_Alps_SKRTLAE010_NarrowPad1', {'MPN': 'Alps SKRTLAE010 (side push)'}),
