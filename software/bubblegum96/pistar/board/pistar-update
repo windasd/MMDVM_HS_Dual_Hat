@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# Replacement for Pi-Star's pistar-update on the Bubblegum-96.
+#
+# Upstream does "git pull" in /usr/local/bin (armhf binaries), /usr/local/sbin
+# and /var/www/dashboard, runs apt-get upgrade, installs an armhf WiringPi
+# package and remounts the root file system. Here the three trees are pinned
+# and patched by install-pistar.sh, so the only thing left to update is the
+# host / talk group / ID files. The dashboard's "Update" page runs this
+# script and shows /var/log/pi-star/pi-star_update.log.
+# Part of software/bubblegum96/pistar (not Pi-Star code). UNTESTED.
+set -euo pipefail
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "[!] ERROR: You need to be root to run this command..." >&2
+	exit 1
+fi
+
+exec 200>/var/lock/pistar-update.lock || exit 1
+if ! flock -n 200; then
+	echo "[!] ERROR: Another instance is already running..." >&2
+	exit 1
+fi
+
+main() {
+	echo "[INFO] Pi-Star on a Bubblegum-96: programs and dashboard are pinned,"
+	echo "[INFO] they are not updated from here (see pins.conf, install-pistar.sh)."
+	if [ -r /usr/local/etc/pistar-b96-pins ]; then
+		echo "[INFO] Installed pins:"
+		grep -E '^(PIN_|PISTAR_VERSION)' /usr/local/etc/pistar-b96-pins |
+			sed -e 's/[[:space:]]*#.*$//' -e 's/^/[INFO]   /'
+	fi
+	echo "[INFO] Updating Hostfiles..."
+	if [ -x /usr/local/sbin/HostFilesUpdate.sh ]; then
+		if /usr/local/sbin/HostFilesUpdate.sh >/dev/null 2>&1; then
+			echo "[OK] Done"
+		else
+			echo "[!] WARN: HostFilesUpdate.sh reported an error (no network?)"
+		fi
+	else
+		echo "[!] WARN: /usr/local/sbin/HostFilesUpdate.sh is missing"
+	fi
+	echo "[INFO] Operating system packages are not touched; use apt yourself."
+	echo "[INFO] Finished"
+}
+
+if [ -t 1 ]; then
+	main
+else
+	mkdir -p /var/log/pi-star
+	main >>/var/log/pi-star/pi-star_update.log 2>&1
+fi
+exit 0

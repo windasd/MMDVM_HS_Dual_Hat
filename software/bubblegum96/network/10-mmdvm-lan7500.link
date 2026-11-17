@@ -1,0 +1,22 @@
+# /etc/systemd/network/10-mmdvm-lan7500.link
+# Stable name for the on-board LAN7500 (USB 2.0 to gigabit Ethernet, mainline
+# driver smsc75xx, USB ID 0424:7500). UNTESTED.
+#
+# Why: the configuration EEPROM (U64) is blank after assembly. Until it is
+# programmed the driver picks a random MAC address at every boot, and udev's
+# default name for USB network adapters is derived from the MAC address
+# (enx...), so the interface name would change at every boot.
+#
+# This matches every smsc75xx adapter. If another LAN75xx USB adapter is ever
+# plugged in, match by Path= instead (see: udevadm info /sys/class/net/<if>).
+
+[Match]
+Driver=smsc75xx
+
+[Link]
+Name=lan0
+# To keep one address across boots without programming the EEPROM, uncomment
+# both lines and put a locally administered address here (second hex digit
+# 2, 6, A or E). The alternative is to write the EEPROM with "ethtool -E".
+#MACAddressPolicy=none
+#MACAddress=02:00:00:00:00:01

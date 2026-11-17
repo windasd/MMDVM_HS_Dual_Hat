@@ -1,0 +1,19 @@
+# /etc/default/mmdvm-fan - limits for /usr/local/sbin/mmdvm-fan (sourced by bash).
+# Temperatures are degrees C of the air at the SoC-column outlet (TMP102),
+# not the SoC die temperature. Starting values, not measured on hardware.
+
+# Fan stops below T_OFF, starts at T_ON, reaches PWM_MAX at T_MAX.
+T_OFF=30
+T_ON=33
+# The study wants the cells below 45 C (charging limit).
+T_MAX=45
+
+# PWM range 0..255. PWM_MIN must be high enough for the fan to start.
+PWM_MIN=90
+PWM_MAX=255
+
+# Minimum duty while the BQ25895 reports "Charging".
+PWM_CHARGE=150
+
+# Seconds between readings.
+INTERVAL=5

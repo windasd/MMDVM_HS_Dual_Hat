@@ -1,0 +1,66 @@
+# Kernel options needed by software/bubblegum96 (r3.0-study mezzanine).
+# Merge into the config of the self-maintained Bubblegum-96 kernel, e.g.
+#   scripts/kconfig/merge_config.sh .config kernel-config.fragment
+#
+# Symbol names were checked against the Kconfig files of torvalds/linux
+# master on 2026-11-16. Not build-tested.
+#
+# NOT covered here: USB host support for the S900 (not in mainline; the
+# user's kernel carries its own patches) - the LAN7500 hangs off the GL852G
+# hub on the high-speed connector and needs it.
+
+# --- SoC basics (already set in a kernel that boots this board)
+CONFIG_ARCH_ACTIONS=y
+CONFIG_PINCTRL_OWL=y
+CONFIG_PINCTRL_S900=y
+# LS UART0 = uart2 = /dev/ttyOWL2 (MMDVM modem); console stays on ttyOWL5
+CONFIG_SERIAL_OWL=y
+CONFIG_SERIAL_OWL_CONSOLE=y
+# LS I2C0 = i2c1
+CONFIG_I2C=y
+CONFIG_I2C_OWL=y
+# i2cdetect / i2cget for bring-up
+CONFIG_I2C_CHARDEV=m
+
+# --- GPIO user space
+# libgpiod (gpioinfo, gpioget ...)
+CONFIG_GPIO_CDEV=y
+# /sys/class/gpio for mmdvm-gpio and "stm32flash -i". GPIO_SYSFS is only
+# visible with EXPERT; GPIO_SYSFS_LEGACY (global numbers, export file)
+# exists on recent kernels only and defaults to y there.
+CONFIG_EXPERT=y
+CONFIG_GPIO_SYSFS=y
+CONFIG_GPIO_SYSFS_LEGACY=y
+
+# --- SC16IS752 dual UART (ttySC0 Meshtastic, ttySC1 GPS)
+# selects SERIAL_SC16IS7XX_I2C when I2C is enabled
+CONFIG_SERIAL_SC16IS7XX=m
+
+# --- GPS PPS on GPIO-H (pps-gpio -> /dev/pps0)
+CONFIG_PPS=y
+CONFIG_PPS_CLIENT_GPIO=m
+
+# --- power key (gpio-keys on GPIO-E) and the gpio-poweroff fallback (GPIO-F)
+CONFIG_INPUT_EVDEV=y
+CONFIG_INPUT_KEYBOARD=y
+CONFIG_KEYBOARD_GPIO=y
+CONFIG_POWER_RESET=y
+CONFIG_POWER_RESET_GPIO=y
+
+# --- hwmon: fan controller EMC2301, outlet sensor TMP102, 12 V monitor INA226
+CONFIG_HWMON=y
+CONFIG_SENSORS_EMC2305=m
+CONFIG_SENSORS_TMP102=m
+CONFIG_SENSORS_INA2XX=m
+
+# --- battery: BQ25895 charger (bq25890 driver), MAX17048 fuel gauge
+CONFIG_POWER_SUPPLY=y
+CONFIG_CHARGER_BQ25890=m
+# BATTERY_MAX17040 depends on IIO
+CONFIG_IIO=y
+CONFIG_BATTERY_MAX17040=m
+
+# --- on-board Ethernet: LAN7500 (USB 0424:7500) -> smsc75xx
+CONFIG_USB_NET_DRIVERS=y
+CONFIG_USB_USBNET=m
+CONFIG_USB_NET_SMSC75XX=m

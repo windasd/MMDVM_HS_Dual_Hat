@@ -1,0 +1,6 @@
+#!/bin/sh
+# Pi-Star habit: "rpi-rw" makes the read-only root file system writable.
+# On this board the root file system is ordinary read-write ext4, so there
+# is nothing to do. Part of software/bubblegum96/pistar (not Pi-Star code).
+echo "rpi-rw: nothing to do - the root file system of this board is always read-write."
+exit 0

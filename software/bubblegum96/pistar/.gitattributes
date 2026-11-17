@@ -1,0 +1,2 @@
+# Scripts and patches must reach the target with LF line endings.
+* text=auto eol=lf

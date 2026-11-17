@@ -1,0 +1,2508 @@
+{
+ "schema": "tjc-hmi-layout/1",
+ "device": {
+  "model": "TJC8048X550_011R",
+  "series": "X5",
+  "width": 800,
+  "height": 480,
+  "orientation": "landscape, 0 degrees",
+  "encoding": "iso-8859-1",
+  "touch": "resistive"
+ },
+ "driver": {
+  "software": "g4klx/MMDVM-Display (Nextion driver)",
+  "screen_layout": 3,
+  "addressing": "by object name only; the driver never uses a component id or a page id",
+  "note": "Component id = creation order = drawing order. It matters only to the editor."
+ },
+ "colours": {
+  "BG": {
+   "rgb565": 0,
+   "rgb": [
+    0,
+    0,
+    0
+   ]
+  },
+  "PANEL": {
+   "rgb565": 6405,
+   "rgb": [
+    24,
+    32,
+    41
+   ]
+  },
+  "BAR": {
+   "rgb565": 10664,
+   "rgb": [
+    41,
+    52,
+    66
+   ]
+  },
+  "WHITE": {
+   "rgb565": 65535,
+   "rgb": [
+    255,
+    255,
+    255
+   ]
+  },
+  "GREY": {
+   "rgb565": 52858,
+   "rgb": [
+    206,
+    207,
+    214
+   ]
+  },
+  "DIM": {
+   "rgb565": 33906,
+   "rgb": [
+    132,
+    142,
+    148
+   ]
+  },
+  "AMBER": {
+   "rgb565": 65056,
+   "rgb": [
+    255,
+    199,
+    0
+   ]
+  },
+  "GREEN": {
+   "rgb565": 18190,
+   "rgb": [
+    66,
+    227,
+    115
+   ]
+  },
+  "RED": {
+   "rgb565": 64073,
+   "rgb": [
+    255,
+    73,
+    74
+   ]
+  },
+  "CYAN": {
+   "rgb565": 18015,
+   "rgb": [
+    66,
+    203,
+    255
+   ]
+  },
+  "BTN": {
+   "rgb565": 12943,
+   "rgb": [
+    49,
+    81,
+    123
+   ]
+  },
+  "BTN_DN": {
+   "rgb565": 65056,
+   "rgb": [
+    255,
+    199,
+    0
+   ]
+  },
+  "ACC_MMDVM": {
+   "rgb565": 18015,
+   "rgb": [
+    66,
+    203,
+    255
+   ]
+  },
+  "ACC_DSTAR": {
+   "rgb565": 21791,
+   "rgb": [
+    82,
+    162,
+    255
+   ]
+  },
+  "ACC_DMR": {
+   "rgb565": 64672,
+   "rgb": [
+    255,
+    150,
+    0
+   ]
+  },
+  "ACC_YSF": {
+   "rgb565": 52127,
+   "rgb": [
+    206,
+    113,
+    255
+   ]
+  },
+  "ACC_P25": {
+   "rgb565": 64341,
+   "rgb": [
+    255,
+    105,
+    173
+   ]
+  },
+  "ACC_NXDN": {
+   "rgb565": 18201,
+   "rgb": [
+    66,
+    227,
+    206
+   ]
+  },
+  "ACC_POCSAG": {
+   "rgb565": 65288,
+   "rgb": [
+    255,
+    227,
+    66
+   ]
+  },
+  "ACC_FM": {
+   "rgb565": 38664,
+   "rgb": [
+    148,
+    227,
+    66
+   ]
+  },
+  "ACC_SYS": {
+   "rgb565": 52858,
+   "rgb": [
+    206,
+    207,
+    214
+   ]
+  }
+ },
+ "fonts": {
+  "charset": "iso-8859-1",
+  "typeface": "Consolas Bold (monospaced; any bold monospaced face will do)",
+  "note": "Generate in this order so that the ids are 0..3. A character cell is half as wide as it is high.",
+  "table": [
+   {
+    "id": 0,
+    "name": "F32",
+    "height": 32,
+    "cell_w": 16,
+    "use": "clock, IP address, footer values, SYS button"
+   },
+   {
+    "id": 1,
+    "name": "F48",
+    "height": 48,
+    "cell_w": 24,
+    "use": "status line, frequencies, RSSI/BER, talker alias, POCSAG message, System buttons"
+   },
+   {
+    "id": 2,
+    "name": "F72",
+    "height": 72,
+    "cell_w": 36,
+    "use": "DMR source and talkgroup, destination lines"
+   },
+   {
+    "id": 3,
+    "name": "F96",
+    "height": 96,
+    "cell_w": 48,
+    "use": "own callsign on the idle page, source callsign on single-call pages"
+   }
+  ]
+ },
+ "pictures": [
+  {
+   "id": 0,
+   "file": "resources/00_bg_MMDVM.png",
+   "size": [
+    800,
+    480
+   ],
+   "used_by": "page MMDVM"
+  },
+  {
+   "id": 1,
+   "file": "resources/01_bg_DStar.png",
+   "size": [
+    800,
+    480
+   ],
+   "used_by": "page DStar"
+  },
+  {
+   "id": 2,
+   "file": "resources/02_bg_DMR.png",
+   "size": [
+    800,
+    480
+   ],
+   "used_by": "page DMR"
+  },
+  {
+   "id": 3,
+   "file": "resources/03_bg_YSF.png",
+   "size": [
+    800,
+    480
+   ],
+   "used_by": "page YSF"
+  },
+  {
+   "id": 4,
+   "file": "resources/04_bg_P25.png",
+   "size": [
+    800,
+    480
+   ],
+   "used_by": "page P25"
+  },
+  {
+   "id": 5,
+   "file": "resources/05_bg_NXDN.png",
+   "size": [
+    800,
+    480
+   ],
+   "used_by": "page NXDN"
+  },
+  {
+   "id": 6,
+   "file": "resources/06_bg_POCSAG.png",
+   "size": [
+    800,
+    480
+   ],
+   "used_by": "page POCSAG"
+  },
+  {
+   "id": 7,
+   "file": "resources/07_bg_FM.png",
+   "size": [
+    800,
+    480
+   ],
+   "used_by": "page FM"
+  },
+  {
+   "id": 8,
+   "file": "resources/08_bg_System.png",
+   "size": [
+    800,
+    480
+   ],
+   "used_by": "page System"
+  }
+ ],
+ "alignment": {
+  "xcen": "0 = left, 1 = centre, 2 = right",
+  "ycen": "0 = top, 1 = centre, 2 = bottom"
+ },
+ "pages": [
+  {
+   "id": 0,
+   "name": "MMDVM",
+   "vscope": "local",
+   "purpose": "Idle / CW ident / error / lockout / stopped. Must be page 0: the display shows it at power-on.",
+   "background": {
+    "pic_id": 0,
+    "file": "00_bg_MMDVM.png",
+    "elements": [
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 56,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 56,
+      "color": 18015,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 28,
+      "text": "MMDVM",
+      "size": 40,
+      "color": 18015,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 16,
+      "y": 232,
+      "w": 768,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "rect",
+      "x": 16,
+      "y": 316,
+      "w": 378,
+      "h": 64,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 30,
+      "y": 348,
+      "text": "RX",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 406,
+      "y": 316,
+      "w": 378,
+      "h": 64,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 420,
+      "y": 348,
+      "text": "TX",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 392,
+      "w": 800,
+      "h": 88,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 16,
+      "y": 408,
+      "text": "IP",
+      "size": 18,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "label",
+      "x": 312,
+      "y": 408,
+      "text": "TEMP",
+      "size": 18,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "label",
+      "x": 456,
+      "y": 408,
+      "text": "LOAD",
+      "size": 18,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "label",
+      "x": 560,
+      "y": 408,
+      "text": "CPU",
+      "size": 18,
+      "color": 33906,
+      "anchor": "lm"
+     }
+    ]
+   },
+   "components": [
+    {
+     "id": 1,
+     "objname": "t2",
+     "type": "Text",
+     "x": 392,
+     "y": 8,
+     "w": 392,
+     "h": 40,
+     "font": 0,
+     "pco": 52858,
+     "bco": 10664,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 40,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "date and time, strftime \"%x %X\" in the host's locale, about every 0.4 s while idle or sending CW",
+     "sample": "11/16/26 14:30:00",
+     "longest": "11/16/2026 02:30:00 PM"
+    },
+    {
+     "id": 2,
+     "objname": "t4",
+     "type": "Text",
+     "x": 16,
+     "y": 60,
+     "w": 768,
+     "h": 104,
+     "font": 3,
+     "pco": 65535,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 1,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 20,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "own callsign (ScreenLayout 3 only)",
+     "sample": "BX4ABC",
+     "longest": "BX4ABC/P"
+    },
+    {
+     "id": 3,
+     "objname": "t5",
+     "type": "Text",
+     "x": 200,
+     "y": 168,
+     "w": 400,
+     "h": 56,
+     "font": 1,
+     "pco": 52858,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 1,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "own DMR id, or empty if the id is 0 (ScreenLayout 3 only)",
+     "sample": "4661234",
+     "longest": "466123401"
+    },
+    {
+     "id": 4,
+     "objname": "t1",
+     "type": "Text",
+     "x": 24,
+     "y": 240,
+     "w": 752,
+     "h": 56,
+     "font": 1,
+     "pco": 18190,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 1,
+     "ycen": 1,
+     "txt": "WAITING FOR HOST",
+     "txt_maxl": 40,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "\"MMDVM IDLE\" / \"Sending CW Ident\"; the S0 script puts ERROR / LOCKOUT / MMDVM STOPPED here",
+     "sample": "MMDVM IDLE",
+     "longest": "Sending CW Ident"
+    },
+    {
+     "id": 5,
+     "objname": "t30",
+     "type": "Text",
+     "x": 68,
+     "y": 320,
+     "w": 318,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 20,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "RX frequency \"%.4f MHz\" or \"?\"",
+     "sample": "433.0000 MHz",
+     "longest": "1297.5000 MHz"
+    },
+    {
+     "id": 6,
+     "objname": "t32",
+     "type": "Text",
+     "x": 458,
+     "y": 320,
+     "w": 318,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 20,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "TX frequency \"%.4f MHz\" or \"?\"",
+     "sample": "438.0000 MHz",
+     "longest": "1297.5000 MHz"
+    },
+    {
+     "id": 7,
+     "objname": "t3",
+     "type": "Text",
+     "x": 16,
+     "y": 424,
+     "w": 280,
+     "h": 44,
+     "font": 0,
+     "pco": 65535,
+     "bco": 10664,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 48,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "IPv4 address (IPv6 if there is no IPv4) or \"(ip unknown)\"",
+     "sample": "192.168.1.23",
+     "longest": "192.168.100.123",
+     "note": "An IPv6 address is longer than the field and is cut off at 17 characters."
+    },
+    {
+     "id": 8,
+     "objname": "t20",
+     "type": "Text",
+     "x": 312,
+     "y": 424,
+     "w": 128,
+     "h": 44,
+     "font": 0,
+     "pco": 65535,
+     "bco": 10664,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 16,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "CPU temperature \"%2.1f \\xB0C\" (ScreenLayout 3 only, only when MMDVM-Info reports one)",
+     "sample": "45.2 °C",
+     "longest": "113.4 °F",
+     "note": "The degree sign is the single byte 0xB0: the project encoding must be iso-8859-1."
+    },
+    {
+     "id": 9,
+     "objname": "t22",
+     "type": "Text",
+     "x": 456,
+     "y": 424,
+     "w": 88,
+     "h": 44,
+     "font": 0,
+     "pco": 65535,
+     "bco": 10664,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "system load \"%0.2f\" or \"?\"",
+     "sample": "0.42",
+     "longest": "12.50"
+    },
+    {
+     "id": 10,
+     "objname": "t21",
+     "type": "Text",
+     "x": 560,
+     "y": 424,
+     "w": 136,
+     "h": 44,
+     "font": 0,
+     "pco": 65535,
+     "bco": 10664,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 16,
+     "isbr": 0,
+     "vscope": "global",
+     "driver_writes": "CPU clock \"%0.0f MHz\" or \"?\"",
+     "sample": "1800 MHz",
+     "longest": "2400 MHz"
+    },
+    {
+     "id": 11,
+     "objname": "b0",
+     "type": "Button",
+     "x": 704,
+     "y": 400,
+     "w": 88,
+     "h": 72,
+     "font": 0,
+     "pco": 65535,
+     "bco": 12943,
+     "pco2": 0,
+     "bco2": 65056,
+     "sta": "solid colour",
+     "xcen": 1,
+     "ycen": 1,
+     "txt": "SYS",
+     "txt_maxl": 3,
+     "vscope": "local",
+     "driver_writes": "",
+     "events": {
+      "touch_release": [
+       "page System"
+      ]
+     },
+     "sample": "SYS",
+     "longest": "SYS",
+     "note": "Opens the System page."
+    },
+    {
+     "id": 12,
+     "objname": "t0",
+     "type": "Text",
+     "x": 300,
+     "y": 24,
+     "w": 8,
+     "h": 8,
+     "font": 0,
+     "pco": 10664,
+     "bco": 10664,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 40,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"CALL/ID\", or \"LOCKOUT\" / \"MMDVM STOPPED\" (and an error text from the pre-2023 MMDVMHost)",
+     "sample": "BX4ABC/4661234",
+     "longest": "",
+     "hidden": true,
+     "note": "Kept so the instruction succeeds, but not shown: 8 x 8 px, text colour = background colour. The S0 script shows the alert in t1 instead."
+    },
+    {
+     "id": 13,
+     "objname": "t31",
+     "type": "Text",
+     "x": 312,
+     "y": 24,
+     "w": 8,
+     "h": 8,
+     "font": 0,
+     "pco": 10664,
+     "bco": 10664,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 30,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "location - always \"?\" in MMDVM-Display today",
+     "sample": "?",
+     "longest": "",
+     "hidden": true,
+     "note": "Not shown, same trick as t0."
+    },
+    {
+     "id": 14,
+     "objname": "cpuload",
+     "type": "Variable",
+     "sta": "int32",
+     "val": 0,
+     "vscope": "local",
+     "driver_writes": "cpuload.val=<load x 100>, or 0",
+     "note": "Holds load x 100. A Variable, not a progress bar: the value can exceed 100."
+    },
+    {
+     "id": 15,
+     "objname": "status",
+     "type": "Variable",
+     "sta": "int32",
+     "val": 0,
+     "vscope": "global",
+     "driver_writes": "MMDVM.status.val=<status code> before every click S0,1",
+     "note": "MUST be global: the driver writes MMDVM.status.val from every page."
+    },
+    {
+     "id": 16,
+     "objname": "S0",
+     "type": "Hotspot",
+     "x": 792,
+     "y": 0,
+     "w": 8,
+     "h": 8,
+     "vscope": "local",
+     "driver_writes": "click S0,1 after every MMDVM.status.val=N (ScreenLayout 3)",
+     "events": {
+      "touch_press": [
+       "if(MMDVM.status.val==11)",
+       "{",
+       "  t1.pco=18190",
+       "}",
+       "if(MMDVM.status.val==12)",
+       "{",
+       "  t1.pco=65056",
+       "}",
+       "if(MMDVM.status.val==13)",
+       "{",
+       "  t1.txt=\"ERROR\"",
+       "  t1.pco=64073",
+       "}",
+       "if(MMDVM.status.val==14)",
+       "{",
+       "  t1.pco=64073",
+       "}",
+       "if(MMDVM.status.val==15)",
+       "{",
+       "  t1.txt=\"LOCKOUT\"",
+       "  t1.pco=64073",
+       "}",
+       "if(MMDVM.status.val==19)",
+       "{",
+       "  t1.txt=\"MMDVM STOPPED\"",
+       "  t1.pco=64073",
+       "}"
+      ]
+     },
+     "note": "Colours the status line and shows the alerts the driver puts in the hidden t0 (or, for ERROR, does not send at all)."
+    }
+   ],
+   "events": {}
+  },
+  {
+   "id": 1,
+   "name": "DStar",
+   "vscope": "local",
+   "purpose": "D-Star call.",
+   "background": {
+    "pic_id": 1,
+    "file": "01_bg_DStar.png",
+    "elements": [
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 56,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 56,
+      "color": 21791,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 28,
+      "text": "D-STAR",
+      "size": 40,
+      "color": 21791,
+      "anchor": "lm"
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 204,
+      "text": "TO",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 16,
+      "y": 250,
+      "w": 768,
+      "h": 68,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "rect",
+      "x": 16,
+      "y": 332,
+      "w": 378,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 32,
+      "y": 368,
+      "text": "RSSI",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 406,
+      "y": 332,
+      "w": 378,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 422,
+      "y": 368,
+      "text": "BER",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     }
+    ]
+   },
+   "components": [
+    {
+     "id": 1,
+     "objname": "t0",
+     "type": "Text",
+     "x": 16,
+     "y": 60,
+     "w": 768,
+     "h": 100,
+     "font": 3,
+     "pco": 65535,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 24,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"<R|N> <my1, 8>/<my2, 4>\" on a header; \"Listening\" at the end",
+     "sample": "R BX4ABC  /ID51",
+     "longest": "N BX4ABCDE/ID51"
+    },
+    {
+     "id": 2,
+     "objname": "t1",
+     "type": "Text",
+     "x": 84,
+     "y": 164,
+     "w": 330,
+     "h": 80,
+     "font": 2,
+     "pco": 65056,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "your call, 8 characters; \"\" at the end",
+     "sample": "CQCQCQ",
+     "longest": "REF001CL"
+    },
+    {
+     "id": 3,
+     "objname": "t2",
+     "type": "Text",
+     "x": 430,
+     "y": 176,
+     "w": 354,
+     "h": 56,
+     "font": 1,
+     "pco": 52858,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 16,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"via <reflector, 8>\"; \"\" at the end",
+     "sample": "via REF001 C",
+     "longest": "via REF001 C"
+    },
+    {
+     "id": 4,
+     "objname": "t5",
+     "type": "Text",
+     "x": 24,
+     "y": 258,
+     "w": 752,
+     "h": 52,
+     "font": 1,
+     "pco": 18015,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 24,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slow-data text message, 20 characters (MMDVM-Display only); \"\" at the end",
+     "sample": "Taipei hotspot ID-51",
+     "longest": "12345678901234567890"
+    },
+    {
+     "id": 5,
+     "objname": "t3",
+     "type": "Text",
+     "x": 120,
+     "y": 340,
+     "w": 266,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "RSSI \"%ddBm\"; \"\" at the end",
+     "sample": "-47dBm",
+     "longest": "-120dBm"
+    },
+    {
+     "id": 6,
+     "objname": "t4",
+     "type": "Text",
+     "x": 510,
+     "y": 340,
+     "w": 266,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 10,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "BER \"%.1f%%\"; \"\" at the end",
+     "sample": "0.3%",
+     "longest": "100.0%"
+    },
+    {
+     "id": 7,
+     "objname": "S0",
+     "type": "Hotspot",
+     "x": 792,
+     "y": 0,
+     "w": 8,
+     "h": 8,
+     "vscope": "local",
+     "driver_writes": "click S0,1 after every MMDVM.status.val=N (ScreenLayout 3)",
+     "events": {
+      "touch_press": [
+       "if(MMDVM.status.val==41)",
+       "{",
+       "  t0.pco=33906",
+       "}",
+       "if(MMDVM.status.val==42)",
+       "{",
+       "  t0.pco=65535",
+       "}",
+       "if(MMDVM.status.val==46)",
+       "{",
+       "  if(t2.txt==\"via \")",
+       "  {",
+       "    t2.txt=\"\"",
+       "  }",
+       "}"
+      ]
+     },
+     "note": "Grey while listening, white during a call; drops an empty \"via \"."
+    }
+   ],
+   "events": {}
+  },
+  {
+   "id": 2,
+   "name": "DMR",
+   "vscope": "local",
+   "purpose": "DMR, both time slots.",
+   "background": {
+    "pic_id": 2,
+    "file": "02_bg_DMR.png",
+    "elements": [
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 52,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 52,
+      "color": 64672,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 26,
+      "text": "DMR",
+      "size": 40,
+      "color": 64672,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 8,
+      "y": 56,
+      "w": 784,
+      "h": 206,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "rect",
+      "x": 8,
+      "y": 56,
+      "w": 6,
+      "h": 206,
+      "color": 64672,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 8,
+      "y": 270,
+      "w": 784,
+      "h": 206,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "rect",
+      "x": 8,
+      "y": 270,
+      "w": 6,
+      "h": 206,
+      "color": 64672,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 776,
+      "y": 26,
+      "text": "TS1 above / TS2 below",
+      "size": 22,
+      "color": 33906,
+      "anchor": "rm"
+     }
+    ]
+   },
+   "components": [
+    {
+     "id": 1,
+     "objname": "t0",
+     "type": "Text",
+     "x": 24,
+     "y": 60,
+     "w": 760,
+     "h": 74,
+     "font": 2,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 50,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 1: \"1 <R|N> <source>\" at a start, \"1 Listening\" at the end",
+     "sample": "1 Listening",
+     "longest": "1 N BX4ABCDEF Taro",
+     "sample_pco": 33906
+    },
+    {
+     "id": 2,
+     "objname": "t1",
+     "type": "Text",
+     "x": 24,
+     "y": 134,
+     "w": 392,
+     "h": 74,
+     "font": 2,
+     "pco": 65056,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 16,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 1 destination: \"TG<id>\" (group) or \"<id>\" (private); \"\" at the end",
+     "sample": "",
+     "longest": "TG16777215"
+    },
+    {
+     "id": 3,
+     "objname": "t4",
+     "type": "Text",
+     "x": 424,
+     "y": 143,
+     "w": 196,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 1 RSSI \"%ddBm\"; \"\" at the end",
+     "sample": "",
+     "longest": "-120dBm"
+    },
+    {
+     "id": 4,
+     "objname": "t6",
+     "type": "Text",
+     "x": 628,
+     "y": 143,
+     "w": 156,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 10,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 1 BER \"%.1f%%\"; \"\" at the end",
+     "sample": "",
+     "longest": "100.0%"
+    },
+    {
+     "id": 5,
+     "objname": "t8",
+     "type": "Text",
+     "x": 24,
+     "y": 208,
+     "w": 760,
+     "h": 50,
+     "font": 1,
+     "pco": 18015,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 50,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 1 talker alias (MMDVM-Display, ScreenLayout 2 and 3); \"\" at the end",
+     "sample": "",
+     "longest": "1234567890123456789012345678901"
+    },
+    {
+     "id": 6,
+     "objname": "t2",
+     "type": "Text",
+     "x": 24,
+     "y": 274,
+     "w": 760,
+     "h": 74,
+     "font": 2,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 50,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 2: \"2 <R|N> <source>\" at a start, \"2 Listening\" at the end",
+     "sample": "2 N BX4ABC",
+     "longest": "2 N BX4ABCDEF Taro"
+    },
+    {
+     "id": 7,
+     "objname": "t3",
+     "type": "Text",
+     "x": 24,
+     "y": 348,
+     "w": 392,
+     "h": 74,
+     "font": 2,
+     "pco": 65056,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 16,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 2 destination: \"TG<id>\" (group) or \"<id>\" (private); \"\" at the end",
+     "sample": "TG46001",
+     "longest": "TG16777215"
+    },
+    {
+     "id": 8,
+     "objname": "t5",
+     "type": "Text",
+     "x": 424,
+     "y": 357,
+     "w": 196,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 2 RSSI \"%ddBm\"; \"\" at the end",
+     "sample": "-47dBm",
+     "longest": "-120dBm"
+    },
+    {
+     "id": 9,
+     "objname": "t7",
+     "type": "Text",
+     "x": 628,
+     "y": 357,
+     "w": 156,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 10,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 2 BER \"%.1f%%\"; \"\" at the end",
+     "sample": "0.3%",
+     "longest": "100.0%"
+    },
+    {
+     "id": 10,
+     "objname": "t9",
+     "type": "Text",
+     "x": 24,
+     "y": 422,
+     "w": 760,
+     "h": 50,
+     "font": 1,
+     "pco": 18015,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 50,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "slot 2 talker alias (MMDVM-Display, ScreenLayout 2 and 3); \"\" at the end",
+     "sample": "BX4ABC Taro Taipei",
+     "longest": "1234567890123456789012345678901"
+    },
+    {
+     "id": 11,
+     "objname": "S0",
+     "type": "Hotspot",
+     "x": 792,
+     "y": 0,
+     "w": 8,
+     "h": 8,
+     "vscope": "local",
+     "driver_writes": "click S0,1 after every MMDVM.status.val=N (ScreenLayout 3)",
+     "events": {
+      "touch_press": [
+       "if(MMDVM.status.val==61)",
+       "{",
+       "  t0.pco=33906",
+       "}",
+       "if(MMDVM.status.val==69)",
+       "{",
+       "  t2.pco=33906",
+       "}",
+       "if(MMDVM.status.val==62)",
+       "{",
+       "  t0.pco=65535",
+       "}",
+       "if(MMDVM.status.val==70)",
+       "{",
+       "  t2.pco=65535",
+       "}"
+      ]
+     },
+     "note": "Grey while a slot is listening, white during a call."
+    }
+   ],
+   "events": {}
+  },
+  {
+   "id": 3,
+   "name": "YSF",
+   "vscope": "local",
+   "purpose": "System Fusion call.",
+   "background": {
+    "pic_id": 3,
+    "file": "03_bg_YSF.png",
+    "elements": [
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 56,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 56,
+      "color": 52127,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 28,
+      "text": "YSF",
+      "size": 40,
+      "color": 52127,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 16,
+      "y": 332,
+      "w": 378,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 32,
+      "y": 368,
+      "text": "RSSI",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 406,
+      "y": 332,
+      "w": 378,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 422,
+      "y": 368,
+      "text": "BER",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     }
+    ]
+   },
+   "components": [
+    {
+     "id": 1,
+     "objname": "t0",
+     "type": "Text",
+     "x": 16,
+     "y": 64,
+     "w": 768,
+     "h": 104,
+     "font": 3,
+     "pco": 65535,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 20,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"<R|N> <source, 10>\" at a start; \"Listening\" at the end",
+     "sample": "N BX4ABC",
+     "longest": "N BX4ABC-123"
+    },
+    {
+     "id": 2,
+     "objname": "t1",
+     "type": "Text",
+     "x": 16,
+     "y": 196,
+     "w": 340,
+     "h": 80,
+     "font": 2,
+     "pco": 65056,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 16,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"DG-ID <n>\"; \"\" at the end",
+     "sample": "DG-ID 0",
+     "longest": "DG-ID 127"
+    },
+    {
+     "id": 3,
+     "objname": "t2",
+     "type": "Text",
+     "x": 430,
+     "y": 208,
+     "w": 354,
+     "h": 56,
+     "font": 1,
+     "pco": 52858,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 16,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"at <reflector, 10>\"; \"\" at the end",
+     "sample": "at FCS00290",
+     "longest": "at 1234567890"
+    },
+    {
+     "id": 4,
+     "objname": "t3",
+     "type": "Text",
+     "x": 120,
+     "y": 340,
+     "w": 266,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "RSSI \"%ddBm\"; \"\" at the end",
+     "sample": "-52dBm",
+     "longest": "-120dBm"
+    },
+    {
+     "id": 5,
+     "objname": "t4",
+     "type": "Text",
+     "x": 510,
+     "y": 340,
+     "w": 266,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 10,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "BER \"%.1f%%\"; \"\" at the end",
+     "sample": "1.2%",
+     "longest": "100.0%"
+    },
+    {
+     "id": 6,
+     "objname": "S0",
+     "type": "Hotspot",
+     "x": 792,
+     "y": 0,
+     "w": 8,
+     "h": 8,
+     "vscope": "local",
+     "driver_writes": "click S0,1 after every MMDVM.status.val=N (ScreenLayout 3)",
+     "events": {
+      "touch_press": [
+       "if(MMDVM.status.val==81)",
+       "{",
+       "  t0.pco=33906",
+       "}",
+       "if(MMDVM.status.val==82)",
+       "{",
+       "  t0.pco=65535",
+       "}",
+       "if(MMDVM.status.val==84)",
+       "{",
+       "  if(t2.txt==\"at \")",
+       "  {",
+       "    t2.txt=\"\"",
+       "  }",
+       "}"
+      ]
+     },
+     "note": "Grey while listening, white during a call; drops an empty \"at \"."
+    }
+   ],
+   "events": {}
+  },
+  {
+   "id": 4,
+   "name": "P25",
+   "vscope": "local",
+   "purpose": "P25 call.",
+   "background": {
+    "pic_id": 4,
+    "file": "04_bg_P25.png",
+    "elements": [
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 56,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 56,
+      "color": 64341,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 28,
+      "text": "P25",
+      "size": 40,
+      "color": 64341,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 16,
+      "y": 332,
+      "w": 378,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 32,
+      "y": 368,
+      "text": "RSSI",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 406,
+      "y": 332,
+      "w": 378,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 422,
+      "y": 368,
+      "text": "BER",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     }
+    ]
+   },
+   "components": [
+    {
+     "id": 1,
+     "objname": "t0",
+     "type": "Text",
+     "x": 16,
+     "y": 64,
+     "w": 768,
+     "h": 104,
+     "font": 3,
+     "pco": 65535,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 20,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"<R|N> <source, 10>\" at a start; \"Listening\" at the end",
+     "sample": "R BX4ABC",
+     "longest": "N BX4ABCDEFG"
+    },
+    {
+     "id": 2,
+     "objname": "t1",
+     "type": "Text",
+     "x": 16,
+     "y": 196,
+     "w": 768,
+     "h": 80,
+     "font": 2,
+     "pco": 65056,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 16,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"TG<id>\" (group) or \"<id>\"; \"\" at the end",
+     "sample": "TG10200",
+     "longest": "TG16777215"
+    },
+    {
+     "id": 3,
+     "objname": "t2",
+     "type": "Text",
+     "x": 120,
+     "y": 340,
+     "w": 266,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "RSSI \"%ddBm\"; \"\" at the end",
+     "sample": "-60dBm",
+     "longest": "-120dBm"
+    },
+    {
+     "id": 4,
+     "objname": "t3",
+     "type": "Text",
+     "x": 510,
+     "y": 340,
+     "w": 266,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 10,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "BER \"%.1f%%\"; \"\" at the end",
+     "sample": "0.0%",
+     "longest": "100.0%"
+    },
+    {
+     "id": 5,
+     "objname": "S0",
+     "type": "Hotspot",
+     "x": 792,
+     "y": 0,
+     "w": 8,
+     "h": 8,
+     "vscope": "local",
+     "driver_writes": "click S0,1 after every MMDVM.status.val=N (ScreenLayout 3)",
+     "events": {
+      "touch_press": [
+       "if(MMDVM.status.val==101)",
+       "{",
+       "  t0.pco=33906",
+       "}",
+       "if(MMDVM.status.val==102)",
+       "{",
+       "  t0.pco=65535",
+       "}"
+      ]
+     },
+     "note": "Grey while listening, white during a call."
+    }
+   ],
+   "events": {}
+  },
+  {
+   "id": 5,
+   "name": "NXDN",
+   "vscope": "local",
+   "purpose": "NXDN call.",
+   "background": {
+    "pic_id": 5,
+    "file": "05_bg_NXDN.png",
+    "elements": [
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 56,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 56,
+      "color": 18201,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 28,
+      "text": "NXDN",
+      "size": 40,
+      "color": 18201,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 16,
+      "y": 332,
+      "w": 378,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 32,
+      "y": 368,
+      "text": "RSSI",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 406,
+      "y": 332,
+      "w": 378,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 422,
+      "y": 368,
+      "text": "BER",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     }
+    ]
+   },
+   "components": [
+    {
+     "id": 1,
+     "objname": "t0",
+     "type": "Text",
+     "x": 16,
+     "y": 64,
+     "w": 768,
+     "h": 104,
+     "font": 3,
+     "pco": 65535,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 20,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"<R|N> <source, 10>\" at a start; \"Listening\" at the end",
+     "sample": "N BX4ABC",
+     "longest": "N BX4ABCDEFG"
+    },
+    {
+     "id": 2,
+     "objname": "t1",
+     "type": "Text",
+     "x": 16,
+     "y": 196,
+     "w": 768,
+     "h": 80,
+     "font": 2,
+     "pco": 65056,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 16,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"TG<id>\" (group) or \"<id>\"; \"\" at the end",
+     "sample": "TG65000",
+     "longest": "TG16777215"
+    },
+    {
+     "id": 3,
+     "objname": "t2",
+     "type": "Text",
+     "x": 120,
+     "y": 340,
+     "w": 266,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "RSSI \"%ddBm\"; \"\" at the end",
+     "sample": "-60dBm",
+     "longest": "-120dBm"
+    },
+    {
+     "id": 4,
+     "objname": "t3",
+     "type": "Text",
+     "x": 510,
+     "y": 340,
+     "w": 266,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 10,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "BER \"%.1f%%\"; \"\" at the end",
+     "sample": "0.0%",
+     "longest": "100.0%"
+    },
+    {
+     "id": 5,
+     "objname": "S0",
+     "type": "Hotspot",
+     "x": 792,
+     "y": 0,
+     "w": 8,
+     "h": 8,
+     "vscope": "local",
+     "driver_writes": "click S0,1 after every MMDVM.status.val=N (ScreenLayout 3)",
+     "events": {
+      "touch_press": [
+       "if(MMDVM.status.val==121)",
+       "{",
+       "  t0.pco=33906",
+       "}",
+       "if(MMDVM.status.val==122)",
+       "{",
+       "  t0.pco=65535",
+       "}"
+      ]
+     },
+     "note": "Grey while listening, white during a call."
+    }
+   ],
+   "events": {}
+  },
+  {
+   "id": 6,
+   "name": "POCSAG",
+   "vscope": "local",
+   "purpose": "POCSAG page being sent.",
+   "background": {
+    "pic_id": 6,
+    "file": "06_bg_POCSAG.png",
+    "elements": [
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 56,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 56,
+      "color": 65288,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 28,
+      "text": "POCSAG",
+      "size": 40,
+      "color": 65288,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 8,
+      "y": 152,
+      "w": 784,
+      "h": 320,
+      "color": 6405,
+      "radius": 8
+     }
+    ]
+   },
+   "components": [
+    {
+     "id": 1,
+     "objname": "t0",
+     "type": "Text",
+     "x": 16,
+     "y": 64,
+     "w": 768,
+     "h": 80,
+     "font": 2,
+     "pco": 65056,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 24,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"RIC: <n>\" for a message; \"Waiting\" at the end",
+     "sample": "RIC: 1234567",
+     "longest": "RIC: 4294967295"
+    },
+    {
+     "id": 2,
+     "objname": "t1",
+     "type": "Text",
+     "x": 16,
+     "y": 164,
+     "w": 768,
+     "h": 296,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 0,
+     "txt": "",
+     "txt_maxl": 200,
+     "isbr": 1,
+     "vscope": "local",
+     "driver_writes": "message text; \"\" at the end",
+     "sample": "DAPNET: BX4ABC test message, please ignore. 73",
+     "longest": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+     "note": "isbr=1 (word wrap), ycen=0 (top): 32 characters x 6 lines."
+    },
+    {
+     "id": 3,
+     "objname": "S0",
+     "type": "Hotspot",
+     "x": 792,
+     "y": 0,
+     "w": 8,
+     "h": 8,
+     "vscope": "local",
+     "driver_writes": "click S0,1 after every MMDVM.status.val=N (ScreenLayout 3)",
+     "events": {
+      "touch_press": [
+       "// nothing to do in the first version"
+      ]
+     },
+     "note": "Present because the driver clicks it."
+    }
+   ],
+   "events": {}
+  },
+  {
+   "id": 7,
+   "name": "FM",
+   "vscope": "local",
+   "purpose": "Analogue FM. MMDVM-Display sends \"page FM\"; the stock G4KLX / ON7LDS screens have no such page.",
+   "background": {
+    "pic_id": 7,
+    "file": "07_bg_FM.png",
+    "elements": [
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 56,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 56,
+      "color": 38664,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 28,
+      "text": "FM",
+      "size": 40,
+      "color": 38664,
+      "anchor": "lm"
+     },
+     {
+      "kind": "rect",
+      "x": 16,
+      "y": 332,
+      "w": 378,
+      "h": 72,
+      "color": 6405,
+      "radius": 8
+     },
+     {
+      "kind": "label",
+      "x": 32,
+      "y": 368,
+      "text": "RSSI",
+      "size": 28,
+      "color": 33906,
+      "anchor": "lm"
+     }
+    ]
+   },
+   "components": [
+    {
+     "id": 1,
+     "objname": "t0",
+     "type": "Text",
+     "x": 16,
+     "y": 64,
+     "w": 768,
+     "h": 104,
+     "font": 3,
+     "pco": 65535,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 100,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "\"R: Kerchunk\" / \"R: Relaying\" / \"R: Wait\" / \"R: Timeout\" / \"N: ...\" or the raw state name; \"Listening\"",
+     "sample": "R: Relaying",
+     "longest": "relaying_wait_rf"
+    },
+    {
+     "id": 2,
+     "objname": "t2",
+     "type": "Text",
+     "x": 120,
+     "y": 340,
+     "w": 266,
+     "h": 56,
+     "font": 1,
+     "pco": 65535,
+     "bco": 6405,
+     "sta": "solid colour",
+     "xcen": 2,
+     "ycen": 1,
+     "txt": "",
+     "txt_maxl": 12,
+     "isbr": 0,
+     "vscope": "local",
+     "driver_writes": "RSSI \"%ddBm\"; \"\" when listening (there is no t1 on this page)",
+     "sample": "-71dBm",
+     "longest": "-120dBm"
+    },
+    {
+     "id": 3,
+     "objname": "S0",
+     "type": "Hotspot",
+     "x": 792,
+     "y": 0,
+     "w": 8,
+     "h": 8,
+     "vscope": "local",
+     "driver_writes": "click S0,1 after every MMDVM.status.val=N (ScreenLayout 3)",
+     "events": {
+      "touch_press": [
+       "if(MMDVM.status.val==149)",
+       "{",
+       "  t0.pco=33906",
+       "}",
+       "if(MMDVM.status.val==147)",
+       "{",
+       "  t0.pco=65535",
+       "}"
+      ]
+     },
+     "note": "Grey while listening, white while relaying."
+    }
+   ],
+   "events": {}
+  },
+  {
+   "id": 8,
+   "name": "System",
+   "vscope": "local",
+   "purpose": "The one page the driver does not use: baud rate, touch calibration. Reached with SYS on the idle page.",
+   "background": {
+    "pic_id": 8,
+    "file": "08_bg_System.png",
+    "elements": [
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 56,
+      "color": 10664,
+      "radius": 0
+     },
+     {
+      "kind": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 56,
+      "color": 52858,
+      "radius": 0
+     },
+     {
+      "kind": "label",
+      "x": 24,
+      "y": 28,
+      "text": "SYSTEM",
+      "size": 40,
+      "color": 52858,
+      "anchor": "lm"
+     },
+     {
+      "kind": "label",
+      "x": 16,
+      "y": 92,
+      "text": "TJC8048X550_011R 800x480 - screen file v1 - ScreenLayout=3",
+      "size": 22,
+      "color": 52858,
+      "anchor": "lm"
+     },
+     {
+      "kind": "label",
+      "x": 16,
+      "y": 168,
+      "text": "DISPLAY BAUD RATE",
+      "size": 24,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "label",
+      "x": 16,
+      "y": 332,
+      "text": "Must equal SERIAL_REPEATER_BAUD of the modem firmware.",
+      "size": 22,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "label",
+      "x": 16,
+      "y": 404,
+      "text": "Brightness is set by MMDVM-Display",
+      "size": 22,
+      "color": 33906,
+      "anchor": "lm"
+     },
+     {
+      "kind": "label",
+      "x": 16,
+      "y": 436,
+      "text": "(Brightness / IdleBrightness).",
+      "size": 22,
+      "color": 33906,
+      "anchor": "lm"
+     }
+    ]
+   },
+   "components": [
+    {
+     "id": 1,
+     "objname": "nBaud",
+     "type": "Number",
+     "x": 272,
+     "y": 140,
+     "w": 200,
+     "h": 56,
+     "font": 1,
+     "pco": 65056,
+     "bco": 0,
+     "sta": "solid colour",
+     "xcen": 0,
+     "ycen": 1,
+     "val": 9600,
+     "lenth": 0,
+     "vscope": "local",
+     "driver_writes": "",
+     "sample": "9600",
+     "longest": "115200",
+     "note": "Shows the display's current power-on baud rate (system variable bauds)."
+    },
+    {
+     "id": 2,
+     "objname": "bBaud0",
+     "type": "Button",
+     "x": 16,
+     "y": 216,
+     "w": 240,
+     "h": 88,
+     "font": 1,
+     "pco": 65535,
+     "bco": 12943,
+     "pco2": 0,
+     "bco2": 65056,
+     "sta": "solid colour",
+     "xcen": 1,
+     "ycen": 1,
+     "txt": "9600",
+     "txt_maxl": 4,
+     "vscope": "local",
+     "driver_writes": "",
+     "events": {
+      "touch_release": [
+       "bauds=9600",
+       "nBaud.val=bauds"
+      ]
+     },
+     "sample": "9600",
+     "longest": "9600",
+     "note": "Stores 9600 as the power-on baud rate. Takes effect at once."
+    },
+    {
+     "id": 3,
+     "objname": "bBaud1",
+     "type": "Button",
+     "x": 272,
+     "y": 216,
+     "w": 240,
+     "h": 88,
+     "font": 1,
+     "pco": 65535,
+     "bco": 12943,
+     "pco2": 0,
+     "bco2": 65056,
+     "sta": "solid colour",
+     "xcen": 1,
+     "ycen": 1,
+     "txt": "115200",
+     "txt_maxl": 6,
+     "vscope": "local",
+     "driver_writes": "",
+     "events": {
+      "touch_release": [
+       "bauds=115200",
+       "nBaud.val=bauds"
+      ]
+     },
+     "sample": "115200",
+     "longest": "115200",
+     "note": "Stores 115200. Only for a modem firmware built with SERIAL_REPEATER_BAUD 115200."
+    },
+    {
+     "id": 4,
+     "objname": "bCal",
+     "type": "Button",
+     "x": 528,
+     "y": 216,
+     "w": 256,
+     "h": 88,
+     "font": 1,
+     "pco": 65535,
+     "bco": 12943,
+     "pco2": 0,
+     "bco2": 65056,
+     "sta": "solid colour",
+     "xcen": 1,
+     "ycen": 1,
+     "txt": "TOUCH CAL",
+     "txt_maxl": 9,
+     "vscope": "local",
+     "driver_writes": "",
+     "events": {
+      "touch_release": [
+       "touch_j"
+      ]
+     },
+     "sample": "TOUCH CAL",
+     "longest": "TOUCH CAL",
+     "note": "Resistive touch calibration."
+    },
+    {
+     "id": 5,
+     "objname": "bBack",
+     "type": "Button",
+     "x": 528,
+     "y": 376,
+     "w": 256,
+     "h": 88,
+     "font": 1,
+     "pco": 65535,
+     "bco": 12943,
+     "pco2": 0,
+     "bco2": 65056,
+     "sta": "solid colour",
+     "xcen": 1,
+     "ycen": 1,
+     "txt": "BACK",
+     "txt_maxl": 4,
+     "vscope": "local",
+     "driver_writes": "",
+     "events": {
+      "touch_release": [
+       "page MMDVM"
+      ]
+     },
+     "sample": "BACK",
+     "longest": "BACK",
+     "note": "Back to the idle page."
+    },
+    {
+     "id": 6,
+     "objname": "tm0",
+     "type": "Timer",
+     "tim": 60000,
+     "en": 1,
+     "vscope": "local",
+     "driver_writes": "",
+     "events": {
+      "timer": [
+       "page MMDVM"
+      ]
+     },
+     "note": "Returns to the idle page after 60 s."
+    },
+    {
+     "id": 7,
+     "objname": "S0",
+     "type": "Hotspot",
+     "x": 792,
+     "y": 0,
+     "w": 8,
+     "h": 8,
+     "vscope": "local",
+     "driver_writes": "click S0,1 after every MMDVM.status.val=N (ScreenLayout 3)",
+     "events": {
+      "touch_press": [
+       "// nothing: the driver clicks S0 on whatever page is showing"
+      ]
+     },
+     "note": "Present because the driver clicks it."
+    }
+   ],
+   "events": {
+    "postinitialize": [
+     "nBaud.val=bauds"
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Replacement for Pi-Star's pistar-findmodem on the Bubblegum-96.
+#
+# Upstream probes ttyAMA0 / ttyUSB* / ttyACM* and toggles Raspberry Pi GPIO
+# 20 / 21 through sysfs to reset a hat. Those GPIO numbers are different pins
+# on the S900, so nothing is probed here: the modem of this board is soldered
+# to one UART and that fact is printed.
+# Part of software/bubblegum96/pistar (not Pi-Star code). UNTESTED.
+set -u
+port=/dev/ttyOWL2
+alias_port=/dev/ttyAMA0
+echo "Bubblegum-96 mezzanine: MMDVM_HS dual hat (STM32, duplex) on ${port}, 115200 baud."
+if [ -c "$port" ]; then
+	echo "  ${port}: present"
+else
+	echo "  ${port}: MISSING (device tree overlay not applied?)"
+fi
+if [ -e "$alias_port" ]; then
+	echo "  ${alias_port}: $(readlink -f "$alias_port") (alias used by the Pi-Star pages)"
+else
+	echo "  ${alias_port}: MISSING (udev rule 99-pistar-b96-modem.rules not active?)"
+fi
+echo "Firmware version: see the 'MMDVM protocol version' line in /var/log/pi-star/MMDVM-*.log"

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Daily job of the Pi-Star port on the Bubblegum-96 (cron, see
+# /etc/cron.d/pistar-b96). Replaces Pi-Star's pistar-daily.cron, which also
+# pulls the three Pi-Star git trees, installs an armhf WiringPi package,
+# deletes every rotated file under /var/log and edits nginx.service.
+#
+# Kept from upstream: refresh of the host / ID files and removal of old
+# daemon logs (upstream keeps about one day; here KEEP_DAYS, default 2,
+# because the dashboard reads today's and yesterday's file).
+# Part of software/bubblegum96/pistar (not Pi-Star code). UNTESTED.
+set -uo pipefail
+
+KEEP_DAYS="${KEEP_DAYS:-2}"
+LOGDIR=/var/log/pi-star
+
+[ "$(id -u)" -eq 0 ] || {
+	echo "run as root" >&2
+	exit 1
+}
+
+if [ -x /usr/local/sbin/HostFilesUpdate.sh ]; then
+	/usr/local/sbin/HostFilesUpdate.sh >/dev/null 2>&1 || true
+fi
+
+if [ -d "$LOGDIR" ]; then
+	# Date-stamped daemon logs only (MMDVM-2026-11-16.log ...); the
+	# pi-star_*.log files are handled by /etc/logrotate.d/pistar-b96.
+	find "$LOGDIR" -maxdepth 1 -type f \
+		-name '*-[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].log' \
+		-mtime "+${KEEP_DAYS}" -delete
+fi
+exit 0

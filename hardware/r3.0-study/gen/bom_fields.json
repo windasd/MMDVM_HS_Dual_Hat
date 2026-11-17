@@ -920,6 +920,12 @@
   "MPN": "BAT54HT1G",
   "Mouser": "863-BAT54HT1G"
  },
+ "D103": {
+  "LCSC": "C393369",
+  "MFR": "onsemi",
+  "MPN": "MM3Z6V2T1G",
+  "Mouser": ""
+ },
  "D2": {
   "LCSC": "C5875733",
   "MFR": "Kingbright",
@@ -1313,6 +1319,18 @@
   "MPN": "CSD17577Q3A",
   "Mouser": "595-CSD17577Q3A"
  },
+ "Q104": {
+  "LCSC": "C2865523",
+  "MFR": "Texas Instruments",
+  "MPN": "CSD25404Q3",
+  "Mouser": "595-CSD25404Q3"
+ },
+ "Q105": {
+  "LCSC": "C20526",
+  "MFR": "Jiangsu Changjing Electronics Technology",
+  "MPN": "MMBT3904",
+  "Mouser": ""
+ },
  "Q20": {
   "LCSC": "C20917",
   "MFR": "Alpha & Omega Semiconductor",
@@ -1345,11 +1363,10 @@
   "Mouser": "303-0402WGF0000TCE"
  },
  "R102": {
-  "LCSC": "C25078",
+  "LCSC": "C52962",
   "MFR": "UNI-ROYAL (Uniroyal Elec)",
-  "MPN": "0402WGF1100TCE",
-  "Mouser": "603-RC0402FR-07110RL",
-  "Mouser_MPN": "RC0402FR-07110RL"
+  "MPN": "0402WGF2370TCE",
+  "Mouser": ""
  },
  "R103": {
   "LCSC": "C2479336",
@@ -1484,11 +1501,10 @@
   "Mouser_MPN": "RC0402FR-07100KL"
  },
  "R121": {
-  "LCSC": "C25741",
+  "LCSC": "C25768",
   "MFR": "UNI-ROYAL (Uniroyal Elec)",
-  "MPN": "0402WGF1003TCE",
-  "Mouser": "603-RC0402FR-07100KL",
-  "Mouser_MPN": "RC0402FR-07100KL"
+  "MPN": "0402WGF2202TCE",
+  "Mouser": ""
  },
  "R122": {
   "LCSC": "C25741",
@@ -1503,6 +1519,32 @@
   "MPN": "0402WGF1002TCE",
   "Mouser": "603-RC0402FR-0710KL",
   "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R125": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R126": {
+  "LCSC": "C25900",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF4701TCE",
+  "Mouser": ""
+ },
+ "R127": {
+  "LCSC": "C25744",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
+ },
+ "R128": {
+  "LCSC": "C25126",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF5600TCE",
+  "Mouser": ""
  },
  "R13": {
   "LCSC": "C427210",
@@ -1612,11 +1654,11 @@
   "Mouser_MPN": "RC0402FR-0710KL"
  },
  "R29": {
-  "LCSC": "C25741",
+  "LCSC": "C11702",
   "MFR": "UNI-ROYAL (Uniroyal Elec)",
-  "MPN": "0402WGF1003TCE",
-  "Mouser": "603-RC0402FR-07100KL",
-  "Mouser_MPN": "RC0402FR-07100KL"
+  "MPN": "0402WGF1001TCE",
+  "Mouser": "603-RC0402FR-071KL",
+  "Mouser_MPN": "RC0402FR-071KL"
  },
  "R3": {
   "LCSC": "C2683016",
@@ -1776,6 +1818,27 @@
   "Mouser": "603-RC0402FR-0710KL",
   "Mouser_MPN": "RC0402FR-0710KL"
  },
+ "R57": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R58": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
+ "R59": {
+  "LCSC": "C25741",
+  "MFR": "UNI-ROYAL (Uniroyal Elec)",
+  "MPN": "0402WGF1003TCE",
+  "Mouser": "603-RC0402FR-07100KL",
+  "Mouser_MPN": "RC0402FR-07100KL"
+ },
  "R6": {
   "LCSC": "C412901",
   "MFR": "Vishay",
@@ -1803,11 +1866,11 @@
   "Mouser_MPN": "RC0402FR-07100KL"
  },
  "R63": {
-  "LCSC": "C11702",
+  "LCSC": "C25744",
   "MFR": "UNI-ROYAL (Uniroyal Elec)",
-  "MPN": "0402WGF1001TCE",
-  "Mouser": "603-RC0402FR-071KL",
-  "Mouser_MPN": "RC0402FR-071KL"
+  "MPN": "0402WGF1002TCE",
+  "Mouser": "603-RC0402FR-0710KL",
+  "Mouser_MPN": "RC0402FR-0710KL"
  },
  "R64": {
   "LCSC": "C26083",
@@ -2129,6 +2192,12 @@
   "LCSC": "C155599",
   "MFR": "STMicroelectronics",
   "MPN": "STM6601CM2DDM6F",
+  "Mouser": ""
+ },
+ "U112": {
+  "LCSC": "C514442",
+  "MFR": "Analog Devices",
+  "MPN": "LTC4412ES6#TRPBF",
   "Mouser": ""
  },
  "U2": {

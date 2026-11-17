@@ -1,0 +1,12 @@
+# Low-battery shutdown from the MAX17048 reading. UNTESTED.
+[Unit]
+Description=MMDVM/Meshtastic mezzanine low-battery shutdown
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/mmdvm-battery
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

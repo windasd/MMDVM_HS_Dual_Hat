@@ -58,7 +58,9 @@ def mmdvm_io():
           {'MPN': 'B3U-1000P'}),
         R('R25', '10k', 'BOOT0', 'HOST_BOOT0'),
         R('R31', '100k', 'BOOT0', 'GND', Note='new: BOOT0 low while the host is off'),
-        R('R29', '100k', 'BOOT0_SEL', 'BOOT0'),
+        # r1.3 had 100k here; with R31 (100k to GND) added, a P7 jumper to +3V3 only reached 1.65 V with the host
+        # off and 0.27 V with the host driving low through R25: below the STM32's BOOT0 high level
+        R('R29', '1k', 'BOOT0_SEL', 'BOOT0', Note='P7 jumper wins over R25 / R31: 2.97 V host low, 3.27 V host off'),
         R('R30', '100k', 'BOOT1', 'BOOT1_SEL'),
         P('JP1', 'Jumper:SolderJumper_2_Open', 'BOOT1', {'1': 'BOOT1_SEL', '2': 'GND'},
           'Jumper:SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm', in_bom=False),
@@ -115,6 +117,10 @@ def host_if():
         LVC1T45('U21', '+1V8_HOST', '+3V3', 'LS_UART0_TX', 'RXD', True, 'host UART0 TX -> STM32 RX'),
         LVC1T45('U22', '+1V8_HOST', '+3V3', 'LS_GPIO_A', 'HOST_BOOT0', True, 'GPIO-A -> STM32 BOOT0 (via R25)'),
         OD_BUF('U23', '+1V8_HOST', 'LS_GPIO_B', 'NRST', 'GPIO-B low -> STM32 NRST low (open drain)'),
+        # The host GPIOs are inputs until software configures them. Without these the buffer inputs float once
+        # +1V8 is up: the STM32 could be held in reset or start in its boot loader.
+        R('R57', '100k', 'LS_GPIO_A', 'GND', Note='BOOT0 request low until the host drives GPIO-A'),
+        R('R58', '100k', 'LS_GPIO_B', '+1V8_HOST', Note='no STM32 reset until the host drives GPIO-B'),
         # console (UART1 = ttyOWL5) to the side-panel header, FTDI pin order
         LVC1T45('U24', '+1V8_HOST', '+3V3', 'LS_CON_TX', 'CON_RXD_B', True, 'host console TX -> PC'),
         LVC1T45('U25', '+1V8_HOST', '+3V3', 'LS_CON_RX', 'CON_TXD_B', False, 'PC -> host console RX'),
@@ -126,6 +132,8 @@ def host_if():
           {'Note': 'FTDI TTL-232R-3V3 order: 1 GND, 2 CTS nc, 3 VCC nc, 4 TXD in, 5 RXD out, 6 RTS nc'}),
         # Meshtastic MCU reset, GPS PPS and GPS switch state
         OD_BUF('U26', '+1V8_HOST', 'LS_GPIO_G', 'MESH_RST_N', 'GPIO-G low -> RAK4630 reset'),
+        R('R59', '100k', 'LS_GPIO_G', '+1V8_HOST',
+          Note='the always-on RAK4630 must not be reset while the host boots (GPIO-G floating)'),
         LVC1T45('U27', '+1V8_HOST', '+3V3_MESH', 'LS_GPIO_H', 'GPS_PPS', False, 'GPS PPS -> GPIO-H (pps-gpio)'),
         LVC1T45('U28', '+1V8_HOST', '+3V3_MESH', 'LS_GPIO_I', 'GPS_ON', False, 'GPS switch -> GPIO-I'),
         # power-hold: JP2 selects +1V8 present (default) or GPIO-F (gpio-poweroff, active low)
@@ -134,6 +142,8 @@ def host_if():
           {'Note': '1-2: hold while +1V8 present (default); 2-3: hold = GPIO-F (gpio-poweroff active-low)'},
           in_bom=False),
         LVC1T45('U29', '+1V8_HOST', '+3V3_MESH', 'HOLD_A', 'HOST_HOLD', True, 'host alive -> STM6601 PS_HOLD'),
+        R('R125', '100k', 'LS_GPIO_F', '+1V8_HOST',
+          Note='with JP2 at 2-3: hold stays high until gpio-poweroff drives GPIO-F low (and across a reboot)'),
         R('R43', '100k', 'HOST_HOLD', 'GND', Note='low when the host is unpowered (Ioff)'),
         # open-drain status lines into host GPIOs (1.8 V pull-ups)
         OD_BUF('U30', '+1V8_HOST', 'SC16_IRQ_N', 'LS_GPIO_C', 'SC16IS752 IRQ -> GPIO-C'),

@@ -1,0 +1,14 @@
+# Put the mezzanine control lines into a defined state once per boot:
+# STM32 BOOT0 low, STM32 NRST released, RAK4630 reset released.
+# See /usr/local/sbin/mmdvm-gpio for the reason. UNTESTED.
+[Unit]
+Description=MMDVM/Meshtastic mezzanine GPIO defaults
+Before=mmdvmhost.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/mmdvm-gpio init
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+# Restart the Meshtastic MCU when the GPS supply comes up. UNTESTED.
+[Unit]
+Description=MMDVM/Meshtastic mezzanine GPS switch watcher
+After=mmdvm-gpio-init.service
+Requires=mmdvm-gpio-init.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/mmdvm-gps-switch
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

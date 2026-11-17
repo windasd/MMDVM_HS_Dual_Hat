@@ -1,0 +1,13 @@
+# /etc/netplan/60-mmdvm-lan.yaml (mode 0600) - DHCP on the on-board RJ45.
+# "lan0" is the name given by /etc/systemd/network/10-mmdvm-lan7500.link.
+# UNTESTED. Apply with: sudo netplan try
+#
+# No renderer is set: the system default applies (systemd-networkd on Ubuntu
+# Server). "optional" keeps boot from waiting for a cable.
+network:
+  version: 2
+  ethernets:
+    lan0:
+      dhcp4: true
+      dhcp6: true
+      optional: true

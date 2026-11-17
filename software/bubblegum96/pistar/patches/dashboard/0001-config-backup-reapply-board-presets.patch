@@ -1,0 +1,41 @@
+Bubblegum-96 port of Pi-Star: put the board's wiring facts back after a
+configuration restore.
+
+Applies to: AndyTaylorTweet/Pi-Star_DV_Dash
+            commit ca50804e0bfebd19848baaa17609e503992e8b5e (PIN_DASH in pins.conf)
+File:       admin/config_backup.php
+
+Why: the restore page installs /etc/mmdvmhost from the uploaded backup as it
+is. A backup made on a Raspberry Pi names that machine's display port in
+[Nextion] (for example /dev/ttyUSB0) and may lack UARTPort / UARTSpeed. On
+this board the modem is always on /dev/ttyAMA0 (udev alias of /dev/ttyOWL2,
+115200 baud) and the TJC display is always behind the modem ("Port=modem").
+After the files are installed, and before the services are started again,
+the page now calls /usr/local/sbin/pistar-b96-presets --hardware, which sets
+exactly those keys and nothing else (callsign, frequencies, networks,
+passwords and the display type / layout stay as restored).
+
+The call needs the sudoers line in /etc/sudoers.d/pistar-b96 that
+install-pistar.sh writes. Not run on the target; PHP syntax not checked
+(no PHP interpreter on the machine this was written on).
+---
+diff --git a/admin/config_backup.php b/admin/config_backup.php
+index 1480443f..01e95e20 100755
+--- a/admin/config_backup.php
++++ b/admin/config_backup.php
+@@ -479,6 +479,15 @@ if ($_SERVER["PHP_SELF"] == "/admin/config_backup.php") {
+           }
+           $output .= "Installed $installed file(s).\n";
+ 
++          // Bubblegum-96 port: a backup taken on a Raspberry Pi carries
++          // that machine's [Nextion] port. Put the wiring facts of this
++          // board back (modem on the /dev/ttyAMA0 alias of ttyOWL2, the
++          // display behind the modem). Nothing else in the restored
++          // files is touched.
++          if (is_executable('/usr/local/sbin/pistar-b96-presets')) {
++              $output .= (string)shell_exec('sudo /usr/local/sbin/pistar-b96-presets --hardware 2>&1');
++          }
++
+           // ----- Post-restore re-applies (data-side, not shell) -----
+ 
+           // Timezone: the restored config.php contains the operator's

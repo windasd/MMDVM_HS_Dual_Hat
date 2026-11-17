@@ -1,0 +1,6 @@
+#!/bin/sh
+# Pi-Star habit: "rpi-ro" puts the root file system back to read-only.
+# Deliberately a no-op on this board: Ubuntu is not prepared to run from a
+# read-only root. Part of software/bubblegum96/pistar (not Pi-Star code).
+echo "rpi-ro: not done - this board keeps its root file system read-write."
+exit 0

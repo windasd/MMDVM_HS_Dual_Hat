@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Replacement for Pi-Star's pistar-factory-reset on the Bubblegum-96.
+#
+# Upstream restores /etc from /usr/local/bin/config_clean.zip and then runs
+# "git reset --hard origin/master" in /usr/local/sbin, /usr/local/bin and
+# /var/www/dashboard. Here those trees are not Pi-Star checkouts tracking
+# master (they are pinned and patched), so only the configuration part is
+# done, followed by the board presets. The web admin password is not reset.
+# Called by the dashboard as "sudo pistar-factory-reset --really".
+# Part of software/bubblegum96/pistar (not Pi-Star code). UNTESTED.
+set -uo pipefail
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "You need to be root to run this command..." >&2
+	exit 1
+fi
+if [ "${1:-}" != "--really" ]; then
+	echo "This is a destructive operation. It replaces the Pi-Star configuration"
+	echo "files in /etc with the defaults of config_clean.zip."
+	echo ""
+	echo "If you really mean it, run: pistar-factory-reset --really"
+	exit 1
+fi
+
+exec 200>/var/lock/pistar-factory-reset.lock || exit 1
+if ! flock -n 200; then
+	echo "Another instance is already running"
+	exit 1
+fi
+
+zip=/usr/local/bin/config_clean.zip
+rc=0
+
+echo "==> Restoring /etc from ${zip}..."
+if [ -f "$zip" ]; then
+	unzip -o "$zip" -d /etc/ || {
+		echo "[!] ERROR: unzip failed"
+		rc=1
+	}
+else
+	echo "[!] WARN: ${zip} not present - /etc not restored"
+	rc=1
+fi
+
+echo "==> Removing radio mode markers (/etc/dstar-radio.*)..."
+rm -f /etc/dstar-radio.mmdvmhost /etc/dstar-radio.dstarrepeater
+echo "==> Removing dashboard CSS override (/etc/pistar-css.ini)..."
+rm -f /etc/pistar-css.ini
+
+echo "==> Writing the board presets..."
+/usr/local/sbin/pistar-b96-presets --defaults || rc=1
+
+echo "==> Dashboard and scripts are left as installed (pinned, patched)."
+echo "==> Factory reset complete (rc=${rc})"
+exit "$rc"

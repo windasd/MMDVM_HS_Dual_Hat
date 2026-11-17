@@ -1,0 +1,23 @@
+#!/bin/sh
+# Temperature for the Pi-Star dashboard, in millidegrees Celsius on one line
+# (the format of /sys/class/thermal/thermal_zone0/temp, which the dashboard
+# reads on a Raspberry Pi).
+#
+# Order: 1. thermal_zone0, if the kernel has an S900 thermal driver;
+#        2. the mezzanine's TMP102 (hwmon name "tmp102") - this is the air
+#           at the fan outlet, NOT the SoC, and reads much lower;
+#        3. nothing found: prints 0, the dashboard then shows 0 degrees.
+# The dashboard labels the value "CPU Temp" in every case.
+# Part of software/bubblegum96/pistar (not Pi-Star code). UNTESTED.
+if [ -r /sys/class/thermal/thermal_zone0/temp ]; then
+	cat /sys/class/thermal/thermal_zone0/temp
+	exit 0
+fi
+for d in /sys/class/hwmon/hwmon*; do
+	[ -r "$d/name" ] || continue
+	if [ "$(cat "$d/name")" = "tmp102" ] && [ -r "$d/temp1_input" ]; then
+		cat "$d/temp1_input"
+		exit 0
+	fi
+done
+echo 0

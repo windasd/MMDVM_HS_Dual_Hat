@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+# Replacement for Pi-Star's pistar-modemupgrade on the Bubblegum-96.
+#
+# Why a replacement: upstream flashes through Raspberry Pi GPIO 20 / 21
+# (sysfs numbers computed for the Pi's gpiochip), /dev/ttyAMA0, WiringPi's
+# "gpio" tool and armhf stm32flash binaries. On the S900 those GPIO numbers
+# are other pins. Here the only modem that can be on the board is offered,
+# and flashing goes through /usr/local/sbin/flash-mmdvm-hs
+# (../mmdvm/flash-mmdvm-hs.sh: BOOT0 = GPIO-A, NRST = GPIO-B, /dev/ttyOWL2,
+# Ubuntu's stm32flash).
+#
+# Interface kept for the dashboard page admin/expert/modem_fw_upgrade.php:
+#   pistar-modemupgrade list          one modem id per line
+#   pistar-modemupgrade <id>          flash; when not on a terminal, all
+#                                     output goes to
+#                                     /var/log/pi-star/pi-star_modemflash.log
+#
+# Firmware: /usr/local/bin/firmware/hs_dual_hat.bin, the file Pi-Star ships
+# for "MMDVM_HS_Dual_Hat (14.7456MHz TCXO) GPIO", copied by install-pistar.sh
+# from Pi-Star_v43_Binaries_Bin at the pinned commit and checked against the
+# md5sum.txt of the same commit. Whether that build suits this board
+# (USART1 host, serial repeater on USART2 for the TJC display, repeater
+# baud rate) has NOT been verified; see README.md.
+# Part of software/bubblegum96/pistar (not Pi-Star code). UNTESTED.
+set -uo pipefail
+
+FW_DIR=/usr/local/bin/firmware
+FW_ID=hs_dual_hat
+FW_FILE="${FW_DIR}/hs_dual_hat.bin"
+FLASH=/usr/local/sbin/flash-mmdvm-hs
+LOG=/var/log/pi-star/pi-star_modemflash.log
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "You need to be root to run this command..." >&2
+	exit 1
+fi
+
+usage() {
+	echo "This board carries one modem type. Usage:"
+	echo "  pistar-modemupgrade list"
+	echo "  pistar-modemupgrade ${FW_ID}      MMDVM_HS_Dual_Hat (14.7456MHz TCXO)"
+	echo "Any other modem id of Pi-Star is not available on this board."
+}
+
+services() {
+	# $1 = stop | start
+	local action="$1"
+	if [ "$action" = stop ]; then
+		systemctl stop pistar-watchdog.service >/dev/null 2>&1 || true
+		systemctl stop mmdvmhost.timer >/dev/null 2>&1 || true
+		systemctl stop mmdvmhost.service >/dev/null 2>&1 || true
+	else
+		systemctl start mmdvmhost.service >/dev/null 2>&1 || true
+		systemctl start mmdvmhost.timer >/dev/null 2>&1 || true
+		systemctl start pistar-watchdog.service >/dev/null 2>&1 || true
+	fi
+}
+
+flash_modem() {
+	local version="unknown" want got
+	if [ -r "${FW_DIR}/version.txt" ]; then
+		version="$(awk -F '=' '/^mmdvm_hs_version/ {print $2}' "${FW_DIR}/version.txt")"
+	fi
+	echo "* Modem: ${FW_ID}, firmware file version ${version}"
+
+	if [ ! -f "$FW_FILE" ]; then
+		echo "    [x] ERROR: ${FW_FILE} does not exist. Aborting."
+		return 1
+	fi
+	if [ ! -x "$FLASH" ]; then
+		echo "    [x] ERROR: ${FLASH} not found (install the board files: software/bubblegum96/install.sh). Aborting."
+		return 1
+	fi
+
+	echo "* Validating firmware file integrity..."
+	want="$(awk -v f="($(basename "$FW_FILE"))" '$2 == f {print $4}' "${FW_DIR}/md5sum.txt" 2>/dev/null)"
+	got="$(md5sum "$FW_FILE" | awk '{print $1}')"
+	if [ -z "$want" ]; then
+		echo "    [x] ERROR: no MD5 value for $(basename "$FW_FILE") in md5sum.txt. Aborting."
+		return 1
+	fi
+	if [ "$want" != "$got" ]; then
+		echo "    [x] ERROR: MD5 mismatch for $(basename "$FW_FILE"). Aborting."
+		return 1
+	fi
+	echo "    [ok] Passed."
+
+	echo "* Stopping MMDVMHost and flashing through ${FLASH}..."
+	services stop
+	sleep 2
+	local rc=0
+	"$FLASH" "$FW_FILE" || rc=$?
+	# The MMDVMHost log caches the firmware description; drop the old lines
+	# so the dashboard shows the new version (same as upstream does).
+	sed -i '/MMDVM protocol version: [12], description:/d' /var/log/pi-star/MMDVM-*.log >/dev/null 2>&1 || true
+	services start
+	if [ "$rc" -eq 0 ]; then
+		echo "    [ok] Complete! Modem firmware flash reported success. Modem reinitialised."
+	else
+		echo "    [x] ERROR: flash-mmdvm-hs failed with exit code ${rc}."
+	fi
+	return "$rc"
+}
+
+case "${1:-}" in
+"")
+	usage
+	exit 0
+	;;
+list)
+	echo "$FW_ID"
+	exit 0
+	;;
+"$FW_ID")
+	if [ -t 1 ]; then
+		if [ -t 0 ] && [ "${NP:-0}" != 1 ]; then
+			read -r -n 1 -s -p "Press any key to flash '${FW_ID}' to the modem, or 'q' to abort... " reply
+			echo ""
+			case "$reply" in q | Q)
+				echo "Aborted by user."
+				exit 1
+				;;
+			esac
+		fi
+		flash_modem
+		exit $?
+	else
+		mkdir -p /var/log/pi-star
+		flash_modem >>"$LOG" 2>&1
+		exit $?
+	fi
+	;;
+*)
+	if [ -t 1 ]; then
+		echo "'$1': not available on this board."
+		usage
+	else
+		mkdir -p /var/log/pi-star
+		echo "[x] '$1': not available on this board (only ${FW_ID})." >>"$LOG"
+	fi
+	exit 1
+	;;
+esac

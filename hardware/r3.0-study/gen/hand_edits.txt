@@ -167,3 +167,113 @@ T /Ethernet/ETH_SHIELD F.Cu 0.2 161.91,113.24 161.8,112.9
 # CELL+ ran 0.16 mm from the locating hole of BT103 at 170.87, 126.72 (JLCPCB wants 0.2 mm copper to a bare hole)
 RM In2.Cu 172.41,128.86 162.46,128.86
 T CELL+ In2.Cu 0.5 172.41,128.86 172.26,129.01 162.61,129.01 162.46,128.86
+# 2026-11-16 (second round), not hand_edit.py: reref_usb.py moved 12 crossings off the USB reference strip;
+# R57 / R58 / R59 added with place_near.py + add_parts.py at 141, 195.2 / 142.6, 198.2 / 165.9, 196 and joined
+# with patch_route.py; add_fiducials.py; the battery switch ON label.
+# USB_CC1 / USB_CC2 (re-routed off the USB reference strip) ran 0.18 mm from bare locating holes of SW50,
+# SW100 and J100; JLCPCB wants 0.2 mm copper to a non-plated hole.
+RM B.Cu 144.59,85.42 144.29,85.12
+RM B.Cu 144.29,85.12 135.09,85.12
+RM B.Cu 135.09,85.12 133.49,86.72
+T /Power/USB_CC1 B.Cu 0.2 144.59,85.42 144.17,85.0 135.21,85.0 133.49,86.72
+RM B.Cu 127.28,89.43 127.08,89.63
+RM B.Cu 127.08,89.63 125.98,89.63
+RM B.Cu 125.98,89.63 124.38,91.23
+T /Power/USB_CC2 B.Cu 0.2 127.28,89.43 127.11,89.60 126.01,89.60 124.38,91.23
+# USB_CC1 on F.Cu passed the same J100 locating hole at 0.18 mm
+RM F.Cu 127.19,89.42 126.99,89.62
+RM F.Cu 126.99,89.62 125.99,89.62
+RM F.Cu 125.99,89.62 125.19,90.42
+T /Power/USB_CC1 F.Cu 0.2 127.19,89.42 127.01,89.6 125.99,89.6 125.19,90.4 125.19,90.42
+# GND via 0.16 mm from the J100 locating hole, boxed in by the hole, pad A1/B12 and the shell pad: it goes;
+# A1/B12 stay on ground through the F.Cu pour and the shell (checked with the DRC: no unconnected item).
+RMVIA 127.17,90.63
+RM F.Cu 127.17,90.63 127.17,91.03
+# U1 VCOIN (ADF7021 VCO loop-filter node): the In2 jumper ran 5.7 mm with a via east of C22. The second via
+# moves to the west side of C22 (above the HS-connector pad row on B.Cu) and the In2 run goes straight.
+RM In2.Cu 132.47,235.40 132.47,234.02
+RM In2.Cu 132.47,234.02 135.53,230.96
+RMVIA 135.53,230.96
+RM F.Cu 134.95,231.39 135.38,230.96
+RM F.Cu 135.38,230.96 135.53,230.96
+V Net-(U1-VCOIN) 134.0,230.95 0.5 0.25
+T Net-(U1-VCOIN) In2.Cu 0.2 132.47,235.40 134.0,230.95
+T Net-(U1-VCOIN) F.Cu 0.25 134.0,230.95 134.95,231.39
+# 2026-11-17, not hand_edit.py: reref_usb.py whole (whole-chain re-route of the strip crossings, 10 moved),
+# a VSYS link re-routed with patch_route.py after the VSYS pour round R105's via was cut off, dangling vias
+# dropped, stitch_strip.py (19 ground vias beside the remaining cuts).
+# 2026-11-17, review fixes, not hand_edit.py: C142 re-placed as a 1210 at 168.6, 118.3 (rot 90), D105 at
+# 171.3, 115.9 (rot 90), R125 at 113.4, 191.5 (rot 180), all with add_parts.py and joined with patch_route.py;
+# the old C142 stubs removed with he/assist_rm (three F.Cu segments at y 118.10).
+# 2026-11-17, battery bypass: Q104 at 152.7, 165.0 (rot 180) and U112 at 150.6, 177.1 (rot 90) with add_parts.py;
+# the power copper below (he/bypass); U112's gate, sense, supply and ground lines with patch_route.py (the gate
+# line uses one via at the east edge of the USB reference strip, at 150.30, 166.96, the only way round Q104);
+# stitch_strip.py added three ground vias beside it.
+# Battery-to-VSYS bypass FET Q104 (CSD25404Q3) over the CELL+ collector (placed at 152.7, 165.0, rot 180):
+# drain down to the B.Cu bar through four vias south of the pad, between HOST_HOLD and SDA_AON on In2;
+# source straight into the VSYS strip that feeds the 12 V boost inductor.
+V CELL+ 151.75,167.5 0.6 0.3
+V CELL+ 152.45,167.5 0.6 0.3
+V CELL+ 151.75,168.2 0.6 0.3
+V CELL+ 152.45,168.2 0.6 0.3
+T CELL+ F.Cu 1.2 152.1,165.8 152.1,168.2
+T VSYS F.Cu 1.8 154.6,165.32 155.2,165.32
+# 2026-11-17, USB input limit (design record 16.17), not hand_edit.py: R102 back at its original spot 156.4, 150.85
+# (rot 0), Q105 / R126 / R127 / D103 with add_parts.py near the VBUS vias, R128 at 158.45, 144.55 (rot 180);
+# the old R102 ground via at 156.64, 150.09 removed; D103 / R126 / R127 / Q105-ground joined with patch_route.py.
+# ILIM_X from R102.2 (original R102 spot) to the R128 / Q105 network. The pocket round R102 is closed on all
+# layers; the way out: B.Cu between BQ_TS and the VSYS / REGN vias, then In2 to the R128 side. For that the
+# +3V3_MESH run on In2 moves 0.6 mm east (x 158.62 -> 159.20) between y 142.1 and 149.2.
+RM In2.Cu 158.62,149.23 158.62,142.11
+T +3V3_MESH In2.Cu 0.2 158.62,149.23 159.20,148.65 159.20,142.69 158.62,142.11
+T /Power/ILIM_X F.Cu 0.2 156.91,150.85 156.91,150.15 156.81,150.05
+V /Power/ILIM_X 156.81,150.05
+T /Power/ILIM_X B.Cu 0.2 156.81,150.05 156.80,150.04 156.80,147.35 157.65,146.50
+V /Power/ILIM_X 157.65,146.50
+T /Power/ILIM_X In2.Cu 0.2 157.65,146.50 158.60,145.55 158.60,143.95
+V /Power/ILIM_X 158.60,143.95
+T /Power/ILIM_X F.Cu 0.2 158.60,143.95 158.70,143.99
+# detector cluster rework: R128 beside Q105 (ground pad on Q105.2), ILIM_DET no longer rings R127.2
+RM F.Cu 159.50,142.81 159.50,142.71
+RM F.Cu 158.70,143.99 158.30,143.99
+RM F.Cu 158.40,145.11 158.30,145.11
+RM F.Cu 159.20,143.31 159.30,143.21
+RM F.Cu 159.40,143.01 159.40,142.91
+RM F.Cu 159.20,143.51 159.20,143.31
+RM F.Cu 158.50,143.81 158.90,143.81
+RM F.Cu 158.90,145.61 158.40,145.11
+RM F.Cu 159.50,142.71 159.60,142.61
+RM F.Cu 158.60,145.49 158.90,145.61
+RM F.Cu 159.60,142.51 159.74,142.30
+RM F.Cu 159.30,143.21 159.30,143.11
+RM F.Cu 159.60,142.61 159.60,142.51
+RM F.Cu 158.90,143.81 159.20,143.51
+RM F.Cu 159.30,143.11 159.40,143.01
+RM F.Cu 158.60,143.95 158.70,143.99
+RM F.Cu 158.90,143.79 158.70,143.99
+RM F.Cu 158.30,144.01 158.50,143.81
+RM F.Cu 159.40,142.91 159.50,142.81
+RM F.Cu 158.30,145.19 158.60,145.49
+RM F.Cu 158.30,143.99 158.30,145.19
+RM F.Cu 158.30,145.11 158.30,144.01
+RM In2.Cu 158.60,145.55 158.60,143.95
+RM F.Cu 160.36,141.75 160.76,141.75
+RM F.Cu 161.00,141.81 160.90,141.81
+RM F.Cu 160.90,141.81 160.70,141.61
+RM F.Cu 160.26,141.65 160.36,141.75
+RM F.Cu 161.06,142.05 161.30,142.11
+RM F.Cu 161.30,142.11 161.00,141.81
+RM F.Cu 162.30,140.91 162.40,141.09
+RM F.Cu 160.70,141.61 160.70,140.51
+RM F.Cu 161.90,140.51 162.30,140.91
+RM F.Cu 160.76,141.75 161.06,142.05
+RM F.Cu 160.70,140.51 161.90,140.51
+RMVIA 158.60,143.95
+# R128 now at 158.45,144.55 rot 180: pad 1 (ILIM_X) 158.96,144.55, pad 2 (GND) 157.94,144.55
+T GND F.Cu 0.2 157.94,144.55 157.94,143.25
+T /Power/ILIM_X F.Cu 0.2 158.96,144.55 158.96,142.95 159.30,142.61 159.74,142.30
+T /Power/ILIM_X In2.Cu 0.2 158.60,145.55 158.75,145.40
+V /Power/ILIM_X 158.75,145.40
+T /Power/ILIM_X F.Cu 0.2 158.75,145.40 158.96,145.19 158.96,144.55
+T /Power/ILIM_DET F.Cu 0.2 160.26,141.65 160.80,141.65 161.26,142.11 161.30,142.11
+T /Power/ILIM_DET F.Cu 0.2 162.40,141.09 161.30,142.11

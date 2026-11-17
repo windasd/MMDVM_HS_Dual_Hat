@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Replacement for Pi-Star's pistar-upgrade on the Bubblegum-96.
+#
+# Upstream walks a Raspberry Pi image from one Pi-Star release to the next
+# (edits /boot/config.txt and /boot/cmdline.txt, installs armhf packages,
+# rewrites nginx and systemd files of the image). None of that applies here:
+# this system was assembled by install-pistar.sh from pinned commits.
+# The dashboard's "Upgrade" page runs this script and shows its log.
+# Part of software/bubblegum96/pistar (not Pi-Star code). UNTESTED.
+set -euo pipefail
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "You need to be root to run this command..." >&2
+	exit 1
+fi
+
+main() {
+	local ver="unknown"
+	if [ -r /etc/pistar-release ]; then
+		ver="$(awk -F '= ' '/^Version/ {print $2}' /etc/pistar-release)"
+	fi
+	echo "[INFO] Pi-Star ${ver} on a Bubblegum-96 (not a Pi-Star image)."
+	echo "[!] Upgrade is not available on this board."
+	echo "[INFO] The dashboard, the scripts and the radio programs are pinned in"
+	echo "[INFO] software/bubblegum96/pistar/pins.conf. To move to newer versions,"
+	echo "[INFO] change the pins and run install-pistar.sh again."
+	echo "[INFO] Finished"
+}
+
+if [ -t 1 ]; then
+	main
+else
+	mkdir -p /var/log/pi-star
+	main >>/var/log/pi-star/pi-star_upgrade.log 2>&1
+fi
+exit 0

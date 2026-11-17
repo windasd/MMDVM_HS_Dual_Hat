@@ -1,0 +1,12 @@
+# Temperature-controlled fan (EMC2301 + TMP102 hwmon devices). UNTESTED.
+[Unit]
+Description=MMDVM/Meshtastic mezzanine fan control
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/mmdvm-fan
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

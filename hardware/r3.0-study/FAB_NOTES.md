@@ -1,70 +1,78 @@
-# MMDVM_HS_Dual_Hat r3.0 study – fabrication notes
+# MMDVM_HS_Dual_Hat r3.0 study – 打樣下單說明
 
-Generated with KiCad 10.0.8 from `hardware/r3.0-study` (2026-11-16). Written for JLCPCB.
+由 KiCad 10.0.8 從 `hardware/r3.0-study` 產生（2026-11-16），以 JLCPCB 為對象撰寫。
 
-**This board has never been built.** It passes ERC / DRC and was checked against data sheets. Read
-`docs/meshtastic-gps-study.md` section 16 (Traditional Chinese) before ordering; the open points are
-repeated at the end of this file.
+**這塊板子從來沒有做過。** 它通過 ERC／DRC，也對照過規格書，僅此而已。下單前請先讀
+`docs/meshtastic-gps-study.md` 第 16 節；尚未確認的項目也整理在本文件最後。
 
-## PCB – main board (`mmdvm_mesh`)
+## 電路板－主板（`mmdvm_mesh`）
 
-| Item | Value |
+| 項目 | 數值 |
 |---|---|
-| Size | 90.6 x 167.1 mm, L-shaped outline |
-| Layers | 4 (F.Cu signal + GND pour, In1 GND plane, In2 signal + VSYS pour, B.Cu signal + GND pour) |
-| Thickness | 1.6 mm, 1 oz outer / 0.5 oz inner |
-| Stack-up | **JLC04161H-7628**, impedance control **yes** (select the stack-up on the order form) |
-| Controlled lines | 50 ohm coplanar on F.Cu: 0.32 mm, 0.25 mm gap. 90 ohm pair on B.Cu: 0.235 / 0.145 mm. 100 ohm pairs on F.Cu: 0.20 / 0.14 mm (about 96 ohm) |
-| Min. track / clearance | 0.15 mm (3 segments; otherwise 0.20 mm) / 0.10 mm |
-| Vias | 0.45 / 0.20 mm (174), 0.50 / 0.25 mm (205), 0.60 / 0.30 mm (133), 0.60 / 0.40 mm (58); annular ring 0.125 mm on the two small sizes |
-| Via covering | tented both sides. No via hole touches an SMD pad; plugged or filled vias are not needed |
-| Min. PTH | 0.20 mm (thermal vias of U101), annular ring 0.15 mm on those and on the 0.5 mm pads – JLCPCB's absolute minimum, 0.20 mm is its recommendation |
-| Plated slots | 0.6 x 1.4 and 0.6 x 1.7 mm (USB-C shell) |
-| NPTH | 0.65 – 3.45 mm (locating pegs of connectors and cell holders); copper stays 0.2 mm or more from them |
-| Copper to board edge | 0.3 mm or more |
-| Solder mask / silkscreen | both sides |
-| Surface finish | ENIG recommended (0.5 mm pitch QFN / LGA, RAK4630 castellations) |
-| Fiducials | none on the board – let JLCPCB add tooling holes / use pads |
+| 尺寸 | 90.6 x 167.1 mm，L 形外框 |
+| 層數 | 4 層（F.Cu 訊號＋GND 鋪銅、In1 GND 整面、In2 訊號＋VSYS 鋪銅、B.Cu 訊號＋GND 鋪銅） |
+| 板厚 | 1.6 mm，外層 1 oz／內層 0.5 oz |
+| 疊構 | **JLC04161H-7628**，阻抗控制**要**（在訂單頁選這個疊構） |
+| 阻抗線 | F.Cu 50 Ω 共面線：線寬 0.32 mm、間隙 0.25 mm。B.Cu 90 Ω 差動對：0.235／0.145 mm。F.Cu 100 Ω 差動對：0.20／0.14 mm（約 96 Ω） |
+| 最小線寬／間距 | 0.15 mm（3 段，其餘 0.20 mm）／0.10 mm |
+| 過孔 | 0.45／0.20 mm（191 個）、0.50／0.25 mm（202 個）、0.50／0.30 mm（1 個）、0.60／0.30 mm（132 個）、0.60／0.40 mm（58 個）；兩種小過孔的孔環 0.125 mm |
+| 過孔處理 | 兩面防焊覆蓋。沒有過孔碰到 SMD 焊墊，不需要塞孔或填孔 |
+| 最小金屬化孔 | 0.20 mm（U101 的散熱過孔），這些孔和 0.5 mm 焊墊的孔環 0.15 mm：JLCPCB 的絕對下限，建議值是 0.20 mm |
+| 金屬化槽孔 | 0.6 x 1.4 和 0.6 x 1.7 mm（USB-C 外殼腳） |
+| 非金屬化孔 | 0.65～3.45 mm（連接器和電池座的定位柱）；走線、過孔、鋪銅都離它 0.2 mm 以上（規則在 `mmdvm_mesh.kicad_dru`） |
+| 銅到板邊 | 0.3 mm 以上 |
+| 防焊／絲印 | 兩面 |
+| 表面處理 | 建議化金（ENIG）（0.5 mm 間距的 QFN／LGA、RAK4630 的半孔） |
+| 定位點 | 每面三個（1 mm 圓點、2 mm 防焊開窗），FID1～FID6；不在 BOM 和座標檔裡 |
 
-Files: `production/gerber_drill/` (Gerber X2 + Excellon, PTH and NPTH separate, drill maps, `.gbrjob`);
-upload `production/mmdvm_mesh-gerber.zip`. Regenerate with `bash gen/make_production.sh`.
+檔案：`production/gerber_drill/`（Gerber X2＋Excellon，金屬化和非金屬化鑽孔分開，含鑽孔圖、`.gbrjob`）；
+上傳 `production/mmdvm_mesh-gerber.zip`。用 `bash gen/make_production.sh` 重新產生。
 
-## PCB – front panel (`front_panel/`)
+## 電路板－前面板（`front_panel/`）
 
-26.1 x 20.1 mm, 2 layers, 1.6 mm, tracks 0.25 mm or wider, vias 0.6 / 0.3 mm, 2 x 2.7 mm mounting holes.
-No impedance control. `bash gen/make_production.sh front_panel`.
+26.1 x 20.1 mm，2 層，1.6 mm，走線 0.25 mm 以上，過孔 0.6／0.3 mm，2 個 2.7 mm 安裝孔。
+不需要阻抗控制。產生方式：`bash gen/make_production.sh front_panel`。
 
-## Assembly
+## 組裝（SMT 貼片）
 
-* **Both sides carry SMD parts** (bottom: 8 x 0402 termination resistors, the two 96Boards connectors J1 / J10,
-  the cell holders). Order double-sided assembly.
-* `production/BOM_JLCPCB.csv` and `production/CPL_JLCPCB.csv` are in JLCPCB's format (362 parts, 144 lines).
-  Unfitted parts (C142, R124, D20, SW2) are in neither file.
-* **Not from JLCPCB** (`production/hand_solder.csv`): the four cell holders BT100–BT103 (Keystone 1042P) and
-  the charger inductor L100 (Wurth 744316100) had no assembly stock on 2026-11-16. Buy and solder them by hand.
-* **Check the stock on the day of the order:** `python gen/stock_check.py <boards>`. 114 of the 146 BOM lines
-  are extended parts (a loading fee each). Thin on 2026-11-16: STM6601CM2DDM6F (23), J1 (10), RJ45 (21), X1 (7).
-* **Part orientation:** bottom-side angles in the CPL are mirrored for JLCPCB; no per-package corrections are
-  applied. Tick "Confirm Parts Placement" and compare the preview with `production/check_orientation.csv`
-  (94 parts). SOT-23 family, QFN and LEDs are the usual suspects.
-* Through-hole parts in the BOM: J2, J5, P5, P7 (pin headers), J60 (RJ45), J100 (USB-C shell pins), SW101.
-* The RJ45 (J60), the slide switches and the console header overhang the board edge.
+* **兩面都有 SMD 零件**（背面：8 顆 0402 終端電阻、兩個 96Boards 連接器 J1／J10、電池座）。要選雙面貼片。
+* `production/BOM_JLCPCB.csv` 和 `production/CPL_JLCPCB.csv` 是 JLCPCB 的格式（373 個零件、149 行）。
+  不上件的零件（C142、R124、D105、D20、SW2）兩個檔案裡都沒有。
+* **不由 JLCPCB 貼的零件**（`production/hand_solder.csv`）：四個電池座 BT100～BT103（Keystone 1042P）和充電電感
+  L100（Würth 744316100）在 2026-11-16 沒有貼片庫存。另外買來手焊。
+* **下單當天要再查庫存：** `python gen/stock_check.py <片數>`。BOM 151 行中有 118 行是擴充料（每行收一次換料費）。
+  2026-11-17 庫存偏少：**STM6601CM2DDM6F（3 顆，不夠 5 片板用）**、RJ45 J60（6）、X1（7）、J1（10）、D8（28）、
+  TPS61022（41）、93LC66（48）。
+* **零件方向：** 有 59 個零件的座標檔角度，是把 KiCad 封裝和 JLCPCB 自己零件庫的封裝逐腳比對得出的
+  （`gen/jlc_rotation.py`；48 個要轉、11 個本來就一致）。另外 39 個零件沒辦法這樣判斷，在
+  `production/check_orientation.csv` 標為 CHECK：LED 和二極體（兩腳零件的腳號不代表實際方向）、U.FL 座、
+  RAK4630 和另外三個零件庫裡沒有封裝的零件、開關、USB-C 座，以及背面的兩個連接器。下單時勾選
+  「Confirm Parts Placement」，在預覽裡逐一確認這些零件。
+* BOM 裡的插件零件：J2、J5、P5、P7（排針）、J60（RJ45）、J100（USB-C 外殼腳）、SW101。
+* RJ45（J60）、滑動開關和主控台排針會凸出板邊。
 
-## Reviewed and accepted
+## 已審查、接受的項目
 
-* `mmdvm_mesh.kicad_dru` waives three courtyard / silk checks (U3 with C44 / C45 as in rev1.3; Y3 beside SW101).
-* 121 reference designators are hidden on silk (dense areas); the assembly uses the placement file.
-* The battery switch is marked OFF only and the GPS switch ON only (no room for the second label).
+* `mmdvm_mesh.kicad_dru` 豁免了三項零件邊界／絲印檢查（U3 和 C44／C45，與 rev1.3 相同；SW101 旁的 Y3）。
+* GPS 開關只標了 ON，兩個滑動開關在絲印上都沒有名稱（板邊沒有空間）；名稱標在外殼上。
+* 118 個位號因為空間不夠，沒有印在絲印上。
+* 電池旁路 U112／Q104（LTC4412＋CSD25404Q3）的接法已對照 LTC4412 規格書（4412fb，Rev B）第一頁的圖 1 和腳位說明
+  核對無誤（設計紀錄 16.16 節）；和其他電源電路一樣尚未實測。
 
-## Not verified – read before ordering
+## 尚未確認：下單前必讀
 
-* Nothing has been measured: power sequencing, charging, cell protection, Ethernet, RF.
-* The host's 1.8 V start-up time is unknown. U111 (STM6601CM2D) waits 5.6 s; C142 / R124 are an unfitted
-  fallback (design record 16.10).
-* Q100 / Q101 are CSD16340Q3 on the generic NexFET 3.3 x 3.3 footprint; its land pattern was not compared
-  with the "Q3" package drawing.
-* The In2 ground strip under the USB pair is crossed by 24 other nets (11 pieces, stitched to the In1 plane
-  every 6 mm). The 90 ohm figure assumes an unbroken reference.
-* Two vias of the USB pair sit 0.12 mm from the pads of U60, under the package.
-* The VCO loop-filter node of U1 (rev1.3 RF section) is autorouted here: check the 433 MHz spectrum.
-* The enclosure (`case/meshtastic-concept`) has not been printed.
+* 什麼都還沒量過：電源時序、充電、電池保護、乙太網路、射頻。
+* 主機 1.8 V 的開機時間不知道。U111（STM6601CM2D）等待 5.6 秒；C142／R124 是不上件的備案
+  （設計紀錄 16.10 節）。
+* Q100／Q101 是 CSD16340Q3，用的是通用的 NexFET 3.3 x 3.3 封裝；焊墊圖沒有和「Q3」封裝圖比對過。
+* USB 差動對下方的 In2 接地銅條仍被 9 條走線橫穿（原本 29 條），共 7 處缺口。大部分缺口旁邊都緊貼著接地過孔
+  （補了 19 個；想要的 28 個位置中有 7 個放不下），讓回流電流在那裡換到 In1 的接地層。90 Ω 的數字是以完整
+  參考地為前提算的。
+* USB 差動對有兩個過孔在 U60 的封裝底下，離焊墊 0.12 mm：焊墊排和散熱焊墊之間只有 0.55 mm，其他地方放不下標準
+  過孔。有防焊覆蓋；不放心的話，下單時選環氧樹脂塞孔。
+* USB 輸入電流上限（設計紀錄 16.17 節）：ILIM 接 R102 237 Ω＋R128 560 Ω，VBUS 高於約 6.8 V 時 Q105 把 R128 短路。
+  5 V 時最大 0.49 A、9 V 時最大 1.50 A，任何 USB 埠或 9 V 變壓器都在額定以內。請保持這些數值。尚未量測：偵測門檻
+  （D103／R126／R127），以及 5 V 時的上限（低於規格書保證 ILIM 精度的 500 mA）。
+* U1 的 VCO 迴路濾波節點（沿用 rev1.3 的射頻區）不是 rev1.3 的走線（9.3 mm、兩個過孔、一小段走 In2；U2 是
+  8.0 mm）：要量 433 MHz 的頻譜。
+* 外殼（`case/meshtastic-concept`）還沒有印過。
