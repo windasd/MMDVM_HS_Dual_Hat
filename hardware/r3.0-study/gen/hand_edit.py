@@ -167,7 +167,9 @@ def check(need=0.1):
 
 mode = sys.argv[2]
 if mode == 'check':
-    check()
+    bad = check()
+    sys.stdout.flush()
+    os._exit(1 if bad else 0)       # a script can stop on conflicts
 elif mode == 'rm':
     kill = [t for t in board.GetTracks() if doomed(t)]
     for t in kill:

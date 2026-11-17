@@ -6,7 +6,7 @@ clips the In2 track 1.2 mm either side of the strip (hand_edit.py), then asks pa
 with the strip forbidden on In2, so the connection crosses on F.Cu instead (over the In1 plane). A crossing
 that cannot be re-routed is put back as it was.
 
-Usage: python reref_usb.py list | run [n ...]      (needs crossings.json from the `list` step)
+Usage: python reref_usb.py list | run [n ...] | whole [n ...]      (needs crossings.json from the `list` step)
 """
 import json
 import math
@@ -168,8 +168,62 @@ def run(which):
     print('re-routed off the strip: %d, left on In2: %d' % (ok, bad))
 
 
+def run_whole(which, extra=20.0, max_vias=3):
+    """Second pass: take out the whole In2 chain (end to end) and route it again with the strip forbidden on
+    In2, so the crossing can be anywhere along the net. Kept when it is at most `extra` mm longer than the
+    chain it replaces and adds at most `max_vias` vias."""
+    todo = json.load(open(JS))
+    ok = bad = 0
+    for i, c in enumerate(todo):
+        if which and i not in which:
+            continue
+        pts, w, net = [tuple(p) for p in c['pts']], c['w'], c['net']
+        old = sum(math.hypot(q[0] - p[0], q[1] - p[1]) for p, q in zip(pts, pts[1:]))
+        f = os.path.join(HERE, '..', 'route', 'rewhole_%d.txt' % i)
+        with open(f, 'w') as fh:
+            for p, q in zip(pts, pts[1:]):
+                fh.write('RM In2.Cu %g,%g %g,%g\n' % (p + q))
+        shutil.copyfile(PCB, PCB + '.reref')
+        o1 = kpy('hand_edit.py', f, 'rm')
+        if 'removed %d of %d' % (len(pts) - 1, len(pts) - 1) not in o1:
+            shutil.copyfile(PCB + '.reref', PCB)
+            print('%2d %-26s could not take the chain out: %s' % (i, net[-26:], o1.strip().splitlines()[-1:]), flush=True)
+            bad += 1
+            continue
+        # an end on a via or pad: any layer; an end on other In2 copper (a junction): In2
+        spec = ['@%g,%g,%s' % (p + ('In2.Cu' if kind == 'junction' else 'ANY',))
+                for p, kind in ((pts[0], c['kinds'][0]), (pts[-1], c['kinds'][1]))]
+        band = '%g,%g,%g,%g' % (STRIP[0] - 0.25, STRIP[1], STRIP[2] + 0.25, STRIP[3])
+        out = kpy('patch_route.py', *spec, env={'PR_AVOID': 'In2.Cu:%s;VIA:%s' % (band, band),
+                                                'PR_MARGIN': '16', 'PR_EXIT': '0', 'PR_W': '%g' % w})
+        line = [ln for ln in out.splitlines() if ln.startswith(('routed', 'NO PATH'))]
+        m = re.search(r': ([\d.]+) mm, \d+ segments, (\d+) vias', line[0]) if line else None
+        good = bool(line and line[0].startswith('routed') and (' ' + net + ':') in line[0] and m)
+        if good and (float(m.group(1)) > old + extra or int(m.group(2)) > max_vias):
+            good = False
+            line = ['too long: %s mm and %s vias in place of %.1f mm' % (m.group(1), m.group(2), old)]
+        if good:
+            ok += 1
+            print('%2d %-26s %.1f mm on In2 -> %s' % (i, net[-26:], old, line[0].split('  ')[-1]), flush=True)
+        else:
+            shutil.copyfile(PCB + '.reref', PCB)
+            bad += 1
+            print('%2d %-26s kept (%s)' % (i, net[-26:], (line or out.strip().splitlines()[-1:] or ['?'])[0][:80]), flush=True)
+    if os.path.exists(PCB + '.reref'):
+        os.remove(PCB + '.reref')
+    print('moved off the strip: %d, kept: %d' % (ok, bad))
+
+
 if __name__ == '__main__':
     if sys.argv[1] == 'list':
         listing()
+    elif sys.argv[1] == 'whole':
+        # whole [--extra MM] [--vias N] [n ...]
+        a = sys.argv[2:]
+        kw = {}
+        while a and a[0].startswith('--'):
+            kw['extra' if a[0] == '--extra' else 'max_vias'] = float(a[1]) if a[0] == '--extra' else int(a[1])
+            a = a[2:]
+        run_whole([int(v) for v in a], **kw)
     else:
         run([int(v) for v in sys.argv[2:]])

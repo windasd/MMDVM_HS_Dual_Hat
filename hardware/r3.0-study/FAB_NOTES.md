@@ -16,11 +16,11 @@ repeated at the end of this file.
 | Stack-up | **JLC04161H-7628**, impedance control **yes** (select the stack-up on the order form) |
 | Controlled lines | 50 ohm coplanar on F.Cu: 0.32 mm, 0.25 mm gap. 90 ohm pair on B.Cu: 0.235 / 0.145 mm. 100 ohm pairs on F.Cu: 0.20 / 0.14 mm (about 96 ohm) |
 | Min. track / clearance | 0.15 mm (3 segments; otherwise 0.20 mm) / 0.10 mm |
-| Vias | 0.45 / 0.20 mm (174), 0.50 / 0.25 mm (205), 0.60 / 0.30 mm (133), 0.60 / 0.40 mm (58); annular ring 0.125 mm on the two small sizes |
+| Vias | 0.45 / 0.20 mm (191), 0.50 / 0.25 mm (202), 0.50 / 0.30 mm (1), 0.60 / 0.30 mm (132), 0.60 / 0.40 mm (58); annular ring 0.125 mm on the two small sizes |
 | Via covering | tented both sides. No via hole touches an SMD pad; plugged or filled vias are not needed |
 | Min. PTH | 0.20 mm (thermal vias of U101), annular ring 0.15 mm on those and on the 0.5 mm pads – JLCPCB's absolute minimum, 0.20 mm is its recommendation |
 | Plated slots | 0.6 x 1.4 and 0.6 x 1.7 mm (USB-C shell) |
-| NPTH | 0.65 – 3.45 mm (locating pegs of connectors and cell holders); copper stays 0.2 mm or more from them |
+| NPTH | 0.65 – 3.45 mm (locating pegs of connectors and cell holders); tracks, vias and pours keep 0.2 mm from them (rule in `mmdvm_mesh.kicad_dru`) |
 | Copper to board edge | 0.3 mm or more |
 | Solder mask / silkscreen | both sides |
 | Surface finish | ENIG recommended (0.5 mm pitch QFN / LGA, RAK4630 castellations) |
@@ -42,7 +42,7 @@ No impedance control. `bash gen/make_production.sh front_panel`.
   Unfitted parts (C142, R124, D20, SW2) are in neither file.
 * **Not from JLCPCB** (`production/hand_solder.csv`): the four cell holders BT100–BT103 (Keystone 1042P) and
   the charger inductor L100 (Wurth 744316100) had no assembly stock on 2026-11-16. Buy and solder them by hand.
-* **Check the stock on the day of the order:** `python gen/stock_check.py <boards>`. 114 of the 146 BOM lines
+* **Check the stock on the day of the order:** `python gen/stock_check.py <boards>`. 115 of the 146 BOM lines
   are extended parts (a loading fee each). Thin on 2026-11-16: STM6601CM2DDM6F (23), J1 (10), RJ45 (21), X1 (7).
 * **Part orientation:** the CPL angles of 56 parts come from comparing each KiCad footprint with the footprint
   in JLCPCB's own library, pad by pad (`gen/jlc_rotation.py`; 45 are turned, 11 already agree). 38 parts could
@@ -66,8 +66,11 @@ No impedance control. `bash gen/make_production.sh front_panel`.
   fallback (design record 16.10).
 * Q100 / Q101 are CSD16340Q3 on the generic NexFET 3.3 x 3.3 footprint; its land pattern was not compared
   with the "Q3" package drawing.
-* The In2 ground strip under the USB pair is still crossed by 17 tracks (it was 29; stitched to the In1 plane
-  every 6 mm). The 90 ohm figure assumes an unbroken reference.
-* Two vias of the USB pair sit 0.12 mm from the pads of U60, under the package.
-* The VCO loop-filter node of U1 (rev1.3 RF section) is autorouted here: check the 433 MHz spectrum.
+* The In2 ground strip under the USB pair is still crossed by 9 tracks (it was 29), in 7 places. Ground vias
+  sit right beside most cuts (19 added; 7 of the 28 wanted spots had no room) so the return current steps to the
+  In1 plane there. The 90 ohm figure assumes an unbroken reference.
+* Two vias of the USB pair sit 0.12 mm from the pads of U60, under the package: the gap between the pad row and
+  the exposed pad is 0.55 mm, so no standard via fits elsewhere. Tented; if in doubt order epoxy-filled vias.
+* The VCO loop-filter node of U1 (rev1.3 RF section) is not the rev1.3 routing (9.3 mm, two vias, a short run on
+  In2; U2 has 8.0 mm): check the 433 MHz spectrum.
 * The enclosure (`case/meshtastic-concept`) has not been printed.

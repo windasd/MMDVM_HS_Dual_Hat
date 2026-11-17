@@ -21,3 +21,10 @@
 	(condition "(A.memberOfFootprint('Y3') && B.memberOfFootprint('SW101')) || (A.memberOfFootprint('SW101') && B.memberOfFootprint('Y3'))")
 	(constraint silk_clearance)
 	(severity ignore))
+
+# JLCPCB wants 0.2 mm from copper to a non-plated hole (the cell-holder and connector locating pegs); the
+# board-wide hole clearance of 0.1 mm let two re-routed tracks come within 0.16 / 0.18 mm of such holes.
+# Pads are left out: the land patterns of the parts with locating pegs are the manufacturers'.
+(rule "copper to non-plated holes (JLCPCB)"
+	(condition "A.Pad_Type == 'NPTH, mechanical' && B.Type != 'Pad'")
+	(constraint hole_clearance (min 0.2mm)))

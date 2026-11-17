@@ -170,3 +170,35 @@ T CELL+ In2.Cu 0.5 172.41,128.86 172.26,129.01 162.61,129.01 162.46,128.86
 # 2026-11-16 (second round), not hand_edit.py: reref_usb.py moved 12 crossings off the USB reference strip;
 # R57 / R58 / R59 added with place_near.py + add_parts.py at 141, 195.2 / 142.6, 198.2 / 165.9, 196 and joined
 # with patch_route.py; add_fiducials.py; the battery switch ON label.
+# USB_CC1 / USB_CC2 (re-routed off the USB reference strip) ran 0.18 mm from bare locating holes of SW50,
+# SW100 and J100; JLCPCB wants 0.2 mm copper to a non-plated hole.
+RM B.Cu 144.59,85.42 144.29,85.12
+RM B.Cu 144.29,85.12 135.09,85.12
+RM B.Cu 135.09,85.12 133.49,86.72
+T /Power/USB_CC1 B.Cu 0.2 144.59,85.42 144.17,85.0 135.21,85.0 133.49,86.72
+RM B.Cu 127.28,89.43 127.08,89.63
+RM B.Cu 127.08,89.63 125.98,89.63
+RM B.Cu 125.98,89.63 124.38,91.23
+T /Power/USB_CC2 B.Cu 0.2 127.28,89.43 127.11,89.60 126.01,89.60 124.38,91.23
+# USB_CC1 on F.Cu passed the same J100 locating hole at 0.18 mm
+RM F.Cu 127.19,89.42 126.99,89.62
+RM F.Cu 126.99,89.62 125.99,89.62
+RM F.Cu 125.99,89.62 125.19,90.42
+T /Power/USB_CC1 F.Cu 0.2 127.19,89.42 127.01,89.6 125.99,89.6 125.19,90.4 125.19,90.42
+# GND via 0.16 mm from the J100 locating hole, boxed in by the hole, pad A1/B12 and the shell pad: it goes;
+# A1/B12 stay on ground through the F.Cu pour and the shell (checked with the DRC: no unconnected item).
+RMVIA 127.17,90.63
+RM F.Cu 127.17,90.63 127.17,91.03
+# U1 VCOIN (ADF7021 VCO loop-filter node): the In2 jumper ran 5.7 mm with a via east of C22. The second via
+# moves to the west side of C22 (above the HS-connector pad row on B.Cu) and the In2 run goes straight.
+RM In2.Cu 132.47,235.40 132.47,234.02
+RM In2.Cu 132.47,234.02 135.53,230.96
+RMVIA 135.53,230.96
+RM F.Cu 134.95,231.39 135.38,230.96
+RM F.Cu 135.38,230.96 135.53,230.96
+V Net-(U1-VCOIN) 134.0,230.95 0.5 0.25
+T Net-(U1-VCOIN) In2.Cu 0.2 132.47,235.40 134.0,230.95
+T Net-(U1-VCOIN) F.Cu 0.25 134.0,230.95 134.95,231.39
+# 2026-11-17, not hand_edit.py: reref_usb.py whole (whole-chain re-route of the strip crossings, 10 moved),
+# a VSYS link re-routed with patch_route.py after the VSYS pour round R105's via was cut off, dangling vias
+# dropped, stitch_strip.py (19 ground vias beside the remaining cuts).

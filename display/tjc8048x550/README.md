@@ -36,3 +36,11 @@ calibration). There is no M17 page: MMDVM-Display does not send one.
 Known limits of this version: Latin text only (the project encoding is
 iso-8859-1, chosen so the temperature's degree sign shows); brightness is
 controlled by MMDVM-Display, not from the screen; RSSI and BER are shown as text.
+
+Use with the Pi-Star port (`software/bubblegum96/pistar/`): that runs the older
+MMDVMHost with its built-in Nextion driver instead of MMDVM-Display. Its
+`Nextion.cpp` (commit 05b10ac5) was compared with MMDVM-Display's: every page
+and every object the old driver addresses exists in this layout; MMDVM-Display
+only adds the `FM` page and the objects `t21`, `t22`, `t31` and `cpuload`,
+which the old driver never writes. So one screen file serves both. Compared by
+extracting the command strings from the two sources, not on a display.

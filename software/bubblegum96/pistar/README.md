@@ -264,7 +264,9 @@ to stop a first boot from working.
     detected by exit code only.
 19. `ScreenLayout=3` of the old built-in Nextion driver sends the fields the
     screen file of `display/tjc8048x550` (drawn for MMDVM-Display, layout 3)
-    expects.
+    expects. Checked afterwards by comparing the command strings of the two
+    `Nextion.cpp` sources: the old driver uses no page or object that the
+    layout lacks. Still not seen on a display.
 20. `UARTSpeed=115200` is the firmware's host speed.
 
 **Network and data**

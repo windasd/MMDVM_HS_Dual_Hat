@@ -215,9 +215,13 @@ def route(spec_a, spec_b):
                     if ol.Contains(pcbnew.VECTOR2I(pcbnew.FromMM(x0 + i * G), pcbnew.FromMM(y0 + j * G)), -1,
                                    pcbnew.FromMM(W / 2 + 0.05)):
                         g[j * nx + i] = 1
-    # PR_AVOID="In2.Cu:x0,y0,x1,y1[;...]": boxes that new tracks must stay out of on that layer
+    # PR_AVOID="In2.Cu:x0,y0,x1,y1[;VIA:x0,y0,x1,y1...]": boxes new tracks stay out of on that layer (VIA: no new via)
     for spec in filter(None, os.environ.get('PR_AVOID', '').split(';')):
         lname, box = spec.split(':')
+        if lname == 'VIA':                         # no via of this net inside the box (any layer)
+            bx0, by0, bx1, by1 = (float(v) for v in box.split(','))
+            mark(vocc, bx0 - R_VIA, by0 - R_VIA, bx1 + R_VIA, by1 + R_VIA, lambda x, y: True)
+            continue
         ly = board.GetLayerID(lname)
         if ly in LAYERS:
             bx0, by0, bx1, by1 = (float(v) for v in box.split(','))
