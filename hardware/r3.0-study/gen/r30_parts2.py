@@ -141,6 +141,9 @@ def power():
         # 11 .. 19 mohm plus its path, leaving the BATFET under 4 A. With VBUS present and the charger holding
         # VSYS above the cells it is off and charging is unchanged. Side effect: the BQ25895 can no longer
         # cut VSYS from the cells (ship mode, the /QON system reset); SW101 still disconnects the pack.
+        # Checked against the LTC4412 data sheet (4412fb, rev B): figure 1 (battery to VIN and the P-FET drain,
+        # source to the load and SENSE, CTL and GND grounded), pins VIN 1 / GND 2 / CTL 3 / STAT 4 / GATE 5 /
+        # SENSE 6, gate clamp 7 V below the higher of VIN / SENSE, so the gate goes to ground on 1S cells.
         P('U112', 'Power_Management:LTC4412xS6', 'LTC4412', {'1': 'CELL+', '2': 'GND', '3': 'GND', '4': None,
                                                             '5': 'BYP_GATE', '6': 'VSYS'},
           'Package_TO_SOT_SMD:TSOT-23-6', {'MPN': 'LTC4412ES6#TRPBF',
