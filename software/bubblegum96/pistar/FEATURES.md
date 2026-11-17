@@ -1,119 +1,115 @@
-# Pi-Star functions on the Bubblegum-96: status
+# Pi-Star 各項功能在 Bubblegum-96 上的狀態
 
-**Nothing in this table has been tried.** No Bubblegum-96 with the board and
-no Ubuntu arm64 machine was available; the statuses are what follows from
-reading the upstream code (RESEARCH.md) and from how `install-pistar.sh`
-sets the system up. Read "expected" as "no reason found why not", not as
-"seen working".
+**這份表格裡的項目都沒有試過。** 手邊沒有裝上這塊板子的 Bubblegum-96，也沒有 Ubuntu arm64 的機器；表中的狀態是從閱讀上游程式碼（RESEARCH.md）和 `install-pistar.sh` 對系統的設定推論出來的。「預期」的意思是「找不到不行的理由」，不是「看過它正常運作」。
 
-Status words:
+狀態用語：
 
-- **unchanged** - upstream code runs as it is; expected to work.
-- **edited** - upstream code with an edit the installer makes (named).
-- **replaced** - a file from `board/` or a different mechanism does the job.
-- **not available** - cannot work on this board; what the user sees instead.
-- **unknown** - depends on something that could not be judged from the code.
+- **原樣**：上游程式碼照原樣執行；預期可以運作。
+- **修改**：上游程式碼，加上安裝腳本做的修改（備註中寫明）。
+- **替換**：由 `board/` 裡的檔案或其他機制負責這項工作。
+- **不可用**：在這塊板子上無法運作；備註寫使用者實際會看到什麼。
+- **未知**：取決於無法從程式碼判斷的事情。
 
-## Dashboard (public part, `/`)
+## 儀表板（Dashboard）公開部分（`/`）
 
-| Function | Status | Notes |
+| 功能 | 狀態 | 備註 |
 |---|---|---|
-| Live view: modes, TX/RX state, frequencies, modem firmware, TCXO (`mmdvmhost/repeaterinfo.php`) | unchanged | Parses `/var/log/pi-star/MMDVM-<UTC date>.log`. Needs `FileLevel` 1 or 2 as in Pi-Star's default file |
-| Gateway activity / last heard (`mmdvmhost/lh.php`), local RF activity (`localtx.php`) | unchanged | Same log; names from `/usr/local/etc/DMRIds.dat` (needs one successful host-file update) |
-| Service indicators (green / red) on the left | unchanged | `pgrep` / `ps` on the program names built here |
-| BrandMeister connections panel (`bm_links.php`) | unchanged | Queries the BM API over HTTPS for your DMR ID |
-| D-Star panels (`dstarrepeater/*.php`: links, last heard, CCS, StarNet) | unknown | Only with `--with-dstar`; see D-Star below |
-| POCSAG / DAPNET messages (`mmdvmhost/pages.php`) | unchanged | Reads the DAPNETGateway log |
-| Hardware info line: host name, kernel, platform, CPU load, CPU temperature | edited | Platform: `board/platformDetect.sh` (device-tree model). Temperature: `board/pistar-b96-temp`; **shows the TMP102 outlet-air temperature, labelled "CPU Temp"**, unless the kernel provides `thermal_zone0`; shows 0 if neither exists |
-| Auto-refresh (jQuery timers) | unchanged | |
-| JSON / API: `/api/last_heard.php`, `/api/index.php` | unchanged | Not behind the admin login, as upstream |
-| Language packs (`lang/*.php`, 24 languages incl. `chinese_tw`) | unchanged | Chosen on the configuration page; stored in `config/language.php` |
-| CSS / colours (`css/pistar-css.php`, `/etc/pistar-css.ini`) | unchanged | |
+| 即時畫面：模式、TX／RX 狀態、頻率、數據機韌體、TCXO（`mmdvmhost/repeaterinfo.php`） | 原樣 | 解析 `/var/log/pi-star/MMDVM-<UTC date>.log`。需要 `FileLevel` 為 1 或 2，和 Pi-Star 的預設設定檔相同 |
+| 閘道器活動／最近收聽（`mmdvmhost/lh.php`）、本地射頻活動（`localtx.php`） | 原樣 | 同一個記錄檔；名稱取自 `/usr/local/etc/DMRIds.dat`（需要成功更新過一次主機清單檔） |
+| 左側的服務指示燈（綠／紅） | 原樣 | 對這裡建置的程式名稱執行 `pgrep`／`ps` |
+| BrandMeister 連線面板（`bm_links.php`） | 原樣 | 透過 HTTPS 向 BM API 查詢你的 DMR ID |
+| D-Star 面板（`dstarrepeater/*.php`：連結、最近收聽、CCS、StarNet） | 未知 | 只有加 `--with-dstar` 時才有；見下方 D-Star |
+| POCSAG／DAPNET 訊息（`mmdvmhost/pages.php`） | 原樣 | 讀取 DAPNETGateway 的記錄檔 |
+| 硬體資訊列：主機名稱、kernel、平台、CPU 負載、CPU 溫度 | 修改 | 平台：`board/platformDetect.sh`（device tree 的 model）。溫度：`board/pistar-b96-temp`；**顯示的是 TMP102 量到的出風口氣溫，標籤卻是「CPU Temp」**，除非 kernel 提供 `thermal_zone0`；兩者都沒有時顯示 0 |
+| 自動重新整理（jQuery 計時器） | 原樣 | |
+| JSON／API：`/api/last_heard.php`、`/api/index.php` | 原樣 | 不需要管理登入，和上游相同 |
+| 語言包（`lang/*.php`，24 種語言，含 `chinese_tw`） | 原樣 | 在設定頁面選擇；存在 `config/language.php` |
+| CSS／配色（`css/pistar-css.php`、`/etc/pistar-css.ini`） | 原樣 | |
 
-## Admin page (`/admin/`)
+## 管理頁面（`/admin/`）
 
-| Function | Status | Notes |
+| 功能 | 狀態 | 備註 |
 |---|---|---|
-| Login (HTTP basic auth, user `pi-star`) | replaced | nginx site written by the installer; same realm file `/var/www/.htpasswd` |
-| Default-password banner and forced change (`change_password_required.php`) | unchanged | Changes the web password (`htpasswd`) and the Linux password of user `pi-star` (`chpasswd`); that user has no login shell here |
-| Service status row (MMDVMHost, DMRGateway, ..., PiStar-Watchdog, PiStar-Remote, PiStar-Keeper) | unchanged | Watchdog shows running when `board/pistar-watchdog` runs. PiStar-Remote and PiStar-Keeper always red (not available) |
-| BrandMeister manager (`bm_manager.php`: static TG add / drop, drop dynamic) | unchanged | Needs your BM API key in `/etc/bmapi.key` (Expert > API Keys) |
-| TGIF manager, TGIF static talk groups | unchanged | Needs a TGIF key |
-| YSF / P25 / NXDN / M17 link managers | unchanged | Use `sudo /usr/local/bin/RemoteCommand` (built here); the configuration page adds `[Remote Commands] Enable=1` to the gateway files when it saves (`admin/configure.php:3087-3156`) |
-| D-Star link manager | unknown | `--with-dstar` only; uses `remotecontrold` |
-| System info (`sysinfo.php`): memory, disks, program versions | unchanged | Version strings are upstream's (`20250828`), not Pi-Star's `..._PS4`; programs that are not built show empty |
-| Live modem log (`live_modem_log.php`), download log | unchanged | |
-| Power: reboot, shutdown (`power.php`) | edited | `remount,ro` removed; `sudo reboot` / `sudo shutdown -h now` as upstream. Shutdown ends at the PMIC / STM6601 behaviour of the board (study 16.10) |
-| Update (`update.php` -> `pistar-update`) | replaced | `board/pistar-update`: refreshes host / ID files only and prints the installed pins. No `git pull`, no `apt` |
-| Upgrade (`expert/upgrade.php` -> `pistar-upgrade`) | not available | `board/pistar-upgrade` writes "Upgrade is not available on this board" into the log the page shows. Version stays 4.3.10 |
-| Backup (`config_backup.php`, download zip) | unchanged | Wi-Fi file and API keys are included; `/etc/dhcpcd.conf` does not exist and is skipped by the page |
-| Restore (upload zip) | edited | `patches/dashboard/0001-...`: after installing the files, the board's modem port, UART speed and `[Nextion] Port=modem` are written back. A backup from your Raspberry Pi can be restored; its **host name** and `/etc/hosts` are restored too (upstream behaviour). A static IP from a Pi backup (`dhcpcd.conf`) is installed as a file but has no effect |
-| Factory reset (button on the configuration page) | replaced | `board/pistar-factory-reset`: default configuration from `config_clean.zip` + board presets. Does not reset the dashboard / scripts (they are pinned) nor the admin password |
-| Calibration (`calibration.php`, MMDVMCal over a local UDP console) | unknown | MMDVMCal is built (pin inferred). `pistar-calibration-start` chains `nc -ulp ... -s ...` and `script`; Ubuntu's `netcat-openbsd` may not accept that option form |
+| 登入（HTTP basic auth，使用者 `pi-star`） | 替換 | 由安裝腳本寫入的 nginx 站台設定；沿用同一個帳號密碼檔 `/var/www/.htpasswd` |
+| 預設密碼警示橫幅與強制變更（`change_password_required.php`） | 原樣 | 變更網頁密碼（`htpasswd`）和 Linux 使用者 `pi-star` 的密碼（`chpasswd`）；在這裡這個使用者沒有登入 shell |
+| 服務狀態列（MMDVMHost、DMRGateway、...、PiStar-Watchdog、PiStar-Remote、PiStar-Keeper） | 原樣 | `board/pistar-watchdog` 執行時，Watchdog 顯示為執行中。PiStar-Remote 和 PiStar-Keeper 永遠是紅色（不可用） |
+| BrandMeister 管理（`bm_manager.php`：新增／移除靜態 TG、移除動態 TG） | 原樣 | 需要把你的 BM API 金鑰放在 `/etc/bmapi.key`（Expert > API Keys） |
+| TGIF 管理、TGIF 靜態通話群組 | 原樣 | 需要 TGIF 金鑰 |
+| YSF／P25／NXDN／M17 連結管理 | 原樣 | 使用 `sudo /usr/local/bin/RemoteCommand`（在這裡建置）；設定頁面存檔時，會在閘道器的設定檔加上 `[Remote Commands] Enable=1`（`admin/configure.php:3087-3156`） |
+| D-Star 連結管理 | 未知 | 只有 `--with-dstar` 才有；使用 `remotecontrold` |
+| 系統資訊（`sysinfo.php`）：記憶體、磁碟、程式版本 | 原樣 | 版本字串是上游的（`20250828`），不是 Pi-Star 的 `..._PS4`；沒有建置的程式顯示空白 |
+| 即時數據機記錄（`live_modem_log.php`）、下載記錄檔 | 原樣 | |
+| 電源：重新開機、關機（`power.php`） | 修改 | 移除 `remount,ro`；`sudo reboot`／`sudo shutdown -h now` 和上游相同。關機最後由板子的 PMIC／STM6601 行為決定（研究文件第 16.10 節） |
+| 更新（`update.php` → `pistar-update`） | 替換 | `board/pistar-update`：只更新主機清單檔／ID 檔，並印出已安裝的鎖定版本。不做 `git pull`，不用 `apt` |
+| 升級（`expert/upgrade.php` → `pistar-upgrade`） | 不可用 | `board/pistar-upgrade` 會在頁面顯示的記錄檔寫入「Upgrade is not available on this board」。版本維持 4.3.10 |
+| 備份（`config_backup.php`，下載 zip） | 原樣 | 包含 Wi-Fi 設定檔和 API 金鑰；`/etc/dhcpcd.conf` 不存在，頁面會略過 |
+| 還原（上傳 zip） | 修改 | `patches/dashboard/0001-...`：安裝檔案之後，把這塊板子的數據機埠、UART 速率和 `[Nextion] Port=modem` 寫回去。可以還原樹莓派上的備份；備份裡的**主機名稱**和 `/etc/hosts` 也會一起還原（上游的行為）。樹莓派備份裡的固定 IP（`dhcpcd.conf`）會安裝成檔案，但沒有作用 |
+| 恢復原廠設定（設定頁面上的按鈕） | 替換 | `board/pistar-factory-reset`：預設設定取自 `config_clean.zip`，再加上這塊板子的預設值。不會重設儀表板／腳本（它們是鎖定版本），也不會重設管理密碼 |
+| 校正（`calibration.php`，透過本機 UDP 主控台使用 MMDVMCal） | 未知 | MMDVMCal 有建置（鎖定版本為推定）。`pistar-calibration-start` 串接 `nc -ulp ... -s ...` 和 `script`；Ubuntu 的 `netcat-openbsd` 可能不接受這種參數寫法 |
 
-## Configuration page (`/admin/configure.php`)
+## 設定頁面（`/admin/configure.php`）
 
-| Section | Status | Notes |
+| 區段 | 狀態 | 備註 |
 |---|---|---|
-| Control Software: MMDVMHost / DStarRepeater, Simplex / Duplex | unchanged | Choose MMDVMHost + Duplex Repeater. DStarRepeater: not available (program not built; it is for non-MMDVM modems) |
-| MMDVMHost Configuration: mode switches DMR / D-Star / YSF / P25 / NXDN / M17 / POCSAG, cross modes, hang times | unchanged | Cross-mode programs YSF2DMR, YSF2NXDN, YSF2P25, DMR2YSF, DMR2NXDN are built (pin inferred). NXDN2DMR is built too, but there is no `/etc/nxdn2dmr` (none in `config_clean.zip`), so the page does not offer it |
-| MMDVM Display Type / Port / Nextion Layout | unchanged | Pre-set by the installer: `Nextion`, port `modem`, layout `ON7LDS L3` (= `ScreenLayout=3`). OLED / HD44780 / TFT Serial / LCDproc: not available (no such hardware; MMDVMHost is built without them) |
-| General: callsign, CCS7/DMR ID, frequencies, location, URL | unchanged | |
-| Radio/Modem Type | unchanged | Use **"MMDVM_HS_Duplex_Hat (DB9MAT, DF2ET & DO7EN) for Pi (GPIO)"** (`mmdvmhsdualhatgpio`). The page writes `/dev/ttyAMA0`; that name is a udev alias of `/dev/ttyOWL2` here. Other types are selectable but describe hardware that is not on the board |
-| Node type (public / private), APRS host, time zone, dashboard language | unchanged | Time zone: `timedatectl set-timezone` |
-| Host name field | unchanged | sed on `/etc/hostname` and `/etc/hosts`, effective after reboot. On images using cloud-init the name may be reset at boot (`preserve_hostname`) |
-| DMR: master, BM Hotspot Security, ESSID, colour code, EmbeddedLCOnly, DumpTAData | unchanged | See `configure-brandmeister.md` |
-| DMR via DMRGateway (BM + DMR+ + XLX + TGIF) | unchanged | DMRGateway is built at the commit of Pi-Star's binary |
-| D-Star (reflector, RPT1/2, ircDDB, time announcements) | unknown | Not built by default. `--with-dstar` builds g4klx/ircDDBGateway (pin and directories inferred) against wxWidgets 3.2 instead of Pi-Star's 3.0; never compiled |
-| YSF (startup host, UPPERCASE hosts, WiresX passthrough, YSF2DMR ...) | unchanged | |
-| P25, NXDN, M17 | unchanged | M17Gateway's config file is the upstream sample, not Pi-Star's file: **unknown** whether the page's M17 fields match it |
-| POCSAG / DAPNET | unknown | `/etc/dapnetgateway` is the upstream sample, not Pi-Star's file |
-| APRSGateway | unknown | `/etc/aprsgateway` is the upstream sample |
-| Mobile GPS (MobileGPS daemon on a serial port) | not available | Section is hidden (no `/etc/mobilegps`). The GPS belongs to gpsd on `/dev/ttySC1`. **Replaced by** gpsd: the gateways are built with `USE_GPSD` and get a `[GPSD]` section with `Enable=0`; set `Enable=1` in Expert > DMR GW / YSF GW / NXDN GW if you want your position sent to the networks |
-| Wireless Configuration (scan, add networks, country) | edited / unknown | Same file as on the Pi (`/etc/wpa_supplicant/wpa_supplicant.conf`), used by `wpa_supplicant@wlan0`; a path unit reloads it after saving; DHCP by netplan / networkd; country list generated. Needs the Wi-Fi interface to be called `wlan0` (a `.link` file renames a single Wi-Fi interface) and a working Wi-Fi driver in your kernel. Skipped entirely if NetworkManager or a netplan `wifis:` section already runs Wi-Fi |
-| "Reset WiFi Adapter" | edited | `ifdown` / `ifup` -> `ip link set wlan0 down` / `up` |
-| Auto AP (hostapd access point when no known network is found), Auto AP SSID / PSK | not available | Built on ifupdown, `wlan0_ap` and Pi-Star's captive portal. hostapd is not installed, so the fields are hidden |
-| Firewall section: dashboard / ircDDB remote / SSH "Public" or "Private", uPnP | unchanged | These settings only control **uPnP port mappings on your router**. uPnP is off after installation (commented line in `/etc/crontab`); switching it on in the page runs `upnpc` every 5 minutes |
-| Pi-Star firewall (`pistar-firewall`, iptables) | unchanged, optional | Not active unless installed with `--with-firewall`. It flushes all rules and sets INPUT and OUTPUT to DROP with Pi-Star's allow list; not judged against Meshtastic, gpsd / chrony or other services of this board |
-| Remote access password / "pi-star" password | unchanged | See Admin page |
+| Control Software：MMDVMHost／DStarRepeater、Simplex／Duplex | 原樣 | 選 MMDVMHost + Duplex Repeater。DStarRepeater：不可用（程式沒有建置；它是給非 MMDVM 數據機用的） |
+| MMDVMHost Configuration：模式開關 DMR／D-Star／YSF／P25／NXDN／M17／POCSAG、跨模式、保持時間 | 原樣 | 跨模式程式 YSF2DMR、YSF2NXDN、YSF2P25、DMR2YSF、DMR2NXDN 有建置（鎖定版本為推定）。NXDN2DMR 也有建置，但沒有 `/etc/nxdn2dmr`（`config_clean.zip` 裡也沒有），所以頁面不會提供這個選項 |
+| MMDVM Display Type／Port／Nextion Layout | 原樣 | 安裝腳本已預先設好：`Nextion`、埠 `modem`、版面 `ON7LDS L3`（= `ScreenLayout=3`）。OLED／HD44780／TFT Serial／LCDproc：不可用（沒有這些硬體；MMDVMHost 建置時不含這些功能） |
+| 一般設定：呼號、CCS7／DMR ID、頻率、位置、URL | 原樣 | |
+| Radio/Modem Type | 原樣 | 使用「**MMDVM_HS_Duplex_Hat (DB9MAT, DF2ET & DO7EN) for Pi (GPIO)**」（`mmdvmhsdualhatgpio`）。頁面寫入的是 `/dev/ttyAMA0`；在這裡這個名稱是 `/dev/ttyOWL2` 的 udev 別名。其他類型也能選，但描述的是這塊板子上沒有的硬體 |
+| 節點類型（公開／私人）、APRS 主機、時區、儀表板語言 | 原樣 | 時區：`timedatectl set-timezone` |
+| 主機名稱欄位 | 原樣 | 用 sed 修改 `/etc/hostname` 和 `/etc/hosts`，重新開機後生效。使用 cloud-init 的映像檔可能會在開機時把名稱重設回去（`preserve_hostname`） |
+| DMR：主控站、BM Hotspot Security、ESSID、色碼、EmbeddedLCOnly、DumpTAData | 原樣 | 見 `configure-brandmeister.md` |
+| 經由 DMRGateway 的 DMR（BM + DMR+ + XLX + TGIF） | 原樣 | DMRGateway 以 Pi-Star 執行檔所用的 commit 建置 |
+| D-Star（反射器、RPT1/2、ircDDB、報時） | 未知 | 預設不建置。`--with-dstar` 會以 wxWidgets 3.2（而不是 Pi-Star 用的 3.0）建置 g4klx/ircDDBGateway（鎖定版本和目錄都是推定的）；從來沒有編譯過 |
+| YSF（開機連線的主機、UPPERCASE 主機名稱、WiresX 透傳、YSF2DMR ...） | 原樣 | |
+| P25、NXDN、M17 | 原樣 | M17Gateway 的設定檔是上游範例，不是 Pi-Star 的檔案：頁面上的 M17 欄位是否和它相符，**未知** |
+| POCSAG／DAPNET | 未知 | `/etc/dapnetgateway` 是上游範例，不是 Pi-Star 的檔案 |
+| APRSGateway | 未知 | `/etc/aprsgateway` 是上游範例 |
+| Mobile GPS（序列埠上的 MobileGPS 常駐程式） | 不可用 | 這個區段被隱藏（沒有 `/etc/mobilegps`）。GPS 歸 `/dev/ttySC1` 上的 gpsd 使用。**改用** gpsd：閘道器建置時開啟 `USE_GPSD`，並加上 `Enable=0` 的 `[GPSD]` 區段；想把你的位置送到網路上，就在 Expert > DMR GW / YSF GW / NXDN GW 設 `Enable=1` |
+| Wireless Configuration（掃描、新增網路、國家） | 修改／未知 | 和樹莓派上同一個檔案（`/etc/wpa_supplicant/wpa_supplicant.conf`），由 `wpa_supplicant@wlan0` 使用；存檔後由一個 path unit 重新載入；DHCP 由 netplan／networkd 負責；國家清單是產生出來的。需要 Wi-Fi 介面名稱是 `wlan0`（有一個 `.link` 檔會把唯一的 Wi-Fi 介面改名），而且你的 kernel 要有能用的 Wi-Fi 驅動。如果 NetworkManager 或 netplan 的 `wifis:` 區段已經在管 Wi-Fi，就整個略過 |
+| 「Reset WiFi Adapter」 | 修改 | `ifdown`／`ifup` → `ip link set wlan0 down`／`up` |
+| Auto AP（找不到已知網路時用 hostapd 建立存取點）、Auto AP SSID／PSK | 不可用 | 建立在 ifupdown、`wlan0_ap` 和 Pi-Star 的強制入口網頁（captive portal）之上。沒有安裝 hostapd，所以這些欄位被隱藏 |
+| 防火牆區段：儀表板／ircDDB 遠端／SSH「Public」或「Private」、uPnP | 原樣 | 這些設定只控制**你路由器上的 uPnP 連接埠對應**。安裝後 uPnP 是關閉的（`/etc/crontab` 裡被註解掉的一行）；在頁面上開啟後，每 5 分鐘執行一次 `upnpc` |
+| Pi-Star 防火牆（`pistar-firewall`，iptables） | 原樣，選用 | 除非安裝時加 `--with-firewall`，否則不啟用。它會清除所有規則，把 INPUT 和 OUTPUT 設為 DROP，再套用 Pi-Star 的允許清單；沒有評估過它對 Meshtastic、gpsd／chrony 或這塊板子其他服務的影響 |
+| 遠端存取密碼／「pi-star」密碼 | 原樣 | 見管理頁面 |
 
-## Expert pages (`/admin/expert/`)
+## 專家頁面（`/admin/expert/`）
 
-| Function | Status | Notes |
+| 功能 | 狀態 | 備註 |
 |---|---|---|
-| Quick editors: MMDVMHost, DMR GW, YSF GW, P25 GW, NXDN GW, DAPNET GW | unchanged | Files staged in `/tmp`, installed with `sudo install`, service restarted |
-| Quick editors: DStarRepeater, ircDDBGateway, TimeServer, StarNetServer | unknown | Files exist (defaults); the programs only with `--with-dstar` (no DStarRepeater at all) |
-| Full edit: DMR GW, RSSI Dat | unchanged | |
-| Full edit: PiStar-Remote | not available | The file can be edited; the program (Python 2) is not installed |
-| Full edit: WiFi (`wpa_supplicant.conf`) | unchanged | See Wireless Configuration |
-| Full edit: API keys (BM, DAPNET, TGIF) | unchanged | |
-| Full edit: System Cron | unchanged | Edits **Ubuntu's `/etc/crontab`**; the Pi-Star jobs of this port are in `/etc/cron.d/pistar-b96`, not there |
-| CSS Tool (`edit_dashboard.php`) | unchanged | |
-| Modem firmware upgrade (`modem_fw_upgrade.php` -> `pistar-modemupgrade`) | replaced | `board/pistar-modemupgrade` offers one entry, `hs_dual_hat`, and flashes Pi-Star's `hs_dual_hat.bin` (MD5-checked) through `/usr/local/sbin/flash-mmdvm-hs`. All other modem ids: "not available on this board". Whether that firmware build fits the board: **unknown** |
-| `pistar-mmdvmhshatflash`, `pistar-zumspotflash`, ... (old per-board flash commands) | not available | They no longer exist upstream; `pistar-modemupgrade` replaced them |
-| SSH Access (shellinabox in a frame) | not available | shellinabox is not installed; the page says "SSH Feature not yet installed". Use a normal SSH client |
-| Jitter test (`jitter_test.php` -> `pistar-jittertest`) | unchanged | |
-| Upgrade | not available | See Admin page |
+| 快速編輯：MMDVMHost、DMR GW、YSF GW、P25 GW、NXDN GW、DAPNET GW | 原樣 | 檔案先放在 `/tmp`，用 `sudo install` 安裝，再重新啟動服務 |
+| 快速編輯：DStarRepeater、ircDDBGateway、TimeServer、StarNetServer | 未知 | 檔案存在（預設值）；程式只有 `--with-dstar` 時才有（DStarRepeater 完全沒有） |
+| 完整編輯：DMR GW、RSSI Dat | 原樣 | |
+| 完整編輯：PiStar-Remote | 不可用 | 檔案可以編輯；程式（Python 2）沒有安裝 |
+| 完整編輯：WiFi（`wpa_supplicant.conf`） | 原樣 | 見 Wireless Configuration |
+| 完整編輯：API 金鑰（BM、DAPNET、TGIF） | 原樣 | |
+| 完整編輯：System Cron | 原樣 | 編輯的是 **Ubuntu 的 `/etc/crontab`**；這個移植版的 Pi-Star 排程工作在 `/etc/cron.d/pistar-b96`，不在那裡 |
+| CSS Tool（`edit_dashboard.php`） | 原樣 | |
+| 數據機韌體升級（`modem_fw_upgrade.php` → `pistar-modemupgrade`） | 替換 | `board/pistar-modemupgrade` 只提供一個項目 `hs_dual_hat`，透過 `/usr/local/sbin/flash-mmdvm-hs` 燒錄 Pi-Star 的 `hs_dual_hat.bin`（有檢查 MD5）。其他所有數據機 ID：「not available on this board」。那個韌體版本是否適用這塊板子：**未知** |
+| `pistar-mmdvmhshatflash`、`pistar-zumspotflash`、...（舊的各板燒錄指令） | 不可用 | 上游已經沒有這些指令；由 `pistar-modemupgrade` 取代 |
+| SSH Access（框架裡的 shellinabox） | 不可用 | 沒有安裝 shellinabox；頁面顯示「SSH Feature not yet installed」。請用一般的 SSH 用戶端 |
+| Jitter 測試（`jitter_test.php` → `pistar-jittertest`） | 原樣 | |
+| 升級 | 不可用 | 見管理頁面 |
 
-## Command line and background
+## 命令列與背景程式
 
-| Function | Status | Notes |
+| 功能 | 狀態 | 備註 |
 |---|---|---|
-| `rpi-rw`, `rpi-ro` | replaced | No-ops that say so; the root file system is always read-write |
-| Read-only root file system | not available | Every `mount -o remount,ro` in the dashboard and the scripts is turned into `true` |
-| `pistar-update`, `pistar-upgrade`, `pistar-factory-reset` | replaced / not available | As above |
-| `pistar-firewall`, `HostFilesUpdate.sh`, `pistar-bmapi`, `pistar-tgifapi`, `pistar-dapnetapi`, `pistar-link`, `pistar-ysflink`, `pistar-p25link`, `pistar-nxdnlink`, `pistar-mmdvmremote`, `pistar-jittertest`, `pistar-mmdvmhost-module` | unchanged | |
-| `pistar-mmdvmcal`, `pistar-calibration-start` | edited | `remount,ro` removed. Reads `UARTPort` / `UARTSpeed` from `/etc/mmdvmhost` |
-| `pistar-findmodem`, `pistar-mmdvmhshatreset`, `pistar-modemupgrade` | replaced | Upstream versions would drive GPIO 20 / 21, which are other pins on the S900 |
-| `pistar-watchdog` | replaced | bash instead of Python 2; restarts stopped daemons with back-off; does not delete system logs |
-| `pistar-remote` (RF remote control), `pistar-keeper` | not available | Python 2 programs; Ubuntu 24.04 has no Python 2 |
-| `pistar-nextiontext.py`, `pistar-oledtext.py` | not available | The first writes to `/dev/ttyAMA0` as if a display were there (here: the modem); no OLED |
-| `pistar-expand`, `pistar-clone`, `pistar-bootconfig.sh` (config zip / `wpa_supplicant.conf` on the boot partition), `pistar-motdgen`, `pistar-sslgenerate`, `pistar-sendcw` | not available | Raspberry Pi image management, or not looked at closely enough to install |
-| Daily job (host files, log clean-up) | replaced | `/etc/cron.d/pistar-b96` -> `board/pistar-b96-daily`; no git pull, no WiringPi download; logs kept 2 days |
-| Hourly job (journal vacuum, nginx log trim) | not available | Not reproduced; Ubuntu's journald and logrotate settings apply |
-| Logs on tmpfs | not available | `/var/log/pi-star` is on the root file system |
-| Host files from www.pistar.uk | unknown | Upstream script, unchanged; whether the server serves them to this system is not known |
-| NextionDriver | unchanged | Built (pin inferred), unit installed; runs only if the display port is set to `/dev/ttyNextionDriver`, which is not the set-up of this board |
-| TJC display on the modem port | unknown | `Port=modem`, `ScreenLayout=3`. The screen file of `display/tjc8048x550` was drawn for MMDVM-Display's layout 3; that the old built-in driver of MMDVMHost sends the same fields has not been compared line by line |
-| GPS position / time | replaced | gpsd and chrony from the board package, unchanged by this installer |
-| Fan, battery shutdown, Meshtastic, Ethernet naming | replaced | Board package (`../install.sh`), independent of Pi-Star; no dashboard page |
+| `rpi-rw`、`rpi-ro` | 替換 | 什麼都不做，並印出訊息說明這一點；根檔案系統一直是可讀寫的 |
+| 唯讀根檔案系統 | 不可用 | 儀表板和腳本裡的每一個 `mount -o remount,ro` 都改成 `true` |
+| `pistar-update`、`pistar-upgrade`、`pistar-factory-reset` | 替換／不可用 | 同上 |
+| `pistar-firewall`、`HostFilesUpdate.sh`、`pistar-bmapi`、`pistar-tgifapi`、`pistar-dapnetapi`、`pistar-link`、`pistar-ysflink`、`pistar-p25link`、`pistar-nxdnlink`、`pistar-mmdvmremote`、`pistar-jittertest`、`pistar-mmdvmhost-module` | 原樣 | |
+| `pistar-mmdvmcal`、`pistar-calibration-start` | 修改 | 移除 `remount,ro`。從 `/etc/mmdvmhost` 讀取 `UARTPort`／`UARTSpeed` |
+| `pistar-findmodem`、`pistar-mmdvmhshatreset`、`pistar-modemupgrade` | 替換 | 上游版本會驅動 GPIO 20／21，在 S900 上那是別的腳 |
+| `pistar-watchdog` | 替換 | 用 bash 取代 Python 2；以逐步拉長間隔（back-off）的方式重新啟動停掉的常駐程式；不刪除系統記錄檔 |
+| `pistar-remote`（射頻遙控）、`pistar-keeper` | 不可用 | Python 2 程式；Ubuntu 24.04 沒有 Python 2 |
+| `pistar-nextiontext.py`、`pistar-oledtext.py` | 不可用 | 前者把資料寫到 `/dev/ttyAMA0`，當作那裡接著螢幕（在這裡那是數據機）；沒有 OLED |
+| `pistar-expand`、`pistar-clone`、`pistar-bootconfig.sh`（開機分割區上的設定 zip／`wpa_supplicant.conf`）、`pistar-motdgen`、`pistar-sslgenerate`、`pistar-sendcw` | 不可用 | 屬於樹莓派映像檔的管理，或是沒有看得夠仔細、不足以安裝 |
+| 每日工作（主機清單檔、清理記錄檔） | 替換 | `/etc/cron.d/pistar-b96` → `board/pistar-b96-daily`；不做 git pull，不下載 WiringPi；記錄檔保留 2 天 |
+| 每小時工作（journal 清理、nginx 記錄檔截短） | 不可用 | 沒有重做；套用 Ubuntu 的 journald 和 logrotate 設定 |
+| 記錄檔放在 tmpfs | 不可用 | `/var/log/pi-star` 在根檔案系統上 |
+| 從 www.pistar.uk 下載主機清單檔（host files） | 未知 | 上游腳本，沒有修改；伺服器會不會把這些檔案提供給這個系統，不知道 |
+| NextionDriver | 原樣 | 有建置（鎖定版本為推定），unit 已安裝；只有螢幕埠設為 `/dev/ttyNextionDriver` 時才會執行，而這塊板子不是這樣設定的 |
+| 數據機埠上的 TJC 螢幕 | 未知 | `Port=modem`、`ScreenLayout=3`。`display/tjc8048x550` 的畫面檔是照 MMDVM-Display 的版面 3 畫的；MMDVMHost 舊的內建驅動是否送出相同的欄位，沒有逐行比對過 |
+| GPS 位置／時間 | 替換 | 由板子套件提供的 gpsd 和 chrony，這個安裝腳本不會改動 |
+| 風扇、電池關機、Meshtastic、乙太網路介面命名 | 替換 | 板子套件（`../install.sh`），和 Pi-Star 無關；沒有儀表板頁面 |

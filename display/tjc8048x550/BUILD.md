@@ -563,7 +563,7 @@ Environment=LC_TIME=C
 
 ### 8.3 MMDVM-Host
 
-MQTT 版的 MMDVM-Host 不需要任何螢幕設定，它只負責把 `display-in` 的資料轉給 modem。
+MQTT 版的 MMDVM-Host 不需要任何螢幕設定，它只負責把 `display-in` 的資料轉給數據機（modem）。
 確認 `[MQTT] Name=host`，以及 mosquitto 有在跑。
 
 改用 2023-06 以前的舊版 MMDVMHost 時，設定寫在 `MMDVM.ini`：`[Nextion]` `Port=modem`、`ScreenLayout=3`、`Brightness=100`、`IdleBrightness=30`。

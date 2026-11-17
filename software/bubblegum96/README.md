@@ -1,127 +1,91 @@
-# Host software for the r3.0-study mezzanine on a Bubblegum-96
+# Bubblegum-96 上 r3.0 研究版擴充板的主機軟體
 
-Ubuntu 24.04 (arm64) side of the board in `hardware/r3.0-study/`: MMDVM dual
-ADF7021 hotspot (STM32), Meshtastic radio (RAK4630), GPS (MAX-M10S), 1S4P
-battery system, fan, LAN7500 Ethernet.
+`hardware/r3.0-study/` 這張板子在 Ubuntu 24.04（arm64）這一端的軟體：MMDVM 雙 ADF7021 熱點（STM32）、Meshtastic 無線電（RAK4630）、GPS（MAX-M10S）、1S4P 電池系統、風扇、LAN7500 乙太網路。
 
-**Nothing in this directory has been run.** The board has never been built,
-no Bubblegum-96 was available, the device tree was not compiled (no `dtc` on
-the machine it was written on) and `install.sh` was never executed. The shell
-scripts pass `bash -n`; that is the only check performed. Read
-"Untested / assumptions" before relying on any file.
+**這個目錄裡的東西都沒有執行過。** 板子從來沒有做出來，手邊也沒有 Bubblegum-96；裝置樹沒有編譯過（撰寫的那台機器上沒有 `dtc`），`install.sh` 也從來沒有執行過。shell 腳本通過 `bash -n`，這是唯一做過的檢查。使用任何檔案之前，請先讀「未測試／假設」一節。
 
-Design record: `docs/meshtastic-gps-study.md` (sections 2, 3, 6, 8, 10-13,
-16.10). Nets and I2C addresses: `hardware/r3.0-study/gen/r30_parts.py` and
-`r30_parts2.py`.
+設計紀錄：`docs/meshtastic-gps-study.md`（第 2、3、6、8、10-13、16.10 節）。網路與 I2C 位址：`hardware/r3.0-study/gen/r30_parts.py` 和 `r30_parts2.py`。
 
-## Files
+## 檔案
 
-| File | Installed as | Purpose |
+| 檔案 | 安裝位置 | 用途 |
 |---|---|---|
-| `dts/mmdvm-mesh-overlay.dts` | (manual) | Device-tree overlay: `uart2` + `serial2` alias, SC16IS752, EMC2301, TMP102, INA226, MAX17048, BQ25895, `pps-gpio`, `gpio-keys` (power key), `gpio-poweroff` (disabled) |
-| `dts/build-dtbo.sh` | - | Compiles the overlay; optionally merges it into the base DTB with `fdtoverlay` |
-| `gpio/mmdvm-gpio.sh` | `/usr/local/sbin/mmdvm-gpio` | BOOT0 / STM32 reset / RAK4630 reset / GPS switch through sysfs GPIO |
-| `gpio/mmdvm-gpio-init.service` | `/etc/systemd/system/` | Drives those lines to their idle state at boot |
-| `mmdvm/MMDVM.ini` | `/etc/MMDVM-Host.ini` | MMDVM-Host configuration (upstream renamed the file and the binary to `MMDVM-Host`) |
-| `mmdvm/MMDVM-Display.ini` | `/etc/MMDVM-Display.ini` | MMDVM-Display: `[Nextion] Port=modem` for the TJC screen |
-| `mmdvm/build.sh` | - | Installs build dependencies, clones and builds MMDVM-Host and MMDVM-Display |
-| `mmdvm/mmdvmhost.service`, `mmdvm/mmdvm-display.service` | `/etc/systemd/system/` | systemd units |
-| `mmdvm/flash-mmdvm-hs.sh` | `/usr/local/sbin/flash-mmdvm-hs` | `stm32flash` wrapper using GPIO-A / GPIO-B |
-| `fan/mmdvm-fan.sh`, `.service`, `.default` | `/usr/local/sbin/mmdvm-fan`, unit, `/etc/default/mmdvm-fan` | Temperature curve: TMP102 -> EMC2301 PWM, hwmon paths found by name at run time |
-| `mmdvm/build-gateways.sh` | - | Builds DMRGateway and YSFGateway with `USE_GPSD`, installs the upstream sample `.ini` files if none exist |
-| `mmdvm/setup-brandmeister.sh` | - | Sets callsign, DMR ID, frequencies and a BrandMeister master in `/etc/MMDVM-Host.ini` and `/etc/DMRGateway.ini` (DMR only, like a Pi-Star hotspot on a BM master) |
-| `mmdvm/dmrgateway.service`, `mmdvm/ysfgateway.service` | `/etc/systemd/system/` (by `build-gateways.sh`) | systemd units, not enabled |
-| `power/mmdvm-battery.sh`, `.service`, `.default` | `/usr/local/sbin/mmdvm-battery`, unit, `/etc/default/mmdvm-battery` | Clean shutdown when the MAX17048 reports a low pack and no charger |
-| `gps/gpsd.default` | `/etc/default/gpsd` | gpsd on `/dev/ttySC1`, read-only |
-| `gps/mmdvm-gps-switch.sh`, `.service` | `/usr/local/sbin/mmdvm-gps-switch`, unit | Restarts the RAK4630 when the GPS supply comes up (study 3.3) |
-| `gps/chrony-gps-pps.conf` | `/etc/chrony/conf.d/mmdvm-gps-pps.conf` | chrony: NMEA via gpsd SHM + `/dev/pps0` |
-| `meshtastic/README.md` | - | Host link to the RAK4630, first-boot steps, STM32 flashing notes |
-| `meshtastic/provision.sh` | `/usr/local/sbin/mmdvm-mesh-provision` | Meshtastic settings of study section 10.3 |
-| `network/10-mmdvm-lan7500.link` | `/etc/systemd/network/` | Names the LAN7500 (`smsc75xx`) interface `lan0` |
-| `network/60-mmdvm-lan.yaml` | `/etc/netplan/` | DHCP on `lan0` |
-| `network/kernel-config.fragment` | - | Kernel options everything above needs |
-| `install.sh` | - | Copies the files into place |
+| `dts/mmdvm-mesh-overlay.dts` | （手動） | 裝置樹疊加檔（overlay）：`uart2` + `serial2` 別名、SC16IS752、EMC2301、TMP102、INA226、MAX17048、BQ25895、`pps-gpio`、`gpio-keys`（電源鍵）、`gpio-poweroff`（停用） |
+| `dts/build-dtbo.sh` | - | 編譯疊加檔；可選擇用 `fdtoverlay` 合併進基礎 DTB |
+| `gpio/mmdvm-gpio.sh` | `/usr/local/sbin/mmdvm-gpio` | 經 sysfs GPIO 控制 BOOT0／STM32 重置／RAK4630 重置／GPS 開關 |
+| `gpio/mmdvm-gpio-init.service` | `/etc/systemd/system/` | 開機時把這些線設到閒置狀態 |
+| `mmdvm/MMDVM.ini` | `/etc/MMDVM-Host.ini` | MMDVM-Host 設定（上游已把設定檔和執行檔改名為 `MMDVM-Host`） |
+| `mmdvm/MMDVM-Display.ini` | `/etc/MMDVM-Display.ini` | MMDVM-Display：TJC 螢幕用 `[Nextion] Port=modem` |
+| `mmdvm/build.sh` | - | 安裝編譯相依套件，下載並編譯 MMDVM-Host 和 MMDVM-Display |
+| `mmdvm/mmdvmhost.service`、`mmdvm/mmdvm-display.service` | `/etc/systemd/system/` | systemd 單元 |
+| `mmdvm/flash-mmdvm-hs.sh` | `/usr/local/sbin/flash-mmdvm-hs` | 用 GPIO-A／GPIO-B 的 `stm32flash` 包裝腳本 |
+| `fan/mmdvm-fan.sh`、`.service`、`.default` | `/usr/local/sbin/mmdvm-fan`、單元、`/etc/default/mmdvm-fan` | 溫度曲線：TMP102 -> EMC2301 PWM，hwmon 路徑在執行時依名稱尋找 |
+| `mmdvm/build-gateways.sh` | - | 編譯開啟 `USE_GPSD` 的 DMRGateway 和 YSFGateway；還沒有設定檔時，安裝上游的範例 `.ini` 檔 |
+| `mmdvm/setup-brandmeister.sh` | - | 在 `/etc/MMDVM-Host.ini` 和 `/etc/DMRGateway.ini` 設定呼號、DMR ID、頻率和 BrandMeister master（只有 DMR，就像接 BM master 的 Pi-Star 熱點） |
+| `mmdvm/dmrgateway.service`、`mmdvm/ysfgateway.service` | `/etc/systemd/system/`（由 `build-gateways.sh` 安裝） | systemd 單元，未啟用 |
+| `power/mmdvm-battery.sh`、`.service`、`.default` | `/usr/local/sbin/mmdvm-battery`、單元、`/etc/default/mmdvm-battery` | MAX17048 回報電池組電量低且沒有接充電器時，正常關機 |
+| `gps/gpsd.default` | `/etc/default/gpsd` | gpsd 使用 `/dev/ttySC1`，唯讀 |
+| `gps/mmdvm-gps-switch.sh`、`.service` | `/usr/local/sbin/mmdvm-gps-switch`、單元 | GPS 電源接通時重新啟動 RAK4630（研究文件 3.3） |
+| `gps/chrony-gps-pps.conf` | `/etc/chrony/conf.d/mmdvm-gps-pps.conf` | chrony：經 gpsd SHM 取得 NMEA，加上 `/dev/pps0` |
+| `meshtastic/README.md` | - | 主機與 RAK4630 的連線、首次開機步驟、STM32 燒錄說明 |
+| `meshtastic/provision.sh` | `/usr/local/sbin/mmdvm-mesh-provision` | 研究文件第 10.3 節的 Meshtastic 設定 |
+| `network/10-mmdvm-lan7500.link` | `/etc/systemd/network/` | 把 LAN7500（`smsc75xx`）的網路介面命名為 `lan0` |
+| `network/60-mmdvm-lan.yaml` | `/etc/netplan/` | `lan0` 使用 DHCP |
+| `network/kernel-config.fragment` | - | 以上所有東西需要的 kernel 選項 |
+| `install.sh` | - | 把檔案複製到定位 |
 
-## Host interfaces
+## 主機介面
 
-Checked against the Bubblegum-96 hardware manual V1.1 (section 5, LS connector
-table) and the `gpio-line-names` table of mainline `s900-bubblegum-96.dts`;
-the two agree with each other and with study section 3.4.
+對照過 Bubblegum-96 硬體手冊 V1.1（第 5 節，LS 接頭表）和 mainline `s900-bubblegum-96.dts` 的 `gpio-line-names` 表；兩者彼此一致，也與研究文件第 3.4 節一致。
 
-| LS pin | 96Boards | S900 | Linux | Use |
+| LS 腳位 | 96Boards | S900 | Linux | 用途 |
 |---|---|---|---|---|
-| 5 / 7 | UART0 TxD / RxD | UART2, GPIOB15 / GPIOB14 | `/dev/ttyOWL2` | MMDVM modem (STM32 USART1), 115200 |
-| 11 / 13 | UART1 | UART5, GPIOA27 / GPIOA25 | `/dev/ttyOWL5` | console (unchanged) |
-| 15 / 17 | I2C0 SCL / SDA | I2C1, GPIOB22 / GPIOB23 | `&i2c1` | 0x48 SC16IS752, 0x2f EMC2301, 0x49 TMP102, 0x40 INA226, 0x36 MAX17048, 0x6a BQ25895 |
-| 23 | GPIO-A | GPIOA0 | line 0 | out: STM32 BOOT0 |
-| 24 | GPIO-B | GPIOA1 | line 1 | out: STM32 NRST (low = reset) |
-| 25 | GPIO-C | GPIOA2 | line 2 | in: SC16IS752 IRQ |
-| 26 | GPIO-D | GPIOA3 | line 3 | in: charger INT + gauge ALRT |
-| 27 | GPIO-E | GPIOA4 | line 4 | in: power-key request (STM6601 INT) |
-| 28 | GPIO-F | GPIOA5 | line 5 | out: power hold, only with JP2 2-3 |
-| 29 | GPIO-G | GPIOA6 | line 6 | out: RAK4630 reset (low = reset) |
-| 30 | GPIO-H | GPIOA7 | line 7 | in: GPS PPS |
-| 31 | GPIO-I | GPIOA8 | line 8 | in: GPS power-switch state |
-| 32 | GPIO-J | GPIOA9 | line 9 | in: EMC2301 ALERT (not used by software) |
+| 5 / 7 | UART0 TxD / RxD | UART2, GPIOB15 / GPIOB14 | `/dev/ttyOWL2` | MMDVM 數據機（STM32 USART1），115200 |
+| 11 / 13 | UART1 | UART5, GPIOA27 / GPIOA25 | `/dev/ttyOWL5` | console（不變） |
+| 15 / 17 | I2C0 SCL / SDA | I2C1, GPIOB22 / GPIOB23 | `&i2c1` | 0x48 SC16IS752、0x2f EMC2301、0x49 TMP102、0x40 INA226、0x36 MAX17048、0x6a BQ25895 |
+| 23 | GPIO-A | GPIOA0 | line 0 | 輸出：STM32 BOOT0 |
+| 24 | GPIO-B | GPIOA1 | line 1 | 輸出：STM32 NRST（低 = 重置） |
+| 25 | GPIO-C | GPIOA2 | line 2 | 輸入：SC16IS752 IRQ |
+| 26 | GPIO-D | GPIOA3 | line 3 | 輸入：充電 IC INT + 電量計 ALRT |
+| 27 | GPIO-E | GPIOA4 | line 4 | 輸入：電源鍵請求（STM6601 INT） |
+| 28 | GPIO-F | GPIOA5 | line 5 | 輸出：電源保持，只在 JP2 接 2-3 時 |
+| 29 | GPIO-G | GPIOA6 | line 6 | 輸出：RAK4630 重置（低 = 重置） |
+| 30 | GPIO-H | GPIOA7 | line 7 | 輸入：GPS PPS |
+| 31 | GPIO-I | GPIOA8 | line 8 | 輸入：GPS 電源開關狀態 |
+| 32 | GPIO-J | GPIOA9 | line 9 | 輸入：EMC2301 ALERT（軟體沒有用到） |
 
-All six I2C devices are on the 3.3 V always-on bus behind the TCA9406 (U34)
-and are reachable by the host. The nRF52840 is not on that bus.
+六顆 I2C 裝置都在 TCA9406（U34）後面的 3.3 V 常時供電匯流排上，主機都存取得到。nRF52840 不在這條匯流排上。
 
-`/dev/ttySC0` = SC16IS752 channel A = Meshtastic serial API,
-`/dev/ttySC1` = channel B = GPS NMEA (receive only).
+`/dev/ttySC0` = SC16IS752 通道 A = Meshtastic 序列 API，`/dev/ttySC1` = 通道 B = GPS NMEA（只收）。
 
-## Installation order
+## 安裝順序
 
-The scripts were written on Windows and carry no executable bit in the
-working tree: run them as `bash <script>` or `chmod +x` them first.
+這些腳本是在 Windows 上寫的，在工作目錄裡沒有執行權限位元：用 `bash <script>` 執行，或先 `chmod +x`。
 
-1. **Kernel.** Merge `network/kernel-config.fragment` into the kernel config
-   and rebuild. Build the DTBs with symbols: `make DTC_FLAGS=-@ dtbs`.
-2. **Device tree.** `KSRC=<kernel tree> dts/build-dtbo.sh <base.dtb>` and
-   install the merged DTB where the boot loader loads it from (or apply the
-   `.dtbo` in U-Boot, or include the file in the board `.dts`; see the
-   header of the overlay). Reboot. Check: `/dev/ttyOWL2`, `/dev/ttySC0`,
-   `/dev/ttySC1`, `/dev/pps0`, `sensors`, `ls /sys/class/power_supply`.
-3. **Packages.**
+1. **Kernel。** 把 `network/kernel-config.fragment` 合併進 kernel 設定後重新編譯。DTB 要帶符號編譯：`make DTC_FLAGS=-@ dtbs`。
+2. **裝置樹。** 執行 `KSRC=<kernel tree> dts/build-dtbo.sh <base.dtb>`，把合併後的 DTB 裝到 bootloader 載入它的位置（或在 U-Boot 套用 `.dtbo`，或在板子的 `.dts` 裡 include 這個檔案；見疊加檔開頭的說明）。重新開機。檢查：`/dev/ttyOWL2`、`/dev/ttySC0`、`/dev/ttySC1`、`/dev/pps0`、`sensors`、`ls /sys/class/power_supply`。
+3. **套件。**
    `sudo apt-get install -y mosquitto mosquitto-clients stm32flash gpsd gpsd-clients chrony pps-tools lm-sensors i2c-tools gpiod pipx`
-4. **MMDVM build.** `mmdvm/build.sh`
-5. **Files.** `sudo ./install.sh --dry-run`, then `sudo ./install.sh`
-6. **GPIO defaults and fan.** `sudo systemctl enable --now mmdvm-gpio-init mmdvm-fan`
-7. **STM32 firmware** (if the modem is blank):
+4. **編譯 MMDVM。** `mmdvm/build.sh`
+5. **檔案。** `sudo ./install.sh --dry-run`，然後 `sudo ./install.sh`
+6. **GPIO 預設狀態與風扇。** `sudo systemctl enable --now mmdvm-gpio-init mmdvm-fan`
+7. **STM32 韌體**（數據機是空白的話）：
    `sudo flash-mmdvm-hs mmdvm_hs_dual_hat_fw.bin`
-8. **MMDVM.** Edit `/etc/MMDVM-Host.ini` (callsign, DMR ID, frequencies, colour
-   code), then `sudo systemctl enable --now mosquitto mmdvmhost mmdvm-display`.
-   Log: `mosquitto_sub -t 'host/#' -v` and `journalctl -u mmdvmhost`.
-9. **GPS / time.** `sudo systemctl enable gpsd && sudo systemctl restart gpsd chrony`;
-   check with `gpsmon`, `sudo ppstest /dev/pps0`, `chronyc sources`.
-10. **Meshtastic.** `pipx install meshtastic`, then follow
-    `meshtastic/README.md` (first provisioning over USB or BLE).
-11. **Network.** `sudo netplan try`; `ip link show lan0`.
+8. **MMDVM。** 編輯 `/etc/MMDVM-Host.ini`（呼號、DMR ID、頻率、色碼），然後 `sudo systemctl enable --now mosquitto mmdvmhost mmdvm-display`。看 log：`mosquitto_sub -t 'host/#' -v` 和 `journalctl -u mmdvmhost`。
+9. **GPS／時間。** `sudo systemctl enable gpsd && sudo systemctl restart gpsd chrony`；用 `gpsmon`、`sudo ppstest /dev/pps0`、`chronyc sources` 檢查。
+10. **Meshtastic。** `pipx install meshtastic`，然後照 `meshtastic/README.md` 做（第一次設定要經 USB 或 BLE）。
+11. **網路。** `sudo netplan try`；`ip link show lan0`。
 
-## Two ways to run the hotspot: choose one
+## 熱點的兩種跑法：二選一
 
-1. **The minimal package** (everything in this directory except `pistar/`):
-   the current MMDVM-Host with MMDVM-Display and DMRGateway, configured by
-   editing files or with `mmdvm/setup-brandmeister.sh`. No web pages.
-2. **A port of Pi-Star** in `pistar/`: the software Pi-Star runs (the older,
-   file-logging MMDVMHost and gateways at the versions Pi-Star ships) built
-   from source, with Pi-Star's own dashboard and admin pages downloaded from
-   upstream at install time and adapted to this board. See `pistar/README.md`
-   and `pistar/FEATURES.md` for what works, what is replaced and what is not
-   available here.
+1. **精簡套件**（這個目錄裡除了 `pistar/` 以外的全部）：目前版本的 MMDVM-Host 加上 MMDVM-Display 和 DMRGateway，直接編輯檔案或用 `mmdvm/setup-brandmeister.sh` 設定。沒有網頁。
+2. **Pi-Star 移植版**，在 `pistar/`：從原始碼編譯 Pi-Star 所跑的軟體（舊版、把 log 寫到檔案的 MMDVMHost，以及 Pi-Star 所附版本的各閘道器），Pi-Star 自己的儀表板和管理頁面在安裝時從上游下載，並改成適合這張板子。哪些能用、哪些被取代、哪些在這裡沒有，見 `pistar/README.md` 和 `pistar/FEATURES.md`。
 
-They use the same unit names and binaries, so only one can be active;
-`pistar/install-pistar.sh` refuses to run while the minimal package's units
-are enabled. The device-tree overlay, `gpio/`, `fan/`, `power/`, `gps/` and
-`network/` are needed by both. Neither has been run on hardware.
+兩者使用相同的單元名稱和執行檔，所以只能啟用其中一個；精簡套件的單元還在啟用狀態時，`pistar/install-pistar.sh` 會拒絕執行。裝置樹疊加檔、`gpio/`、`fan/`、`power/`、`gps/` 和 `network/` 兩者都需要。兩者都沒有在實機上跑過。
 
-## DMR on BrandMeister (coming from Pi-Star)
+## 在 BrandMeister 上跑 DMR（從 Pi-Star 轉過來）
 
-Pi-Star itself is distributed as images for the Raspberry Pi and a few other
-boards; there is none for the Bubblegum-96, so this package sets the same
-thing up by hand. The difference that matters: Pi-Star runs the old MMDVMHost,
-which logs in to the BrandMeister master directly. The current MMDVM-Host only
-talks to a local gateway, so BrandMeister is reached through DMRGateway.
+Pi-Star 本身是以映像檔發布，給 Raspberry Pi 和其他幾種板子用；沒有 Bubblegum-96 的版本，所以這個套件用手動方式做出相同的設定。重要的差異是：Pi-Star 跑的是舊版 MMDVMHost，它直接登入 BrandMeister master。目前的 MMDVM-Host 只跟本機的閘道器溝通，所以要經過 DMRGateway 連到 BrandMeister。
 
     bash mmdvm/build.sh
     bash mmdvm/build-gateways.sh
@@ -129,189 +93,104 @@ talks to a local gateway, so BrandMeister is reached through DMRGateway.
     sudo bash mmdvm/setup-brandmeister.sh --callsign BX4XXX --id 4661234          --master 4501 --rx 433000000 --tx 438000000 --cc 1
     sudo systemctl enable --now mmdvm-gpio-init mosquitto dmrgateway mmdvmhost mmdvm-display
 
-- `--master` is the number of the `BM_<number>_...` entry you used in Pi-Star.
-  BrandMeister lists no master in Taiwan (checked 2026-11-16); the nearest are
-  4501 South Korea, 4602 China, 5021 Malaysia and 5151 Philippines.
-- The password is the Hotspot Security password of BrandMeister SelfCare
-  (`passw0rd` when that feature is off). The script asks for it; it is not
-  stored anywhere but `/etc/DMRGateway.ini`.
-- The script passes all talk groups and private calls on both slots and
-  switches the sample's reflector emulation and the XLX network off. Static
-  talk groups are managed in SelfCare, as before.
-- Only DMR is enabled in `mmdvm/MMDVM.ini`; D-Star, YSF, P25, NXDN, POCSAG and
-  FM are off.
-- The script was run against the upstream sample files on a PC and edits them
-  as intended. It has not been run on the Bubblegum-96, and no login to a
-  master has been tried.
+- `--master` 是你在 Pi-Star 裡用的 `BM_<number>_...` 項目的編號。BrandMeister 沒有列出台灣的 master（2026-11-16 查過）；最近的是 4501 南韓、4602 中國、5021 馬來西亞和 5151 菲律賓。
+- 密碼是 BrandMeister SelfCare 裡的 Hotspot Security 密碼（沒開這個功能時是 `passw0rd`）。腳本會詢問密碼；除了 `/etc/DMRGateway.ini` 以外，不會存在任何地方。
+- 腳本讓兩個時槽都通過所有通話群組和私人通話，並關掉範例檔裡的反射器模擬和 XLX 網路。靜態通話群組跟以前一樣在 SelfCare 管理。
+- `mmdvm/MMDVM.ini` 只啟用 DMR；D-Star、YSF、P25、NXDN、POCSAG 和 FM 都關閉。
+- 腳本在 PC 上對上游範例檔跑過，修改結果符合預期。沒有在 Bubblegum-96 上跑過，也沒有試過登入 master。
 
-## Design decisions that differ from the study text
+## 與研究文件不同的設計決定
 
-- **Fan controller.** The study (3.4, 4.2, 7.3, 8) names an AMC6821. The
-  schematic generator and the BOM have an EMC2301 (0x2f) plus a TMP102
-  (0x49). The software follows the schematic: `microchip,emc2305` driver, and
-  a service instead of `fancontrol` (the driver has no `pwm1_enable`). The
-  EMC2301 has no temperature input and no stand-alone curve, so unlike the
-  AMC6821 described in 7.3 the fan does not regulate itself if the host hangs.
-- **Program and file names.** Upstream is now `MMDVM-Host` /
-  `/etc/MMDVM-Host.ini`; there is no `[Nextion]` section in the host file any
-  more. The display is configured only in `MMDVM-Display.ini`.
-- **`gpio-poweroff` is present but disabled**, because the board default
-  (JP2 1-2) does not connect GPIO-F to anything.
-- **`gpio-keys` on GPIO-E** was added so the power key causes a normal
-  shutdown (section 3.4 lists the line; section 8 does not list software for it).
-- **`gpio-line-names` is not in the overlay**: mainline already names the LS
-  lines `GPIO-A` .. `GPIO-L`, and an overlay could only replace the whole
-  146-entry table.
-- **`gpio/`** is not in the study's software list. It exists because of the
-  floating inputs described below.
+- **風扇控制器。** 研究文件（3.4、4.2、7.3、8）寫的是 AMC6821。線路圖產生器和 BOM 用的是 EMC2301（0x2f）加 TMP102（0x49）。軟體以線路圖為準：使用 `microchip,emc2305` 驅動程式，並用一個服務取代 `fancontrol`（這個驅動程式沒有 `pwm1_enable`）。EMC2301 沒有溫度輸入，也沒有獨立運作的曲線，所以和 7.3 描述的 AMC6821 不同，主機當掉時風扇不會自己調速。
+- **程式和檔案名稱。** 上游現在是 `MMDVM-Host`／`/etc/MMDVM-Host.ini`；主程式的設定檔裡已經沒有 `[Nextion]` 區段。螢幕只在 `MMDVM-Display.ini` 設定。
+- **`gpio-poweroff` 有寫但停用**，因為板子的預設（JP2 1-2）沒有把 GPIO-F 接到任何東西。
+- **GPIO-E 上的 `gpio-keys`** 是另外加的，讓電源鍵觸發正常關機（第 3.4 節列了這條線，第 8 節沒有列對應的軟體）。
+- **疊加檔裡沒有 `gpio-line-names`**：mainline 已經把 LS 的線命名為 `GPIO-A` .. `GPIO-L`，而疊加檔只能整個取代那張 146 項的表。
+- **`gpio/`** 不在研究文件的軟體清單裡。會有它，是因為下面說明的浮接輸入。
 
-## Untested / assumptions
+## 未測試／假設
 
-Everything is untested. The items below are the ones most likely to be wrong
-or that need a decision; each has a matching `TODO` or note in the file.
+全部都未測試。下面列的是最可能出錯或需要決定的項目；每一項在檔案裡都有對應的 `TODO` 或註記。
 
-Device tree (`dts/mmdvm-mesh-overlay.dts`)
+裝置樹（`dts/mmdvm-mesh-overlay.dts`）
 
-1. Never compiled. Syntax and `&{/aliases}` / `&{/}` handling unverified.
-2. The boot chain of the user's image is unknown; overlay application
-   (build-time `fdtoverlay`, U-Boot `fdt apply`, or static include) is the
-   user's choice. The base DTB needs `-@` for the first two.
-3. `uart2` has no pinctrl entry: `pinctrl-s900.c` only has a `uart2_dummy`
-   group for the RX/TX pads. Assumed to mean the pads need no mux setting.
-4. `owl-uart` needs the `serial2` alias; added through `&{/aliases}`.
-5. Baud-rate accuracy of `owl-uart` at 115200 (it sets the UART clock to
-   8 x baud) is not known.
-6. SC16IS752 interrupt as `IRQ_TYPE_LEVEL_LOW` on the S900 GPIO controller.
-7. `ttySC0` / `ttySC1` and `pps0` numbering assume no other such devices.
-8. EMC2301: push-pull PWM, 26 kHz, normal polarity, low-side switching of a
-   3-wire fan; the tach reading may be unusable below 100 % duty.
-9. BQ25895 charge values (4.208 V, 3.008 A, 256 mA termination and
-   pre-charge) are placeholders to be set for the fitted cells. The driver
-   turns the chip watchdog off, so they persist while the host is off.
-10. MAX17048 has no interrupt: it shares GPIO-D with the charger and neither
-    driver requests a shared IRQ. Its low-SOC alert is unused.
-11. `gpio-keys` on a 20-44 ms pulse with the emulated both-edge interrupt of
-    `pinctrl-owl`.
-12. `gpio-poweroff` (JP2 2-3): PS_HOLD must be high within the STM6601
-    tON_BLANK (5.6 s min); the kernel driver probes too late for that unless
-    the boot loader drives GPIO-F or C142/R124 are fitted. Interaction with
-    an existing PMIC power-off handler in the user's kernel is unknown.
-13. Default power-off path (JP2 1-2) depends on the PMIC dropping +1V8 at
-    shutdown, and on +1V8 rising within tON_BLANK at power-on (study 16.10).
-    Neither is a software matter, both are unmeasured.
+1. 從沒編譯過。語法和 `&{/aliases}`／`&{/}` 的處理都未驗證。
+2. 使用者映像檔的開機流程不明；疊加檔的套用方式（編譯時用 `fdtoverlay`、U-Boot `fdt apply`，或靜態 include）由使用者選擇。前兩種方式的基礎 DTB 需要 `-@`。
+3. `uart2` 沒有 pinctrl 項目：`pinctrl-s900.c` 對 RX/TX 腳只有一個 `uart2_dummy` 群組。假設這代表這些腳不需要 mux 設定。
+4. `owl-uart` 需要 `serial2` 別名；已經透過 `&{/aliases}` 加上。
+5. `owl-uart` 在 115200 的鮑率準確度不明（它把 UART 時脈設為 8 x 鮑率）。
+6. SC16IS752 的中斷在 S900 GPIO 控制器上設為 `IRQ_TYPE_LEVEL_LOW`。
+7. `ttySC0`／`ttySC1` 和 `pps0` 的編號假設沒有其他同類裝置。
+8. EMC2301：推挽 PWM、26 kHz、正常極性、低側開關 3 線風扇；工作週期低於 100 % 時，轉速讀值可能不能用。
+9. BQ25895 的充電參數（4.208 V、3.008 A、256 mA 終止與預充電流）是暫定值，要依實際裝的電池設定。驅動程式會關掉晶片的看門狗，所以主機關機時這些設定仍然有效。
+10. MAX17048 沒有中斷：它和充電 IC 共用 GPIO-D，兩個驅動程式都沒有要求共用 IRQ。它的低 SOC 警示沒有用到。
+11. `gpio-keys` 搭配 `pinctrl-owl` 模擬的雙緣中斷，處理 20-44 ms 的脈衝。
+12. `gpio-poweroff`（JP2 2-3）：PS_HOLD 必須在 STM6601 的 tON_BLANK（最少 5.6 s）內變高；kernel 驅動程式 probe 的時間太晚，除非 bootloader 會驅動 GPIO-F，或焊上 C142／R124。和使用者 kernel 裡既有的 PMIC 關機處理程序之間的互動不明。
+13. 預設的斷電路徑（JP2 1-2）要靠 PMIC 在關機時把 +1V8 關掉，以及開機時 +1V8 在 tON_BLANK 內上來（研究文件 16.10）。兩者都不是軟體能處理的，也都沒有量過。
 
-GPIO (`gpio/`)
+GPIO（`gpio/`）
 
-14. Needs `CONFIG_GPIO_SYSFS` (+ `CONFIG_GPIO_SYSFS_LEGACY` where it exists).
-    The chip is found through `gpiochipN/device/of_node/compatible`; that
-    sysfs path is assumed.
-15. Assumes `stm32flash` leaves already-exported GPIOs exported.
+14. 需要 `CONFIG_GPIO_SYSFS`（有 `CONFIG_GPIO_SYSFS_LEGACY` 的話也要開）。晶片是透過 `gpiochipN/device/of_node/compatible` 找的；這個 sysfs 路徑是假設的。
+15. 假設 `stm32flash` 執行後，原本已經 export 的 GPIO 仍然保持 export。
 
-MMDVM (`mmdvm/`)
+MMDVM（`mmdvm/`）
 
-16. `MMDVM.ini` placeholders: `Callsign=N0CALL`, `Id=1234567`,
-    `RXFrequency=0`, `TXFrequency=0`, `ColorCode=1`. The unit refuses to
-    start with `N0CALL`. Behaviour of the firmware with frequency 0 was not
-    checked.
-17. `[DMR Network] Enable=0`: no gateway (DMRGateway etc.) is installed by
-    this package, so the hotspot is RF-only until one is added.
-18. Display path (`Port=modem` -> MQTT -> MMDVM-Host -> STM32 USART2 -> TJC)
-    is taken from the upstream sources; never seen working with a TJC X5.
-    No 800x480 TJC screen file exists. MMDVM-Info is not installed.
-19. `build.sh` dependency list comes from the upstream Makefiles and
-    includes; not built on arm64 here.
-20. Flashing: 8E1 on `ttyOWL2`, GPIO sequence copied from the firmware's
-    Raspberry Pi script.
+16. `MMDVM.ini` 的暫定值：`Callsign=N0CALL`、`Id=1234567`、`RXFrequency=0`、`TXFrequency=0`、`ColorCode=1`。呼號是 `N0CALL` 時，服務單元會拒絕啟動。頻率為 0 時韌體的行為沒有確認過。
+17. `[DMR Network] Enable=0`：這個套件不安裝閘道器（DMRGateway 等），所以在加裝之前，熱點只有射頻功能。
+18. 螢幕資料路徑（`Port=modem` -> MQTT -> MMDVM-Host -> STM32 USART2 -> TJC）是從上游原始碼看來的；從沒看過它搭配 TJC X5 實際運作。沒有現成的 800x480 TJC 畫面檔。沒有安裝 MMDVM-Info。
+19. `build.sh` 的相依套件清單是從上游的 Makefile 和 include 整理出來的；這裡沒有在 arm64 上編譯過。
+20. 燒錄：`ttyOWL2` 用 8E1，GPIO 時序照抄韌體的 Raspberry Pi 腳本。
 
-Fan (`fan/`)
+風扇（`fan/`）
 
-21. Curve values (30 / 33 / 45 degC, PWM 90..255, 150 while charging) are
-    guesses. The TMP102 measures outlet air, not the SoC.
-22. Power-supply name glob `*bq25890*` for the charging state is assumed.
+21. 曲線數值（30 / 33 / 45 degC、PWM 90..255、充電時 150）是猜的。TMP102 量的是出風口的空氣，不是 SoC。
+22. 判斷充電狀態用的 power supply 名稱萬用字元 `*bq25890*` 是假設的。
 
-GPS (`gps/`)
+GPS（`gps/`）
 
-23. The host cannot configure the GPS (receive only). Baud rate (9600) and
-    the NMEA sentences depend on what the Meshtastic firmware sets.
-24. gpsd option `-s 9600`: assumed available in Ubuntu 24.04's gpsd.
-25. chrony `offset 0.2` for NMEA is a guess; needs calibration. Ubuntu's
-    AppArmor profile for chrony is assumed to allow `/dev/pps0`.
-26. No GPS data while the GPS switch is off, Meshtastic is shut down, or
-    (possibly) while Meshtastic power-saves the receiver.
+23. 主機不能設定 GPS（只收）。鮑率（9600）和 NMEA 語句取決於 Meshtastic 韌體的設定。
+24. gpsd 選項 `-s 9600`：假設 Ubuntu 24.04 的 gpsd 有這個選項。
+25. chrony 對 NMEA 設的 `offset 0.2` 是猜的，需要校正。假設 Ubuntu 給 chrony 的 AppArmor 設定檔允許存取 `/dev/pps0`。
+26. GPS 開關關閉、Meshtastic 關機，或（可能）Meshtastic 讓接收機省電時，都沒有 GPS 資料。
 
-Meshtastic (`meshtastic/`)
+Meshtastic（`meshtastic/`）
 
-27. First provisioning cannot use `/dev/ttySC0` (the serial module is what
-    enables that link); USB (J43) or BLE is required once.
-28. `--gps-always-on` (`position.gps_update_interval 5`) is an unverified
-    guess at keeping the receiver powered.
-29. Serial module pins 19 / 20 at 115200 are taken from study 10.2 / 10.3.
-30. `gps/mmdvm-gps-switch.sh`: GPIO-I shows the GPS supply, which also drops
-    when the firmware switches the GPS off by itself, so the watcher only
-    restarts the MCU on the 0 -> 1 edge and at most every 120 s. Whether
-    Meshtastic needs that restart at all is not known (`RESET_MESH=0` to
-    only log).
+27. 第一次設定不能用 `/dev/ttySC0`（這條連線要靠序列模組啟用）；至少要用一次 USB（J43）或 BLE。
+28. `--gps-always-on`（`position.gps_update_interval 5`）是為了讓接收機保持供電而猜的做法，未驗證。
+29. 序列模組的腳位 19 / 20、115200 取自研究文件 10.2 / 10.3。
+30. `gps/mmdvm-gps-switch.sh`：GPIO-I 反映的是 GPS 電源，韌體自己關掉 GPS 時它也會掉，所以監看程式只在 0 -> 1 的邊緣重新啟動 MCU，而且最多每 120 s 一次。Meshtastic 到底需不需要這次重新啟動並不清楚（設 `RESET_MESH=0` 就只記錄）。
 
-Network (`network/`)
+網路（`network/`）
 
-31. USB host on the S900 is not in mainline; the LAN7500 depends on the
-    user's kernel patches and on the high-speed-connector USB port working.
-32. The `.link` file matches by driver (`smsc75xx`), i.e. any LAN75xx adapter.
-    With a blank EEPROM (U64) the MAC address is random at every boot until
-    `MACAddress=` is set or the EEPROM is programmed.
-33. No renderer is set in the netplan file.
+31. S900 的 USB host 不在 mainline 裡；LAN7500 要靠使用者的 kernel 修補，以及高速接頭上的 USB 埠能正常運作。
+32. `.link` 檔是依驅動程式（`smsc75xx`）比對，也就是任何 LAN75xx 網卡都會符合。EEPROM（U64）空白時，每次開機的 MAC 位址都是隨機的，直到設定 `MACAddress=` 或燒錄 EEPROM 為止。
+33. netplan 檔裡沒有設定 renderer。
 
-Added later (`power/`, gateways)
+後來加的（`power/`、閘道器）
 
-34. `power/mmdvm-battery.sh` assumes the `max17040_battery` driver exposes
-    `capacity` and `voltage_now` and that a charging pack reports `Charging`
-    or `Full`. The limits (8 %, 3250 mV, three readings 30 s apart) are
-    starting values. `DRY_RUN=1` logs without shutting down.
-35. `mmdvm/build-gateways.sh` switches the upstream Makefiles to their
-    `-DUSE_GPSD` lines with `sed`; it stops if upstream changes those lines.
-    The sample `.ini` files are used as they are apart from `[GPSD] Enable=1`:
-    callsign, id, networks and passwords are yours to set.
+34. `power/mmdvm-battery.sh` 假設 `max17040_battery` 驅動程式提供 `capacity` 和 `voltage_now`，而且充電中的電池組會回報 `Charging` 或 `Full`。門檻（8 %、3250 mV、間隔 30 s 連續三次讀值）是初始值。`DRY_RUN=1` 只記錄、不關機。
+35. `mmdvm/build-gateways.sh` 用 `sed` 把上游 Makefile 切換到 `-DUSE_GPSD` 那幾行；上游如果改了那幾行，腳本會停下來。範例 `.ini` 檔除了 `[GPSD] Enable=1` 以外都照原樣使用：呼號、ID、網路和密碼要自己設定。
 
-Not provided at all
+完全沒有提供的
 
-36. Lowering the charge voltage to 4.1 V for permanent mains use, INA226
-    logging, MMDVM-Info, D-Star / P25 / NXDN gateways.
+36. 長期插市電時把充電電壓降到 4.1 V、INA226 記錄、MMDVM-Info、D-Star／P25／NXDN 閘道器。
 
-## Hardware observations made while writing this
+## 撰寫期間對硬體的觀察
 
-These are about `hardware/` and `docs/`, which this package does not modify.
+這些是關於 `hardware/` 和 `docs/` 的，這個套件不會修改它們。
 
-- **Floating inputs on GPIO-A, -B, -G: fixed in the hardware after this
-  package was written** (R57 100k to GND on GPIO-A, R58 / R59 100k to
-  +1V8_HOST on GPIO-B / -G). The original finding, for the record: U22
-  (BOOT0 level shifter), U23 (STM32 NRST buffer) and U26 (RAK4630 reset
-  buffer) took their inputs directly from host GPIOs with no pull resistor. From host power-up
-  until `mmdvm-gpio init` runs, those inputs are undefined unless the S900
-  pads have internal pulls (not checked). Possible effects: STM32 held in
-  reset or started in the boot loader, and the always-on RAK4630 being reset
-  while the host boots. A pull-down on LS_GPIO_A and pull-ups (to +1V8_HOST)
-  on LS_GPIO_B and LS_GPIO_G would remove the dependency on software.
-- **Fan controller**: the study text named an AMC6821; it has since been
-  corrected to the EMC2301 + TMP102 of the schematic and BOM.
-- **Charger INT and gauge ALRT share GPIO-D**; the mainline drivers cannot
-  share that interrupt.
-- **Ethernet EEPROM**: study 11.5 / 13.2 say "no EEPROM"; the schematic has
-  U64 (93LC66A), added later (section 14).
-- **Study 11.1** still names the `r8152` / `smsc95xx` drivers; the fitted
-  LAN7500 uses `smsc75xx` (13.2 is correct).
-- **Pin mapping**: no disagreement found between study 3.4, the hardware
-  manual and the mainline device tree.
+- **GPIO-A、-B、-G 的浮接輸入：這個套件寫完之後已在硬體上修正**（GPIO-A 加 R57 100k 到 GND，GPIO-B／-G 加 R58／R59 100k 到 +1V8_HOST）。原本的發現留作紀錄：U22（BOOT0 電壓轉換器）、U23（STM32 NRST 緩衝器）和 U26（RAK4630 重置緩衝器）的輸入直接接主機 GPIO，沒有上下拉電阻。從主機上電到 `mmdvm-gpio init` 執行之前，除非 S900 的腳位有內部上下拉（沒有查），這些輸入的狀態是不確定的。可能的影響：STM32 被卡在重置或開進 bootloader，以及常時供電的 RAK4630 在主機開機時被重置。在 LS_GPIO_A 加下拉、在 LS_GPIO_B 和 LS_GPIO_G 加上拉（到 +1V8_HOST），就不必依賴軟體。
+- **風扇控制器**：研究文件原本寫 AMC6821，之後已經改成線路圖和 BOM 上的 EMC2301 + TMP102。
+- **充電 IC 的 INT 和電量計的 ALRT 共用 GPIO-D**；mainline 驅動程式不能共用這個中斷。
+- **乙太網路 EEPROM**：研究文件 11.5／13.2 寫「沒有 EEPROM」；線路圖上有 U64（93LC66A），是後來加的（第 14 節）。
+- **研究文件 11.1** 仍然寫 `r8152`／`smsc95xx` 驅動程式；實際裝的 LAN7500 用 `smsc75xx`（13.2 是對的）。
+- **腳位對應**：研究文件 3.4、硬體手冊和 mainline 裝置樹之間沒有發現不一致。
 
-## Sources
+## 參考來源
 
-- Bubblegum-96 hardware manual V1.1, section 5:
+- Bubblegum-96 硬體手冊 V1.1，第 5 節：
   <https://github.com/96boards/documentation/tree/master/consumer/bubblegum-96/hardware-docs>
-- Mainline `arch/arm64/boot/dts/actions/s900-bubblegum-96.dts`, `s900.dtsi`,
-  `drivers/pinctrl/actions/pinctrl-s900.c`, `drivers/tty/serial/owl-uart.c`,
-  and the binding files cited in the overlay (torvalds/linux master,
-  2026-11-16).
-- <https://github.com/g4klx/MMDVM-Host> (`MMDVM-Host.ini`, `Makefile`),
-  <https://github.com/g4klx/MMDVM-Display> (`MMDVM-Display.ini`, `README.md`).
-- <https://github.com/juribeparada/MMDVM_HS> (`configs/MMDVM_HS_Dual_Hat.h`,
-  `README.md`, `scripts/install_fw_hsdualhat.sh`).
-- <https://github.com/meshtastic/protobufs> (`module_config.proto`).
+- mainline 的 `arch/arm64/boot/dts/actions/s900-bubblegum-96.dts`、`s900.dtsi`、`drivers/pinctrl/actions/pinctrl-s900.c`、`drivers/tty/serial/owl-uart.c`，以及疊加檔裡引用的 binding 檔（torvalds/linux master，2026-11-16）。
+- <https://github.com/g4klx/MMDVM-Host>（`MMDVM-Host.ini`、`Makefile`）、<https://github.com/g4klx/MMDVM-Display>（`MMDVM-Display.ini`、`README.md`）。
+- <https://github.com/juribeparada/MMDVM_HS>（`configs/MMDVM_HS_Dual_Hat.h`、`README.md`、`scripts/install_fw_hsdualhat.sh`）。
+- <https://github.com/meshtastic/protobufs>（`module_config.proto`）。

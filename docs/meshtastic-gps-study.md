@@ -772,7 +772,7 @@ USB-C ─TVS─ CH224K（PD 誘騙，要 9 V；來源不支援就退回 5 V）
     - 原廠檔案沒有附再散布授權，所以放在 `3dmodels/vendor/`（已加入 `.gitignore`，不進版本庫）。新環境執行 `gen/fetch_vendor_models.sh` 下載，再跑 `gen/link_models.py`；沒有原廠檔時用 `link_models.py --simple` 切回簡化模型。
   - 仍然沒有模型的只有焊錫跳線、測試點和固定孔，這些本來就沒有實體零件。
 
-![r3.0 main board, top](../hardware/r3.0-study/mmdvm_mesh_3d.png)
+![r3.0 主板正面](../hardware/r3.0-study/mmdvm_mesh_3d.png)
 
 ### 10.9 BOM（Mouser＋LCSC）
 
