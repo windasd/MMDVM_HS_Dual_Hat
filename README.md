@@ -4,6 +4,9 @@ DB9MAT DF2ET DO7EN
 
 這張電路板使用 Andy CA6JAU 的 [MMDVM_HS](https://github.com/juribeparada/MMDVM_HS)。板上有兩顆 ADF7021，可以雙工運作，DMR 的兩個時槽都能用。
 
+> [!NOTE]
+> 這是 [phl0/MMDVM_HS_Dual_Hat](https://github.com/phl0/MMDVM_HS_Dual_Hat) 的 fork。除了原專案的 rev1.0～1.3，這裡另外加了：移轉到 KiCad 10、[版本 2.0 mini](#版本-20-mini)，以及[版本 3.0 研究版](#版本-30-研究版尚未製作)（加上 Meshtastic、GPS、電池和 1G 乙太網路的 96Boards 擴充板）和它的主機軟體、螢幕設計。
+
 ![MMDVM_HS_Dual_Hat](https://github.com/phl0/MMDVM_HS_Dual_Hat/blob/master/mmdvm_hs_dual_hat.png)
 
 ## 改版紀錄
@@ -32,13 +35,39 @@ STlink 排針改成與 [MMDVM_HS_Hat](https://github.com/mathisschmieder/MMDVM_H
 
 **天線注意事項：** 佈局用的晶片天線封裝／3D 模型是 Yageo ANT1204LL08R0870A，這是 870 MHz 的料。BOM 現在列的是 433 MHz 版本 ANT1204LL20R0433A（本體同為 12 x 4 mm，焊墊圖相同）。板上晶片天線一定要在實際的板子上調整匹配網路；70 cm 頻段預計要重新調整。
 
-### 版本 3.0 研究版（未製作）
+### 版本 3.0 研究版（尚未製作）
 
-`hardware/r3.0-study` 是一張較大電路板的研究：rev1.3 的 MMDVM 部分，加上 Meshtastic（RAK4630）、GPS（u-blox MAX-M10S）、四顆並聯的 18650 電池（含充電與保護）和 1G 乙太網路（LAN7500），做成 96Boards 擴充板，主機是 Bubblegum-96。4 層，90.6 x 167.1 mm；另有一張小前面板在 `hardware/r3.0-study/front_panel`，外殼概念在 `case/meshtastic-concept`。
+`hardware/r3.0-study` 是一張較大的 96Boards 擴充板，主機是 Bubblegum-96：保留 rev1.3 的 MMDVM 雙工熱點，再加上 Meshtastic、GPS、電池供電和 1G 乙太網路。
 
-**這張板子從來沒有製作或測試過。** 線路圖和佈局通過 ERC／DRC，也對照過規格書，僅此而已。設計紀錄（包括還沒驗證的項目清單）是 `docs/meshtastic-gps-study.md`（以繁體中文撰寫；第 16 節是送廠準備）。下單參數在 `hardware/r3.0-study/FAB_NOTES.md`。
+<p>
+<img src="hardware/r3.0-study/mmdvm_mesh_top.png" alt="r3.0 主板正面" width="300">
+<img src="hardware/r3.0-study/mmdvm_mesh_bottom.png" alt="r3.0 主板背面" width="300">
+</p>
 
-同樣未測試的還有：`software/bubblegum96` 裡 Bubblegum-96 的主機端軟體（裝置樹疊加檔（overlay）、MMDVM-Host／MMDVM-Display 設定、風扇、GPS、Meshtastic、網路），以及 `display/tjc8048x550` 裡 5 吋 TJC8048X550 螢幕的畫面設計（版面、示意圖與製作步驟；`.HMI`／`.tft` 檔本身要用廠商的編輯器做）。
+| 區塊 | 內容 |
+|---|---|
+| 主機 | Bubblegum-96（96Boards CE）。本板經 LS、HS 兩個擴充座連接，並以 12 V 反向供電給主機 |
+| MMDVM | rev1.3 的 STM32F103＋兩顆 ADF7021，430～440 MHz 雙工；TJC 5 吋螢幕接它的 Nextion 埠 |
+| Meshtastic | RAK4630（nRF52840＋SX1262），台灣 920～925 MHz。電源獨立，主機關機時也能用電池單獨運作；前面板有 OLED 和 MESH 鍵 |
+| GPS | u-blox MAX-M10S，由 Meshtastic 控制，NMEA 和 PPS 也分一路給主機（gpsd、chrony）；有實體開關 |
+| 電源 | 4 顆 18650 並聯（1S4P）。USB-C 充電：CH224A 向變壓器要 9 V，BQ25895 充電，輸入電流依最壞的變壓器限制。12 V、5 V 升壓和 3.5 V 升降壓；電池保護、電量計、電池總開關、電源鍵控制 |
+| 網路 | LAN7500（USB 轉 1G 乙太網路）＋RJ45 |
+| 板子 | 4 層，90.6 x 167.1 mm，L 形，阻抗控制；另有 26 x 20 mm 的前面板 |
+
+**狀態：從來沒有製作或測試過。**
+
+- 線路圖和電路板：ERC 0、DRC 0（含警告和絲印）、未連線 0、線路圖與電路板一致。各顆 IC 都對照過規格書，也做過一次獨立的線路審查。
+- 製造檔已備齊，可以下單試產（JLCPCB 格式）。下單參數、注意事項和尚未確認的項目都在 `hardware/r3.0-study/FAB_NOTES.md`；建議先貼 2～3 片。
+- 2026-11-17 粗估：電路板做 5 片、貼 2 片，連同元件約 US$950～1,050。其中約一半是固定費用，主要是擴充料的換料費。
+- 主機軟體和螢幕設計也都還沒有實際執行過。
+
+| 路徑 | 內容 |
+|---|---|
+| `docs/meshtastic-gps-study.md` | 設計紀錄：需求、架構、選料理由、每一輪修改，以及尚未確認的項目（第 16 節是送廠準備） |
+| `hardware/r3.0-study/` | KiCad 專案：主板 `mmdvm_mesh`、前面板 `front_panel/`；`BOM.csv`、`FAB_NOTES.md`；`gen/` 是產生線路圖、電路板和製造檔的腳本 |
+| `case/meshtastic-concept/` | 3D 列印外殼概念（STEP／STL 和預覽圖） |
+| `software/bubblegum96/` | 主機軟體：裝置樹疊加檔（overlay）、MMDVM-Host／MMDVM-Display、閘道器與 BrandMeister 設定、低電量關機、GPS 開關監看、風扇、網路、Meshtastic 設定，以及 Pi-Star 移植 |
+| `display/tjc8048x550/` | TJC8048X550 5 吋螢幕的畫面設計、協定說明和建置步驟（`.HMI`／`.tft` 檔本身要用廠商的編輯器做） |
 
 ## 移轉到 KiCad 10（2026）
 
@@ -78,6 +107,8 @@ STlink 排針改成與 [MMDVM_HS_Hat](https://github.com/mathisschmieder/MMDVM_H
 ## 製造檔
 
 `kicad-cli` 把 Gerber X2/Excellon、鑽孔圖、貼片座標 CSV、BOM 和線路圖 PDF 匯出到 `hardware/<rev>/production/`（不進 git；板子規格見該目錄的 `FAB_NOTES.md`）。rev1.3 的 0402 焊墊改了，需要新的鋼網；rev2.0-mini 背面有一顆 SMD 零件（A1）。
+
+r3.0 研究版在 `hardware/r3.0-study` 目錄執行 `bash gen/make_production.sh` 產生，另外會輸出 JLCPCB 格式的 BOM 和貼片座標檔，以及需要手焊的零件清單。
 
 下面舊的 Mouser 購物車是 rev1.0/rev1.1 用的，裡面仍然是已淘汰的零件。
 
