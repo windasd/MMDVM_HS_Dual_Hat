@@ -7,7 +7,9 @@ DB9MAT DF2ET DO7EN
 > [!NOTE]
 > 這是 [phl0/MMDVM_HS_Dual_Hat](https://github.com/phl0/MMDVM_HS_Dual_Hat) 的 fork。除了原專案的 rev1.0～1.3，這裡另外加了：移轉到 KiCad 10、[版本 2.0 mini](#版本-20-mini)，以及[版本 3.0 研究版](#版本-30-研究版尚未製作)（加上 Meshtastic、GPS、電池和 1G 乙太網路的 96Boards 擴充板）和它的主機軟體、螢幕設計。
 
-![MMDVM_HS_Dual_Hat](https://github.com/phl0/MMDVM_HS_Dual_Hat/blob/master/mmdvm_hs_dual_hat.png)
+![MMDVM_HS_Dual_Hat r3.0 研究版](hardware/r3.0-study/mmdvm_mesh_3d.png)
+
+（r3.0 研究版的 3D 渲染圖；這張板子還沒有實際製作。）
 
 ## 改版紀錄
 
