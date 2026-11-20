@@ -277,3 +277,56 @@ V /Power/ILIM_X 158.75,145.40
 T /Power/ILIM_X F.Cu 0.2 158.75,145.40 158.96,145.19 158.96,144.55
 T /Power/ILIM_DET F.Cu 0.2 160.26,141.65 160.80,141.65 161.26,142.11 161.30,142.11
 T /Power/ILIM_DET F.Cu 0.2 162.40,141.09 161.30,142.11
+# 2026-11-21, TPS63030 (U108) layout per TI SLVS696D 11.1 (design record 16.19). C143 at 176.75, 155.45 and C144 at
+# 176.85, 151.2 (rot 0) with add_parts.py; then the edits below. Not hand_edit.py: the VSYS island on the right of U108
+# (C132, U107 VIN, U108 EN/PS, R118) joined back with patch_route.py C132.1 C143.1 (PR_W 0.4, via In2).
+# TPS63030 (U108) layout per TI SLVS696D 11.1: C143 (10u, VIN) at pin 5 and C144 (10u, VOUT) at pin 1, ground
+# strapped to the PowerPAD and stitched to In1. C132-C134 stay as bulk.
+# --- VOUT: the 0.2 mm chain from pin 1 and the +3V5 track across the top of U108 (R119 is also fed from C137)
+RM F.Cu 175.75,150.35 176.19,150.80
+RM F.Cu 176.19,150.80 180.09,150.80
+RM F.Cu 175.75,150.35 175.75,150.65
+RM F.Cu 175.75,150.65 176.05,150.95
+RM F.Cu 176.05,150.95 176.05,151.05
+RM F.Cu 176.05,151.05 176.55,151.55
+RM F.Cu 176.55,151.55 176.55,151.85
+RM F.Cu 176.55,151.85 176.65,151.95
+RM F.Cu 176.65,151.95 176.65,152.05
+RM F.Cu 176.65,152.05 176.75,152.15
+RM F.Cu 176.75,152.15 176.75,152.25
+RM F.Cu 176.75,152.25 176.79,152.30
+RMVIA 177.00,151.40
+# --- VIN: the track under U108 from pin 5 to pin 6, and the feed from L102.1 that ended at pin 5
+RM F.Cu 176.72,154.62 178.89,154.62
+RM F.Cu 178.89,154.62 179.21,154.30
+RM F.Cu 173.41,157.92 176.72,154.62
+# --- HOST_PWR_EN: its via sat where C143.2 goes
+RMVIA 176.94,155.69
+RM F.Cu 176.94,155.69 176.94,156.54
+RM B.Cu 176.49,155.24 176.94,155.69
+RM F.Cu 175.39,156.54 176.94,156.54
+RM F.Cu 176.94,156.54 178.36,156.54
+
+# VOUT pin 1 -> C144.1 -> the +3V5 node of C133 / C134
+T +3V5 F.Cu 0.4 176.79,152.30 176.37,151.20
+T +3V5 F.Cu 0.4 176.37,151.20 175.75,150.58 175.75,150.35
+# C144.2 -> PowerPAD, and a ground via to In1; a second via at the top of the PowerPAD
+T GND F.Cu 0.35 177.33,151.20 177.75,151.62 177.75,152.40
+T GND F.Cu 0.35 177.33,151.20 177.62,150.62
+V GND 177.62,150.62
+T GND F.Cu 0.35 178.20,151.45 178.20,152.40
+V GND 178.20,151.45
+# VIN pin 5 -> C143.1, and the VSYS feed from L102.1 now ends on C143.1
+T VSYS F.Cu 0.4 176.79,154.30 176.55,154.75 176.27,155.45
+T VSYS F.Cu 0.4 173.41,157.92 175.95,155.38 176.27,155.45
+# C143.2 -> PowerPAD, and a ground via to In1
+T GND F.Cu 0.35 177.23,155.45 177.65,155.03 177.65,154.20
+T GND F.Cu 0.35 177.23,155.45 177.60,155.95
+V GND 177.60,155.95
+# HOST_PWR_EN: via moved to 176.60,156.45
+T /Power/HOST_PWR_EN B.Cu 0.2 176.49,155.24 176.49,156.34 176.60,156.45
+V /Power/HOST_PWR_EN 176.60,156.45 0.5 0.25
+T /Power/HOST_PWR_EN F.Cu 0.2 175.39,156.54 176.60,156.45
+T /Power/HOST_PWR_EN F.Cu 0.2 176.60,156.45 178.36,156.54
+# R119 (feedback top) fed from C134.1 again: its other branch did not reach +3V5
+T +3V5 F.Cu 0.25 178.25,149.15 178.25,150.35 179.75,150.35 180.09,150.80

@@ -273,9 +273,15 @@ def power():
         R('R118', '100R', 'VSYS', 'BB_VINA'), C('C131', '100n', 'BB_VINA', 'GND'),
         P('L103', 'Device:L', '1.5uH', {'1': 'BB_L1', '2': 'BB_L2'}, 'Inductor_SMD:L_Coilcraft_XAL4040-XXX',
           {'MPN': 'Coilcraft XAL4040-152'}),
-        R('R119', '604k', '+3V5', 'BB_FB', Note='3.52 V with VFB 0.5 V'), R('R120', '100k', 'BB_FB', 'GND'),
+        # +3V5 at 3.67 V (was 3.52 V): 0.37 V of headroom for the TPS7A2033 LDOs (dropout max 145 mV at 300 mA,
+        # SOT-23-5, SBVS338H), so they keep their ripple rejection near the 2.4 MHz switching of U108.
+        R('R119', '634k', '+3V5', 'BB_FB', Note='3.67 V with VFB 0.5 V'), R('R120', '100k', 'BB_FB', 'GND'),
         C('C132', '10u', 'VSYS', 'GND', FP_C0805), C('C133', '10u', '+3V5', 'GND', FP_C0805),
         C('C134', '10u', '+3V5', 'GND', FP_C0805),
+        # TI layout guide (SLVS696D 11.1): input and output capacitors as close to the IC as possible. C143 / C144
+        # sit at VIN (pin 5) and VOUT (pin 1) with their ground strapped to the PowerPAD; C132-C134 stay as bulk.
+        C('C143', '10u', 'VSYS', 'GND', Note='TPS63030 VIN, next to pin 5'),
+        C('C144', '10u', '+3V5', 'GND', Note='TPS63030 VOUT, next to pin 1'),
         P('U109', 'Regulator_Linear:TPS7A20xxxDBV', 'TPS7A2033', {'1': '+3V5', '2': 'GND', '3': '+3V5', '4': None,
                                                                   '5': '+3V3_MESH'},
           'Package_TO_SOT_SMD:SOT-23-5', {'MPN': 'TPS7A2033PDBVR', 'Note': 'always-on: RAK4630, GPS, I2C, sensors'}),
