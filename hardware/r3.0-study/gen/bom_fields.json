@@ -1481,11 +1481,11 @@
   "Mouser_MPN": "RC0402FR-07100RL"
  },
  "R119": {
-  "LCSC": "C27013",
+  "LCSC": "C270588",
   "MFR": "UNI-ROYAL (Uniroyal Elec)",
-  "MPN": "0402WGF6043TCE",
-  "Mouser": "603-RC0402FR-07604KL",
-  "Mouser_MPN": "RC0402FR-07604KL"
+  "MPN": "0402WGF6343TCE",
+  "Mouser": "",
+  "Mouser_MPN": ""
  },
  "R12": {
   "LCSC": "C427210",
@@ -2395,5 +2395,17 @@
   "MPN": "X322525MRB4SI",
   "Mouser": "717-7M-25.000MAAJ-T",
   "Mouser_MPN": "7M-25.000MAAJ-T"
+ },
+ "C143": {
+  "LCSC": "C15525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A106MQ5NUNC",
+  "Mouser": ""
+ },
+ "C144": {
+  "LCSC": "C15525",
+  "MFR": "Samsung Electro-Mechanics",
+  "MPN": "CL05A106MQ5NUNC",
+  "Mouser": ""
  }
 }

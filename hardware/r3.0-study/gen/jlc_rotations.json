@@ -149,6 +149,12 @@
   "note": "two-pad part",
   "ref": "C121"
  },
+ "C15525": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C143"
+ },
  "C1555": {
   "corr": null,
   "footprint": "C_0402_1005Metric",
@@ -569,17 +575,17 @@
   "note": "two-pad part",
   "ref": "R92"
  },
- "C27013": {
-  "corr": null,
-  "footprint": "R_0402_1005Metric",
-  "note": "two-pad part",
-  "ref": "R119"
- },
  "C27016": {
   "corr": null,
   "footprint": "R_0402_1005Metric",
   "note": "two-pad part",
   "ref": "R112"
+ },
+ "C270588": {
+  "corr": null,
+  "footprint": "R_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "R119"
  },
  "C2852592": {
   "corr": null,
