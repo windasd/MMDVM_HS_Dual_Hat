@@ -399,6 +399,12 @@
   "note": "two-pad part",
   "ref": "C168"
  },
+ "C23733": {
+  "corr": null,
+  "footprint": "C_0402_1005Metric",
+  "note": "two-pad part",
+  "ref": "C146"
+ },
  "C2451095": {
   "all": {
    "0": 0.12,

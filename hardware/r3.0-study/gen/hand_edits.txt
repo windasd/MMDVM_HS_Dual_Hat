@@ -330,3 +330,63 @@ T /Power/HOST_PWR_EN F.Cu 0.2 175.39,156.54 176.60,156.45
 T /Power/HOST_PWR_EN F.Cu 0.2 176.60,156.45 178.36,156.54
 # R119 (feedback top) fed from C134.1 again: its other branch did not reach +3V5
 T +3V5 F.Cu 0.25 178.25,149.15 178.25,150.35 179.75,150.35 180.09,150.80
+# 2026-11-25 (design record 16.20). Before the edits below:
+#   add_parts.py C145:162.35,152.25,0 C148:171.85,165.70,270 C146:126.15,104.65,180 C147:132.59,105.10,270 C149:177.59,160.78,270
+#     (C146 / C147 / C148 first went in 0.03-0.06 mm off and were moved to these coordinates)
+#   footprints moved with a pcbnew SetPosition script, rotations unchanged: C119 173.00,165.70 -> 173.55,165.70;
+#     C120 175.60,165.70 -> 175.94,165.70; C167 124.61,104.84 -> 125.10,105.74; C180 127.11,104.84 -> 127.11,105.74
+#   after the edits: sync_pcb.py, tidy_silk.py (hid the five new references); the references of U61, U62, L64, C101
+#     and C167 that tidy_silk.py had moved were put back where they were (DRC clean with them there).
+# 2026-11-25, switching-regulator loops per the TI layout sections (design record 16.20). New parts C145-C149 placed
+# with add_parts.py; C119 / C120 / C167 / C180 moved with a footprint move (see the record); then the edits below.
+# ---- BQ25895 (U101), SLUSC88C 11.1 item 1: C145 (1u 25 V) at PMID pin 23, ground via to In1.
+# PMID used to leave pin 23 upwards, run round C106 and come back down to C103 (12.4 mm)
+RM F.Cu 161.02,153.45 160.56,153.45
+RM F.Cu 161.28,153.19 161.02,153.45
+RM F.Cu 161.28,148.29 161.28,153.19
+RM F.Cu 161.75,147.82 161.28,148.29
+RM F.Cu 164.22,147.82 161.75,147.82
+RM F.Cu 164.58,148.19 164.22,147.82
+RM F.Cu 164.58,149.56 164.58,148.19
+# REGN to C106 moves from F.Cu (it ran where C145 now sits) to B.Cu; its via shrinks to 0.45 / 0.2 for the PMID stub
+RM F.Cu 161.68,149.14 161.68,153.57
+RM F.Cu 161.68,153.57 161.33,153.92
+RMVIA 161.33,153.92
+V REGN 161.33,153.92 0.45 0.2
+T REGN B.Cu 0.2 161.33,153.92 161.00,153.59 161.00,149.90 161.45,149.45
+V REGN 161.45,149.45 0.45 0.2
+T REGN F.Cu 0.2 161.45,149.45 161.68,149.14
+T /Power/BQ_PMID F.Cu 0.25 160.56,153.45 161.30,153.45 161.55,153.20 161.55,152.70 161.87,152.38
+T /Power/BQ_PMID F.Cu 0.5 161.87,152.25 161.87,151.60 162.20,151.27
+T GND F.Cu 0.35 162.83,152.25 163.50,152.25 164.25,152.25
+V GND 163.50,152.25
+V GND 164.25,152.25
+# ---- TLV62569 U61, SLVSDG1C 10.1: C146 (4u7 10 V) at VIN pin 4; C167 / C180 moved 0.9 mm down to make room, the
+# ETH_VMAG link between them now runs at y 105.20 and joins the old diagonal at 127.90,103.57; ground via by pin 2
+RM F.Cu 124.64,104.33 126.11,104.33
+RM F.Cu 124.12,104.84 124.64,104.33
+RM F.Cu 126.11,104.33 126.62,104.84
+RM F.Cu 129.49,101.98 126.62,104.84
+T /Ethernet/ETH_VMAG F.Cu 0.2 129.49,101.98 127.90,103.57 127.90,104.50 127.20,105.20 126.63,105.20
+T /Ethernet/ETH_VMAG F.Cu 0.2 124.62,105.74 124.62,105.20 126.63,105.20 126.63,105.74
+T +5V F.Cu 0.5 126.63,103.31 126.63,104.65
+T GND F.Cu 0.35 125.67,104.65 124.60,104.30
+V GND 124.60,104.30
+T GND F.Cu 0.3 123.69,102.36 123.15,101.95 122.71,101.86
+V GND 122.71,101.86
+# ---- TLV62569 U62: C147 (4u7 10 V) at VIN pin 4, ground via under it; ground via by pin 2
+T +5V F.Cu 0.5 132.63,103.31 132.59,104.62
+T GND F.Cu 0.35 132.59,105.58 132.59,106.25
+V GND 132.59,106.25
+T GND F.Cu 0.3 129.41,102.71 129.85,102.45
+V GND 129.41,102.71
+# ---- TPS61022 (U107), SLVSDX7D 10.1: C149 (4u7 10 V) by VOUT pin 3 with a ground via; ground via at GND pin 1
+T +5V F.Cu 0.5 177.59,160.30 178.78,160.30
+T GND F.Cu 0.35 177.59,161.26 177.59,161.90
+V GND 177.59,161.90
+T GND F.Cu 0.3 178.62,157.45 178.62,157.90
+V GND 178.62,157.45
+# ---- TPS61178 (U104), SLVSDA7E 11.1 item 3: C148 (1u 25 V) between the VOUT and GND pads; C119 / C120 moved
+# 0.55 / 0.34 mm right for it, so the B12_DISDRV via moves 0.12 mm up clear of C120
+MV 176.63,163.37 176.63,163.25
+T GND F.Cu 0.35 171.05,166.25 171.85,166.18
