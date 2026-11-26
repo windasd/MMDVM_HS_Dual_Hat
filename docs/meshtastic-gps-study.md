@@ -1587,6 +1587,25 @@ Würth 官網拒絕自動下載，我是從第三方網站上的原廠規格書�
 - BOM 153 行（多一行 4.7 µF），JLCPCB 380 個零件、151 行，擴充料仍是 118 行。
 - 新電容的 Mouser 料號沒有核實，空著。
 
+### 16.21 下單準備：只貼 3 片、P5 手焊、L101 焊墊核對（2026-11-26）
+
+依使用者對 2026-11-21 庫存問題的決定：
+
+- **U111（STM6601CM2DDM6F）**：JLCPCB 只剩 3 顆，**只貼 3 片**。下單時 PCBA 數量選 3，電路板照樣可以訂 5 片，多出的 2 片不上件。庫存檢查改用 `python gen/stock_check.py 3`。
+- **P5（SWD 排針，Würth 61300411121）**：JLCPCB 庫存 0，加進 `gen/jlc_exclude.csv`，改為手焊；任何 1x4、2.54 mm 直立排針都可以。交給 JLCPCB 的檔案變成 379 個零件、150 行，手焊清單 6 個零件。前面板的 J2 用的是同一顆排針，前面板的產生器沒有排除清單，這次沒有處理。
+- **L101（YOUCHI HSB-1050-1R8-M，LCSC C53373578）**：從 LCSC 下載佑馳的規格書（HSB 系列 Specification for Approval，5 頁），對照第 1 頁的建議焊墊（G／H／I）。結論是相容，不用改封裝：
+
+| 項目 | 佑馳建議 | 板上的 L_Wuerth_HCI-1050 |
+|---|---|---|
+| 焊墊長（沿兩焊墊連線方向，G） | 3.5 mm | 3.85 mm |
+| 焊墊寬（H） | 4.0 mm | 4.0 mm |
+| 兩焊墊內側間距（I） | 3.8 mm | 3.8 mm |
+| 中心距 | 7.3 mm | 7.65 mm |
+
+- 封裝的焊墊每邊比建議值往外多 0.35 mm，內側間距和寬度相同。零件本體 10.5±0.5 x 10.2±0.5 mm、高 5.0 mm 以下，電極 2.5±0.5 x 2.0±0.5 mm，都落在焊墊內。
+- 電氣規格（規格書第 2 頁）：1.8 µH ±20%、Irms 16 A、Isat 18 A、DCR 典型 3.5 mΩ／最大 3.85 mΩ，和原本的 Würth 744325180 相同等級。
+- X1、J60、TPS61022 等庫存偏少的零件，照決定在下單當天再跑一次庫存檢查。
+
 ## 參考來源（節錄）
 
 - **Meshtastic**
@@ -1605,6 +1624,7 @@ Würth 官網拒絕自動下載，我是從第三方網站上的原廠規格書�
   - BQ25895：<https://www.ti.com/product/BQ25895>（規格書 SLUSC88C：<https://www.ti.com/lit/ds/symlink/bq25895.pdf>）
   - TPS61022 規格書 SLVSDX7D：<https://www.ti.com/lit/ds/symlink/tps61022.pdf>
   - TLV62569 規格書 SLVSDG1C：<https://www.ti.com/lit/ds/symlink/tlv62569.pdf>
+  - YOUCHI HSB-1050 規格書（LCSC C53373578）：<https://www.lcsc.com/datasheet/C53373578.pdf>
   - BQ2980：<https://www.ti.com/product/BQ2980>
   - TPS61178：<https://www.ti.com/product/TPS61178>
   - LM74700-Q1：<https://www.ti.com/product/LM74700-Q1>
