@@ -128,6 +128,9 @@ def power():
           {'MPN': 'BQ25895RTWR', 'Note': 'D+/D- shorted = DCP (3.25 A input limit), I2C 0x6A'}),
         C('C102', '1u', 'VBUS', 'GND', FP_C0603, Note='25 V'),
         C('C103', '10u', 'BQ_PMID', 'GND', FP_C0805, Note='25 V'), C('C104', '10u', 'BQ_PMID', 'GND', FP_C0805),
+        # TI layout list (SLUSC88C 11.1, item 1): the input capacitor as close as possible to PMID and GND. C145 sits at
+        # pin 23 with a ground via to In1; C103 / C104 stay as bulk.
+        C('C145', '1u', 'BQ_PMID', 'GND', Note='25 V; BQ25895 PMID, next to pin 23'),
         C('C105', '47n', 'BQ_BTST', 'BQ_SW'), C('C106', '4u7', 'REGN', 'GND', FP_C0603),
         P('L100', 'Device:L', '1uH', {'1': 'BQ_SW', '2': 'VSYS'}, 'Inductor_SMD:L_Wuerth_HCI-5040',
           {'MPN': 'Wurth 7443340100 (1 uH, >7 A)'}),
@@ -234,6 +237,8 @@ def power():
         R('R111', '15k', 'B12_COMP', 'B12_CC'), C('C117', '6n8', 'B12_CC', 'GND'), C('C118', '10p', 'B12_COMP', 'GND'),
         R('R112', '732k', '+12V_BOOST', 'B12_FB', Note='12.08 V with 80.6k'), R('R113', '80.6k', 'B12_FB', 'GND'),
         C('C119', '10u', 'B12_VOUT', 'GND', FP_C1206, Note='25 V'), C('C120', '10u', 'B12_VOUT', 'GND', FP_C1206),
+        # TI layout checklist (SLVSDA7E 11.1, item 3): a small ceramic closer to the IC than the bulk capacitors.
+        C('C148', '1u', 'B12_VOUT', 'GND', Note='25 V; TPS61178 VOUT, between the VOUT and GND pads'),
         P('Q102', 'MMDVM_r30:PMOS_SON8', 'CSD25404Q3', {'1': 'B12_VOUT', '2': 'B12_VOUT', '3': 'B12_VOUT',
                                                         '4': 'B12_DISDRV', '5': '+12V_BOOST'},
           'Package_SON:VSON-8_3.3x3.3mm_P0.65mm_NexFET', {'MPN': 'CSD25404Q3', 'Note': 'load disconnect'}),
@@ -265,6 +270,11 @@ def power():
         R('R116', '732k', '+5V', 'B5_FB', Note='VREF 0.600 V +-2.5 % (SLVSDX7D): 4.99 V'), R('R117', '100k', 'B5_FB', 'GND'),
         C('C128', '10u', 'VSYS', 'GND', FP_C0805), C('C129', '22u', '+5V', 'GND', FP_C0805),
         C('C130', '22u', '+5V', 'GND', FP_C0805),
+        # TI layout guide (SLVSDX7D 10.1): the output capacitor close to VOUT and GND. C129 cannot have a ground via (the
+        # BT101 contact is under it on B.Cu), so C149 sits by pin 3 with a via to In1 and pin 1 has its own via.
+        C('C149', '4u7', '+5V', 'GND', Note='10 V; TPS61022 VOUT, next to pin 3'),
+        # TPS61022 input capacitor close to VIN and GND (SLVSDX7D 10.1); the nearest one was C143, 4.7 mm away
+        C('C210', '4u7', 'VSYS', 'GND', Note='10 V; TPS61022 VIN, next to pins 6 / 7'),
         # ---- 3.5 V buck-boost (always on) -> LDOs
         P('U108', 'Regulator_Switching:TPS63030DSK', 'TPS63030', {
             '1': '+3V5', '2': 'BB_L2', '3': 'GND', '4': 'BB_L1', '5': 'VSYS', '6': 'VSYS', '7': 'VSYS',
@@ -385,6 +395,10 @@ def ethernet():
     # supplies: on only while the host is up; both rails rise together (tpon <= 25 ms, figure 7-2)
     p += buck('U61', 'L64', '+3V3_ETH', 'ETH_SW33', 'ETH_FB33', '453k', '100k', ('R92', 'R93', 'C150', 'C151', 'C169'))
     p += buck('U62', 'L65', '+1V2_ETH', 'ETH_SW12', 'ETH_FB12', '100k', '100k', ('R94', 'R95', 'C170', 'C171', 'C172'))
+    # TI layout guide (SLVSDG1C 10.1): the input capacitor as close as possible to the IC. C150 / C170 could not be
+    # placed there, so C146 / C147 sit at VIN (pin 4) with a ground via; C150 / C170 stay as bulk.
+    p += [C('C146', '4u7', '+5V', 'GND', Note='10 V; TLV62569 U61 VIN, next to pin 4'),
+          C('C147', '4u7', '+5V', 'GND', Note='10 V; TLV62569 U62 VIN, next to pin 4')]
     p += [
         P('U60', 'Interface_Ethernet:LAN7500-ABJZ', 'LAN7500', u,
           'Package_DFN_QFN:QFN-56-1EP_8x8mm_P0.5mm_EP5.9x5.9mm',

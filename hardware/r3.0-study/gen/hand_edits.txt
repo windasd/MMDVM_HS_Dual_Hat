@@ -330,3 +330,281 @@ T /Power/HOST_PWR_EN F.Cu 0.2 175.39,156.54 176.60,156.45
 T /Power/HOST_PWR_EN F.Cu 0.2 176.60,156.45 178.36,156.54
 # R119 (feedback top) fed from C134.1 again: its other branch did not reach +3V5
 T +3V5 F.Cu 0.25 178.25,149.15 178.25,150.35 179.75,150.35 180.09,150.80
+# 2026-11-25 (design record 16.20). Before the edits below:
+#   add_parts.py C145:162.35,152.25,0 C148:171.85,165.70,270 C146:126.15,104.65,180 C147:132.59,105.10,270 C149:177.59,160.78,270
+#     (C146 / C147 / C148 first went in 0.03-0.06 mm off and were moved to these coordinates)
+#   footprints moved with a pcbnew SetPosition script, rotations unchanged: C119 173.00,165.70 -> 173.55,165.70;
+#     C120 175.60,165.70 -> 175.94,165.70; C167 124.61,104.84 -> 125.10,105.74; C180 127.11,104.84 -> 127.11,105.74
+#   after the edits: sync_pcb.py, tidy_silk.py (hid the five new references); the references of U61, U62, L64, C101
+#     and C167 that tidy_silk.py had moved were put back where they were (DRC clean with them there).
+# 2026-11-25, switching-regulator loops per the TI layout sections (design record 16.20). New parts C145-C149 placed
+# with add_parts.py; C119 / C120 / C167 / C180 moved with a footprint move (see the record); then the edits below.
+# ---- BQ25895 (U101), SLUSC88C 11.1 item 1: C145 (1u 25 V) at PMID pin 23, ground via to In1.
+# PMID used to leave pin 23 upwards, run round C106 and come back down to C103 (12.4 mm)
+RM F.Cu 161.02,153.45 160.56,153.45
+RM F.Cu 161.28,153.19 161.02,153.45
+RM F.Cu 161.28,148.29 161.28,153.19
+RM F.Cu 161.75,147.82 161.28,148.29
+RM F.Cu 164.22,147.82 161.75,147.82
+RM F.Cu 164.58,148.19 164.22,147.82
+RM F.Cu 164.58,149.56 164.58,148.19
+# REGN to C106 moves from F.Cu (it ran where C145 now sits) to B.Cu; its via shrinks to 0.45 / 0.2 for the PMID stub
+RM F.Cu 161.68,149.14 161.68,153.57
+RM F.Cu 161.68,153.57 161.33,153.92
+RMVIA 161.33,153.92
+V REGN 161.33,153.92 0.45 0.2
+T REGN B.Cu 0.2 161.33,153.92 161.00,153.59 161.00,149.90 161.45,149.45
+V REGN 161.45,149.45 0.45 0.2
+T REGN F.Cu 0.2 161.45,149.45 161.68,149.14
+T /Power/BQ_PMID F.Cu 0.25 160.56,153.45 161.30,153.45 161.55,153.20 161.55,152.70 161.87,152.38
+T /Power/BQ_PMID F.Cu 0.5 161.87,152.25 161.87,151.60 162.20,151.27
+T GND F.Cu 0.35 162.83,152.25 163.50,152.25 164.25,152.25
+V GND 163.50,152.25
+V GND 164.25,152.25
+# ---- TLV62569 U61, SLVSDG1C 10.1: C146 (4u7 10 V) at VIN pin 4; C167 / C180 moved 0.9 mm down to make room, the
+# ETH_VMAG link between them now runs at y 105.20 and joins the old diagonal at 127.90,103.57; ground via by pin 2
+RM F.Cu 124.64,104.33 126.11,104.33
+RM F.Cu 124.12,104.84 124.64,104.33
+RM F.Cu 126.11,104.33 126.62,104.84
+RM F.Cu 129.49,101.98 126.62,104.84
+T /Ethernet/ETH_VMAG F.Cu 0.2 129.49,101.98 127.90,103.57 127.90,104.50 127.20,105.20 126.63,105.20
+T /Ethernet/ETH_VMAG F.Cu 0.2 124.62,105.74 124.62,105.20 126.63,105.20 126.63,105.74
+T +5V F.Cu 0.5 126.63,103.31 126.63,104.65
+T GND F.Cu 0.35 125.67,104.65 124.60,104.30
+V GND 124.60,104.30
+T GND F.Cu 0.3 123.69,102.36 123.15,101.95 122.71,101.86
+V GND 122.71,101.86
+# ---- TLV62569 U62: C147 (4u7 10 V) at VIN pin 4, ground via under it; ground via by pin 2
+T +5V F.Cu 0.5 132.63,103.31 132.59,104.62
+T GND F.Cu 0.35 132.59,105.58 132.59,106.25
+V GND 132.59,106.25
+T GND F.Cu 0.3 129.41,102.71 129.85,102.45
+V GND 129.41,102.71
+# ---- TPS61022 (U107), SLVSDX7D 10.1: C149 (4u7 10 V) by VOUT pin 3 with a ground via; ground via at GND pin 1
+T +5V F.Cu 0.5 177.59,160.30 178.78,160.30
+T GND F.Cu 0.35 177.59,161.26 177.59,161.90
+V GND 177.59,161.90
+T GND F.Cu 0.3 178.62,157.45 178.62,157.90
+V GND 178.62,157.45
+# ---- TPS61178 (U104), SLVSDA7E 11.1 item 3: C148 (1u 25 V) between the VOUT and GND pads; C119 / C120 moved
+# 0.55 / 0.34 mm right for it, so the B12_DISDRV via moves 0.12 mm up clear of C120
+MV 176.63,163.37 176.63,163.25
+T GND F.Cu 0.35 171.05,166.25 171.85,166.18
+# ============================================================================================================
+# 2026-11-26, design record 16.22: decoupling capacitors next to their ICs, 22 new 100 nF on the level translators,
+# C210 at the TPS61022 VIN, sharp corners, Ethernet length matching. Steps (not all of them are hand_edit.py):
+#  1. footprints moved (pcbnew SetPosition / orientation): C136:172.64,142.10,180 C68:178.06,192.81,90 C125:187.60,154.25,90 C63:115.83,122.88,90 C175:159.74,95.75,90 C137:175.96,144.85,90 C157:151.15,94.26,180 C158:149.16,99.35,270 C159:149.26,105.15,270 C152:156.05,92.16,90 C186:140.23,102.70,270 C61:136.82,188.75,270 C62:140.12,186.46,0 C67:150.81,188.73,270 C155:155.85,105.04,0 C156:151.65,92.76,90 C73:116.43,144.49,270 C203:147.43,191.61,0
+#     C158 was moved to 149.16,99.35 and back (its ground pad was an isolated 0.9 mm2 island)
+#  2. add_parts.py C188:133.63,192.71,270 C189:137.76,190.50,0 C190:139.63,191.81,270 C192:143.83,190.50,180 C193:150.86,193.50,270 C195:156.86,192.81,270 C196:160.63,190.50,180 C197:109.86,188.10,270 C204:166.93,192.81,90 C205:151.73,190.31,0 C210:179.88,156.65,180 C187:128.36,192.10,270 C191:141.86,190.50,180 C194:156.13,190.81,90 C198:113.63,186.50,180 C200:121.13,187.10,270 C202:127.13,186.21,90 C203:147.43,191.71,0 C206:166.93,188.81,90 C208:135.93,186.71,180 C199:115.26,189.91,270 C207:129.23,190.21,180 C201:123.76,185.20,90
+#  3. trunks that ran through the old pads joined at the old pad centres (the T lines below, first block)
+#  4. old stub chains removed (own chain walker, then clean_stubs.py until no dangling track was left); +1V2_ETH
+#     breaks closed with PR_MARGIN=1.5 patch_route.py C161.1 @140.22,90.30,F.Cu L62.1 @141.66,106.53,F.Cu
+#     @141.66,106.53,B.Cu @146.22,108.03,F.Cu and @143.51,112.46,F.Cu @142.74,106.88,F.Cu
+#  5. PR_MARGIN=1.2 patch_route.py U109.5 C136.1 U37.5 C68.1 U105.6 C125.1 U35.8 C63.1 U60.53 C175.1 U20.6 C188.1 U21.1 C189.1 U21.6 C190.1 U22.6 C192.1 U24.1 C193.1 U25.1 C195.1 U25.6 C196.1 U27.1 C197.1 U26.5 C204.1 U30.5 C205.1 U27.6 C198.1 U31.5 C206.1 U28.6 C200.1 U60.11 C157.1 U60.8 C156.1
+#  6. patch_route.py CAP.2 VIA for the 40 moved / new capacitors (C155 / C158 none: no room; C155 grounds on the U60 pad)
+#  7. sync_pcb.py, tidy_silk.py; 18 references of unmoved parts put back where they were; labels OFF / ON / HOLD SRC
+#     moved clear of the new capacitors; the U29 pin-1 mark tidy_silk.py dropped restored
+#  8. the edit files below: C201 / C73 links, sharp corners (two passes), TR1P hairpin, Ethernet N-line bumps
+# --- 3. trunk bridges
+T +3V3_MESH F.Cu 0.20 136.899,179.566 136.808,179.656
+# C136.1 +3V3_MESH: 2 ends joined at 136.808,179.656
+T GND F.Cu 0.20 147.414,87.777 147.414,87.999
+T GND F.Cu 0.20 147.414,87.778 147.414,87.999
+# C175.2 GND: 3 ends joined at 147.414,87.999
+T +1V2_ETH F.Cu 0.80 141.219,107.005 141.097,107.127
+T +1V2_ETH F.Cu 0.80 141.220,107.005 141.097,107.127
+T +1V2_ETH F.Cu 0.80 141.342,106.883 141.097,107.127
+# C158.1 +1V2_ETH: 4 ends joined at 141.097,107.127
+T +1V2_ETH F.Cu 0.80 144.733,111.241 144.802,111.310
+T +1V2_ETH F.Cu 0.80 144.768,111.276 144.802,111.310
+T +1V2_ETH F.Cu 0.80 144.802,111.276 144.802,111.310
+# C159.1 +1V2_ETH: 4 ends joined at 144.802,111.310
+T GND F.Cu 0.20 145.273,109.737 145.273,109.653
+T GND F.Cu 0.20 145.273,109.821 145.273,109.653
+T GND F.Cu 0.20 145.273,109.989 145.273,109.653
+# C152.2 GND: 4 ends joined at 145.273,109.653
+T +3V3_ETH F.Cu 0.80 144.079,108.582 144.029,108.582
+# C186.1 +3V3_ETH: 3 ends joined at 144.029,108.582
+T GND F.Cu 0.20 144.139,109.653 144.029,109.542
+# C186.2 GND: 4 ends joined at 144.029,109.542
+T +3V3_MESH F.Cu 0.20 109.829,166.609 109.541,166.897
+# C62.1 +3V3_MESH: 3 ends joined at 109.541,166.897
+T +3V3_MESH F.Cu 0.20 123.125,195.335 123.125,195.345
+# C67.1 +3V3_MESH: 2 ends joined at 123.125,195.345
+# C155.1 +3V3_ETH: 2 ends joined at 140.113,102.355
+T GND F.Cu 0.20 140.112,101.132 140.113,101.395
+T GND F.Cu 0.20 140.113,101.133 140.113,101.395
+# C155.2 GND: 4 ends joined at 140.113,101.395
+T +1V2_ETH F.Cu 0.80 147.500,86.544 147.500,86.469
+# C156.1 +1V2_ETH: 2 ends joined at 147.500,86.469
+T +3V3_MESH F.Cu 0.20 150.589,134.409 150.852,134.409
+# C73.1 +3V3_MESH: 2 ends joined at 150.852,134.409
+# --- 8. C201 / C73
+# C201 (U29 VCCA): the +3V3_MESH feed of U29 VCCB ran just above pin 1; it now runs above C201 at y 184.0
+RM F.Cu 120.19,186.34 124.04,186.34
+RM F.Cu 124.04,186.34 124.22,186.52
+RM F.Cu 124.22,186.52 124.22,186.61
+RM F.Cu 124.22,186.61 124.51,186.91
+RM F.Cu 124.51,186.91 125.63,186.91
+T +3V3_MESH F.Cu 0.2 120.19,186.34 122.53,184.00 124.15,184.00 124.75,184.60 124.75,186.91 125.63,186.91
+T +1V8_HOST F.Cu 0.3 123.36,185.68 123.36,186.91
+# C73 (RAK4630 +3V3_MESH): 0.5 mm link to the feed that runs past it
+T +3V3_MESH F.Cu 0.2 116.43,144.01 116.08,143.66
+# C201 moved 0.4 mm right (clear of the U29 pin-1 mark); its first ground route and via removed and redone
+RM F.Cu 123.36,184.72 123.16,184.92
+RM F.Cu 123.16,184.92 123.06,184.92
+RM F.Cu 123.06,184.92 122.96,185.02
+RM F.Cu 122.96,185.02 122.86,185.02
+RM F.Cu 122.86,185.02 122.76,185.12
+RM F.Cu 122.76,185.12 122.76,185.72
+RM F.Cu 122.76,185.72 122.66,185.82
+RM F.Cu 122.66,185.82 122.66,186.22
+RMVIA 122.66,186.22
+RM F.Cu 123.36,185.68 123.36,186.91
+T +1V8_HOST F.Cu 0.3 123.76,185.68 123.76,186.75
+# --- 8. sharp corners, first pass
+# GND F.Cu 137.768,179.656: 0 deg, legs 0.43 / 0.43 mm
+RM F.Cu 137.768,179.656 137.768,179.226
+RM F.Cu 137.768,179.656 137.768,179.226
+# (both legs end at the same point: a doubled stub, removed)
+# +3V3_MESH F.Cu 150.852,134.409: 0 deg, legs 0.26 / 0.26 mm
+RM F.Cu 150.852,134.409 150.589,134.409
+RM F.Cu 150.852,134.409 150.589,134.409
+# (both legs end at the same point: a doubled stub, removed)
+# SCL_AON In2.Cu 146.600,136.278: 0 deg, legs 0.80 / 2.81 mm
+RM In2.Cu 146.600,136.278 145.800,136.278
+RM In2.Cu 146.600,136.278 143.787,136.278
+T SCL_AON In2.Cu 0.20 145.800,136.278 143.787,136.278
+# SYS_DCIN In2.Cu 146.000,196.950: 33 deg, legs 1.01 / 0.80 mm
+RM In2.Cu 146.000,196.950 145.150,196.400
+RM In2.Cu 146.000,196.950 145.200,196.950
+T SYS_DCIN In2.Cu 0.50 145.150,196.400 145.698,196.754 145.640,196.950 145.200,196.950
+# /Power/USB_CC1 F.Cu 163.792,140.123: 45 deg, legs 0.14 / 2.77 mm
+RM F.Cu 163.792,140.123 163.892,140.023
+RM F.Cu 163.792,140.123 166.560,140.123
+T /Power/USB_CC1 F.Cu 0.20 163.892,140.023 166.560,140.123
+# /Power/USB_DP B.Cu 122.752,92.526: 66 deg, legs 0.05 / 0.10 mm
+RM B.Cu 122.752,92.526 122.731,92.479
+RM B.Cu 122.752,92.526 122.652,92.526
+T /Power/USB_DP B.Cu 0.20 122.731,92.479 122.652,92.526
+# /Power/USB_DM In2.Cu 124.103,92.277: 32 deg, legs 0.03 / 0.10 mm
+RM In2.Cu 124.103,92.277 124.125,92.263
+RM In2.Cu 124.103,92.277 124.203,92.277
+T /Power/USB_DM In2.Cu 0.20 124.125,92.263 124.203,92.277
+# /Power/USB_CC2 B.Cu 122.082,92.229: 9 deg, legs 0.03 / 0.10 mm
+RM B.Cu 122.082,92.229 122.108,92.233
+RM B.Cu 122.082,92.229 122.182,92.229
+T /Power/USB_CC2 B.Cu 0.20 122.108,92.233 122.182,92.229
+# /Host interface/SC16_IRQ_N In2.Cu 146.600,180.248: 45 deg, legs 9.60 / 7.86 mm
+RM In2.Cu 146.600,180.248 146.600,170.648
+RM In2.Cu 146.600,180.248 141.042,174.691
+T /Host%20interface/SC16_IRQ_N In2.Cu 0.20 146.600,170.648 146.600,179.848 146.317,179.965 141.042,174.691
+# HOST_HOLD F.Cu 147.051,166.006: 45 deg, legs 0.28 / 0.10 mm
+RM F.Cu 147.051,166.006 147.251,166.206
+RM F.Cu 147.051,166.006 147.156,166.006
+T HOST_HOLD F.Cu 0.20 147.251,166.206 147.156,166.006
+# /Host interface/FAN_ALERT_N F.Cu 151.000,185.696: 50 deg, legs 0.05 / 0.20 mm
+RM F.Cu 151.000,185.696 151.030,185.660
+RM F.Cu 151.000,185.696 151.200,185.696
+T /Host%20interface/FAN_ALERT_N F.Cu 0.20 151.030,185.660 151.200,185.696
+# /Host interface/FAN_ALERT_N In2.Cu 151.030,185.660: 45 deg, legs 0.20 / 0.66 mm
+RM In2.Cu 151.030,185.660 151.230,185.660
+RM In2.Cu 151.030,185.660 151.499,186.129
+T /Host%20interface/FAN_ALERT_N In2.Cu 0.20 151.230,185.660 151.499,186.129
+# /Ethernet/ETH_TR1P F.Cu 168.838,104.430: 45 deg, legs 4.03 / 0.14 mm
+RM F.Cu 168.838,104.430 164.808,104.430
+RM F.Cu 168.838,104.430 168.738,104.330
+T /Ethernet/ETH_TR1P F.Cu 0.20 164.808,104.430 168.738,104.330
+# --- 8. sharp corners, second pass
+# SCL_AON In2.Cu 145.800,136.278: 45 deg, legs 0.85 / 2.01 mm
+RM In2.Cu 145.800,136.278 145.200,135.678
+RM In2.Cu 145.800,136.278 143.787,136.278
+T SCL_AON In2.Cu 0.20 145.200,135.678 145.530,136.008 145.418,136.278 143.787,136.278
+# /Power/USB_CC1 F.Cu 163.892,140.023: 2 deg, legs 2.67 / 0.60 mm
+RM F.Cu 163.892,140.023 166.560,140.123
+RM F.Cu 163.892,140.023 164.492,140.023
+T /Power/USB_CC1 F.Cu 0.20 164.492,140.023 166.560,140.123
+# HOST_HOLD F.Cu 147.156,166.006: 20 deg, legs 2.62 / 0.22 mm
+RM F.Cu 147.156,166.006 149.006,167.857
+RM F.Cu 147.156,166.006 147.251,166.206
+T HOST_HOLD F.Cu 0.20 149.006,167.857 147.251,166.206
+# --- 8. TR1P hairpin
+# ETH_TR1P: the path ran 0.4 mm past its corner at 168.34,104.33 and came back; straight into the corner now
+RM F.Cu 164.81,104.43 168.74,104.33
+RM F.Cu 168.74,104.33 168.34,104.33
+T /Ethernet/ETH_TR1P F.Cu 0.20 164.81,104.43 168.34,104.33
+# --- 8. Ethernet N-line bumps (TR0N +2.93 mm, TR1N +1.27 mm, TR2N +1.97 mm)
+# /Ethernet/ETH_TR0N: 2 bump(s) 0.85 mm high on 158.44,102.67 -> 161.37,102.63, adds 2.93 mm
+RM F.Cu 158.440,102.670 161.368,102.626
+T /Ethernet/ETH_TR0N F.Cu 0.20 158.440,102.670 159.040,102.661 159.141,102.759 159.151,103.409 159.253,103.508 159.603,103.503 159.701,103.401 159.691,102.751 159.790,102.650 160.090,102.645 160.191,102.744 160.201,103.394 160.303,103.492 160.653,103.487 160.751,103.385 160.741,102.735 160.840,102.634 161.368,102.626
+# /Ethernet/ETH_TR1N: 1 bump(s) 0.75 mm high on 158.44,101.17 -> 161.07,101.17, adds 1.27 mm
+RM F.Cu 158.438,101.170 161.067,101.170
+T /Ethernet/ETH_TR1N F.Cu 0.20 158.438,101.170 159.137,101.170 159.238,101.270 159.238,101.820 159.338,101.920 159.688,101.920 159.787,101.820 159.787,101.270 159.887,101.170 161.067,101.170
+# /Ethernet/ETH_TR2N: 1 bump(s) 1.10 mm high on 163.37,102.27 -> 165.54,102.27, adds 1.97 mm
+RM F.Cu 163.367,102.270 165.537,102.270
+T /Ethernet/ETH_TR2N F.Cu 0.20 163.367,102.270 164.067,102.270 164.167,102.370 164.167,103.270 164.267,103.370 164.617,103.370 164.717,103.270 164.717,102.370 164.817,102.270 165.537,102.270
+
+# ============================================================================================================
+# 2026-11-26, design record 16.23: LAN7500 exposed-pad ground vias, LAN7500 decoupling capacitors on the bottom side,
+# TR1 length matching. Steps (not all of them are hand_edit.py):
+#  1. 15 + 4 GND vias 0.50/0.25 in the U60 exposed pad (search: 0.8 mm pitch, 0.15 mm to other-net copper on every
+#     layer; the first block below, then the second once the old C178 chain had gone). hand_edit.py now accepts a
+#     via inside a same-net pad larger than 4 mm2.
+#  2. C178, C176, C177, C154 flipped to the bottom side: C178:158.030,100.300,180 C176:157.808,95.386,90
+#     C177:158.290,99.100,180 C154:148.395,101.500,270 (B); the supply pad faces the via of its pin
+#  3. trunks that ran through the old pads joined at the old pad centres (T lines below)
+#  4. old stub chains removed (own chain walker, then clean_stubs.py, 8 rounds; the 13 mm ETH_VDD12PLL chain to the
+#     old C178 place went, the L66 -> U60 trunk stayed)
+#  5. the edit files below: B.Cu stubs and the new +3V3_ETH via, the second TR1N bump, one sharp corner
+# --- 1. U60 exposed-pad vias, first set
+# U60.57 GND: 0 existing, 15 new vias 0.50/0.25 (pitch >= 0.80, clearance 0.15), candidates 1159
+V GND 154.150,96.800 0.50 0.25
+V GND 154.150,102.200 0.50 0.25
+V GND 156.350,96.800 0.50 0.25
+V GND 156.400,102.200 0.50 0.25
+V GND 157.150,96.850 0.50 0.25
+V GND 157.150,98.600 0.50 0.25
+V GND 157.150,99.450 0.50 0.25
+V GND 157.150,101.450 0.50 0.25
+V GND 156.900,100.250 0.50 0.25
+V GND 156.750,97.550 0.50 0.25
+V GND 154.200,97.600 0.50 0.25
+V GND 156.350,99.400 0.50 0.25
+V GND 154.150,98.400 0.50 0.25
+V GND 154.150,100.150 0.50 0.25
+V GND 154.150,99.200 0.50 0.25
+# --- 1. U60 exposed-pad vias, second set
+# U60.57 GND: 15 existing, 4 new vias 0.50/0.25 (pitch >= 0.80, clearance 0.15), candidates 1744
+V GND 155.850,97.450 0.50 0.25
+V GND 156.300,100.800 0.50 0.25
+V GND 156.050,98.250 0.50 0.25
+V GND 155.900,100.100 0.50 0.25
+# --- 3. trunk bridges
+T /Ethernet/ETH_VDD12A F.Cu 0.60 144.382,93.025 144.382,93.119
+# C176.1 /Ethernet/ETH_VDD12A: 2 ends joined at 144.382,93.119
+# C177.1 +1V2_ETH: 2 ends joined at 143.513,112.461
+T +3V3_ETH F.Cu 0.80 144.545,90.695 144.545,90.481
+# C154.1 +3V3_ETH: 2 ends joined at 144.545,90.481
+# --- 5. bottom-side capacitors: stubs and vias
+# C178 on B.Cu next to the /Ethernet/ETH_VDD12PLL via of U60.50
+T /Ethernet/ETH_VDD12PLL B.Cu 0.30 159.580,100.200 158.510,100.300
+T GND B.Cu 0.30 156.900,100.250 157.550,100.300
+# C176 on B.Cu next to the /Ethernet/ETH_VDD12A via of U60.56
+T /Ethernet/ETH_VDD12A B.Cu 0.30 158.458,95.936 157.808,95.866
+T GND B.Cu 0.30 158.055,94.275 157.808,94.906
+# C177 on B.Cu next to the +1V2_ETH via of U60.49
+T +1V2_ETH B.Cu 0.30 159.140,99.750 158.770,99.100
+T GND B.Cu 0.30 157.150,99.450 157.810,99.100
+# C154 on B.Cu under a new +3V3_ETH via on the U60.24 track
+T +3V3_ETH F.Cu 0.30 148.495,100.750 148.495,100.400
+V +3V3_ETH 148.495,100.400 0.45 0.20
+T +3V3_ETH B.Cu 0.30 148.495,100.400 148.395,101.020
+T GND B.Cu 0.30 148.250,102.921 148.395,101.980
+# --- 5. TR1N second bump (+1.27 mm, TR1 skew 2.05 -> 0.79 mm)
+RM F.Cu 159.887,101.170 161.067,101.170
+T /Ethernet/ETH_TR1N F.Cu 0.20 159.887,101.170 160.137,101.170 160.237,101.270 160.237,101.820 160.337,101.920 160.687,101.920 160.787,101.820 160.787,101.270 160.887,101.170 161.067,101.170
+# --- 5. sharp corner left by the C178 chain removal
+# /Ethernet/ETH_VDD12PLL B.Cu 155.838,106.450: 73 deg, legs 2.10 / 0.03 mm
+RM B.Cu 155.838,106.450 155.838,104.350
+RM B.Cu 155.838,106.450 155.805,106.440
+T /Ethernet/ETH_VDD12PLL B.Cu 0.40 155.838,104.350 155.805,106.440

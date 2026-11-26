@@ -152,6 +152,18 @@ def host_if():
         OD_BUF('U33', '+1V8_HOST', 'FAN_ALERT_N', 'LS_GPIO_J', 'fan controller ALERT -> GPIO-J'),
         R('R44', '10k', 'LS_GPIO_C', '+1V8_HOST'), R('R45', '10k', 'LS_GPIO_D', '+1V8_HOST'),
         R('R46', '10k', 'LS_GPIO_E', '+1V8_HOST'), R('R47', '10k', 'LS_GPIO_J', '+1V8_HOST'),
+        # TI logic datasheets (SN74LVC1T45, SN74LVC1G07): a 0.1 uF bypass capacitor at every VCC pin. Added
+        # 2026-11-26; until then the 14 translators / buffers shared C60 on +1V8_HOST only.
+        C('C187', '100n', '+1V8_HOST', 'GND', Note='U20 VCCA'), C('C188', '100n', '+3V3', 'GND', Note='U20 VCCB'),
+        C('C189', '100n', '+1V8_HOST', 'GND', Note='U21 VCCA'), C('C190', '100n', '+3V3', 'GND', Note='U21 VCCB'),
+        C('C191', '100n', '+1V8_HOST', 'GND', Note='U22 VCCA'), C('C192', '100n', '+3V3', 'GND', Note='U22 VCCB'),
+        C('C193', '100n', '+1V8_HOST', 'GND', Note='U24 VCCA'), C('C194', '100n', '+3V3', 'GND', Note='U24 VCCB'),
+        C('C195', '100n', '+1V8_HOST', 'GND', Note='U25 VCCA'), C('C196', '100n', '+3V3', 'GND', Note='U25 VCCB'),
+        C('C197', '100n', '+1V8_HOST', 'GND', Note='U27 VCCA'), C('C198', '100n', '+3V3_MESH', 'GND', Note='U27 VCCB'),
+        C('C199', '100n', '+1V8_HOST', 'GND', Note='U28 VCCA'), C('C200', '100n', '+3V3_MESH', 'GND', Note='U28 VCCB'),
+        C('C201', '100n', '+1V8_HOST', 'GND', Note='U29 VCCA'), C('C202', '100n', '+3V3_MESH', 'GND', Note='U29 VCCB'),
+        C('C203', '100n', '+1V8_HOST', 'GND', Note='U23 VCC'), C('C204', '100n', '+1V8_HOST', 'GND', Note='U26 VCC'), C('C205', '100n', '+1V8_HOST', 'GND', Note='U30 VCC'),
+        C('C206', '100n', '+1V8_HOST', 'GND', Note='U31 VCC'), C('C207', '100n', '+1V8_HOST', 'GND', Note='U32 VCC'), C('C208', '100n', '+1V8_HOST', 'GND', Note='U33 VCC'),
         # auto-boot / reset helpers for the host (DNP by default)
         P('D20', 'Device:D_Schottky', 'BAT54', {'1': 'PWR_BTN_N', '2': 'HOST_PWR_BTN_N'},
           'Diode_SMD:D_SOD-323', {'MPN': 'BAT54HT1G', 'Note': 'DNP: fit if the host needs a power-key press'},
