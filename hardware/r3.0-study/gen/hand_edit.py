@@ -107,7 +107,7 @@ def check(need=0.1):
                 continue                         # paste-only apertures of an exposed pad
             obst.append(('r', lys or CU, r, p.GetNetname(), fp.GetReference() + '.' + p.GetNumber()))
             if p.GetAttribute() == pcbnew.PAD_ATTRIB_SMD and lys:
-                smd.append((r, fp.GetReference() + '.' + p.GetNumber()))
+                smd.append((r, fp.GetReference() + '.' + p.GetNumber(), p.GetNetname()))
     new = []
     for net, ly, w, pts in T:
         for a, e in zip(pts, pts[1:]):
@@ -132,7 +132,9 @@ def check(need=0.1):
     bad = 0
     for net, q, d, dr in vias:
         new.append((net, CU, q, d / 2, 'V %s' % net))
-        for r, ref in smd:
+        for r, ref, pnet in smd:
+            if pnet == net and (r[2] - r[0]) * (r[3] - r[1]) > 4:
+                continue                         # thermal / ground vias in an exposed pad of the same net
             if rect_d(q, r) < dr / 2:
                 print('  via hole at %.2f, %.2f is on pad %s' % (q[0], q[1], ref)); bad += 1
             elif rect_d(q, r) < d / 2 and ref:

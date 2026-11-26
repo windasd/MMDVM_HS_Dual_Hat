@@ -543,3 +543,68 @@ T /Ethernet/ETH_TR1N F.Cu 0.20 158.438,101.170 159.137,101.170 159.238,101.270 1
 # /Ethernet/ETH_TR2N: 1 bump(s) 1.10 mm high on 163.37,102.27 -> 165.54,102.27, adds 1.97 mm
 RM F.Cu 163.367,102.270 165.537,102.270
 T /Ethernet/ETH_TR2N F.Cu 0.20 163.367,102.270 164.067,102.270 164.167,102.370 164.167,103.270 164.267,103.370 164.617,103.370 164.717,103.270 164.717,102.370 164.817,102.270 165.537,102.270
+
+# ============================================================================================================
+# 2026-11-26, design record 16.23: LAN7500 exposed-pad ground vias, LAN7500 decoupling capacitors on the bottom side,
+# TR1 length matching. Steps (not all of them are hand_edit.py):
+#  1. 15 + 4 GND vias 0.50/0.25 in the U60 exposed pad (search: 0.8 mm pitch, 0.15 mm to other-net copper on every
+#     layer; the first block below, then the second once the old C178 chain had gone). hand_edit.py now accepts a
+#     via inside a same-net pad larger than 4 mm2.
+#  2. C178, C176, C177, C154 flipped to the bottom side: C178:158.030,100.300,180 C176:157.808,95.386,90
+#     C177:158.290,99.100,180 C154:148.395,101.500,270 (B); the supply pad faces the via of its pin
+#  3. trunks that ran through the old pads joined at the old pad centres (T lines below)
+#  4. old stub chains removed (own chain walker, then clean_stubs.py, 8 rounds; the 13 mm ETH_VDD12PLL chain to the
+#     old C178 place went, the L66 -> U60 trunk stayed)
+#  5. the edit files below: B.Cu stubs and the new +3V3_ETH via, the second TR1N bump, one sharp corner
+# --- 1. U60 exposed-pad vias, first set
+# U60.57 GND: 0 existing, 15 new vias 0.50/0.25 (pitch >= 0.80, clearance 0.15), candidates 1159
+V GND 154.150,96.800 0.50 0.25
+V GND 154.150,102.200 0.50 0.25
+V GND 156.350,96.800 0.50 0.25
+V GND 156.400,102.200 0.50 0.25
+V GND 157.150,96.850 0.50 0.25
+V GND 157.150,98.600 0.50 0.25
+V GND 157.150,99.450 0.50 0.25
+V GND 157.150,101.450 0.50 0.25
+V GND 156.900,100.250 0.50 0.25
+V GND 156.750,97.550 0.50 0.25
+V GND 154.200,97.600 0.50 0.25
+V GND 156.350,99.400 0.50 0.25
+V GND 154.150,98.400 0.50 0.25
+V GND 154.150,100.150 0.50 0.25
+V GND 154.150,99.200 0.50 0.25
+# --- 1. U60 exposed-pad vias, second set
+# U60.57 GND: 15 existing, 4 new vias 0.50/0.25 (pitch >= 0.80, clearance 0.15), candidates 1744
+V GND 155.850,97.450 0.50 0.25
+V GND 156.300,100.800 0.50 0.25
+V GND 156.050,98.250 0.50 0.25
+V GND 155.900,100.100 0.50 0.25
+# --- 3. trunk bridges
+T /Ethernet/ETH_VDD12A F.Cu 0.60 144.382,93.025 144.382,93.119
+# C176.1 /Ethernet/ETH_VDD12A: 2 ends joined at 144.382,93.119
+# C177.1 +1V2_ETH: 2 ends joined at 143.513,112.461
+T +3V3_ETH F.Cu 0.80 144.545,90.695 144.545,90.481
+# C154.1 +3V3_ETH: 2 ends joined at 144.545,90.481
+# --- 5. bottom-side capacitors: stubs and vias
+# C178 on B.Cu next to the /Ethernet/ETH_VDD12PLL via of U60.50
+T /Ethernet/ETH_VDD12PLL B.Cu 0.30 159.580,100.200 158.510,100.300
+T GND B.Cu 0.30 156.900,100.250 157.550,100.300
+# C176 on B.Cu next to the /Ethernet/ETH_VDD12A via of U60.56
+T /Ethernet/ETH_VDD12A B.Cu 0.30 158.458,95.936 157.808,95.866
+T GND B.Cu 0.30 158.055,94.275 157.808,94.906
+# C177 on B.Cu next to the +1V2_ETH via of U60.49
+T +1V2_ETH B.Cu 0.30 159.140,99.750 158.770,99.100
+T GND B.Cu 0.30 157.150,99.450 157.810,99.100
+# C154 on B.Cu under a new +3V3_ETH via on the U60.24 track
+T +3V3_ETH F.Cu 0.30 148.495,100.750 148.495,100.400
+V +3V3_ETH 148.495,100.400 0.45 0.20
+T +3V3_ETH B.Cu 0.30 148.495,100.400 148.395,101.020
+T GND B.Cu 0.30 148.250,102.921 148.395,101.980
+# --- 5. TR1N second bump (+1.27 mm, TR1 skew 2.05 -> 0.79 mm)
+RM F.Cu 159.887,101.170 161.067,101.170
+T /Ethernet/ETH_TR1N F.Cu 0.20 159.887,101.170 160.137,101.170 160.237,101.270 160.237,101.820 160.337,101.920 160.687,101.920 160.787,101.820 160.787,101.270 160.887,101.170 161.067,101.170
+# --- 5. sharp corner left by the C178 chain removal
+# /Ethernet/ETH_VDD12PLL B.Cu 155.838,106.450: 73 deg, legs 2.10 / 0.03 mm
+RM B.Cu 155.838,106.450 155.838,104.350
+RM B.Cu 155.838,106.450 155.805,106.440
+T /Ethernet/ETH_VDD12PLL B.Cu 0.40 155.838,104.350 155.805,106.440
