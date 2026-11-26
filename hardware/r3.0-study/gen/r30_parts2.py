@@ -273,6 +273,8 @@ def power():
         # TI layout guide (SLVSDX7D 10.1): the output capacitor close to VOUT and GND. C129 cannot have a ground via (the
         # BT101 contact is under it on B.Cu), so C149 sits by pin 3 with a via to In1 and pin 1 has its own via.
         C('C149', '4u7', '+5V', 'GND', Note='10 V; TPS61022 VOUT, next to pin 3'),
+        # TPS61022 input capacitor close to VIN and GND (SLVSDX7D 10.1); the nearest one was C143, 4.7 mm away
+        C('C210', '4u7', 'VSYS', 'GND', Note='10 V; TPS61022 VIN, next to pins 6 / 7'),
         # ---- 3.5 V buck-boost (always on) -> LDOs
         P('U108', 'Regulator_Switching:TPS63030DSK', 'TPS63030', {
             '1': '+3V5', '2': 'BB_L2', '3': 'GND', '4': 'BB_L1', '5': 'VSYS', '6': 'VSYS', '7': 'VSYS',

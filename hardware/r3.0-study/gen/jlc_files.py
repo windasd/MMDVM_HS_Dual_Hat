@@ -2,6 +2,7 @@
 
   production/CPL_JLCPCB.csv   Designator, Mid X, Mid Y, Layer, Rotation (JLCPCB column names)
   production/BOM_JLCPCB.csv   the assembly BOM without the parts of jlc_exclude.csv
+                              (jlc_exclude_front_panel.csv for the front panel)
   production/hand_solder.csv  those parts, with the reason
   production/check_orientation.csv   the parts whose orientation matters, for the placement preview
 
@@ -25,7 +26,8 @@ import sys
 FP = len(sys.argv) > 1 and sys.argv[1] == 'front_panel'
 PRJ = os.path.join(HERE, '..', 'front_panel') if FP else os.path.join(HERE, '..')
 OUT = os.path.join(PRJ, 'production')
-skip = {} if FP else {r['Reference']: r['Reason'] for r in csv.DictReader(open(os.path.join(HERE, 'jlc_exclude.csv'), encoding='utf-8'))}
+EXCL = os.path.join(HERE, 'jlc_exclude_front_panel.csv' if FP else 'jlc_exclude.csv')
+skip = {r['Reference']: r['Reason'] for r in csv.DictReader(open(EXCL, encoding='utf-8'))} if os.path.exists(EXCL) else {}
 pos = list(csv.DictReader(open(os.path.join(OUT, ('front_panel' if FP else 'mmdvm_mesh') + '-pos.csv'), encoding='utf-8')))
 bom = list(csv.DictReader(open(os.path.join(PRJ, 'BOM.csv'), encoding='utf-8-sig')))
 inbom = {ref: r for r in bom for ref in r['Reference'].split(',')}
